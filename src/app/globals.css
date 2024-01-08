@@ -1,27 +1,248 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  --font_14: 0.875rem;
+  --font_16: 1rem;
+  --font_18: 1.125rem;
+  --font_21: 1.313rem;
+  --font_24: 1.5rem;
+  --font_28: 1.8rem;
+  --font_32: 2rem;
+  --font_36: 2.25rem;
+  --font_48: 3rem;
+  --font_56: 3.5rem;
+  --font_58: 3.625rem;
+  --font_70: 4.375rem;
+  --colorBlack: #24282c;
+  --colorGray: #6f7a7d;
+  --lightGray: #a6a8a8;
+  --themePink: #fbb8b8;
+  --themeYellow: #f2ed7b;
+  --themeBlue: #83defc;
+  --colorOrange: #ffae50;
+  --colorWhite: #fff;
+  --colorDarkBlue: #2d677c;
+  --starsColor: #ffc107;
+  --common_transition: all 0.6s ease;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: "Outfit", sans-serif;
+  font-display: swap;
+  font-weight: 400;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a,
+a:focus,
+a:hover {
+  text-decoration: none;
+}
+
+.header {
+  width: 100%;
+  height: 120px;
+  position: fixed;
+  top: 0;
+  margin-top: 0;
+  z-index: 99999;
+  font-family: "Outfit", sans-serif;
+  font-display: swap;
+  font: var(--font_16);
+  line-height: 20.16px;
+}
+
+.header a {
+  cursor: pointer;
+}
+
+.footer {
+  width: 100%;
+  margin: 0 auto;
+  color: var(--colorWhite);
+  background-color: var(--colorBlack);
+  font-family: "Outfit", sans-serif;
+  font-display: swap;
+}
+.footer a {
+  cursor: pointer;
+  font-size: var(--font_18);
+}
+.instant-solution {
+  width: 100%;
+  background-image: url("/images/header-banner.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.build-chatbot {
+  font-size: var(--font_58);
+  padding: 21px 32px;
+  line-height: 88.2px;
+  border: 2px solid var(--colorBlack);
+  border-radius: 115.55px 51.27px 0 115.55px;
+}
+
+.website-button {
+  width: 303px;
+  font-size: var(--font_56);
+  font-weight: 700;
+  color: var(--colorDarkBlue);
+  align-self: center;
+  border: 2px solid var(--colorBlack);
+  border-radius: 116px 50px 0 115.55px;
+}
+
+.bg_one {
+  width: 100%;
+  background-image: url("/images/bg_one.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.bg_two {
+  width: 100%;
+  background-image: url("/images/bg_two.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.intro-video::before {
+  content: url("/images/hand-right.svg");
+  position: absolute;
+  top: -5%;
+  right: -34%;
+  z-index: -1;
+}
+
+.intro-video::after {
+  content: url("/images/hand-left.svg");
+  position: absolute;
+  top: -5%;
+  left: -34%;
+  z-index: -1;
+}
+
+.youtube-video-main {
+  text-align: center;
+  z-index: 1;
+}
+
+.intro-video {
+  display: inline-block;
+  padding: 1rem;
+  position: relative;
   background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    to right,
+    var(--themePink),
+    var(--themeBlue),
+    var(--themeYellow)
+  );
+  border: 2px solid var(--colorBlack);
+  border-radius: 50px;
+}
+
+.video-play-icon {
+  position: absolute;
+  cursor: pointer;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.industry-we-serve h3 {
+  font-size: var(--font_24);
+  color: var(--colorGray);
+  line-height: 30.24px;
+  font-weight: 600;
+}
+
+.custom-shadow {
+  box-shadow: 0px 1.4737670421600342px 2.9475340843200684px 0px #0000004d inset;
+}
+.signup-content {
+  position: absolute;
+  top: 24%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.signup-button {
+  background: linear-gradient(
+    to right,
+    var(--themePink),
+    var(--themeBlue),
+    var(--themeYellow)
+  );
+  border-radius: 10px;
+  cursor: pointer;
+}
+.pricing-list li {
+  padding-left: 24px;
+  padding-bottom: 13px;
+  list-style: none;
+  list-style-type: none;
+  position: relative;
+  font-size: 18px;
+  color: var(--colorBlack);
+  font-weight: 400;
+  margin-left: 0;
+}
+.pricing-list li:last-child {
+  padding-bottom: 35px;
+}
+
+.pricing-list li::before {
+  content: "";
+  width: 15px;
+  height: 20px;
+  left: 0;
+  top: 5px;
+  background-image: url(/images/tick-mark.svg);
+  background-position: -464px -83px;
+  position: absolute;
+}
+.subscribe-main-shadow {
+  box-shadow: 13.435896873474121px 0px 40.30768585205078px 0px #0000000f;
+  box-shadow: -26.871793746948242px 13.435896873474121px 32.246150970458984px
+    0px #0000001a;
+}
+.subscribe-shadow {
+  box-shadow: 0px 40.30768585205078px 26.871793746948242px 0px #0000001a;
+}
+
+@media only screen and (max-width: 767px) {
+  .build-chatbot {
+    font-size: var(--font_28);
+    padding: 10px 16px;
+    line-height: unset;
+  }
+
+  .website-button {
+    width: 200px;
+    font-size: var(--font_24);
+  }
 }
