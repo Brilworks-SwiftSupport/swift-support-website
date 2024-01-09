@@ -15,29 +15,29 @@ const ResolveCustomerQuestions = () => {
     console.log("Submitted email:", email);
   };
   return (
-    <div className="w-full px-[70px] pb-[100px]">
+    <div className="w-full section-padding">
       <div className="relative flex items-center justify-center">
         <Image
-          className="self-center"
+          className="self-center w-full"
           src="/images/signup.svg"
           width={1300}
           height={852}
           alt="Resolve customer questions"
         />
         <div className="signup-content">
-          <h2 className="text-[36px] font-bold leading-[45.36px] mb-[30px] text-center">
+          <h2 className="font-bold text-2xl md:text-3xl xl:text-4xl xl:leading-[45.36px] mb-[30px] text-center">
             Resolve up to 80% of customer <br />
             questions with AI
           </h2>
-          <form className="" onSubmit={handleSubmit}>
+          <form className="w-full" onSubmit={handleSubmit}>
             <div className="mb-[10px]">
               <label className="text-[#7E7E7E] text-base font-normal">
                 Email Address
               </label>
             </div>
-            <div className="flex gap-5">
+            <div className="md:inline-flex flex flex-wrap gap-5">
               <input
-                className="w-[472px] border border-colorBlack h-[60px] rounded-[13px] py-[30px] pl-5"
+                className="xl:w-[472px]  border border-colorBlack h-[60px] rounded-[13px] py-[30px] pl-5"
                 type="email"
                 placeholder="john123@gmail.com"
                 value={email}

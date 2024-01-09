@@ -5,9 +5,9 @@ const PricingPlan = () => {
   const [subscriptionPlan, setSubscriptionPlan] = useState("Monthly");
 
   return (
-    <div className="pb-[100px] px-[70px]">
-      <div className="flex flex-col items-center justify-center mb-[58px]">
-        <h2 className="font-bold text-4xl leading-[45.36px] text-center mb-[30px]">
+    <div className="section-padding">
+      <div className="flex flex-col items-center justify-center md:mb-[58px] mb-7">
+        <h2 className="font-bold text-2xl md:text-3xl xl:text-4xl xl:leading-[45.36px] mb-[30px] text-center">
           Pricing Plans
         </h2>
         <div className="flex relative">
@@ -88,7 +88,11 @@ const PricingPlan = () => {
           </div>
         </div>
 
-        <div className="bg-themeYellow rounded-[14px] p-[22px] subscribe-main-shadow">
+        <div className="relative bg-themeYellow rounded-[14px] p-[22px] subscribe-main-shadow">
+          <div class="absolute top-[0px] right-[0px] rounded-tl-none rounded-tr-[12.09px] rounded-br-none rounded-bl-[12.09px] bg-black w-[130px] h-[42px]"></div>
+          <div class="absolute top-[11px] text-colorWhite text-base right-[20px] inline-block w-[90px]">
+            Current Plan
+          </div>
           <span className="font-light text-[50px] mb-4">$50</span>
           <br />
           <button className="bg-colorWhite font-medium rounded-[10px] px-[22px] py-[14px] mb-[21px] subscribe-shadow">

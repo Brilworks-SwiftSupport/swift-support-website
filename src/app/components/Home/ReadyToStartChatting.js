@@ -3,9 +3,9 @@ import React from "react";
 
 const ReadyToStartChatting = () => {
   return (
-    <div className="px-[70px] pb-[100px] flex flex-wrap items-center">
-      <div className="lg:w-1/2 w-full pr-[35px]">
-        <h2 className="font-bold text-4xl leading-[45.36px] w-[70%] mb-[30px]">
+    <div className="section-padding flex flex-wrap items-center">
+      <div className="lg:w-1/2 w-full md:pr-[35px] pr-0">
+        <h2 className="font-bold text-2xl md:text-3xl xl:text-4xl xl:leading-[45.36px] md:mb-30 md:mt-0 mb-5 md:w-[70%] w-full">
           Ready to Start Chatting just like that
         </h2>
 
@@ -20,7 +20,7 @@ const ReadyToStartChatting = () => {
           instant interaction with our ready-to-chat interface.
         </p>
       </div>
-      <div className="lg:w-1/2 w-full pl-[35px]">
+      <div className="lg:w-1/2 w-full md:pl-[35px] mt-5">
         <div className="flex items-end justify-end">
           <Image
             className="self-end"

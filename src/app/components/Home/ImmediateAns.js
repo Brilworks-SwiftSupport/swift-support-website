@@ -3,8 +3,8 @@ import React from "react";
 
 const ImmediateAns = () => {
   return (
-    <div className="px-[70px] pb-[100px] flex flex-wrap items-center">
-      <div className="lg:w-3/5 w-full pr-[35px]">
+    <div className="section-padding flex flex-wrap items-center">
+      <div className="lg:w-3/5 w-full md:pr-[35px] mb-4 md:mb-0">
         <Image
           className="self-end"
           src="/images/Immediate-ans.svg"
@@ -13,8 +13,8 @@ const ImmediateAns = () => {
           height="421"
         />
       </div>
-      <div className="lg:w-2/5 w-full pl-[35px]">
-        <h2 className="font-bold text-4xl leading-[45.36px] pr-20 mb-[30px]">
+      <div className="lg:w-2/5 w-full md:pl-[35px]">
+      <h2 className="font-bold text-2xl md:text-3xl xl:text-4xl xl:leading-[45.36px] md:mb-30 md:mt-0 mb-5">
           Immediate Answers
         </h2>
 

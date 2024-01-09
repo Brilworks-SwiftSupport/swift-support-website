@@ -15,23 +15,23 @@ const IndustriesWeServe = () => {
   const handleOpen2 = (value) => setOpen2(open2 === value ? 0 : value);
 
   return (
-    <div className="w-full px-[70px] py-[30px]">
-      <div className="flex items-center justify-between mb-10">
-        <h2 className="w-1/2 md:text-[36px] text-[26px] font-bold text-left">
+    <div className="w-full section-padding">
+      <div className="flex items-center flex-col md:flex-row justify-between mb-10">
+        <h2 className="md:w-1/2 w-full md:text-[36px] text-[26px] font-bold text-left mb-4 md:mb-0">
           Industries we serve
         </h2>
-        <p className="w-1/2 text-[18px] font-normal text-colorGray pl-[10%]">
+        <p className="md;w-1/2 w-full md:text-[18px] text-[14px] font-normal text-colorGray md:pl-[10%]">
           Lorem ipsum dolor sit amet consectetur: Nibh scelerisque ut sit a
           libero fringilla pellentesque pellentesque morbi. Magna massa nec quam
           pretium. Cras porta eu in elementum nunc diam.
         </p>
       </div>
       <div className="flex flex-wrap industry-we-serve">
-        <div className="lg:w-1/2 w-full pr-[60px]">
+        <div className="lg:w-1/2 w-full md:pr-[60px] pr-0">
           <Accordion open={open === 1} icon={<Icon id={1} open={open} />}>
             <AccordionHeader
               onClick={() => handleOpen(1)}
-              className={`py-8 border-t border-lightGray  ${
+              className={`xl:py-8 md:py-6 py-4 border-t border-lightGray  ${
                 open === 1 ? "border-b-0 pb-[14px]" : "border-b"
               }`}
             >
@@ -44,7 +44,8 @@ const IndustriesWeServe = () => {
                 open === 1 ? "border-b border-lightGray pt-0 pb-10" : "hidden"
               }
             >
-              <div className="w-full flex">
+              <div className="w-full flex flex-wrap flex-col-reverse md:flex-row">
+                <div>
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
                   Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
                   a libero fringillrea pellentesque pellentesque morbi.Magna
@@ -56,7 +57,8 @@ const IndustriesWeServe = () => {
                   pellentesque morbi.Magna massa nec quam pretium. Cras porta
                   euy in elementum nunc diam aliquam.
                 </p>
-                <div className="lg:w-6/12 w-full pl-[20px]">
+                </div>
+                <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 md:mb-0">
                   <Image
                     className="rounded-[15px]"
                     src="/images/Finance.svg"
@@ -71,7 +73,7 @@ const IndustriesWeServe = () => {
           <Accordion open={open === 2} icon={<Icon id={2} open={open} />}>
             <AccordionHeader
               onClick={() => handleOpen(2)}
-              className={`py-8 border-lightGray ${
+              className={`xl:py-8 md:py-6 py-4 border-lightGray ${
                 open === 2 ? "border-b-0 pb-[14px]" : "border-b "
               }`}
             >
@@ -82,7 +84,7 @@ const IndustriesWeServe = () => {
                 open === 2 ? "border-b border-lightGray pt-0 pb-10" : "hidden"
               }
             >
-              <div className="w-full flex">
+              <div className="w-full flex flex-wrap flex-col-reverse md:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
                   Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
                   a libero fringillrea pellentesque pellentesque morbi.Magna
@@ -94,7 +96,7 @@ const IndustriesWeServe = () => {
                   pellentesque morbi.Magna massa nec quam pretium. Cras porta
                   euy in elementum nunc diam aliquam.
                 </p>
-                <div className="lg:w-6/12 w-full pl-[20px]">
+                  <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 md:mb-0">
                   <Image
                     className="rounded-[15px]"
                     src="/images/Finance.svg"
@@ -109,7 +111,7 @@ const IndustriesWeServe = () => {
           <Accordion open={open === 3} icon={<Icon id={3} open={open} />}>
             <AccordionHeader
               onClick={() => handleOpen(3)}
-              className={`py-8 border-lightGray ${
+              className={`xl:py-8 md:py-6 py-4 border-lightGray ${
                 open === 3 ? "border-b-0" : "border-b "
               }`}
             >
@@ -120,7 +122,7 @@ const IndustriesWeServe = () => {
                 open === 3 ? "border-b border-lightGray pt-0 pb-10" : "hidden"
               }
             >
-              <div className="w-full flex">
+              <div className="w-full flex flex-wrap flex-col-reverse md:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
                   Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
                   a libero fringillrea pellentesque pellentesque morbi.Magna
@@ -132,7 +134,7 @@ const IndustriesWeServe = () => {
                   pellentesque morbi.Magna massa nec quam pretium. Cras porta
                   euy in elementum nunc diam aliquam.
                 </p>
-                <div className="lg:w-6/12 w-full pl-[20px]">
+                  <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 md:mb-0">
                   <Image
                     className="rounded-[15px]"
                     src="/images/Finance.svg"
@@ -147,7 +149,7 @@ const IndustriesWeServe = () => {
           <Accordion open={open === 4} icon={<Icon id={4} open={open} />}>
             <AccordionHeader
               onClick={() => handleOpen(4)}
-              className={`py-8 border-lightGray ${
+              className={`xl:py-8 md:py-6 py-4 border-lightGray ${
                 open === 4 ? "border-b-0 pb-[14px]" : "border-b "
               }`}
             >
@@ -158,7 +160,7 @@ const IndustriesWeServe = () => {
                 open === 4 ? "border-b border-lightGray pt-0 pb-10" : "hidden"
               }
             >
-              <div className="w-full flex">
+              <div className="w-full flex flex-wrap flex-col-reverse md:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
                   Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
                   a libero fringillrea pellentesque pellentesque morbi.Magna
@@ -170,7 +172,7 @@ const IndustriesWeServe = () => {
                   pellentesque morbi.Magna massa nec quam pretium. Cras porta
                   euy in elementum nunc diam aliquam.
                 </p>
-                <div className="lg:w-6/12 w-full pl-[20px]">
+                  <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 md:mb-0">
                   <Image
                     className="rounded-[15px]"
                     src="/images/Finance.svg"
@@ -183,11 +185,11 @@ const IndustriesWeServe = () => {
             </AccordionBody>
           </Accordion>
         </div>
-        <div className="lg:w-1/2 w-full pl-[60px]">
+        <div className="lg:w-1/2 w-full md:pl-[60px] pl-0">
           <Accordion open={open2 === 1} icon={<Icon id={1} open={open2} />}>
             <AccordionHeader
               onClick={() => handleOpen2(1)}
-              className={`py-8 border-t border-lightGray  ${
+              className={`xl:py-8 md:py-6 py-4 border-t border-lightGray  ${
                 open2 === 1 ? "border-b-0 pb-[14px]" : "border-b"
               }`}
             >
@@ -200,7 +202,7 @@ const IndustriesWeServe = () => {
                 open2 === 1 ? "border-b border-lightGray pt-0 pb-10" : "hidden"
               }
             >
-              <div className="w-full flex">
+              <div className="w-full flex flex-wrap flex-col-reverse md:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
                   Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
                   a libero fringillrea pellentesque pellentesque morbi.Magna
@@ -212,7 +214,7 @@ const IndustriesWeServe = () => {
                   pellentesque morbi.Magna massa nec quam pretium. Cras porta
                   euy in elementum nunc diam aliquam.
                 </p>
-                <div className="lg:w-6/12 w-full pl-[20px]">
+                  <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 md:mb-0">
                   <Image
                     className="rounded-[15px]"
                     src="/images/Finance.svg"
@@ -227,7 +229,7 @@ const IndustriesWeServe = () => {
           <Accordion open={open2 === 2} icon={<Icon id={2} open={open2} />}>
             <AccordionHeader
               onClick={() => handleOpen2(2)}
-              className={`py-8 border-lightGray ${
+              className={`xl:py-8 md:py-6 py-4 border-lightGray ${
                 open2 === 2 ? "border-b-0 pb-[14px]" : "border-b "
               }`}
             >
@@ -240,7 +242,7 @@ const IndustriesWeServe = () => {
                 open2 === 2 ? "border-b border-lightGray pt-0 pb-10" : "hidden"
               }
             >
-              <div className="w-full flex">
+              <div className="w-full flex flex-wrap flex-col-reverse md:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
                   Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
                   a libero fringillrea pellentesque pellentesque morbi.Magna
@@ -252,7 +254,7 @@ const IndustriesWeServe = () => {
                   pellentesque morbi.Magna massa nec quam pretium. Cras porta
                   euy in elementum nunc diam aliquam.
                 </p>
-                <div className="lg:w-6/12 w-full pl-[20px]">
+                  <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 md:mb-0">
                   <Image
                     className="rounded-[15px]"
                     src="/images/Finance.svg"
@@ -267,7 +269,7 @@ const IndustriesWeServe = () => {
           <Accordion open={open2 === 3} icon={<Icon id={3} open={open2} />}>
             <AccordionHeader
               onClick={() => handleOpen2(3)}
-              className={`py-8 border-lightGray ${
+              className={`xl:py-8 md:py-6 py-4 border-lightGray ${
                 open2 === 3 ? "border-b-0" : "border-b "
               }`}
             >
@@ -280,7 +282,7 @@ const IndustriesWeServe = () => {
                 open2 === 3 ? "border-b border-lightGray pt-0 pb-10" : "hidden"
               }
             >
-              <div className="w-full flex">
+              <div className="w-full flex flex-wrap flex-col-reverse md:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
                   Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
                   a libero fringillrea pellentesque pellentesque morbi.Magna
@@ -292,7 +294,7 @@ const IndustriesWeServe = () => {
                   pellentesque morbi.Magna massa nec quam pretium. Cras porta
                   euy in elementum nunc diam aliquam.
                 </p>
-                <div className="lg:w-6/12 w-full pl-[20px]">
+                  <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 md:mb-0">
                   <Image
                     className="rounded-[15px]"
                     src="/images/Finance.svg"
@@ -307,7 +309,7 @@ const IndustriesWeServe = () => {
           <Accordion open={open2 === 4} icon={<Icon id={4} open={open2} />}>
             <AccordionHeader
               onClick={() => handleOpen2(4)}
-              className={`py-8 border-lightGray ${
+              className={`xl:py-8 md:py-6 py-4 border-lightGray ${
                 open2 === 4 ? "border-b-0 pb-[14px]" : "border-b "
               }`}
             >
@@ -320,7 +322,7 @@ const IndustriesWeServe = () => {
                 open2 === 4 ? "border-b  border-lightGray pt-0 pb-10" : "hidden"
               }
             >
-              <div className="w-full flex">
+              <div className="w-full flex flex-wrap flex-col-reverse md:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
                   Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
                   a libero fringillrea pellentesque pellentesque morbi.Magna
@@ -332,7 +334,7 @@ const IndustriesWeServe = () => {
                   pellentesque morbi.Magna massa nec quam pretium. Cras porta
                   euy in elementum nunc diam aliquam.
                 </p>
-                <div className="lg:w-6/12 w-full pl-[20px]">
+                  <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 md:mb-0">
                   <Image
                     className="rounded-[15px]"
                     src="/images/Finance.svg"
@@ -347,7 +349,7 @@ const IndustriesWeServe = () => {
           <Accordion open={open2 === 5} icon={<Icon id={5} open={open2} />}>
             <AccordionHeader
               onClick={() => handleOpen2(5)}
-              className={`py-8 border-lightGray ${
+              className={`xl:py-8 md:py-6 py-4 border-lightGray ${
                 open2 === 5 ? "border-b-0 pb-[14px]" : "border-b "
               }`}
             >
@@ -360,7 +362,7 @@ const IndustriesWeServe = () => {
                 open2 === 5 ? "border-b  border-lightGray pt-0 pb-10" : "hidden"
               }
             >
-              <div className="w-full flex">
+              <div className="w-full flex flex-wrap flex-col-reverse md:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
                   Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
                   a libero fringillrea pellentesque pellentesque morbi.Magna
@@ -372,7 +374,7 @@ const IndustriesWeServe = () => {
                   pellentesque morbi.Magna massa nec quam pretium. Cras porta
                   euy in elementum nunc diam aliquam.
                 </p>
-                <div className="lg:w-6/12 w-full pl-[20px]">
+                  <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 md:mb-0">
                   <Image
                     className="rounded-[15px]"
                     src="/images/Finance.svg"
@@ -387,7 +389,7 @@ const IndustriesWeServe = () => {
           <Accordion open={open2 === 6} icon={<Icon id={6} open={open2} />}>
             <AccordionHeader
               onClick={() => handleOpen2(6)}
-              className={`py-8 border-lightGray ${
+              className={`xl:py-8 md:py-6 py-4 border-lightGray ${
                 open2 === 6 ? "border-b-0 pb-[14px]" : "border-b "
               }`}
             >
@@ -400,7 +402,7 @@ const IndustriesWeServe = () => {
                 open2 === 6 ? "border-b  border-lightGray pt-0 pb-10" : "hidden"
               }
             >
-              <div className="w-full flex">
+              <div className="w-full flex flex-wrap flex-col-reverse md:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
                   Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
                   a libero fringillrea pellentesque pellentesque morbi.Magna
@@ -412,7 +414,7 @@ const IndustriesWeServe = () => {
                   pellentesque morbi.Magna massa nec quam pretium. Cras porta
                   euy in elementum nunc diam aliquam.
                 </p>
-                <div className="lg:w-6/12 w-full pl-[20px]">
+                  <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 md:mb-0">
                   <Image
                     className="rounded-[15px]"
                     src="/images/Finance.svg"
@@ -427,7 +429,7 @@ const IndustriesWeServe = () => {
           <Accordion open={open2 === 7} icon={<Icon id={7} open={open2} />}>
             <AccordionHeader
               onClick={() => handleOpen2(7)}
-              className={`py-8 border-lightGray ${
+              className={`xl:py-8 md:py-6 py-4 border-lightGray ${
                 open2 === 7 ? "border-b-0 pb-[14px]" : "border-b "
               }`}
             >
@@ -440,7 +442,7 @@ const IndustriesWeServe = () => {
                 open2 === 7 ? "border-b  border-lightGray pt-0 pb-10" : "hidden"
               }
             >
-              <div className="w-full flex">
+              <div className="w-full flex flex-wrap flex-col-reverse md:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
                   Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
                   a libero fringillrea pellentesque pellentesque morbi.Magna
@@ -452,7 +454,7 @@ const IndustriesWeServe = () => {
                   pellentesque morbi.Magna massa nec quam pretium. Cras porta
                   euy in elementum nunc diam aliquam.
                 </p>
-                <div className="lg:w-6/12 w-full pl-[20px]">
+                  <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 md:mb-0">
                   <Image
                     className="rounded-[15px]"
                     src="/images/Finance.svg"

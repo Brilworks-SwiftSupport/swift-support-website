@@ -43,7 +43,7 @@ const Footer = () => {
             />
           </Link>
         </div>
-        <div className="flex items-center justify-center gap-[60px] pt-8 pb-12">
+        <div className="flex items-center md:flex-row flex-col justify-center md:gap-[60px] xl:gap-[40px] gap-5 pt-8 pb-12">
           <Link
             href="#"
             className="flex items-center justify-center font-medium"

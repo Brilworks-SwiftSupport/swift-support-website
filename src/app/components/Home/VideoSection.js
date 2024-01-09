@@ -1,11 +1,11 @@
-"use client"
+"use client";
 import Image from "next/image";
 import React, { useState } from "react";
 
 const VideoSection = () => {
   const [isVideoPause, setVideoPause] = useState(true);
   return (
-    <div className="youtube-video-main mx-auto my-[50px] lg:my-[100px] w-full">
+    <div className="youtube-video-main mx-auto section-padding">
       <div className="intro-video relative">
         <span className="video-play-icon z-10">
           {isVideoPause && (
@@ -19,12 +19,9 @@ const VideoSection = () => {
             </span>
           )}
         </span>
-        <div
-          className="rounded-[50px] border-red"
-          onClick={() => setVideoPause(!isVideoPause)}
-        >
+        <div onClick={() => setVideoPause(!isVideoPause)}>
           <video
-            className="rounded-[40px]"
+            className="rounded-[25px] md:rounded-[50px]"
             src="https://youtu.be/8-E1LbChJ88?feature=shared"
             controls
             loading="lazy"

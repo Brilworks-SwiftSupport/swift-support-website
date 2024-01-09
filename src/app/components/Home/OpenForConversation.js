@@ -1,15 +1,17 @@
 import Image from "next/image";
 import React from "react";
+import { useMediaQuery } from "react-responsive";
 
 const OpenForConversation = () => {
+  const isMobile = useMediaQuery({ maxWidth: 767 });
   return (
-    <div className="pb-[100px] px-[70px]">
-      <div className="flex flex-col items-center justify-center mb-[58px]">
-        <h2 className="font-bold text-4xl leading-[45.36px] text-center mb-[30px]">
-          Open for Conversation: Chatbot <br />
+    <div className="section-padding">
+      <div className="flex flex-col items-center justify-center md:mb-[58px] mb-7">
+        <h2 className="font-bold text-2xl md:text-3xl xl:text-4xl xl:leading-[45.36px] mb-[30px] text-center">
+          Open for Conversation: Chatbot {!isMobile && <br/>}
           with Embed Code
         </h2>
-        <p className="text-lg font-normal text-colorGray text-center w-4/5">
+        <p className="text-lg font-normal text-colorGray md:text-center md:w-4/5 w-full">
           Embed our chatbot easily using the provided code and unlock instant,
           interactive communication. Seamlessly integrate the chatbot into your
           platform to engage users effortlessly. With our open approach,

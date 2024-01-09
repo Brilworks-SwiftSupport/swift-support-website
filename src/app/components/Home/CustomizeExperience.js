@@ -3,10 +3,10 @@ import React from "react";
 
 const CustomizeExperience = () => {
   return (
-    <div className="px-[70px] pb-[100px] flex flex-wrap">
-      <div className="lg:w-1/3 w-full pr-[30px]">
+    <div className="section-padding flex flex-wrap">
+      <div className="lg:w-1/3 w-full md:pr-[30px]">
         <div className="mb-[30px]">
-          <h2 className="font-bold text-4xl leading-[45.36px] pr-20">
+        <h2 className="font-bold text-2xl md:text-3xl xl:text-4xl xl:leading-[45.36px] md:pr-20">
             Customize the Entire Experience
           </h2>
         </div>
@@ -47,7 +47,7 @@ const CustomizeExperience = () => {
           </div>
         </div>
       </div>
-      <div className="lg:w-2/3 w-full">
+      <div className="lg:w-2/3 w-full my-4 md:my-0 ">
         <div className="flex items-end justify-end">
           <Image
             className="self-end"

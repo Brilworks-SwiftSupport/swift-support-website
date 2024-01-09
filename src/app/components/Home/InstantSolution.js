@@ -1,11 +1,13 @@
-"use client"
+"use client";
 import Link from "next/link";
 import React, { useState } from "react";
+import { useMediaQuery } from "react-responsive";
 
 const InstantSolution = () => {
+  const isMobile = useMediaQuery({ maxWidth: 767 });
   const [sequence, setSequence] = useState(1);
   return (
-    <div className="instant-solution pt-[150px]">
+    <div className="instant-solution section-padding !pt-[150px]">
       <div className="mb-[29px]">
         <p className="uppercase md:text-[22px] text-[18px] font-semibold text-colorGray leading-[27.72px] text-center">
           Instant Customer Solutions
@@ -13,10 +15,11 @@ const InstantSolution = () => {
       </div>
 
       <div className="text-colorBlack font-light md:text-[70px] text-[32px] flex text-center flex-col">
-        <p className="mb-[17px]">
-          Build a <span className="build-chatbot">Chatbot to answer</span>
+        <p className="xs:mb-4 mb-2">
+          Build a {isMobile && <br />}
+          <span className="build-chatbot mb-2 xs:mb-0">Chatbot to answer</span>
         </p>
-        <p className="mb-4">any question from your</p>
+        <p className="xs:mb-4 mb-2">any question from your</p>
         <div
           className={`website-button select-none cursor-pointer ${
             sequence === 1

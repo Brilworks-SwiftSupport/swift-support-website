@@ -6,9 +6,9 @@ import React from "react";
 
 const PeopleSaying = () => {
   return (
-    <div className="pb-[100px] px-[70px]">
+    <div className="section-padding">
       <div className="flex flex-col items-center justify-center mb-[30px]">
-        <h2 className="font-bold text-4xl leading-[45.36px] mb-2">
+        <h2 className="font-bold text-2xl md:text-3xl xl:text-4xl xl:leading-[45.36px] md:mb-30 md:mt-0 md:mb-2 mb-5 md:w-[70%] w-full">
           What people are saying about
         </h2>
         <Image
@@ -40,6 +40,10 @@ const PeopleSaying = () => {
               767: {
                 perPage: 2,
               },
+              480: {
+                perPage: 1,
+                gap: 10,
+              },
             },
           }}
           extensions={{ AutoScroll }}
@@ -47,7 +51,7 @@ const PeopleSaying = () => {
           <SplideSlide>
             <div className="bg-[#D7F4FE] rounded-[30px] p-[30px]">
               <div className="flex items-center justify-between">
-                <div className="flex gap-[10px] mb-4">
+                <div className="flex md:gap-[10px] gap-1 mb-4">
                   <Image
                     src="/images/icon_star.png"
                     alt="star-icon"
@@ -94,7 +98,7 @@ const PeopleSaying = () => {
                   />
                 </div>
               </div>
-              <p className="text-base font-medium mb-5 w-2/3">
+              <p className="text-base font-medium mb-5 md:w-2/3 w-full">
                 Happy and regular user of chatbot. It has helped a great deal in
                 my entrepreneurial journey
               </p>
@@ -151,7 +155,7 @@ const PeopleSaying = () => {
                   />
                 </div>
               </div>
-              <p className="text-base font-medium mb-5 w-2/3">
+              <p className="text-base font-medium mb-5 md:w-2/3 w-full">
                 Happy and regular user of chatbot. It has helped a great deal in
                 my entrepreneurial journey
               </p>
@@ -208,7 +212,7 @@ const PeopleSaying = () => {
                   />
                 </div>
               </div>
-              <p className="text-base font-medium mb-5 w-2/3">
+              <p className="text-base font-medium mb-5 md:w-2/3 w-full">
                 Happy and regular user of chatbot. It has helped a great deal in
                 my entrepreneurial journey
               </p>

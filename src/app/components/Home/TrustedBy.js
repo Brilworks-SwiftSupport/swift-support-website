@@ -3,11 +3,11 @@ import React from "react";
 
 const TrustedBy = () => {
   return (
-    <div className="px-[70px]">
+    <div className="section-padding">
       <p className="md:text-[36px] text-[26px] font-bold text-center mb-10">
         Trusted by 500+ companies.
       </p>
-      <div className="flex items-center justify-center gap-[80px] mb-[70px]">
+      <div className="flex flex-wrap items-center justify-center md:gap-[60px] xl:gap-[80px] gap-10">
         <Image
           src="/images/Logo (1).svg"
           alt="Custom AI Logo"
