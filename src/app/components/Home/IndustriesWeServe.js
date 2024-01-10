@@ -20,7 +20,7 @@ const IndustriesWeServe = () => {
         <h2 className="md:w-1/2 w-full md:text-[36px] text-[26px] font-bold text-left mb-4 md:mb-0">
           Industries we serve
         </h2>
-        <p className="md;w-1/2 w-full md:text-[18px] text-[14px] font-normal text-colorGray md:pl-[10%]">
+        <p className="md:w-1/2 w-full md:text-[18px] text-[14px] font-normal text-colorGray md:pl-[10%]">
           Lorem ipsum dolor sit amet consectetur: Nibh scelerisque ut sit a
           libero fringilla pellentesque pellentesque morbi. Magna massa nec quam
           pretium. Cras porta eu in elementum nunc diam.
@@ -45,19 +45,17 @@ const IndustriesWeServe = () => {
               }
             >
               <div className="w-full flex flex-wrap flex-col-reverse lg:flex-row">
-                <div>
-                  <p className="lg:w-6/12 w-full text-base text-colorGray">
-                    Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut
-                    sit a libero fringillrea pellentesque pellentesque
-                    morbi.Magna massa nec quam pretium. Cras porta euy in
-                    elementum nunc diam aliquam. Interdu vitae ultrices amet
-                    consectetur Nibhward scelerisque ut sit a libero fringillrea
-                    wasde pellentesque pellentesque morbi. Lorem ipsum dolor sit
-                    amet consectetur Nibh scelerisque ut sit a libero
-                    fringillrea pellentesque pellentesque morbi.Magna massa nec
-                    quam pretium. Cras porta euy in elementum nunc diam aliquam.
-                  </p>
-                </div>
+                <p className="lg:w-6/12 w-full text-base text-colorGray">
+                  Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
+                  a libero fringillrea pellentesque pellentesque morbi.Magna
+                  massa nec quam pretium. Cras porta euy in elementum nunc diam
+                  aliquam. Interdu vitae ultrices amet consectetur Nibhward
+                  scelerisque ut sit a libero fringillrea wasde pellentesque
+                  pellentesque morbi. Lorem ipsum dolor sit amet consectetur
+                  Nibh scelerisque ut sit a libero fringillrea pellentesque
+                  pellentesque morbi.Magna massa nec quam pretium. Cras porta
+                  euy in elementum nunc diam aliquam.
+                </p>
                 <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 lg:mb-0">
                   <Image
                     className="rounded-[15px]"

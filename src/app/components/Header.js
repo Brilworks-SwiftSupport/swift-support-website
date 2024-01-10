@@ -36,14 +36,7 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  // useEffect(() => {
-  //   window.addEventListener(
-  //     "resize",
-  //     () => window.innerWidth >= 767 && setOpenNav(false)
-  //   );
-  // }, []);
-
+  
   const navList = (
     <ul className="mt-2 mb-4 flex flex-col gap-3 items-center md:mb-0 md:mt-0 md:flex-row md:items-center md:gap-6">
       <Link

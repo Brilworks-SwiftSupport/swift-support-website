@@ -63,7 +63,9 @@ const PricingPlan = () => {
         </div>
 
         <div className="bg-themeBlue rounded-[14px] p-[22px]">
-          <span className="font-light text-[50px] mb-4">$20</span>
+          <span className="font-light text-[50px] mb-4">
+            {subscriptionPlan === "Monthly" ? "$20" : "$240"}
+          </span>
           <br />
           <button className="bg-colorWhite font-medium rounded-[10px] px-[22px] py-[14px] mb-[21px]">
             BASIC
@@ -93,7 +95,9 @@ const PricingPlan = () => {
           <div className="absolute top-[11px] text-colorWhite text-base right-[20px] inline-block w-[90px]">
             Current Plan
           </div>
-          <span className="font-light text-[50px] mb-4">$50</span>
+          <span className="font-light text-[50px] mb-4">
+            {subscriptionPlan === "Monthly" ? "$50" : "$600"}
+          </span>
           <br />
           <button className="bg-colorWhite font-medium rounded-[10px] px-[22px] py-[14px] mb-[21px] subscribe-shadow">
             STANDARD
@@ -119,7 +123,9 @@ const PricingPlan = () => {
         </div>
 
         <div className="bg-themeBlue rounded-[14px] p-[22px]">
-          <span className="font-light text-[50px] mb-4">$80</span>
+          <span className="font-light text-[50px] mb-4">
+            {subscriptionPlan === "Monthly" ? "$80" : "$960"}
+          </span>
           <br />
           <button className="bg-colorWhite font-medium rounded-[10px] px-[22px] py-[14px] mb-[21px]">
             PREMIUM

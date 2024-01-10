@@ -7,12 +7,12 @@ const Footer = () => {
   return (
     <div className="footer">
       <div>
-        <div className="flex items-center justify-center py-[50px]">
+        <div className="flex items-center justify-center py-[30px]">
           <Image
             src="/images/footer-logo.svg"
             alt="Custom AI footer logo"
-            width="263"
-            height="45"
+            width="345"
+            height="96"
           />
         </div>
         <div className="flex items-center justify-center">
@@ -48,7 +48,7 @@ const Footer = () => {
             href="#"
             className="flex items-center justify-center font-medium"
           >
-            Featured
+            Features
           </Link>
           <Link
             href="#"
@@ -82,9 +82,9 @@ const Footer = () => {
           </Link>
         </div>
       </div>
-      <div className="bg-[#30353A]">
+      <div className="bg-[#04333F]">
         <span className="flex item-center justify-center text-sm py-[11px]">
-          @copyright 2023 Custom AI. All rights reserved.
+          @copyright 2024 SwiftSupport. All rights reserved.
         </span>
       </div>
     </div>

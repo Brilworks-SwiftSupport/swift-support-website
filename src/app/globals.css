@@ -95,7 +95,7 @@ a:hover {
   width: 100%;
   margin: 0 auto;
   color: var(--colorWhite);
-  background-color: var(--colorBlack);
+  background-color: #0c424f;
   font-family: "Outfit", sans-serif;
   font-display: swap;
 }
