@@ -89,8 +89,8 @@ const PricingPlan = () => {
         </div>
 
         <div className="relative bg-themeYellow rounded-[14px] p-[22px] subscribe-main-shadow">
-          <div class="absolute top-[0px] right-[0px] rounded-tl-none rounded-tr-[12.09px] rounded-br-none rounded-bl-[12.09px] bg-black w-[130px] h-[42px]"></div>
-          <div class="absolute top-[11px] text-colorWhite text-base right-[20px] inline-block w-[90px]">
+          <div className="absolute top-[0px] right-[0px] rounded-tl-none rounded-tr-[12.09px] rounded-br-none rounded-bl-[12.09px] bg-black w-[130px] h-[42px]"></div>
+          <div className="absolute top-[11px] text-colorWhite text-base right-[20px] inline-block w-[90px]">
             Current Plan
           </div>
           <span className="font-light text-[50px] mb-4">$50</span>

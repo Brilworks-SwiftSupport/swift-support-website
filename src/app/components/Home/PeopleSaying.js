@@ -6,9 +6,9 @@ import React from "react";
 
 const PeopleSaying = () => {
   return (
-    <div className="section-padding">
+    <div className="section-padding !px-0">
       <div className="flex flex-col items-center justify-center mb-[30px]">
-        <h2 className="font-bold text-2xl md:text-3xl xl:text-4xl xl:leading-[45.36px] md:mb-30 md:mt-0 md:mb-2 mb-5 md:w-[70%] w-full">
+        <h2 className="font-bold text-2xl md:text-3xl xl:text-4xl xl:leading-[45.36px] md:mb-30 md:mt-0 md:mb-2 mb-5 lg:w-[70%] text-center w-full">
           What people are saying about
         </h2>
         <Image
@@ -37,8 +37,9 @@ const PeopleSaying = () => {
               1080: {
                 perPage: 3,
               },
-              767: {
+              1023: {
                 perPage: 2,
+                gap: 15,
               },
               480: {
                 perPage: 1,

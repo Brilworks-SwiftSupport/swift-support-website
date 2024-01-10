@@ -4,7 +4,7 @@ import React from "react";
 const OptimizeAndDataStorage = () => {
   return (
     <div className="section-padding flex flex-wrap items-center">
-      <div className="lg:w-3/5 w-full md:pr-[35px] mb-4 md:mb-0">
+      <div className="lg:w-3/5 w-full lg:pr-[35px] mb-4 lg:mb-0">
         <Image
           className="self-end"
           src="/images/optimal-extraction.svg"
@@ -13,8 +13,8 @@ const OptimizeAndDataStorage = () => {
           height="500"
         />
       </div>
-      <div className="lg:w-2/5 w-full md:pl-[35px] ">
-      <h2 className="font-bold text-2xl md:text-3xl xl:text-4xl xl:leading-[45.36px] md:mb-30 mb-5">
+      <div className="lg:w-2/5 w-full lg:pl-[35px]">
+        <h2 className="font-bold text-2xl md:text-3xl xl:text-4xl xl:leading-[45.36px] md:mb-30 mb-5">
           Optimal Link Extraction and Data Storage Automation
         </h2>
 

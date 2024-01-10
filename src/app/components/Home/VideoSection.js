@@ -5,7 +5,7 @@ import React, { useState } from "react";
 const VideoSection = () => {
   const [isVideoPause, setVideoPause] = useState(true);
   return (
-    <div className="youtube-video-main mx-auto section-padding">
+    <div className="youtube-video-main lg:w-full md:w-[80%] mx-auto section-padding pt-8">
       <div className="intro-video relative">
         <span className="video-play-icon z-10">
           {isVideoPause && (
@@ -21,7 +21,7 @@ const VideoSection = () => {
         </span>
         <div onClick={() => setVideoPause(!isVideoPause)}>
           <video
-            className="rounded-[25px] md:rounded-[50px]"
+            className="rounded-[25px] md:rounded-[40px] lg:rounded-[50px]"
             src="https://youtu.be/8-E1LbChJ88?feature=shared"
             controls
             loading="lazy"

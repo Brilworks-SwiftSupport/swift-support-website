@@ -45,7 +45,7 @@ const ManageDataSource = () => {
           </div>
         </div>
       </div>
-      <div className="lg:w-2/3 w-full md:mt-0 mt-10">
+      <div className="lg:w-2/3 w-full lg:mt-0 mt-10">
         <div className="flex items-end justify-end">
           <Image
             className="self-end"

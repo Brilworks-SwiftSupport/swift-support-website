@@ -14,14 +14,14 @@ const InstantSolution = () => {
         </p>
       </div>
 
-      <div className="text-colorBlack font-light md:text-[70px] text-[32px] flex text-center flex-col">
+      <div className="text-colorBlack font-light xl:text-[70px] md:text-[50px] text-[32px] flex text-center flex-col">
         <p className="xs:mb-4 mb-2">
           Build a {isMobile && <br />}
           <span className="build-chatbot mb-2 xs:mb-0">Chatbot to answer</span>
         </p>
         <p className="xs:mb-4 mb-2">any question from your</p>
         <div
-          className={`website-button select-none cursor-pointer ${
+          className={`website-button select-none cursor-pointer md:py-2 py-3 ${
             sequence === 1
               ? "bg-themeYellow"
               : sequence === 2
@@ -40,7 +40,7 @@ const InstantSolution = () => {
         <div className="my-10 flex items-center justify-center">
           <Link
             href="#"
-            className="px-[30px] py-[10px] bg-colorBlack font-bold text-colorWhite rounded-xl text-base gap-2 leading-[20.16px]"
+            className="lg:px-[30px] px-5 lg:py-[10px] py-2 bg-colorBlack font-bold text-colorWhite rounded-xl text-base gap-2 leading-[20.16px]"
           >
             <p className="py-[10px] px-3 text-center">Start a Free Trial</p>
           </Link>

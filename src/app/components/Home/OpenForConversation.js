@@ -11,7 +11,7 @@ const OpenForConversation = () => {
           Open for Conversation: Chatbot {!isMobile && <br/>}
           with Embed Code
         </h2>
-        <p className="text-lg font-normal text-colorGray md:text-center md:w-4/5 w-full">
+        <p className="text-lg font-normal text-colorGray md:text-center lg:w-4/5 w-full">
           Embed our chatbot easily using the provided code and unlock instant,
           interactive communication. Seamlessly integrate the chatbot into your
           platform to engage users effortlessly. With our open approach,

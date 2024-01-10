@@ -27,7 +27,7 @@ const IndustriesWeServe = () => {
         </p>
       </div>
       <div className="flex flex-wrap industry-we-serve">
-        <div className="lg:w-1/2 w-full md:pr-[60px] pr-0">
+        <div className="lg:w-1/2 w-full lg:pr-[60px] pr-0">
           <Accordion open={open === 1} icon={<Icon id={1} open={open} />}>
             <AccordionHeader
               onClick={() => handleOpen(1)}
@@ -44,21 +44,21 @@ const IndustriesWeServe = () => {
                 open === 1 ? "border-b border-lightGray pt-0 pb-10" : "hidden"
               }
             >
-              <div className="w-full flex flex-wrap flex-col-reverse md:flex-row">
+              <div className="w-full flex flex-wrap flex-col-reverse lg:flex-row">
                 <div>
-                <p className="lg:w-6/12 w-full text-base text-colorGray">
-                  Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
-                  a libero fringillrea pellentesque pellentesque morbi.Magna
-                  massa nec quam pretium. Cras porta euy in elementum nunc diam
-                  aliquam. Interdu vitae ultrices amet consectetur Nibhward
-                  scelerisque ut sit a libero fringillrea wasde pellentesque
-                  pellentesque morbi. Lorem ipsum dolor sit amet consectetur
-                  Nibh scelerisque ut sit a libero fringillrea pellentesque
-                  pellentesque morbi.Magna massa nec quam pretium. Cras porta
-                  euy in elementum nunc diam aliquam.
-                </p>
+                  <p className="lg:w-6/12 w-full text-base text-colorGray">
+                    Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut
+                    sit a libero fringillrea pellentesque pellentesque
+                    morbi.Magna massa nec quam pretium. Cras porta euy in
+                    elementum nunc diam aliquam. Interdu vitae ultrices amet
+                    consectetur Nibhward scelerisque ut sit a libero fringillrea
+                    wasde pellentesque pellentesque morbi. Lorem ipsum dolor sit
+                    amet consectetur Nibh scelerisque ut sit a libero
+                    fringillrea pellentesque pellentesque morbi.Magna massa nec
+                    quam pretium. Cras porta euy in elementum nunc diam aliquam.
+                  </p>
                 </div>
-                <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 md:mb-0">
+                <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 lg:mb-0">
                   <Image
                     className="rounded-[15px]"
                     src="/images/Finance.svg"
@@ -84,7 +84,7 @@ const IndustriesWeServe = () => {
                 open === 2 ? "border-b border-lightGray pt-0 pb-10" : "hidden"
               }
             >
-              <div className="w-full flex flex-wrap flex-col-reverse md:flex-row">
+              <div className="w-full flex flex-wrap flex-col-reverse lg:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
                   Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
                   a libero fringillrea pellentesque pellentesque morbi.Magna
@@ -96,7 +96,7 @@ const IndustriesWeServe = () => {
                   pellentesque morbi.Magna massa nec quam pretium. Cras porta
                   euy in elementum nunc diam aliquam.
                 </p>
-                  <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 md:mb-0">
+                <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 lg:mb-0">
                   <Image
                     className="rounded-[15px]"
                     src="/images/Finance.svg"
@@ -122,7 +122,7 @@ const IndustriesWeServe = () => {
                 open === 3 ? "border-b border-lightGray pt-0 pb-10" : "hidden"
               }
             >
-              <div className="w-full flex flex-wrap flex-col-reverse md:flex-row">
+              <div className="w-full flex flex-wrap flex-col-reverse lg:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
                   Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
                   a libero fringillrea pellentesque pellentesque morbi.Magna
@@ -134,7 +134,7 @@ const IndustriesWeServe = () => {
                   pellentesque morbi.Magna massa nec quam pretium. Cras porta
                   euy in elementum nunc diam aliquam.
                 </p>
-                  <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 md:mb-0">
+                <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 lg:mb-0">
                   <Image
                     className="rounded-[15px]"
                     src="/images/Finance.svg"
@@ -160,7 +160,7 @@ const IndustriesWeServe = () => {
                 open === 4 ? "border-b border-lightGray pt-0 pb-10" : "hidden"
               }
             >
-              <div className="w-full flex flex-wrap flex-col-reverse md:flex-row">
+              <div className="w-full flex flex-wrap flex-col-reverse lg:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
                   Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
                   a libero fringillrea pellentesque pellentesque morbi.Magna
@@ -172,7 +172,7 @@ const IndustriesWeServe = () => {
                   pellentesque morbi.Magna massa nec quam pretium. Cras porta
                   euy in elementum nunc diam aliquam.
                 </p>
-                  <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 md:mb-0">
+                <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 lg:mb-0">
                   <Image
                     className="rounded-[15px]"
                     src="/images/Finance.svg"
@@ -185,7 +185,7 @@ const IndustriesWeServe = () => {
             </AccordionBody>
           </Accordion>
         </div>
-        <div className="lg:w-1/2 w-full md:pl-[60px] pl-0">
+        <div className="lg:w-1/2 w-full lg:pl-[60px] pl-0">
           <Accordion open={open2 === 1} icon={<Icon id={1} open={open2} />}>
             <AccordionHeader
               onClick={() => handleOpen2(1)}
@@ -202,7 +202,7 @@ const IndustriesWeServe = () => {
                 open2 === 1 ? "border-b border-lightGray pt-0 pb-10" : "hidden"
               }
             >
-              <div className="w-full flex flex-wrap flex-col-reverse md:flex-row">
+              <div className="w-full flex flex-wrap flex-col-reverse lg:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
                   Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
                   a libero fringillrea pellentesque pellentesque morbi.Magna
@@ -214,7 +214,7 @@ const IndustriesWeServe = () => {
                   pellentesque morbi.Magna massa nec quam pretium. Cras porta
                   euy in elementum nunc diam aliquam.
                 </p>
-                  <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 md:mb-0">
+                <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 lg:mb-0">
                   <Image
                     className="rounded-[15px]"
                     src="/images/Finance.svg"
@@ -242,7 +242,7 @@ const IndustriesWeServe = () => {
                 open2 === 2 ? "border-b border-lightGray pt-0 pb-10" : "hidden"
               }
             >
-              <div className="w-full flex flex-wrap flex-col-reverse md:flex-row">
+              <div className="w-full flex flex-wrap flex-col-reverse lg:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
                   Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
                   a libero fringillrea pellentesque pellentesque morbi.Magna
@@ -254,7 +254,7 @@ const IndustriesWeServe = () => {
                   pellentesque morbi.Magna massa nec quam pretium. Cras porta
                   euy in elementum nunc diam aliquam.
                 </p>
-                  <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 md:mb-0">
+                <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 lg:mb-0">
                   <Image
                     className="rounded-[15px]"
                     src="/images/Finance.svg"
@@ -282,7 +282,7 @@ const IndustriesWeServe = () => {
                 open2 === 3 ? "border-b border-lightGray pt-0 pb-10" : "hidden"
               }
             >
-              <div className="w-full flex flex-wrap flex-col-reverse md:flex-row">
+              <div className="w-full flex flex-wrap flex-col-reverse lg:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
                   Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
                   a libero fringillrea pellentesque pellentesque morbi.Magna
@@ -294,7 +294,7 @@ const IndustriesWeServe = () => {
                   pellentesque morbi.Magna massa nec quam pretium. Cras porta
                   euy in elementum nunc diam aliquam.
                 </p>
-                  <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 md:mb-0">
+                <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 lg:mb-0">
                   <Image
                     className="rounded-[15px]"
                     src="/images/Finance.svg"
@@ -322,7 +322,7 @@ const IndustriesWeServe = () => {
                 open2 === 4 ? "border-b  border-lightGray pt-0 pb-10" : "hidden"
               }
             >
-              <div className="w-full flex flex-wrap flex-col-reverse md:flex-row">
+              <div className="w-full flex flex-wrap flex-col-reverse lg:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
                   Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
                   a libero fringillrea pellentesque pellentesque morbi.Magna
@@ -334,7 +334,7 @@ const IndustriesWeServe = () => {
                   pellentesque morbi.Magna massa nec quam pretium. Cras porta
                   euy in elementum nunc diam aliquam.
                 </p>
-                  <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 md:mb-0">
+                <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 lg:mb-0">
                   <Image
                     className="rounded-[15px]"
                     src="/images/Finance.svg"
@@ -362,7 +362,7 @@ const IndustriesWeServe = () => {
                 open2 === 5 ? "border-b  border-lightGray pt-0 pb-10" : "hidden"
               }
             >
-              <div className="w-full flex flex-wrap flex-col-reverse md:flex-row">
+              <div className="w-full flex flex-wrap flex-col-reverse lg:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
                   Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
                   a libero fringillrea pellentesque pellentesque morbi.Magna
@@ -374,7 +374,7 @@ const IndustriesWeServe = () => {
                   pellentesque morbi.Magna massa nec quam pretium. Cras porta
                   euy in elementum nunc diam aliquam.
                 </p>
-                  <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 md:mb-0">
+                <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 lg:mb-0">
                   <Image
                     className="rounded-[15px]"
                     src="/images/Finance.svg"
@@ -402,7 +402,7 @@ const IndustriesWeServe = () => {
                 open2 === 6 ? "border-b  border-lightGray pt-0 pb-10" : "hidden"
               }
             >
-              <div className="w-full flex flex-wrap flex-col-reverse md:flex-row">
+              <div className="w-full flex flex-wrap flex-col-reverse lg:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
                   Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
                   a libero fringillrea pellentesque pellentesque morbi.Magna
@@ -414,7 +414,7 @@ const IndustriesWeServe = () => {
                   pellentesque morbi.Magna massa nec quam pretium. Cras porta
                   euy in elementum nunc diam aliquam.
                 </p>
-                  <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 md:mb-0">
+                <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 lg:mb-0">
                   <Image
                     className="rounded-[15px]"
                     src="/images/Finance.svg"
@@ -442,7 +442,7 @@ const IndustriesWeServe = () => {
                 open2 === 7 ? "border-b  border-lightGray pt-0 pb-10" : "hidden"
               }
             >
-              <div className="w-full flex flex-wrap flex-col-reverse md:flex-row">
+              <div className="w-full flex flex-wrap flex-col-reverse lg:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
                   Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
                   a libero fringillrea pellentesque pellentesque morbi.Magna
@@ -454,7 +454,7 @@ const IndustriesWeServe = () => {
                   pellentesque morbi.Magna massa nec quam pretium. Cras porta
                   euy in elementum nunc diam aliquam.
                 </p>
-                  <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 md:mb-0">
+                <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 lg:mb-0">
                   <Image
                     className="rounded-[15px]"
                     src="/images/Finance.svg"

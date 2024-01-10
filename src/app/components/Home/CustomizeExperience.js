@@ -47,7 +47,7 @@ const CustomizeExperience = () => {
           </div>
         </div>
       </div>
-      <div className="lg:w-2/3 w-full my-4 md:my-0 ">
+      <div className="lg:w-2/3 w-full my-4 lg:my-0 ">
         <div className="flex items-end justify-end">
           <Image
             className="self-end"

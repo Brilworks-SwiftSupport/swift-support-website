@@ -77,12 +77,18 @@ a:hover {
   line-height: 20.16px;
 }
 
+.header-bg {
+  transition: var(--common_transition);
+  background-color: var(--colorWhite);
+  box-shadow: 0 2px 10px -1px rgba(0, 0, 0, 0.2);
+}
+
 .header a {
   cursor: pointer;
 }
 
 .header_padding {
-  padding: 1.875rem 4.375rem 1.875rem;
+  padding: 1.25rem 4.375rem 1.25rem;
 }
 
 .footer {
@@ -260,6 +266,37 @@ a:hover {
   .section-padding {
     padding: 0 2rem 3rem;
   }
+  .build-chatbot {
+    font-size: var(--font_36);
+    padding: 12px 20px;
+    line-height: unset;
+  }
+  .website-button {
+    width: 200px;
+    font-size: var(--font_36);
+  }
+  .bg_one {
+    overflow: hidden;
+    padding-top: 2rem;
+  }
+  .intro-video {
+    padding: 0.75rem;
+    border-radius: 40px;
+  }
+  .intro-video::before {
+    top: -10%;
+    right: -63%;
+  }
+  .intro-video::after {
+    top: -10%;
+    left: -63%;
+  }
+  .signup-content {
+    position: absolute;
+    top: 4%;
+    left: unset;
+    transform: unset;
+  }
 }
 
 @media only screen and (max-width: 767px) {
@@ -284,13 +321,6 @@ a:hover {
   }
   .intro-video {
     padding: 0.5rem;
-    position: relative;
-    background: linear-gradient(
-      to right,
-      var(--themePink),
-      var(--themeBlue),
-      var(--themeYellow)
-    );
     border: 1px solid var(--colorBlack);
     border-radius: 25px;
   }
