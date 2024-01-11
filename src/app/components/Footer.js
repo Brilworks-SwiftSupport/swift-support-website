@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="flex items-center justify-center py-[30px]">
           <Image
             src="/images/footer-logo.svg"
-            alt="Custom AI footer logo"
+            alt="SwiftSupport footer logo"
             width="345"
             height="96"
           />
@@ -37,7 +37,7 @@ const Footer = () => {
           <Link href="#">
             <Image
               src="/images/icon_linkedIn.svg"
-              alt="Custom AI footer logo"
+              alt="SwiftSupport footer logo"
               width="60"
               height="60"
             />
@@ -63,7 +63,7 @@ const Footer = () => {
             About
           </Link>
           <Link
-            href="#"
+            href="/contact"
             className="flex items-center justify-center font-medium"
           >
             Contact

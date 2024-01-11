@@ -13,7 +13,7 @@ const PeopleSaying = () => {
         </h2>
         <Image
           src="/images/logo.svg"
-          alt="Custom AI Logo"
+          alt="SwiftSupport Logo"
           width="263"
           height="45"
         />

@@ -10,37 +10,37 @@ const TrustedBy = () => {
       <div className="flex flex-wrap items-center justify-center md:gap-[60px] xl:gap-[80px] gap-10">
         <Image
           src="/images/Logo (1).svg"
-          alt="Custom AI Logo"
+          alt="SwiftSupport Logo"
           width="132"
           height="35"
         />
         <Image
           src="/images/Logo (2).svg"
-          alt="Custom AI Logo"
+          alt="SwiftSupport Logo"
           width="172"
           height="40"
         />
         <Image
           src="/images/Logo (3).svg"
-          alt="Custom AI Logo"
+          alt="SwiftSupport Logo"
           width="119"
           height="30"
         />
         <Image
           src="/images/Logo (4).svg"
-          alt="Custom AI Logo"
+          alt="SwiftSupport Logo"
           width="134"
           height="34"
         />
         <Image
           src="/images/Logo (5).svg"
-          alt="Custom AI Logo"
+          alt="SwiftSupport Logo"
           width="154"
           height="27"
         />
         <Image
           src="/images/Logo (6).svg"
-          alt="Custom AI Logo"
+          alt="SwiftSupport Logo"
           width="140"
           height="30"
         />

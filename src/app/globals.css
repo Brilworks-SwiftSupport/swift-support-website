@@ -88,7 +88,7 @@ a:hover {
 }
 
 .header_padding {
-  padding: 1.25rem 4.375rem 1.25rem;
+  padding: 0.25rem 4.375rem 0.25rem;
 }
 
 .footer {
@@ -102,6 +102,7 @@ a:hover {
 .footer a {
   cursor: pointer;
   font-size: var(--font_18);
+  color:var(--colorBlack);
 }
 .instant-solution {
   width: 100%;
@@ -139,6 +140,13 @@ a:hover {
 .bg_two {
   width: 100%;
   background-image: url("/images/bg_two.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.bg_contactus {
+  width: 100%;
+  background-image: url("/images/bg_contact.svg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

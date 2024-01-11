@@ -36,7 +36,7 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  
+
   const navList = (
     <ul className="mt-2 mb-4 flex flex-col gap-3 items-center md:mb-0 md:mt-0 md:flex-row md:items-center md:gap-6">
       <Link
@@ -52,7 +52,7 @@ const Header = () => {
         Pricing
       </Link>
       <Link
-        href="#"
+        href="/contact"
         className="flex items-center md:justify-center justify-start font-medium"
       >
         Contact
@@ -82,7 +82,7 @@ const Header = () => {
             <Link href="/">
               <Image
                 src="/images/logo.svg"
-                alt="Custom AI Logo"
+                alt="SwiftSupport Logo"
                 width="263"
                 height="45"
                 priority={true}
