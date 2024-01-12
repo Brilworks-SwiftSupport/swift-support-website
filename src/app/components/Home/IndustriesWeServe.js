@@ -20,7 +20,7 @@ const IndustriesWeServe = () => {
         <h2 className="md:w-1/2 w-full md:text-[36px] text-[26px] font-bold text-left mb-4 md:mb-0">
           Industries we serve
         </h2>
-        <p className="md:w-1/2 w-full md:text-[18px] text-[14px] font-normal text-colorGray md:pl-[10%]">
+        <p className="md:w-1/2 w-full md:text-lg text-[14px] font-normal text-colorGray md:pl-[10%]">
           Lorem ipsum dolor sit amet consectetur: Nibh scelerisque ut sit a
           libero fringilla pellentesque pellentesque morbi. Magna massa nec quam
           pretium. Cras porta eu in elementum nunc diam.

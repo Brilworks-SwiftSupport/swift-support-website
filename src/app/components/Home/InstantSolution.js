@@ -9,7 +9,7 @@ const InstantSolution = () => {
   return (
     <div className="instant-solution section-padding !pt-[150px]">
       <div className="mb-[29px]">
-        <p className="uppercase md:text-[22px] text-[18px] font-semibold text-colorGray leading-[27.72px] text-center">
+        <p className="uppercase md:text-[22px] text-lg font-semibold text-colorGray leading-[27.72px] text-center">
           Instant Customer Solutions
         </p>
       </div>
@@ -38,11 +38,8 @@ const InstantSolution = () => {
           )}
         </div>
         <div className="my-10 flex items-center justify-center">
-          <Link
-            href="#"
-            className="lg:px-[30px] px-5 lg:py-[10px] py-2 bg-colorBlack font-bold text-colorWhite rounded-xl text-base gap-2 leading-[20.16px]"
-          >
-            <p className="py-[10px] px-3 text-center">Start a Free Trial</p>
+          <Link href="#" className="button_black">
+            Start a Free Trial
           </Link>
         </div>
       </div>

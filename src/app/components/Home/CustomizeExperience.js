@@ -6,7 +6,7 @@ const CustomizeExperience = () => {
     <div className="section-padding flex flex-wrap">
       <div className="lg:w-1/3 w-full md:pr-[30px]">
         <div className="mb-[30px]">
-        <h2 className="font-bold text-2xl md:text-3xl xl:text-4xl xl:leading-[45.36px] md:pr-20">
+          <h2 className="font-bold text-2xl md:text-3xl xl:text-4xl xl:leading-[45.36px] md:pr-20">
             Customize the Entire Experience
           </h2>
         </div>
@@ -16,7 +16,7 @@ const CustomizeExperience = () => {
             <h3 className="text-colorDarkBlue text-2xl font-medium mb-[10px]">
               Tailored Interaction
             </h3>
-            <p className="text-colorGray text-[18px] font-normal">
+            <p className="text-colorGray text-lg font-normal">
               Customize your chatbot experience to meet your specific
               preferences.
             </p>
@@ -28,7 +28,7 @@ const CustomizeExperience = () => {
             <h3 className="text-colorDarkBlue text-2xl font-medium mb-[10px]">
               Personalized Settings
             </h3>
-            <p className="text-colorGray text-[18px] font-normal">
+            <p className="text-colorGray text-lg font-normal">
               Adjust settings according to your liking for a truly personalized
               interaction.
             </p>
@@ -40,7 +40,7 @@ const CustomizeExperience = () => {
             <h3 className="text-colorDarkBlue text-2xl font-medium mb-[10px]">
               Seamless Adaptability
             </h3>
-            <p className="text-colorGray text-[18px] font-normal">
+            <p className="text-colorGray text-lg font-normal">
               Enjoy a chatbot journey that's seamlessly adaptable, putting you
               in control.
             </p>

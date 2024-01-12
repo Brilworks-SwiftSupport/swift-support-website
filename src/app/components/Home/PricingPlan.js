@@ -42,7 +42,7 @@ const PricingPlan = () => {
           <button className="bg-colorWhite font-medium rounded-[10px] px-[22px] py-[14px] mb-[21px]">
             FREE
           </button>
-          <p className="text-[18px] font-normal text-colorGray mb-[30px]">
+          <p className="text-lg font-normal text-colorGray mb-[30px]">
             Lorem ipsum dolor sit amet consectetur nislio urna.
           </p>
 
@@ -70,7 +70,7 @@ const PricingPlan = () => {
           <button className="bg-colorWhite font-medium rounded-[10px] px-[22px] py-[14px] mb-[21px]">
             BASIC
           </button>
-          <p className="text-[18px] font-normal text-colorGray mb-[30px]">
+          <p className="text-lg font-normal text-colorGray mb-[30px]">
             Lorem ipsum dolor sit amet consectetur nislio urna.
           </p>
 
@@ -102,7 +102,7 @@ const PricingPlan = () => {
           <button className="bg-colorWhite font-medium rounded-[10px] px-[22px] py-[14px] mb-[21px] subscribe-shadow">
             STANDARD
           </button>
-          <p className="text-[18px] font-normal text-colorGray mb-[30px]">
+          <p className="text-lg font-normal text-colorGray mb-[30px]">
             Lorem ipsum dolor sit amet consectetur nislio urna.
           </p>
 
@@ -130,7 +130,7 @@ const PricingPlan = () => {
           <button className="bg-colorWhite font-medium rounded-[10px] px-[22px] py-[14px] mb-[21px]">
             PREMIUM
           </button>
-          <p className="text-[18px] font-normal text-colorGray mb-[30px]">
+          <p className="text-lg font-normal text-colorGray mb-[30px]">
             Lorem ipsum dolor sit amet consectetur nislio urna.
           </p>
 

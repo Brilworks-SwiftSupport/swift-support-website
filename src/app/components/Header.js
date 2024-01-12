@@ -12,9 +12,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Check if window and element are not null
       if (window && window.scrollY && document.documentElement) {
-        // Check if window scroll is greater than 30
         if (window.scrollY > 30) {
           setHideHeader(true);
         } else {
@@ -28,10 +26,8 @@ const Header = () => {
       () => window.innerWidth >= 767 && setOpenNav(false)
     );
 
-    // Add event listener for scroll
     window.addEventListener("scroll", handleScroll);
 
-    // Cleanup the event listener on component unmount
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -57,11 +53,8 @@ const Header = () => {
       >
         Contact
       </Link>
-      <Link
-        href="#"
-        className="flex items-center md:justify-center  justify-start lg:px-[30px] px-5 lg:py-[10px] py-2 bg-colorBlack font-bold text-colorWhite rounded-xl"
-      >
-        <span className="py-[10px] px-3 text-center">Sign Up</span>
+      <Link href="#" className="button_black">
+        Sign Up
       </Link>
     </ul>
   );
@@ -78,13 +71,13 @@ const Header = () => {
             hideHeader || openNav ? "header-bg" : ""
           }`}
         >
-          <div className="py-2">
+          <div className="md:py-2 py-4 xs:pr-0 pr-[calc(100vw_-_320px)]">
             <Link href="/">
               <Image
                 src="/images/logo.svg"
                 alt="SwiftSupport Logo"
-                width="263"
-                height="45"
+                width={isMobile ? 176 : 270}
+                height={isMobile ? 49 : 74}
                 priority={true}
               />
             </Link>
@@ -117,7 +110,7 @@ const Header = () => {
                   width={20}
                   height={20}
                   priority={true}
-                  className="top-[45px] left-[20px]"
+                  className="top-[45px] left-[20px] mr-3"
                 />
               )}
             </div>

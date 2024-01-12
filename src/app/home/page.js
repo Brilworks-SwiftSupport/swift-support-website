@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import InstantSolution from "../components/Home/InstantSolution";
 import dynamic from "next/dynamic";
@@ -47,6 +47,8 @@ const page = () => {
         <ReadyToStartChatting />
         <PeopleSaying />
         <ResolveCustomerQuestions />
+      </div>
+      <div className="bg_one">
         <OpenForConversation />
         <PricingPlan />
       </div>

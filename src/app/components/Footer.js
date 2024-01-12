@@ -2,8 +2,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { useMediaQuery } from "react-responsive";
 
 const Footer = () => {
+  const isMobile = useMediaQuery({ maxWidth: 767 });
   return (
     <div className="footer">
       <div>
@@ -11,8 +13,8 @@ const Footer = () => {
           <Image
             src="/images/footer-logo.svg"
             alt="SwiftSupport footer logo"
-            width="345"
-            height="96"
+            width={isMobile ? 176 : 270}
+            height={isMobile ? 49 : 74}
           />
         </div>
         <div className="flex items-center justify-center">
@@ -84,7 +86,8 @@ const Footer = () => {
       </div>
       <div className="bg-[#04333F]">
         <span className="flex item-center justify-center text-sm py-[11px]">
-          @copyright 2024 SwiftSupport. All rights reserved.
+          @copyright {new Date().getFullYear()} SwiftSupport. All rights
+          reserved.
         </span>
       </div>
     </div>

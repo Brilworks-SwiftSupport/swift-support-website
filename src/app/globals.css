@@ -70,11 +70,11 @@ a:hover {
   position: fixed;
   top: 0;
   margin-top: 0;
-  z-index: 99999;
   font-family: "Outfit", sans-serif;
   font-display: swap;
   font: var(--font_16);
   line-height: 20.16px;
+  z-index: 99;
 }
 
 .header-bg {
@@ -84,11 +84,26 @@ a:hover {
 }
 
 .header a {
+  font-family: "Outfit", sans-serif;
+  font-display: swap;
+  color: var(--colorBlack);
   cursor: pointer;
 }
 
 .header_padding {
-  padding: 0.25rem 4.375rem 0.25rem;
+  padding: 1rem 4.375rem 1rem;
+}
+
+.button_black {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 20px 42px;
+  background: var(--colorBlack);
+  color: var(--colorWhite) !important;
+  border-radius: 0.75rem;
 }
 
 .footer {
@@ -102,7 +117,7 @@ a:hover {
 .footer a {
   cursor: pointer;
   font-size: var(--font_18);
-  color:var(--colorBlack);
+  color: var(--colorWhite);
 }
 .instant-solution {
   width: 100%;
@@ -255,6 +270,52 @@ a:hover {
 .subscribe-shadow {
   box-shadow: 0px 40.30768585205078px 26.871793746948242px 0px #0000001a;
 }
+.form-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.form-group input {
+  padding: 0;
+  height: initial;
+  width: initial;
+  margin-bottom: 0;
+  display: none;
+  cursor: pointer;
+}
+
+.form-group label:before {
+  content: "";
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: var(--colorWhite);
+  border: 2px solid var(--colorDarkBlue);
+  padding: 8px;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-right: 8px;
+  border-radius: 4px;
+}
+
+.form-group input:checked + label::before {
+  background-color: var(--colorDarkBlue);
+}
+
+.form-group input:checked + label:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 5px;
+  left: 8px;
+  width: 5px;
+  height: 10px;
+  border: solid var(--colorWhite);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
 
 @media only screen and (max-width: 1600px) {
   /* .section-padding {
@@ -269,7 +330,7 @@ a:hover {
 
 @media only screen and (max-width: 991px) {
   .header_padding {
-    padding: 1.25rem 2rem 1.25rem;
+    padding: 1rem 2rem 1rem;
   }
   .section-padding {
     padding: 0 2rem 3rem;
@@ -309,10 +370,13 @@ a:hover {
 
 @media only screen and (max-width: 767px) {
   .header_padding {
-    padding: 0.625rem 1.5rem 0.625rem;
+    padding: 0.25rem 1.5rem 0.25rem;
   }
   .section-padding {
     padding: 0 1.5rem 2rem;
+  }
+  .button_black {
+    padding: 16px 32px;
   }
   .build-chatbot {
     font-size: var(--font_28);

@@ -16,7 +16,7 @@ const ManageDataSource = () => {
             <h3 className="text-colorDarkBlue text-2xl font-medium mb-[10px]">
               Streamlined Data Management:
             </h3>
-            <p className="text-colorGray text-[18px] font-normal">
+            <p className="text-colorGray text-lg font-normal">
               Simplify the handling of your datasources effortlessly.
             </p>
           </div>
@@ -27,7 +27,7 @@ const ManageDataSource = () => {
             <h3 className="text-colorDarkBlue text-2xl font-medium mb-[10px]">
               Centralized Organization:
             </h3>
-            <p className="text-colorGray text-[18px] font-normal">
+            <p className="text-colorGray text-lg font-normal">
               Manage all your datasources in one convenient location.
             </p>
           </div>
@@ -38,7 +38,7 @@ const ManageDataSource = () => {
             <h3 className="text-colorDarkBlue text-2xl font-medium mb-[10px]">
               Efficient Control:
             </h3>
-            <p className="text-colorGray text-[18px] font-normal">
+            <p className="text-colorGray text-lg font-normal">
               Say goodbye to complexity; our chatbot empowers seamless data
               management.
             </p>

@@ -3,8 +3,10 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
 import Image from "next/image";
 import React from "react";
+import { useMediaQuery } from "react-responsive";
 
 const PeopleSaying = () => {
+  const isMobile = useMediaQuery({ maxWidth: 767 });
   return (
     <div className="section-padding !px-0">
       <div className="flex flex-col items-center justify-center mb-[30px]">
@@ -14,8 +16,8 @@ const PeopleSaying = () => {
         <Image
           src="/images/logo.svg"
           alt="SwiftSupport Logo"
-          width="263"
-          height="45"
+          width={isMobile ? 176 : 270}
+          height={isMobile ? 49 : 74}
         />
       </div>
       <div className="">
