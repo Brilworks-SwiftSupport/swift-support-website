@@ -107,7 +107,7 @@ const ContactUS = () => {
               <div className="grid md:grid-cols-2 grid-cols-1 md:gap-5 gap-3 md:mb-5 mb-3">
                 <div>
                   <label
-                    for="firstName"
+                    htmlFor="firstName"
                     className="text-colorGray font-normal mb-[10px]"
                   >
                     First Name*
@@ -122,7 +122,7 @@ const ContactUS = () => {
                 </div>
                 <div>
                   <label
-                    for="lastName"
+                    htmlFor="lastName"
                     className="text-colorGray font-normal mb-[10px]"
                   >
                     Last Name*
@@ -137,7 +137,7 @@ const ContactUS = () => {
                 </div>
                 <div>
                   <label
-                    for="email"
+                    htmlFor="email"
                     className="text-colorGray font-normal mb-[10px]"
                   >
                     Email Address*
@@ -152,7 +152,7 @@ const ContactUS = () => {
                 </div>
                 <div>
                   <label
-                    for="phone"
+                    htmlFor="phone"
                     className="text-colorGray font-normal mb-[10px]"
                   >
                     Phone Number*
@@ -184,7 +184,7 @@ const ContactUS = () => {
 
                 <div>
                   <label
-                    for="companyName"
+                    htmlFor="companyName"
                     className="text-colorGray font-normal mb-[10px]"
                   >
                     Company Name*
@@ -200,7 +200,7 @@ const ContactUS = () => {
 
                 <div>
                   <label
-                    for="jobTitle"
+                    htmlFor="jobTitle"
                     className="text-colorGray font-normal mb-[10px]"
                   >
                     Job Title*
@@ -216,7 +216,7 @@ const ContactUS = () => {
               </div>
               <div className="mb-5">
                 <label
-                  for="help"
+                  htmlFor="help"
                   className="text-colorGray font-normal mb-[10px]"
                 >
                   How can we help?
@@ -235,7 +235,7 @@ const ContactUS = () => {
               <div className="form-group font-medium text-sm mb-5">
                 <input type="checkbox" id="terms-and-condition" />
                 <label
-                  for="terms-and-condition"
+                  htmlFor="terms-and-condition"
                   className="select-none relative cursor-pointer"
                 >
                   I read and accept
