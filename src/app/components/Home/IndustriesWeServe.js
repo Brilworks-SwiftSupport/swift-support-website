@@ -20,10 +20,10 @@ const IndustriesWeServe = () => {
         <h2 className="md:w-1/2 w-full md:text-[36px] text-[26px] font-bold text-left mb-4 md:mb-0">
           Industries we serve
         </h2>
-        <p className="md:w-1/2 w-full md:text-lg text-[14px] font-normal text-colorGray md:pl-[10%]">
-          Lorem ipsum dolor sit amet consectetur: Nibh scelerisque ut sit a
-          libero fringilla pellentesque pellentesque morbi. Magna massa nec quam
-          pretium. Cras porta eu in elementum nunc diam.
+        <p className="md:w-1/2 w-full md:text-lg text-[14px] font-normal text-colorGray md:pl-[5%]">
+          Your customers deserve better, and with Swiftsupport, they get it. Our
+          AI-powered chatbot can resolve over 60% of inquiries with lightning
+          speed, leaving you and your customers free on what truly matters.
         </p>
       </div>
       <div className="flex flex-wrap industry-we-serve">
@@ -46,15 +46,12 @@ const IndustriesWeServe = () => {
             >
               <div className="w-full flex flex-wrap flex-col-reverse lg:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
-                  Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
-                  a libero fringillrea pellentesque pellentesque morbi.Magna
-                  massa nec quam pretium. Cras porta euy in elementum nunc diam
-                  aliquam. Interdu vitae ultrices amet consectetur Nibhward
-                  scelerisque ut sit a libero fringillrea wasde pellentesque
-                  pellentesque morbi. Lorem ipsum dolor sit amet consectetur
-                  Nibh scelerisque ut sit a libero fringillrea pellentesque
-                  pellentesque morbi.Magna massa nec quam pretium. Cras porta
-                  euy in elementum nunc diam aliquam.
+                  When patients seek assistance, they prefer not to wait on
+                  hold. We recognize the significance of healthcare service
+                  providers being consistently available. SwiftSupport offers
+                  instant and round-the-clock support, streamlining
+                  communication and delivering quick assistance that keeps your
+                  healthcare operations running smoothly.
                 </p>
                 <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 lg:mb-0">
                   <Image
@@ -84,15 +81,12 @@ const IndustriesWeServe = () => {
             >
               <div className="w-full flex flex-wrap flex-col-reverse lg:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
-                  Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
-                  a libero fringillrea pellentesque pellentesque morbi.Magna
-                  massa nec quam pretium. Cras porta euy in elementum nunc diam
-                  aliquam. Interdu vitae ultrices amet consectetur Nibhward
-                  scelerisque ut sit a libero fringillrea wasde pellentesque
-                  pellentesque morbi. Lorem ipsum dolor sit amet consectetur
-                  Nibh scelerisque ut sit a libero fringillrea pellentesque
-                  pellentesque morbi.Magna massa nec quam pretium. Cras porta
-                  euy in elementum nunc diam aliquam.
+                  Struggling with overwhelming customer inquiries and the need
+                  for instant responses? Our chatbot offers real-time
+                  engagement, efficiently handling routine queries. Reduce
+                  customer wait times, automate routine inquiries, assist
+                  customers in order tracking, product inquiries, and much more
+                  with one agent.
                 </p>
                 <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 lg:mb-0">
                   <Image
@@ -122,15 +116,12 @@ const IndustriesWeServe = () => {
             >
               <div className="w-full flex flex-wrap flex-col-reverse lg:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
-                  Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
-                  a libero fringillrea pellentesque pellentesque morbi.Magna
-                  massa nec quam pretium. Cras porta euy in elementum nunc diam
-                  aliquam. Interdu vitae ultrices amet consectetur Nibhward
-                  scelerisque ut sit a libero fringillrea wasde pellentesque
-                  pellentesque morbi. Lorem ipsum dolor sit amet consectetur
-                  Nibh scelerisque ut sit a libero fringillrea pellentesque
-                  pellentesque morbi.Magna massa nec quam pretium. Cras porta
-                  euy in elementum nunc diam aliquam.
+                  Go beyond resolving issues to build lasting customer loyalty.
+                  Embed Swiftsuport into your Fintch app and deliver faster
+                  resolutions, reduce wait times, augment the customer
+                  engagement curve, resolve &gt;60% of the repetitive customer
+                  queries end-to-end without human intervention, and save
+                  operational costs.
                 </p>
                 <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 lg:mb-0">
                   <Image
@@ -160,15 +151,12 @@ const IndustriesWeServe = () => {
             >
               <div className="w-full flex flex-wrap flex-col-reverse lg:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
-                  Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
-                  a libero fringillrea pellentesque pellentesque morbi.Magna
-                  massa nec quam pretium. Cras porta euy in elementum nunc diam
-                  aliquam. Interdu vitae ultrices amet consectetur Nibhward
-                  scelerisque ut sit a libero fringillrea wasde pellentesque
-                  pellentesque morbi. Lorem ipsum dolor sit amet consectetur
-                  Nibh scelerisque ut sit a libero fringillrea pellentesque
-                  pellentesque morbi.Magna massa nec quam pretium. Cras porta
-                  euy in elementum nunc diam aliquam.
+                  Boost productivity by over 500%—summarize, draft, revise, and
+                  redefine contracts at lightning speed, all while maintaining
+                  control by leveraging Swiftsupport’s capabilities to conduct
+                  in-depth research in an instant, scan through extensive legal
+                  documents, PDFs, and text-based queries, and stay ahead in the
+                  legal research game.
                 </p>
                 <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 lg:mb-0">
                   <Image
@@ -202,15 +190,12 @@ const IndustriesWeServe = () => {
             >
               <div className="w-full flex flex-wrap flex-col-reverse lg:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
-                  Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
-                  a libero fringillrea pellentesque pellentesque morbi.Magna
-                  massa nec quam pretium. Cras porta euy in elementum nunc diam
-                  aliquam. Interdu vitae ultrices amet consectetur Nibhward
-                  scelerisque ut sit a libero fringillrea wasde pellentesque
-                  pellentesque morbi. Lorem ipsum dolor sit amet consectetur
-                  Nibh scelerisque ut sit a libero fringillrea pellentesque
-                  pellentesque morbi.Magna massa nec quam pretium. Cras porta
-                  euy in elementum nunc diam aliquam.
+                  Did you know that &gt;80% of small businesses are not prepared
+                  for cyber attacks? Take charge of your cybersecurity and cut
+                  down on costs by integrating Swiftsupport. Our advanced
+                  solution offers real-time monitoring, scans system logs, and
+                  gathers data from various sources swiftly, ensuring your
+                  business is secure 24/7.
                 </p>
                 <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 lg:mb-0">
                   <Image
@@ -242,15 +227,12 @@ const IndustriesWeServe = () => {
             >
               <div className="w-full flex flex-wrap flex-col-reverse lg:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
-                  Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
-                  a libero fringillrea pellentesque pellentesque morbi.Magna
-                  massa nec quam pretium. Cras porta euy in elementum nunc diam
-                  aliquam. Interdu vitae ultrices amet consectetur Nibhward
-                  scelerisque ut sit a libero fringillrea wasde pellentesque
-                  pellentesque morbi. Lorem ipsum dolor sit amet consectetur
-                  Nibh scelerisque ut sit a libero fringillrea pellentesque
-                  pellentesque morbi.Magna massa nec quam pretium. Cras porta
-                  euy in elementum nunc diam aliquam.
+                  Supercharge your marketing strategy with SwiftSupport – your
+                  dedicated ally in boosting productivity. Experience a
+                  remarkable 50x increase in efficiency with Swiftsupport.
+                  Create compelling marketing content, recommend tailored
+                  products and services, and effortlessly resolve their queries
+                  – all year round, 365 days a year.
                 </p>
                 <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 lg:mb-0">
                   <Image
@@ -282,15 +264,12 @@ const IndustriesWeServe = () => {
             >
               <div className="w-full flex flex-wrap flex-col-reverse lg:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
-                  Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
-                  a libero fringillrea pellentesque pellentesque morbi.Magna
-                  massa nec quam pretium. Cras porta euy in elementum nunc diam
-                  aliquam. Interdu vitae ultrices amet consectetur Nibhward
-                  scelerisque ut sit a libero fringillrea wasde pellentesque
-                  pellentesque morbi. Lorem ipsum dolor sit amet consectetur
-                  Nibh scelerisque ut sit a libero fringillrea pellentesque
-                  pellentesque morbi.Magna massa nec quam pretium. Cras porta
-                  euy in elementum nunc diam aliquam.
+                  Provide 24/7 support with your AI service buddy —
+                  Swiftsupport. Empower students with personalized learning and
+                  streamline academic processes like instructions, assessments,
+                  data retrieval, updates, AI-driven surveys, and much more.
+                  Enjoy unparalleled efficiency at a fraction of the cost,
+                  scaling your impact without breaking the bank.
                 </p>
                 <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 lg:mb-0">
                   <Image
@@ -322,15 +301,12 @@ const IndustriesWeServe = () => {
             >
               <div className="w-full flex flex-wrap flex-col-reverse lg:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
-                  Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
-                  a libero fringillrea pellentesque pellentesque morbi.Magna
-                  massa nec quam pretium. Cras porta euy in elementum nunc diam
-                  aliquam. Interdu vitae ultrices amet consectetur Nibhward
-                  scelerisque ut sit a libero fringillrea wasde pellentesque
-                  pellentesque morbi. Lorem ipsum dolor sit amet consectetur
-                  Nibh scelerisque ut sit a libero fringillrea pellentesque
-                  pellentesque morbi.Magna massa nec quam pretium. Cras porta
-                  euy in elementum nunc diam aliquam.
+                  Fine-tuned AI agents to meet the demands of your manufacturing
+                  and application requirements precisely, our AI solution stands
+                  out by effectively identifying anomalies in processes,
+                  equipment, and assets, ultimately optimizing workflows to
+                  minimize risk through the utilization of advanced pattern
+                  recognition and machine learning capabilities.
                 </p>
                 <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 lg:mb-0">
                   <Image
@@ -362,15 +338,12 @@ const IndustriesWeServe = () => {
             >
               <div className="w-full flex flex-wrap flex-col-reverse lg:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
-                  Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
-                  a libero fringillrea pellentesque pellentesque morbi.Magna
-                  massa nec quam pretium. Cras porta euy in elementum nunc diam
-                  aliquam. Interdu vitae ultrices amet consectetur Nibhward
-                  scelerisque ut sit a libero fringillrea wasde pellentesque
-                  pellentesque morbi. Lorem ipsum dolor sit amet consectetur
-                  Nibh scelerisque ut sit a libero fringillrea pellentesque
-                  pellentesque morbi.Magna massa nec quam pretium. Cras porta
-                  euy in elementum nunc diam aliquam.
+                  By seamlessly integrating advanced algorithms, our AI agent
+                  optimizes route planning, inventory management, and resource
+                  allocation, enabling logistics companies to enhance overall
+                  operational productivity, empowering businesses to make
+                  data-driven decisions, minimizing costs, and streamlining
+                  supply chain processes.
                 </p>
                 <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 lg:mb-0">
                   <Image
@@ -402,15 +375,12 @@ const IndustriesWeServe = () => {
             >
               <div className="w-full flex flex-wrap flex-col-reverse lg:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
-                  Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
-                  a libero fringillrea pellentesque pellentesque morbi.Magna
-                  massa nec quam pretium. Cras porta euy in elementum nunc diam
-                  aliquam. Interdu vitae ultrices amet consectetur Nibhward
-                  scelerisque ut sit a libero fringillrea wasde pellentesque
-                  pellentesque morbi. Lorem ipsum dolor sit amet consectetur
-                  Nibh scelerisque ut sit a libero fringillrea pellentesque
-                  pellentesque morbi.Magna massa nec quam pretium. Cras porta
-                  euy in elementum nunc diam aliquam.
+                  Swiftsupport is designed to revolutionize the insurance
+                  industry by seamlessly automating complex tasks, optimizing
+                  risk assessment, and enhancing decision-making processes.
+                  Leveraging advanced machine learning algorithms, it empowers
+                  insurance professionals to streamline underwriting, claims
+                  processing, and fraud detection.
                 </p>
                 <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 lg:mb-0">
                   <Image
@@ -442,15 +412,11 @@ const IndustriesWeServe = () => {
             >
               <div className="w-full flex flex-wrap flex-col-reverse lg:flex-row">
                 <p className="lg:w-6/12 w-full text-base text-colorGray">
-                  Lorem ipsum dolor sit amet consectetur Nibh scelerisque ut sit
-                  a libero fringillrea pellentesque pellentesque morbi.Magna
-                  massa nec quam pretium. Cras porta euy in elementum nunc diam
-                  aliquam. Interdu vitae ultrices amet consectetur Nibhward
-                  scelerisque ut sit a libero fringillrea wasde pellentesque
-                  pellentesque morbi. Lorem ipsum dolor sit amet consectetur
-                  Nibh scelerisque ut sit a libero fringillrea pellentesque
-                  pellentesque morbi.Magna massa nec quam pretium. Cras porta
-                  euy in elementum nunc diam aliquam.
+                  Share findings, brainstorm ideas, and receive feedback from
+                  your AI assistant, anytime, anywhere, and refine your research
+                  questions. It seamlessly analyzes vast datasets and extracts
+                  valuable patterns to accelerate your research timelines and
+                  uncover insights that may have otherwise remained hidden.
                 </p>
                 <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 lg:mb-0">
                   <Image

@@ -14,18 +14,17 @@ const ImmediateAns = () => {
         />
       </div>
       <div className="lg:w-2/5 w-full lg:pl-[35px]">
-      <h2 className="font-bold text-2xl md:text-3xl xl:text-4xl xl:leading-[45.36px] md:mb-30 md:mt-0 mb-5">
-          Immediate Answers
+        <h2 className="font-bold text-2xl md:text-3xl xl:text-4xl xl:leading-[45.36px] md:mb-30 md:mt-0 mb-5">
+          Frictionless and futuristic
         </h2>
 
         <p className="text-lg text-colorGray font-normal">
-          Reviewing code Say goodbye to the frustration of scrolling through
-          endless blue links. Our platform revolutionizes your search experience
-          by providing quick and direct answers, sparing you the hassle of
-          navigating through lengthy lists. Enjoy the efficiency of instant
-          information at your fingertips, ensuring a seamless and productive
-          search process. Embrace a new era of convenience with our commitment
-          to delivering immediate and relevant answers tailored to your queries.
+          Ditch the old-school AI chatbots and embrace Swift Support to solve
+          complex queries in record time and empower your team with a powerful
+          AI agent that seamlessly integrates your company's knowledge base,
+          product information, and policy framework and can handle complex cases
+          with ease and deliver personalized solutions 24/7. Ready to see it in
+          action?
         </p>
       </div>
     </div>

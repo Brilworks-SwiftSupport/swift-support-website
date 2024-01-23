@@ -30,7 +30,8 @@ const ResolveCustomerQuestions = () => {
         />
         <div className={isMobile ? "" : "signup-content"}>
           <h2 className="font-bold text-2xl md:text-3xl xl:text-4xl xl:leading-[45.36px] mb-[30px] text-center">
-            Resolve up to 80% of customer{!isTablet && <br />} questions with AI
+            Hybrid support model that combines{!isTablet && <br />}
+            AI and human support
           </h2>
           <form className="w-full" onSubmit={handleSubmit}>
             <div className="mb-[10px]">

@@ -101,11 +101,11 @@ const PeopleSaying = () => {
                   />
                 </div>
               </div>
-              <p className="text-base font-medium mb-5 md:w-2/3 w-full">
-                Happy and regular user of chatbot. It has helped a great deal in
-                my entrepreneurial journey
+              <p className="text-base font-medium mb-5 md:w-4/5 w-full">
+                Our customer service reached new heights with SwiftSupport's AI
+                chatbot, ensuring rapid responses and heightened satisfaction
               </p>
-              <p className="text-xl font-normal text-colorDarkBlue">Sinan E.</p>
+              <p className="text-xl font-normal text-colorDarkBlue">Sinan</p>
             </div>
           </SplideSlide>
           <SplideSlide>
@@ -158,11 +158,11 @@ const PeopleSaying = () => {
                   />
                 </div>
               </div>
-              <p className="text-base font-medium mb-5 md:w-2/3 w-full">
-                Happy and regular user of chatbot. It has helped a great deal in
-                my entrepreneurial journey
+              <p className="text-base font-medium mb-5 md:w-4/5 w-full">
+                SwiftSupport's chatbot transformed our support, providing quick
+                responses and boosting customer satisfaction.
               </p>
-              <p className="text-xl font-normal text-colorDarkBlue">Sinan E.</p>
+              <p className="text-xl font-normal text-colorDarkBlue">Danielle</p>
             </div>
           </SplideSlide>
           <SplideSlide>
@@ -215,11 +215,11 @@ const PeopleSaying = () => {
                   />
                 </div>
               </div>
-              <p className="text-base font-medium mb-5 md:w-2/3 w-full">
-                Happy and regular user of chatbot. It has helped a great deal in
-                my entrepreneurial journey
+              <p className="text-base font-medium mb-5 md:w-4/5 w-full">
+                SwiftSupport's AI chatbot revolutionized our customer service,
+                delivering prompt responses and enhancing overall satisfaction.
               </p>
-              <p className="text-xl font-normal text-colorDarkBlue">Sinan E.</p>
+              <p className="text-xl font-normal text-colorDarkBlue">Dianna</p>
             </div>
           </SplideSlide>
         </Splide>
