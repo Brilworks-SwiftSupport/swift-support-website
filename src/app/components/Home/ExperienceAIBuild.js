@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-const ReadyToStartChatting = () => {
+const ExperienceAIBuild = () => {
   return (
     <div className="section-padding flex flex-wrap items-center">
       <div className="lg:w-1/2 w-full md:pr-[35px] pr-0">
@@ -48,4 +48,4 @@ const ReadyToStartChatting = () => {
   );
 };
 
-export default ReadyToStartChatting;
+export default ExperienceAIBuild;

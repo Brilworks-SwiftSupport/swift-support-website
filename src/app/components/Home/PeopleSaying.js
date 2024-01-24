@@ -7,6 +7,28 @@ import { useMediaQuery } from "react-responsive";
 
 const PeopleSaying = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
+
+  const wordsFromPeople = [
+    {
+      quoteImage: "/images/icon_quote_blue.svg",
+      clientComment:
+        "Our customer service reached new heights with SwiftSupport's AI chatbot, ensuring rapid responses and heightened satisfaction",
+      clientName: "Sinan",
+    },
+    {
+      quoteImage: "/images/icon_quote_pink.svg",
+      clientComment:
+        "SwiftSupport's chatbot transformed our support, providing quick responses and boosting customer satisfaction.",
+      clientName: "Danielle",
+    },
+    {
+      quoteImage: "/images/icon_quote_yellow.svg",
+      clientComment:
+        "SwiftSupport's AI chatbot revolutionized our customer service, delivering prompt responses and enhancing overall satisfaction.",
+      clientName: "Dianna",
+    },
+  ];
+
   return (
     <div className="section-padding !px-0">
       <div className="flex flex-col items-center justify-center mb-[30px]">
@@ -20,7 +42,7 @@ const PeopleSaying = () => {
           height={isMobile ? 49 : 74}
         />
       </div>
-      <div className="">
+      <div>
         <Splide
           options={{
             type: "loop",
@@ -51,177 +73,62 @@ const PeopleSaying = () => {
           }}
           extensions={{ AutoScroll }}
         >
-          <SplideSlide>
-            <div className="bg-[#D7F4FE] rounded-[30px] p-[30px]">
-              <div className="flex items-center justify-between">
-                <div className="flex md:gap-[10px] gap-1 mb-4">
-                  <Image
-                    src="/images/icon_star.png"
-                    alt="star-icon"
-                    width={30}
-                    height={30}
-                    className=""
-                  />
-                  <Image
-                    src="/images/icon_star.png"
-                    alt="star-icon"
-                    width={30}
-                    height={30}
-                    className=""
-                  />
-                  <Image
-                    src="/images/icon_star.png"
-                    alt="star-icon"
-                    width={30}
-                    height={30}
-                    className=""
-                  />
-                  <Image
-                    src="/images/icon_star.png"
-                    alt="star-icon"
-                    width={30}
-                    height={30}
-                    className=""
-                  />
-                  <Image
-                    src="/images/icon_star_white.png"
-                    alt="star-icon"
-                    width={30}
-                    height={30}
-                    className=""
-                  />
+          {wordsFromPeople.map(
+            ({ quoteImage, clientComment, clientName }, index) => (
+              <SplideSlide key={index}>
+                <div className="bg-[#D7F4FE] rounded-[30px] p-[30px]">
+                  <div className="flex items-center justify-between">
+                    <div className="flex md:gap-[10px] gap-1 mb-4">
+                      <Image
+                        src="/images/icon_star.png"
+                        alt="star-icon"
+                        width={30}
+                        height={30}
+                      />
+                      <Image
+                        src="/images/icon_star.png"
+                        alt="star-icon"
+                        width={30}
+                        height={30}
+                      />
+                      <Image
+                        src="/images/icon_star.png"
+                        alt="star-icon"
+                        width={30}
+                        height={30}
+                      />
+                      <Image
+                        src="/images/icon_star.png"
+                        alt="star-icon"
+                        width={30}
+                        height={30}
+                      />
+                      <Image
+                        src="/images/icon_star_white.png"
+                        alt="star-icon"
+                        width={30}
+                        height={30}
+                      />
+                    </div>
+                    <div>
+                      <Image
+                        src={quoteImage}
+                        alt="Coloured quote icon"
+                        width={64}
+                        height={64}
+                      />
+                    </div>
+                  </div>
+                  <p className="text-base font-medium mb-5 md:w-4/5 w-full">
+                    {clientComment}
+                  </p>
+                  <p className="text-xl font-normal text-colorDarkBlue">
+                    {clientName}
+                  </p>
                 </div>
-                <div>
-                  <Image
-                    src="/images/icon_quote_blue.svg"
-                    alt="star-icon"
-                    width={64}
-                    height={64}
-                    className=""
-                  />
-                </div>
-              </div>
-              <p className="text-base font-medium mb-5 md:w-4/5 w-full">
-                Our customer service reached new heights with SwiftSupport's AI
-                chatbot, ensuring rapid responses and heightened satisfaction
-              </p>
-              <p className="text-xl font-normal text-colorDarkBlue">Sinan</p>
-            </div>
-          </SplideSlide>
-          <SplideSlide>
-            <div className="bg-[#D7F4FE] rounded-[30px] p-[30px]">
-              <div className="flex items-center justify-between">
-                <div className="flex gap-[10px] mb-4">
-                  <Image
-                    src="/images/icon_star.png"
-                    alt="star-icon"
-                    width={30}
-                    height={30}
-                    className=""
-                  />
-                  <Image
-                    src="/images/icon_star.png"
-                    alt="star-icon"
-                    width={30}
-                    height={30}
-                    className=""
-                  />
-                  <Image
-                    src="/images/icon_star.png"
-                    alt="star-icon"
-                    width={30}
-                    height={30}
-                    className=""
-                  />
-                  <Image
-                    src="/images/icon_star.png"
-                    alt="star-icon"
-                    width={30}
-                    height={30}
-                    className=""
-                  />
-                  <Image
-                    src="/images/icon_star_white.png"
-                    alt="star-icon"
-                    width={30}
-                    height={30}
-                    className=""
-                  />
-                </div>
-                <div>
-                  <Image
-                    src="/images/icon_quote_pink.svg"
-                    alt="star-icon"
-                    width={64}
-                    height={64}
-                    className=""
-                  />
-                </div>
-              </div>
-              <p className="text-base font-medium mb-5 md:w-4/5 w-full">
-                SwiftSupport's chatbot transformed our support, providing quick
-                responses and boosting customer satisfaction.
-              </p>
-              <p className="text-xl font-normal text-colorDarkBlue">Danielle</p>
-            </div>
-          </SplideSlide>
-          <SplideSlide>
-            <div className="bg-[#D7F4FE] rounded-[30px] p-[30px]">
-              <div className="flex items-center justify-between">
-                <div className="flex gap-[10px] mb-4">
-                  <Image
-                    src="/images/icon_star.png"
-                    alt="star-icon"
-                    width={30}
-                    height={30}
-                    className=""
-                  />
-                  <Image
-                    src="/images/icon_star.png"
-                    alt="star-icon"
-                    width={30}
-                    height={30}
-                    className=""
-                  />
-                  <Image
-                    src="/images/icon_star.png"
-                    alt="star-icon"
-                    width={30}
-                    height={30}
-                    className=""
-                  />
-                  <Image
-                    src="/images/icon_star.png"
-                    alt="star-icon"
-                    width={30}
-                    height={30}
-                    className=""
-                  />
-                  <Image
-                    src="/images/icon_star_white.png"
-                    alt="star-icon"
-                    width={30}
-                    height={30}
-                    className=""
-                  />
-                </div>
-                <div>
-                  <Image
-                    src="/images/icon_quote_yellow.svg"
-                    alt="star-icon"
-                    width={64}
-                    height={64}
-                    className=""
-                  />
-                </div>
-              </div>
-              <p className="text-base font-medium mb-5 md:w-4/5 w-full">
-                SwiftSupport's AI chatbot revolutionized our customer service,
-                delivering prompt responses and enhancing overall satisfaction.
-              </p>
-              <p className="text-xl font-normal text-colorDarkBlue">Dianna</p>
-            </div>
-          </SplideSlide>
+              </SplideSlide>
+            )
+          )}
         </Splide>
       </div>
     </div>

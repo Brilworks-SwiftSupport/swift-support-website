@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { useMediaQuery } from "react-responsive";
 
-const OpenForConversation = () => {
+const SwiftIntegration = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
   return (
     <div className="section-padding">
@@ -32,4 +32,4 @@ const OpenForConversation = () => {
   );
 };
 
-export default OpenForConversation;
+export default SwiftIntegration;

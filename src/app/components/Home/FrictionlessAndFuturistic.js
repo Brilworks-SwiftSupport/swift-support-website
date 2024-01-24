@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-const ImmediateAns = () => {
+const FrictionlessAndFuturistic = () => {
   return (
     <div className="section-padding flex flex-wrap items-center">
       <div className="lg:w-3/5 w-full lg:pr-[35px] mb-4 lg:mb-0">
@@ -31,4 +31,4 @@ const ImmediateAns = () => {
   );
 };
 
-export default ImmediateAns;
+export default FrictionlessAndFuturistic;

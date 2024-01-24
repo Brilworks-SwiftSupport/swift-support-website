@@ -326,6 +326,13 @@ a:hover {
   transform: rotate(45deg);
 }
 
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.fade-in-content { animation: fadeIn 1s; }
+
 @media only screen and (max-width: 1600px) {
   /* .section-padding {
     padding: 3.125rem 4.375rem 3.125rem;

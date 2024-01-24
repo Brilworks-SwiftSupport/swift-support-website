@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
 import InstantSolution from "../components/Home/InstantSolution";
+import VideoSection from "../components/Home/VideoSection";
 import dynamic from "next/dynamic";
 
-const VideoSection = dynamic(() => import("../components/Home/VideoSection"));
 const TrustedBy = dynamic(() => import("../components/Home/TrustedBy"));
 const IndustriesWeServe = dynamic(() =>
   import("../components/Home/IndustriesWeServe")
@@ -11,22 +11,24 @@ const IndustriesWeServe = dynamic(() =>
 const ManageDataSource = dynamic(() =>
   import("../components/Home/ManageDataSource")
 );
-const ImmediateAns = dynamic(() => import("../components/Home/ImmediateAns"));
+const FrictionlessAndFuturistic = dynamic(() =>
+  import("../components/Home/FrictionlessAndFuturistic")
+);
 const CustomizeExperience = dynamic(() =>
   import("../components/Home/CustomizeExperience")
 );
 const OptimizeAndDataStorage = dynamic(() =>
   import("../components/Home/OptimizeAndDataStorage")
 );
-const ReadyToStartChatting = dynamic(() =>
-  import("../components/Home/ReadyToStartChatting")
+const ExperienceAIBuild = dynamic(() =>
+  import("../components/Home/ExperienceAIBuild")
 );
 const PeopleSaying = dynamic(() => import("../components/Home/PeopleSaying"));
 const ResolveCustomerQuestions = dynamic(() =>
   import("../components/Home/ResolveCustomerQuestions")
 );
-const OpenForConversation = dynamic(() =>
-  import("../components/Home/OpenForConversation")
+const SwiftIntegration = dynamic(() =>
+  import("../components/Home/SwiftIntegration")
 );
 const PricingPlan = dynamic(() => import("../components/Home/PricingPlan"));
 
@@ -40,16 +42,16 @@ const page = () => {
         <IndustriesWeServe />
         <ManageDataSource />
       </div>
-      <ImmediateAns />
+      <FrictionlessAndFuturistic />
       <div className="bg_two">
         <CustomizeExperience />
         <OptimizeAndDataStorage />
-        <ReadyToStartChatting />
+        <ExperienceAIBuild />
         <PeopleSaying />
         <ResolveCustomerQuestions />
       </div>
       <div className="bg_one">
-        <OpenForConversation />
+        <SwiftIntegration />
         <PricingPlan />
       </div>
     </>
