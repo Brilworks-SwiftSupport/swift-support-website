@@ -2,8 +2,10 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import { COUNTRIES } from "../lib/Constant";
+import { useMediaQuery } from "react-responsive";
 
 const ContactUS = () => {
+  const isMobile = useMediaQuery({ maxWidth: 767 });
   const [selectedCountryCode, setSelectedCountryCode] = useState("+91");
 
   const uniqueSortedCountries = Array.from(
@@ -34,7 +36,7 @@ const ContactUS = () => {
               className="mb-[10px]"
             />
 
-            <p className="text-lg mb-[30px] text-colorDarkBlue">
+            <p className="md:text-lg text-base mb-[30px] text-colorDarkBlue">
               Swiftsupport, your dynamic AI assistant, scans your websites,
               PDFs, and text to deliver accurate answers, generate creative
               formats, and resolve up to 80% of customer queries.
@@ -49,57 +51,69 @@ const ContactUS = () => {
               Member of Technical Staff
             </span>
           </div>
-          <div className="[background:linear-gradient(-90deg,_rgba(131,_222,_252,_0),_#fba8a8_48.96%,_rgba(131,_222,_252,_0))] w-full h-1 lg:my-[60px] md:my-10 my-7" />
+          <div className="[background:linear-gradient(-90deg,_rgba(131,_222,_252,_0),_#fba8a8_48.96%,_rgba(131,_222,_252,_0))] w-full h-1 lg:my-[60px] md:my-10 my-5" />
           <div>
-            <p className="text-colorBlack text-xl font-normal mb-10 text-center">
+            <p className="text-colorBlack text-xl font-normal mb-5 md:mb-10 text-center">
               Trusted by the world’s most ambitious teams
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-10">
+            <div className="flex flex-wrap items-center justify-center gap-5 md:gap-10">
               <Image
-                src="/images/Logo (1).svg"
-                alt="SwiftSupport Logo"
-                width="132"
-                height="35"
+                src="/images/Logo (7).svg"
+                alt="Client logo"
+                width={isMobile ? 70 : 132}
+                height={isMobile ? 20 : 35}
               />
               <Image
-                src="/images/Logo (2).svg"
-                alt="SwiftSupport Logo"
-                width="172"
-                height="40"
+                src="/images/Logo (8).svg"
+                alt="Client logo"
+                width={isMobile ? 90 : 172}
+                height={isMobile ? 25 : 40}
               />
               <Image
-                src="/images/Logo (3).svg"
-                alt="SwiftSupport Logo"
-                width="119"
-                height="30"
+                src="/images/Logo (9).svg"
+                alt="Client logo"
+                width={isMobile ? 60 : 119}
+                height={isMobile ? 20 : 30}
               />
               <Image
-                src="/images/Logo (4).svg"
-                alt="SwiftSupport Logo"
-                width="134"
-                height="34"
+                src="/images/Logo (10).svg"
+                alt="Client logo"
+                width={isMobile ? 70 : 134}
+                height={isMobile ? 20 : 34}
               />
               <Image
-                src="/images/Logo (5).svg"
-                alt="SwiftSupport Logo"
-                width="154"
-                height="27"
+                src="/images/Logo (11).svg"
+                alt="Client logo"
+                width={isMobile ? 80 : 154}
+                height={isMobile ? 15 : 27}
               />
               <Image
-                src="/images/Logo (6).svg"
-                alt="SwiftSupport Logo"
-                width="140"
-                height="30"
+                src="/images/Logo (12).svg"
+                alt="Client logo"
+                width={isMobile ? 70 : 140}
+                height={isMobile ? 20 : 30}
+              />
+              <Image
+                src="/images/Logo (7).svg"
+                alt="Client logo"
+                width={isMobile ? 70 : 132}
+                height={isMobile ? 20 : 35}
+              />
+              <Image
+                src="/images/Logo (8).svg"
+                alt="Client logo"
+                width={isMobile ? 90 : 172}
+                height={isMobile ? 25 : 40}
               />
             </div>
           </div>
         </div>
         <div className="lg:w-1/2 w-full rounded-[30px] [background:linear-gradient(180deg,_#f6f395,_rgba(242,_237,_123,_0))] xl:p-10 md:p-7 p-5">
           <div>
-            <span className="text-[30px] font-semibold mb-[10px]">
+            <span className="md:text-[30px] text-2xl font-semibold mb-[10px]">
               Quick Responses Await!
             </span>
-            <p className="text-lg font-normal leading-[26px] text-colorDarkBlue mb-7">
+            <p className="md:text-lg text-base font-normal leading-[26px] text-colorDarkBlue md:mb-7 mb-4 md:mt-0 mt-2">
               Connect with us! Feel free to ask any questions or share your
               thoughts.
             </p>

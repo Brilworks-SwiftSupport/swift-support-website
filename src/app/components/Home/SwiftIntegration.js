@@ -2,22 +2,22 @@ import Image from "next/image";
 import React from "react";
 import { useMediaQuery } from "react-responsive";
 
-const OpenForConversation = () => {
+const SwiftIntegration = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
   return (
     <div className="section-padding">
       <div className="flex flex-col items-center justify-center md:mb-[58px] mb-7">
         <h2 className="font-bold text-2xl md:text-3xl xl:text-4xl xl:leading-[45.36px] mb-[30px] text-center">
-          Open for Conversation: Chatbot {!isMobile && <br/>}
-          with Embed Code
+          Swift Integration: Effortlessly Embed Our AI Chatbot
+          {!isMobile && <br />}
+          for Instant Customer Engagement!
         </h2>
         <p className="text-lg font-normal text-colorGray md:text-center lg:w-4/5 w-full">
-          Embed our chatbot easily using the provided code and unlock instant,
-          interactive communication. Seamlessly integrate the chatbot into your
-          platform to engage users effortlessly. With our open approach,
-          fostering conversations has never been more accessible. Start
-          enhancing user experience now by integrating our chatbot using the
-          provided embed code.
+          Say goodbye to complex installation processes and hello to immediate
+          deployment. Our user-friendly embed functionality ensures that you can
+          have the power of AI-driven customer engagement up and running in no
+          time. With just a few lines of code, businesses can easily incorporate
+          our AI chatbot into their websites and software applications.
         </p>
       </div>
       <div className="flex items-center justify-center">
@@ -32,4 +32,4 @@ const OpenForConversation = () => {
   );
 };
 
-export default OpenForConversation;
+export default SwiftIntegration;

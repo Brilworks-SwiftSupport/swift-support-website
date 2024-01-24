@@ -14,29 +14,33 @@ const InstantSolution = () => {
         </p>
       </div>
 
-      <div className="text-colorBlack font-light xl:text-[70px] md:text-[50px] text-[32px] flex text-center flex-col">
-        <p className="xs:mb-4 mb-2">
-          Build a {isMobile && <br />}
-          <span className="build-chatbot mb-2 xs:mb-0">Chatbot to answer</span>
+      <div className="text-colorBlack font-light xl:text-[70px] md:text-[50px] text-[32px] flex items-center justify-center flex-col">
+        <p className="xs:mb-4 mb-2">Resolve up to</p>
+        <span className="build-chatbot w-auto bg-colorWhite mb-2 xs:mb-4">
+          80% of Customer Queries with AI,
+        </span>
+        <p className="flex xs:mb-4 mb-2">
+          Deliver
+          <div
+            className={`website-button select-none cursor-pointer md:py-2 py-3 mx-3 ${
+              sequence === 1
+                ? "bg-themeYellow"
+                : sequence === 2
+                ? "bg-themeBlue"
+                : "bg-themePink"
+            }`}
+          >
+            {sequence === 1 ? (
+              <p onClick={() => setSequence(2)}>Faster</p>
+            ) : sequence === 2 ? (
+              <p onClick={() => setSequence(3)}>Better</p>
+            ) : (
+              <p onClick={() => setSequence(1)}>Personalized</p>
+            )}
+          </div>{" "}
+          Support
         </p>
-        <p className="xs:mb-4 mb-2">any question from your</p>
-        <div
-          className={`website-button select-none cursor-pointer md:py-2 py-3 ${
-            sequence === 1
-              ? "bg-themeYellow"
-              : sequence === 2
-              ? "bg-themeBlue"
-              : "bg-themePink"
-          }`}
-        >
-          {sequence === 1 ? (
-            <p onClick={() => setSequence(2)}>Website</p>
-          ) : sequence === 2 ? (
-            <p onClick={() => setSequence(3)}>PDFs</p>
-          ) : (
-            <p onClick={() => setSequence(1)}>Text</p>
-          )}
-        </div>
+
         <div className="my-10 flex items-center justify-center">
           <Link href="#" className="button_black">
             Start a Free Trial

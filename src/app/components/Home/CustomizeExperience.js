@@ -14,7 +14,7 @@ const CustomizeExperience = () => {
           <div className="min-w-[14px] h-6 custom-shadow bg-themePink rounded-xl mt-1"></div>
           <div className="ml-7">
             <h3 className="text-colorDarkBlue text-2xl font-medium mb-[10px]">
-              Tailored Interaction
+              Conversations on Your Terms
             </h3>
             <p className="text-colorGray text-lg font-normal">
               Customize your chatbot experience to meet your specific
