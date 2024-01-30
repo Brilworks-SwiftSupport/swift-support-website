@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+      {
+        "source": "/login",
+        "destination": "https://llm-chat-bot.vercel.app/login"
+      }
+    ]
+  }
