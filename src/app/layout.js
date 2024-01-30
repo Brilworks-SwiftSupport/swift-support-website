@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import "./globals.css";
+import "./components/styles/Animation.scss";
 
 const Header = dynamic(() => import("./components/Header"));
 const Footer = dynamic(() => import("./components/Footer"));
@@ -12,9 +13,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <Header />
-      <body>{children}</body>
-      <Footer />
+      <body suppressHydrationWarning={true}>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

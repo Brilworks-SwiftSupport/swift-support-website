@@ -1,11 +1,22 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
 const InstantSolution = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
-  const [sequence, setSequence] = useState(1);
+  const colors = ["#f2ed7b", "#fbb8b8", "#83defc"];
+  const [currentColorIndex, setCurrentColorIndex] = useState(0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentColorIndex((prevIndex) => (prevIndex + 1) % colors.length);
+    }, 4000);
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const currentColor = colors[currentColorIndex];
+
   return (
     <div className="instant-solution section-padding !pt-[150px]">
       <div className="mb-[29px]">
@@ -19,27 +30,19 @@ const InstantSolution = () => {
         <span className="build-chatbot w-auto bg-colorWhite mb-2 xs:mb-4">
           80% of Customer Queries with AI,
         </span>
-        <p className="flex xs:mb-4 mb-2">
-          Deliver
+        <div className="xs:flex xs:mb-4 mb-2">
+          <div className="text-center">Deliver</div>
           <div
-            className={`website-button select-none cursor-pointer md:py-2 py-3 mx-3 ${
-              sequence === 1
-                ? "bg-themeYellow"
-                : sequence === 2
-                ? "bg-themeBlue"
-                : "bg-themePink"
-            }`}
+            className="website-button select-none md:py-2 py-3 mx-3"
+            style={{
+              backgroundColor: currentColor,
+              transition: "all 0.3s ease",
+            }}
           >
-            {sequence === 1 ? (
-              <p onClick={() => setSequence(2)}>Faster</p>
-            ) : sequence === 2 ? (
-              <p onClick={() => setSequence(3)}>Better</p>
-            ) : (
-              <p onClick={() => setSequence(1)}>Personalized</p>
-            )}
-          </div>{" "}
-          Support
-        </p>
+            <p className="typewriter"></p>
+          </div>
+          <div className="text-center">Support</div>
+        </div>
 
         <div className="my-10 flex items-center justify-center">
           <Link href="#" className="button_black">

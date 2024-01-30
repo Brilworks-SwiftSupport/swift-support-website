@@ -15,8 +15,7 @@ const ResolveCustomerQuestions = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log("Submitted email:", email);
+    // console.log("Submitted email:", email);
   };
   return (
     <div className="w-full section-padding">
@@ -53,6 +52,15 @@ const ResolveCustomerQuestions = () => {
               >
                 Sign Up for Free
               </button>
+            </div>
+            <div className="moving-pointer absolute -right-[46px] -bottom-[86px]">
+              <Image
+                className="md:block hidden self-end w-full"
+                src="/images/signup-click.svg"
+                width={60}
+                height={60}
+                alt="Signup pointer"
+              />
             </div>
           </form>
         </div>

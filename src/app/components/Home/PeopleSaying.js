@@ -1,12 +1,18 @@
+"use client";
 import "@splidejs/splide/dist/css/splide.min.css";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
 const PeopleSaying = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
+  const [isMovingLeft, setIsMovingLeft] = useState(true);
+
+  const toggleAnimation = () => {
+    setIsMovingLeft(!isMovingLeft);
+  };
 
   const wordsFromPeople = [
     {
@@ -98,7 +104,11 @@ const PeopleSaying = () => {
                         height={30}
                       />
                       <Image
-                        src="/images/icon_star.png"
+                        src={
+                          index === 2
+                            ? "/images/icon_star_white.png"
+                            : "/images/icon_star.png"
+                        }
                         alt="star-icon"
                         width={30}
                         height={30}
@@ -110,7 +120,18 @@ const PeopleSaying = () => {
                         height={30}
                       />
                     </div>
-                    <div>
+                    {/* <div>
+                      <Image
+                        src={quoteImage}
+                        alt="Coloured quote icon"
+                        width={64}
+                        height={64}
+                      />
+                    </div> */}
+                    <div
+                      className={isMovingLeft ? "move-left" : "move-right"}
+                      onAnimationEnd={toggleAnimation}
+                    >
                       <Image
                         src={quoteImage}
                         alt="Coloured quote icon"
