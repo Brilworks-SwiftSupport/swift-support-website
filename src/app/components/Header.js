@@ -36,7 +36,7 @@ const Header = () => {
   const navList = (
     <ul className="mt-2 mb-4 flex flex-col gap-3 items-center md:mb-0 md:mt-0 md:flex-row md:items-center md:gap-3 lg:gap-6">
       <Link
-        href="/features"
+        href="#"
         onClick={() => setOpenNav(false)}
         className="nav-underline flex items-center md:justify-center justify-start font-medium"
       >
@@ -49,6 +49,7 @@ const Header = () => {
       >
         Pricing
       </Link>
+
       <Link
         href="/contact"
         onClick={() => setOpenNav(false)}
@@ -56,7 +57,13 @@ const Header = () => {
       >
         Contact
       </Link>
-      <Link href="#" onClick={() => setOpenNav(false)} className="button_black">
+      <Link
+        rel="noopener"
+        target="_blank"
+        href="https://app.swiftsupport.ai/login"
+        onClick={() => setOpenNav(false)}
+        className="button_black"
+      >
         Sign Up
       </Link>
     </ul>
