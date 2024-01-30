@@ -34,7 +34,7 @@ const Header = () => {
   }, []);
 
   const navList = (
-    <ul className="mt-2 mb-4 flex flex-col gap-3 items-center md:mb-0 md:mt-0 md:flex-row md:items-center md:gap-6">
+    <ul className="mt-2 mb-4 flex flex-col gap-3 items-center md:mb-0 md:mt-0 md:flex-row md:items-center md:gap-3 lg:gap-6">
       <Link
         href="/features"
         className="nav-underline flex items-center md:justify-center justify-start font-medium"

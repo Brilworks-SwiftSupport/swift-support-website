@@ -52,15 +52,25 @@ const ResolveCustomerQuestions = () => {
               >
                 Sign Up for Free
               </button>
-            </div>
-            <div className="moving-pointer absolute -right-[46px] -bottom-[86px]">
-              <Image
-                className="md:block hidden self-end w-full"
-                src="/images/signup-click.svg"
-                width={60}
-                height={60}
-                alt="Signup pointer"
-              />
+              {!isMobile && (
+                <div
+                  className={`${
+                    !isMobile && !isTablet ? "swing" : ""
+                  } moving-pointer absolute -right-[46px] -bottom-[86px]`}
+                >
+                  <Image
+                    className="md:block hidden self-end w-full"
+                    src={
+                      isTablet
+                        ? "/images/tablet-signup.svg"
+                        : "/images/signup-click.svg"
+                    }
+                    width={60}
+                    height={60}
+                    alt="Signup pointer"
+                  />
+                </div>
+              )}
             </div>
           </form>
         </div>

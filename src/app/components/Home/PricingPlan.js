@@ -36,7 +36,7 @@ const PricingPlan = () => {
         </div>
       </div>
       <div className={`grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5`}>
-        <div className="bg-themeBlue rounded-[14px] p-[22px]">
+        <div className="bg-themeBlue pricing-grid shrink-border rounded-[14px] p-[22px]">
           <span className="font-light text-[50px] mb-4">
             {subscriptionPlan === "Monthly" ? "$0" : "$20"}
           </span>
@@ -58,13 +58,13 @@ const PricingPlan = () => {
               <li>Lorem ipsum dolor sit amet.</li>
               <li>Lorem ipsum dolor sit amet.</li>
             </ul>
-            <button className="bg-colorBlack text-colorWhite rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full">
+            <button className="bg-colorBlack subscribe-btn text-colorWhite rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full">
               Subscribe
             </button>
           </div>
         </div>
 
-        <div className="bg-themeBlue rounded-[14px] p-[22px]">
+        <div className="bg-themeBlue pricing-grid rounded-[14px] p-[22px]">
           <span className="font-light text-[50px] mb-4">
             {subscriptionPlan === "Monthly" ? "$20" : "$240"}
           </span>
@@ -86,13 +86,13 @@ const PricingPlan = () => {
               <li>Lorem ipsum dolor sit amet.</li>
               <li>Lorem ipsum dolor sit amet.</li>
             </ul>
-            <button className="bg-colorBlack text-colorWhite rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full">
+            <button className="bg-colorBlack subscribe-btn text-colorWhite rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full">
               Subscribe
             </button>
           </div>
         </div>
 
-        <div className="relative bg-themeYellow rounded-[14px] p-[22px] subscribe-main-shadow">
+        <div className="relative bg-themeYellow pricing-grid rounded-[14px] p-[22px] subscribe-main-shadow">
           <div className="absolute top-[0px] right-[0px] rounded-tl-none rounded-tr-[12.09px] rounded-br-none rounded-bl-[12.09px] bg-black w-[130px] h-[42px]"></div>
           <div className="absolute top-[11px] text-colorWhite text-base right-[20px] inline-block w-[90px]">
             Current Plan
@@ -118,13 +118,13 @@ const PricingPlan = () => {
               <li>Lorem ipsum dolor sit amet.</li>
               <li>Lorem ipsum dolor sit amet.</li>
             </ul>
-            <button className="bg-colorWhite text-colorBlack border-2 border-colorBlack rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full">
+            <button className="bg-colorWhite subscribed-btn text-colorBlack border-2 border-colorBlack rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full">
               Subscribed
             </button>
           </div>
         </div>
 
-        <div className="bg-themeBlue rounded-[14px] p-[22px]">
+        <div className="bg-themeBlue pricing-grid rounded-[14px] p-[22px]">
           <span className="font-light text-[50px] mb-4">
             {subscriptionPlan === "Monthly" ? "$80" : "$960"}
           </span>
@@ -146,7 +146,7 @@ const PricingPlan = () => {
               <li>Lorem ipsum dolor sit amet.</li>
               <li>Lorem ipsum dolor sit amet.</li>
             </ul>
-            <button className="bg-colorBlack text-colorWhite rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full">
+            <button className="bg-colorBlack subscribe-btn text-colorWhite rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full">
               Subscribe
             </button>
           </div>
