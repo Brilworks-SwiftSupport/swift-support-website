@@ -37,7 +37,9 @@ const PricingPlan = () => {
       </div>
       <div className={`grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5`}>
         <div className="bg-themeBlue rounded-[14px] p-[22px]">
-          <span className="font-light text-[50px] mb-4">$0</span>
+          <span className="font-light text-[50px] mb-4">
+            {subscriptionPlan === "Monthly" ? "$0" : "$20"}
+          </span>
           <br />
           <button className="bg-colorWhite font-medium rounded-[10px] px-[22px] py-[14px] mb-[21px]">
             FREE

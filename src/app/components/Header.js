@@ -37,19 +37,19 @@ const Header = () => {
     <ul className="mt-2 mb-4 flex flex-col gap-3 items-center md:mb-0 md:mt-0 md:flex-row md:items-center md:gap-6">
       <Link
         href="/features"
-        className="flex items-center md:justify-center justify-start font-medium"
+        className="nav-underline flex items-center md:justify-center justify-start font-medium"
       >
         Features
       </Link>
       <Link
         href="#"
-        className="flex items-center md:justify-center justify-start font-medium"
+        className="nav-underline flex items-center md:justify-center justify-start font-medium"
       >
         Pricing
       </Link>
       <Link
         href="/contact"
-        className="flex items-center md:justify-center justify-start font-medium"
+        className="nav-underline flex items-center md:justify-center justify-start font-medium"
       >
         Contact
       </Link>
@@ -67,18 +67,18 @@ const Header = () => {
         }`}
       >
         <div
-          className={`flex items-center flex-row-reverse md:flex-row justify-between header_padding ${
+          className={`flex items-center md:flex-row justify-between header_padding ${
             hideHeader || openNav ? "header-bg" : ""
           }`}
         >
-          <div className="md:py-2 py-4 xs:pr-0 pr-[calc(100vw_-_320px)]">
+          <div className="py-2 xs:pr-0 pr-[calc(100vw_-_320px)]">
             <Link href="/">
               <Image
                 src="/images/logo.svg"
                 alt="SwiftSupport Logo"
                 width={isMobile ? 176 : 270}
                 height={isMobile ? 49 : 74}
-                priority={true}
+                // priority={true}
               />
             </Link>
           </div>

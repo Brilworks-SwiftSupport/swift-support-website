@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AccordionItem from "../lib/AccordionItem";
 
 const IndustriesWeServe = () => {
-  const [open, setOpen] = useState(3);
+  const [open, setOpen] = useState(1);
   const [open2, setOpen2] = useState(0);
 
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
@@ -37,9 +37,6 @@ const IndustriesWeServe = () => {
       imageSrc: "/images/Legal_img.webp",
       imageAlt: "Legal",
     },
-  ];
-
-  const rightAccordionItems = [
     {
       title: "Cybersecurity",
       content:
@@ -54,6 +51,9 @@ const IndustriesWeServe = () => {
       imageSrc: "/images/Marketing_img.webp",
       imageAlt: "Marketing Education",
     },
+  ];
+
+  const rightAccordionItems = [
     {
       title: "Education",
       content:
@@ -99,7 +99,7 @@ const IndustriesWeServe = () => {
         </h2>
         <p className="md:w-1/2 w-full md:text-lg text-[14px] font-normal text-colorGray md:pl-[5%]">
           Your customers deserve better, and with Swiftsupport, they get it. Our
-          AI-powered chatbot can resolve over 60% of inquiries with lightning
+          AI-powered chatbot can resolve over 80% of inquiries with lightning
           speed, leaving you and your customers free on what truly matters.
         </p>
       </div>

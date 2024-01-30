@@ -6,6 +6,7 @@ import { useMediaQuery } from "react-responsive";
 
 const Footer = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
+
   return (
     <div className="footer">
       <div>
@@ -48,37 +49,37 @@ const Footer = () => {
         <div className="flex items-center md:flex-row flex-col justify-center md:gap-[60px] xl:gap-[40px] gap-5 pt-8 pb-12">
           <Link
             href="#"
-            className="flex items-center justify-center font-medium"
+            className="footer-underline flex items-center justify-center font-medium"
           >
             Features
           </Link>
           <Link
             href="#"
-            className="flex items-center justify-center font-medium"
+            className="footer-underline flex items-center justify-center font-medium"
           >
             Pricing
           </Link>
           <Link
             href="#"
-            className="flex items-center justify-center font-medium"
+            className="footer-underline flex items-center justify-center font-medium"
           >
             About
           </Link>
           <Link
             href="/contact"
-            className="flex items-center justify-center font-medium"
+            className="footer-underline flex items-center justify-center font-medium"
           >
             Contact
           </Link>
           <Link
             href="#"
-            className="flex items-center justify-center font-medium"
+            className="footer-underline flex items-center justify-center font-medium"
           >
             Privacy Policy
           </Link>
           <Link
             href="#"
-            className="flex items-center justify-center font-medium"
+            className="footer-underline flex items-center justify-center font-medium"
           >
             Terms & Conditions
           </Link>

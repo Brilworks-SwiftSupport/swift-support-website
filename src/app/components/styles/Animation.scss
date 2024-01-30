@@ -1,0 +1,195 @@
+.header,
+.footer {
+  .nav-underline {
+    cursor: pointer !important;
+    display: inline-block;
+    padding: 10px;
+    position: relative;
+  }
+
+  .footer-underline {
+    cursor: pointer !important;
+    display: inline-block;
+    padding: 6px 0;
+    position: relative;
+  }
+  .footer-underline:after {
+    background: var(--colorWhite) !important;
+  }
+  .nav-underline:after,
+  .footer-underline:after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 3px;
+    left: 50%;
+    position: absolute;
+    background: var(--colorBlack);
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+  }
+  .nav-underline:hover:after,
+  .footer-underline:hover:after {
+    width: 100%;
+    left: 0;
+  }
+}
+
+@keyframes typing {
+  0.0000%,
+  27.3488% {
+    content: "";
+  }
+  1.1395%,
+  26.2093% {
+    content: "F";
+  }
+  2.2791%,
+  25.0698% {
+    content: "Fa";
+  }
+  3.4186%,
+  23.9302% {
+    content: "Fas";
+  }
+  4.5581%,
+  22.7907% {
+    content: "Fast";
+  }
+  5.6977%,
+  21.6512% {
+    content: "Faste";
+  }
+  6.8372%,
+  20.5116% {
+    content: "Faster";
+  }
+
+  30.7674%,
+  51.2791% {
+    content: "";
+  }
+  31.9070%,
+  50.1395% {
+    content: "B";
+  }
+  33.0465%,
+  49.0000% {
+    content: "Be";
+  }
+  34.1860%,
+  47.8605% {
+    content: "Bet";
+  }
+  35.3256%,
+  46.7209% {
+    content: "Bett";
+  }
+  36.4651%,
+  45.5814% {
+    content: "Bette";
+  }
+  37.6047%,
+  44.4419% {
+    content: "Better";
+  }
+
+  60.7674%,
+  91.2791% {
+    content: "";
+  }
+  61.9070%,
+  90.1395% {
+    content: "P";
+  }
+  63.0465%,
+  89.0000% {
+    content: "Pe";
+  }
+  64.1860%,
+  87.8605% {
+    content: "Per";
+  }
+  65.3256%,
+  86.7209% {
+    content: "Pers";
+  }
+  66.4651%,
+  85.5814% {
+    content: "Perso";
+  }
+  67.6047%,
+  84.4419% {
+    content: "Person";
+  }
+  68.7443%,
+  83.3023% {
+    content: "Persona";
+  }
+  69.8839%,
+  82.1627% {
+    content: "Personal";
+  }
+  71.0235%,
+  81.0231% {
+    content: "Personali";
+  }
+  72.1631%,
+  79.8836% {
+    content: "Personaliz";
+  }
+  73.3027%,
+  78.7441% {
+    content: "Personalize";
+  }
+  74.4423%,
+  77.6046% {
+    content: "Personalized";
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.typewriter::before {
+  content: "";
+  animation: typing 13.5s infinite;
+}
+
+.typewriter::after {
+  content: "";
+  border-right: 2px solid var(--colorDarkBlue);
+  animation: blink 0.5s linear infinite;
+}
+
+@media (prefers-reduced-motion) {
+  .typewriter::after {
+    animation: none;
+  }
+
+  @keyframes sequencePopup {
+    0%,
+    100% {
+      content: "Faster";
+    }
+    33% {
+      content: "Better";
+    }
+    66% {
+      content: "Personalized";
+    }
+  }
+
+  .typewriter::before {
+    content: "Faster";
+    animation: sequencePopup 12s linear infinite;
+  }
+}

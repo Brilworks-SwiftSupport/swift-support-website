@@ -91,7 +91,7 @@ a:hover {
 }
 
 .header_padding {
-  padding: 1rem 4.375rem 1rem;
+  padding: 0 4.375rem;
 }
 
 .button_black {
@@ -106,6 +106,7 @@ a:hover {
   color: var(--colorWhite) !important;
   border-radius: 0.75rem;
   transition: var(--common_transition);
+  cursor: pointer !important;
 }
 .button_black:hover {
   color: var(--colorBlack) !important;
@@ -139,7 +140,7 @@ a:hover {
   padding: 21px 32px;
   line-height: 88.2px;
   border: 2px solid var(--colorBlack);
-  border-radius: 115.55px 51.27px 0 115.55px;
+  border-radius: 116px 116px 0 116px;
 }
 
 .website-button {
@@ -150,7 +151,7 @@ a:hover {
   color: var(--colorDarkBlue);
   align-self: center;
   border: 2px solid var(--colorBlack);
-  border-radius: 116px 50px 0 115.55px;
+  border-radius: 116px 116px 0 116px;
 }
 
 .bg_one {
@@ -243,6 +244,7 @@ a:hover {
     var(--themeBlue),
     var(--themeYellow)
   );
+  box-shadow: 0px 30px 20px 0px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   cursor: pointer;
 }
@@ -327,11 +329,17 @@ a:hover {
 }
 
 @keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
-.fade-in-content { animation: fadeIn 1s; }
+.fade-in-content {
+  animation: fadeIn 1s;
+}
 
 @media only screen and (max-width: 1600px) {
   /* .section-padding {
@@ -346,7 +354,7 @@ a:hover {
 
 @media only screen and (max-width: 991px) {
   .header_padding {
-    padding: 1rem 2rem 1rem;
+    padding: 0 2rem;
   }
   .section-padding {
     padding: 0 2rem 3rem;
@@ -357,7 +365,9 @@ a:hover {
     line-height: unset;
   }
   .website-button {
-    width: 200px;
+    text-align: center;
+    min-width: 200px;
+    padding: 10px 40px;
     font-size: var(--font_36);
   }
   .bg_one {
@@ -386,7 +396,7 @@ a:hover {
 
 @media only screen and (max-width: 767px) {
   .header_padding {
-    padding: 0.25rem 1.5rem 0.25rem;
+    padding: 0 1.5rem;
   }
   .section-padding {
     padding: 0 1.5rem 2rem;
@@ -395,12 +405,14 @@ a:hover {
     padding: 16px 32px;
   }
   .build-chatbot {
-    font-size: var(--font_28);
+    font-size: var(--font_18);
     padding: 10px 16px;
     line-height: unset;
   }
   .website-button {
-    width: 200px;
+    text-align: center;
+    min-width: 200px;
+    padding: 6px 20px;
     font-size: var(--font_24);
   }
   .intro-video::before,
