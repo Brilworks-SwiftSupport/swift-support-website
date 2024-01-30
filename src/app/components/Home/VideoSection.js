@@ -11,6 +11,7 @@ const VideoSection = () => {
           {isVideoPause && (
             <span className="play-icon-img xs:block hidden">
               <Image
+                className="hover:scale-105"
                 src="/images/play_button.svg"
                 alt="Play Icon"
                 width={100}
