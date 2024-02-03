@@ -258,9 +258,11 @@ const ContactUS = () => {
                   </b>
                 </label>
               </div>
-              <button type="submit" className="button_black">
+              {/* <div className="w-full"> */}
+              <button type="submit" className="button_black w-full md:w-auto">
                 Submit
               </button>
+              {/* </div> */}
             </form>
           </div>
         </div>

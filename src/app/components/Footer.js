@@ -1,11 +1,12 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
 const Footer = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
+  const [hoverItem, setHoverItem] = useState("");
 
   return (
     <div className="footer">
@@ -18,27 +19,46 @@ const Footer = () => {
             height={isMobile ? 49 : 74}
           />
         </div>
-        <div className="flex items-center justify-center">
-          <Link href="#">
+        <div className="flex items-center justify-center md:gap-1 gap-[1px]">
+          <Link
+            href="#"
+            onMouseOver={() => setHoverItem("facebook")}
+            onMouseLeave={() => setHoverItem("")}
+          >
             <Image
-              className="mr-[1px]"
+              className={
+                hoverItem === "facebook" ? "cursor-pointer scale-110" : ""
+              }
               src="/images/icon_fb.svg"
               alt="Fb icon"
               width="38"
               height="38"
             />
           </Link>
-          <Link href="#">
+          <Link
+            href="#"
+            onMouseOver={() => setHoverItem("twitter")}
+            onMouseLeave={() => setHoverItem("")}
+          >
             <Image
-              className="mr-[1px]"
+              className={
+                hoverItem === "twitter" ? "cursor-pointer scale-110" : ""
+              }
               src="/images/icon_twitter.svg"
               alt="Twitter icon"
               width="50"
               height="50"
             />
           </Link>
-          <Link href="#">
+          <Link
+            href="#"
+            onMouseOver={() => setHoverItem("linkedIn")}
+            onMouseLeave={() => setHoverItem("")}
+          >
             <Image
+              className={
+                hoverItem === "linkedIn" ? "cursor-pointer scale-110" : ""
+              }
               src="/images/icon_linkedIn.svg"
               alt="SwiftSupport footer logo"
               width="60"
@@ -46,40 +66,40 @@ const Footer = () => {
             />
           </Link>
         </div>
-        <div className="flex items-center md:flex-row flex-col justify-center md:gap-[60px] xl:gap-[40px] gap-5 pt-8 pb-12">
+        <div className="footer-underline flex items-center md:flex-row flex-col justify-center md:gap-[60px] xl:gap-[40px] gap-5 pt-8 pb-12">
           <Link
             href="#"
-            className="footer-underline flex items-center justify-center font-medium"
+            className="flex items-center justify-center font-medium"
           >
             Features
           </Link>
           <Link
             href="#"
-            className="footer-underline flex items-center justify-center font-medium"
+            className="flex items-center justify-center font-medium"
           >
             Pricing
           </Link>
           <Link
             href="#"
-            className="footer-underline flex items-center justify-center font-medium"
+            className="flex items-center justify-center font-medium"
           >
             About
           </Link>
           <Link
             href="/contact"
-            className="footer-underline flex items-center justify-center font-medium"
+            className="flex items-center justify-center font-medium"
           >
             Contact
           </Link>
           <Link
             href="#"
-            className="footer-underline flex items-center justify-center font-medium"
+            className="flex items-center justify-center font-medium"
           >
             Privacy Policy
           </Link>
           <Link
             href="#"
-            className="footer-underline flex items-center justify-center font-medium"
+            className="flex items-center justify-center font-medium"
           >
             Terms & Conditions
           </Link>
