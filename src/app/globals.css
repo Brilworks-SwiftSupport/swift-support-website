@@ -269,7 +269,7 @@ a:hover {
   height: 20px;
   left: 0;
   top: 5px;
-  background-image: url(/images/tick-mark.svg);
+  background-image: url(/images/list-tick-mark.svg);
   background-position: -464px -83px;
   position: absolute;
 }
