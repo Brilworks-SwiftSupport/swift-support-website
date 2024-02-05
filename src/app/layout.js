@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import "./globals.css";
-import "./components/styles/Animation.scss";
+import "./styles/Animation.scss";
 
 const Header = dynamic(() => import("./components/Header"));
 const Footer = dynamic(() => import("./components/Footer"));

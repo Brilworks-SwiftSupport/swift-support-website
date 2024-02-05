@@ -8,9 +8,9 @@
   --font_14: 0.875rem;
   --font_16: 1rem;
   --font_18: 1.125rem;
-  --font_21: 1.313rem;
+  --font_20: 1.25rem;
   --font_24: 1.5rem;
-  --font_28: 1.8rem;
+  --font_28: 1.75rem;
   --font_32: 2rem;
   --font_36: 2.25rem;
   --font_48: 3rem;
@@ -253,8 +253,6 @@ a:hover {
 .pricing-list li {
   padding-left: 24px;
   padding-bottom: 13px;
-  list-style: none;
-  list-style-type: none;
   position: relative;
   font-size: 18px;
   color: var(--colorBlack);

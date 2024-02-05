@@ -92,7 +92,7 @@ const IndustriesWeServe = () => {
   ];
 
   return (
-    <div className="w-full section-padding">
+    <div className="container mx-auto w-full section-padding">
       <div className="flex items-center flex-col md:flex-row justify-between mb-10">
         <h2 className="md:w-1/2 w-full md:text-[36px] text-[26px] font-bold text-left mb-4 md:mb-0">
           Industries we serve

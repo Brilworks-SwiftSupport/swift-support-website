@@ -22,7 +22,8 @@ const VideoSection = () => {
         </span>
         <div onClick={() => setVideoPause(!isVideoPause)}>
           <video
-            className="rounded-[25px] md:rounded-[40px] lg:rounded-[50px]"
+            poster="/images/video-background.png"
+            className="mx-auto rounded-[25px] md:rounded-[40px] lg:rounded-[50px]"
             src="https://youtu.be/8-E1LbChJ88?feature=shared"
             controls
             loading="lazy"

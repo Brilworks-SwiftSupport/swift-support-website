@@ -3,7 +3,7 @@ import React from "react";
 
 const OptimizeAndDataStorage = () => {
   return (
-    <div className="section-padding flex flex-wrap items-center">
+    <div className="container mx-auto section-padding flex flex-wrap items-center">
       <div className="lg:w-3/5 w-full lg:pr-[35px] mb-4 lg:mb-0">
         <Image
           className="self-end"

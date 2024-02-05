@@ -5,7 +5,7 @@ const PricingPlan = () => {
   const [subscriptionPlan, setSubscriptionPlan] = useState("Monthly");
 
   return (
-    <div className="section-padding">
+    <div className="container mx-auto section-padding">
       <div className="flex flex-col items-center justify-center md:mb-[58px] mb-7">
         <h2 className="font-bold text-2xl md:text-3xl xl:text-4xl xl:leading-[45.36px] mb-[30px] text-center">
           Pricing Plans
@@ -35,8 +35,8 @@ const PricingPlan = () => {
           </button>
         </div>
       </div>
-      <div className={`grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5`}>
-        <div className="bg-themeBlue pricing-grid shrink-border rounded-[14px] p-[22px]">
+      <div className="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5">
+        <div className="bg-themeBlue pricing-grid rounded-[14px] p-[22px]">
           <span className="font-light text-[50px] mb-4">
             {subscriptionPlan === "Monthly" ? "$0" : "$20"}
           </span>
@@ -44,19 +44,16 @@ const PricingPlan = () => {
           <button className="bg-colorWhite font-medium rounded-[10px] px-[22px] py-[14px] mb-[21px]">
             FREE
           </button>
-          <p className="text-lg font-normal text-colorGray mb-[30px]">
-            Lorem ipsum dolor sit amet consectetur nislio urna.
-          </p>
-
           <div>
             <h3 className="font-bold text-[22px] text-colorDarkBlue mb-[14px]">
               Features
             </h3>
             <ul className="pricing-list">
-              <li>Lorem ipsum dolor sit amet.</li>
-              <li>Lorem ipsum dolor sit amet.</li>
-              <li>Lorem ipsum dolor sit amet.</li>
-              <li>Lorem ipsum dolor sit amet.</li>
+              <li>1 Agent</li>
+              <li>1 Datastore</li>
+              <li>50 agents queries / month</li>
+              <li>0 Team Seats included</li>
+              <li>1 MB / File upload limit</li>
             </ul>
             <button className="bg-colorBlack subscribe-btn text-colorWhite rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full">
               Subscribe
@@ -72,19 +69,16 @@ const PricingPlan = () => {
           <button className="bg-colorWhite font-medium rounded-[10px] px-[22px] py-[14px] mb-[21px]">
             BASIC
           </button>
-          <p className="text-lg font-normal text-colorGray mb-[30px]">
-            Lorem ipsum dolor sit amet consectetur nislio urna.
-          </p>
-
           <div>
             <h3 className="font-bold text-[22px] text-colorDarkBlue mb-[14px]">
               Features
             </h3>
             <ul className="pricing-list">
-              <li>Lorem ipsum dolor sit amet.</li>
-              <li>Lorem ipsum dolor sit amet.</li>
-              <li>Lorem ipsum dolor sit amet.</li>
-              <li>Lorem ipsum dolor sit amet.</li>
+              <li>2 Agent</li>
+              <li>2 Datastore</li>
+              <li>5000 agents queries / month</li>
+              <li>10 Team Seats included</li>
+              <li>10 MB / File upload limit</li>
             </ul>
             <button className="bg-colorBlack subscribe-btn text-colorWhite rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full">
               Subscribe
@@ -104,19 +98,16 @@ const PricingPlan = () => {
           <button className="bg-colorWhite font-medium rounded-[10px] px-[22px] py-[14px] mb-[21px] subscribe-shadow">
             STANDARD
           </button>
-          <p className="text-lg font-normal text-colorGray mb-[30px]">
-            Lorem ipsum dolor sit amet consectetur nislio urna.
-          </p>
-
           <div>
             <h3 className="font-bold text-[22px] text-colorDarkBlue mb-[14px]">
               Features
             </h3>
             <ul className="pricing-list">
-              <li>Lorem ipsum dolor sit amet.</li>
-              <li>Lorem ipsum dolor sit amet.</li>
-              <li>Lorem ipsum dolor sit amet.</li>
-              <li>Lorem ipsum dolor sit amet.</li>
+              <li>5 Agent</li>
+              <li>5 Datastore</li>
+              <li>50000 agents queries / month</li>
+              <li>25 Team Seats included</li>
+              <li>20 MB / File upload limit</li>
             </ul>
             <button className="bg-colorWhite subscribed-btn text-colorBlack border-2 border-colorBlack rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full">
               Subscribed
@@ -132,19 +123,16 @@ const PricingPlan = () => {
           <button className="bg-colorWhite font-medium rounded-[10px] px-[22px] py-[14px] mb-[21px]">
             PREMIUM
           </button>
-          <p className="text-lg font-normal text-colorGray mb-[30px]">
-            Lorem ipsum dolor sit amet consectetur nislio urna.
-          </p>
-
           <div>
             <h3 className="font-bold text-[22px] text-colorDarkBlue mb-[14px]">
               Features
             </h3>
             <ul className="pricing-list">
-              <li>Lorem ipsum dolor sit amet.</li>
-              <li>Lorem ipsum dolor sit amet.</li>
-              <li>Lorem ipsum dolor sit amet.</li>
-              <li>Lorem ipsum dolor sit amet.</li>
+              <li>100 Agent</li>
+              <li>100 Datastore</li>
+              <li>100000 agents queries / month</li>
+              <li>100 Team Seats included</li>
+              <li>50 MB / File upload limit</li>
             </ul>
             <button className="bg-colorBlack subscribe-btn text-colorWhite rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full">
               Subscribe

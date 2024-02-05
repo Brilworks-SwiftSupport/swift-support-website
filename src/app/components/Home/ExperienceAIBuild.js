@@ -3,7 +3,7 @@ import React from "react";
 
 const ExperienceAIBuild = () => {
   return (
-    <div className="section-padding flex flex-wrap items-center">
+    <div className="container mx-auto section-padding flex flex-wrap items-center">
       <div className="lg:w-1/2 w-full md:pr-[35px] pr-0">
         <h2 className="font-bold text-2xl md:text-3xl xl:text-4xl xl:leading-[45.36px] md:mb-30 md:mt-0 mb-5 w-full">
           Experience AI Built for Genuine Connection

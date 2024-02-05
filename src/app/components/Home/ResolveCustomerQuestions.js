@@ -18,7 +18,7 @@ const ResolveCustomerQuestions = () => {
     // console.log("Submitted email:", email);
   };
   return (
-    <div className="w-full section-padding">
+    <div className="container mx-auto w-full section-padding">
       <div className="relative flex items-center justify-center">
         <Image
           className="md:block hidden self-center w-full"
@@ -47,7 +47,7 @@ const ResolveCustomerQuestions = () => {
                 onChange={handleEmailChange}
               />
               <button
-                className="md:h-[60px] h-[50px] xl:w-[207px] md:w-2/6 w-full signup-button"
+                className="md:h-[60px] h-[50px] xl:w-[207px] md:w-2/6 w-full signup-button border border-colorBlack"
                 type="submit"
               >
                 Sign Up for Free

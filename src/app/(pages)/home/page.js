@@ -1,36 +1,38 @@
 "use client";
 import React from "react";
-import InstantSolution from "../components/Home/InstantSolution";
-import VideoSection from "../components/Home/VideoSection";
+import InstantSolution from "../../components/Home/InstantSolution";
+import VideoSection from "../../components/Home/VideoSection";
 import dynamic from "next/dynamic";
 
-const TrustedBy = dynamic(() => import("../components/Home/TrustedBy"));
+const TrustedBy = dynamic(() => import("../../components/Home/TrustedBy"));
 const IndustriesWeServe = dynamic(() =>
-  import("../components/Home/IndustriesWeServe")
+  import("../../components/Home/IndustriesWeServe")
 );
 const ManageDataSource = dynamic(() =>
-  import("../components/Home/ManageDataSource")
+  import("../../components/Home/ManageDataSource")
 );
 const FrictionlessAndFuturistic = dynamic(() =>
-  import("../components/Home/FrictionlessAndFuturistic")
+  import("../../components/Home/FrictionlessAndFuturistic")
 );
 const CustomizeExperience = dynamic(() =>
-  import("../components/Home/CustomizeExperience")
+  import("../../components/Home/CustomizeExperience")
 );
 const OptimizeAndDataStorage = dynamic(() =>
-  import("../components/Home/OptimizeAndDataStorage")
+  import("../../components/Home/OptimizeAndDataStorage")
 );
 const ExperienceAIBuild = dynamic(() =>
-  import("../components/Home/ExperienceAIBuild")
+  import("../../components/Home/ExperienceAIBuild")
 );
-const PeopleSaying = dynamic(() => import("../components/Home/PeopleSaying"));
+const PeopleSaying = dynamic(() =>
+  import("../../components/Home/PeopleSaying")
+);
 const ResolveCustomerQuestions = dynamic(() =>
-  import("../components/Home/ResolveCustomerQuestions")
+  import("../../components/Home/ResolveCustomerQuestions")
 );
 const SwiftIntegration = dynamic(() =>
-  import("../components/Home/SwiftIntegration")
+  import("../../components/Home/SwiftIntegration")
 );
-const PricingPlan = dynamic(() => import("../components/Home/PricingPlan"));
+const PricingPlan = dynamic(() => import("../../components/Home/PricingPlan"));
 
 const page = () => {
   return (
