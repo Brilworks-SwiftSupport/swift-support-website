@@ -52,7 +52,9 @@ const Footer = () => {
             />
           </Link>
           <Link
-            href="#"
+            href="https://www.linkedin.com/company/swiftsupport/"
+            rel="noopener"
+            target="_blank"
             onMouseOver={() => setHoverItem("linkedIn")}
             onMouseLeave={() => setHoverItem("")}
           >
