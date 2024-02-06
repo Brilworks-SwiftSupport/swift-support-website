@@ -18,3 +18,13 @@ export function Icon({ id, open }) {
     </svg>
   );
 }
+
+export function scrollToSection(e, sectionId) {
+  e.preventDefault();
+  const targetSection = document.getElementById(sectionId);
+  if (targetSection) {
+    targetSection.scrollIntoView({
+      behavior: "smooth",
+    });
+  }
+}

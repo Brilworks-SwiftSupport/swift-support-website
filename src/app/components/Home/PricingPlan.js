@@ -1,11 +1,13 @@
 "use client";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const PricingPlan = () => {
   const [subscriptionPlan, setSubscriptionPlan] = useState("Monthly");
+  const router = useRouter();
 
   return (
-    <div className="container mx-auto section-padding">
+    <div className="container mx-auto section-padding" id="pricing-plan">
       <div className="flex flex-col items-center justify-center md:mb-[58px] mb-7">
         <h2 className="font-bold text-2xl md:text-3xl xl:text-4xl xl:leading-[45.36px] mb-[30px] text-center">
           Pricing Plans
@@ -55,7 +57,10 @@ const PricingPlan = () => {
               <li>0 Team Seats included</li>
               <li>1 MB / File upload limit</li>
             </ul>
-            <button className="bg-colorBlack subscribe-btn text-colorWhite rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full">
+            <button
+              onClick={() => router.push("https://app.swiftsupport.ai/login")}
+              className="bg-colorBlack subscribe-btn text-colorWhite rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full"
+            >
               Subscribe
             </button>
           </div>
@@ -80,7 +85,10 @@ const PricingPlan = () => {
               <li>10 Team Seats included</li>
               <li>10 MB / File upload limit</li>
             </ul>
-            <button className="bg-colorBlack subscribe-btn text-colorWhite rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full">
+            <button
+              onClick={() => router.push("https://app.swiftsupport.ai/login")}
+              className="bg-colorBlack subscribe-btn text-colorWhite rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full"
+            >
               Subscribe
             </button>
           </div>
@@ -134,7 +142,10 @@ const PricingPlan = () => {
               <li>100 Team Seats included</li>
               <li>50 MB / File upload limit</li>
             </ul>
-            <button className="bg-colorBlack subscribe-btn text-colorWhite rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full">
+            <button
+              onClick={() => router.push("https://app.swiftsupport.ai/login")}
+              className="bg-colorBlack subscribe-btn text-colorWhite rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full"
+            >
               Subscribe
             </button>
           </div>

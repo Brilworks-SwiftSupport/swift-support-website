@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { useMediaQuery } from "react-responsive";
+import { scrollToSection } from "./lib/Common";
 
 const Footer = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -68,25 +69,30 @@ const Footer = () => {
         </div>
         <div className="footer-underline flex items-center md:flex-row flex-col justify-center md:gap-[60px] xl:gap-[40px] gap-5 pt-8 pb-12">
           <Link
-            href="#"
+            href="#features"
+            onClick={(e) => scrollToSection(e, "features")}
             className="flex items-center justify-center font-medium"
           >
             Features
           </Link>
           <Link
-            href="#"
+            href="#pricing-plan"
+            onClick={(e) => scrollToSection(e, "pricing-plan")}
             className="flex items-center justify-center font-medium"
           >
             Pricing
           </Link>
           <Link
-            href="#"
+            href="#about-us"
+            onClick={(e) => scrollToSection(e, "about-us")}
             className="flex items-center justify-center font-medium"
           >
             About
           </Link>
           <Link
-            href="/contact"
+            href="https://cal.com/hiteshr/15min"
+            rel="noopener"
+            target="_blank"
             className="flex items-center justify-center font-medium"
           >
             Contact

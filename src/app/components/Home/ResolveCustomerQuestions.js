@@ -1,22 +1,13 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import Link from "next/link";
+import React from "react";
 import { useMediaQuery } from "react-responsive";
 
 const ResolveCustomerQuestions = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1080 });
 
-  const [email, setEmail] = useState("");
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // console.log("Submitted email:", email);
-  };
   return (
     <div className="container mx-auto w-full section-padding">
       <div className="relative flex items-center justify-center">
@@ -32,7 +23,7 @@ const ResolveCustomerQuestions = () => {
             Hybrid support model that combines{!isTablet && <br />}
             AI and human support
           </h2>
-          <form className="w-full" onSubmit={handleSubmit}>
+          <form className="w-full">
             <div className="mb-[10px]">
               <label className="text-[#7E7E7E] text-base font-normal">
                 Email Address
@@ -43,15 +34,15 @@ const ResolveCustomerQuestions = () => {
                 className="xl:w-[460px] md:w-3/5 w-full border border-colorBlack lg:h-[60px] h-[50px] md:rounded-[13px] rounded-[10px] md:py-[30px] md:pl-5 pl-3"
                 type="email"
                 placeholder="john123@gmail.com"
-                value={email}
-                onChange={handleEmailChange}
               />
-              <button
-                className="md:h-[60px] h-[50px] xl:w-[207px] md:w-2/6 w-full signup-button border border-colorBlack"
-                type="submit"
+              <Link
+                rel="noopener"
+                target="_blank"
+                href="https://app.swiftsupport.ai/signup"
+                className="md:h-[60px] h-[50px] xl:w-[207px] md:w-2/6 w-full signup-button border border-colorBlack flex items-center justify-center"
               >
-                Sign Up for Free
-              </button>
+                <p className="font-bold">Sign Up for Free</p>
+              </Link>
               {!isMobile && (
                 <div
                   className={`${

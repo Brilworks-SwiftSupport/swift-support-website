@@ -46,7 +46,12 @@ const InstantSolution = () => {
           </div>
 
           <div className="my-10 flex items-center justify-center">
-            <Link href="#" className="button_black">
+            <Link
+              rel="noopener"
+              target="_blank"
+              href="https://app.swiftsupport.ai/login"
+              className="button_black"
+            >
               Start a Free Trial
             </Link>
           </div>

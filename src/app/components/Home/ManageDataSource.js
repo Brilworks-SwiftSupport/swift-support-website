@@ -3,7 +3,10 @@ import React from "react";
 
 const ManageDataSource = () => {
   return (
-    <div className="container mx-auto section-padding flex flex-wrap">
+    <div
+      className="container mx-auto section-padding flex flex-wrap"
+      id="features"
+    >
       <div className="lg:w-1/3 w-full md:pr-[30px]">
         <div className="mb-[30px]">
           <h2 className="font-bold text-2xl md:text-3xl xl:text-4xl xl:leading-[45.36px] md:pr-20">

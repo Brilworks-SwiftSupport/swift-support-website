@@ -3,7 +3,7 @@ import React from "react";
 
 const TrustedBy = () => {
   return (
-    <div className="container mx-auto section-padding">
+    <div className="container mx-auto section-padding" id="about-us">
       <p className="md:text-[36px] text-[26px] font-bold text-center mb-10">
         Trusted by 500+ companies.
       </p>
