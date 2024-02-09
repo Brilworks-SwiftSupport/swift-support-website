@@ -39,9 +39,7 @@ const PricingPlan = () => {
       </div>
       <div className="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5">
         <div className="bg-themeBlue pricing-grid rounded-[14px] p-[22px]">
-          <span className="font-light text-[50px] mb-4">
-            {subscriptionPlan === "Monthly" ? "$0" : "$20"}
-          </span>
+          <span className="font-light text-[50px] mb-4">$0</span>
           <br />
           <button className="bg-colorWhite font-medium rounded-[10px] px-[22px] py-[14px] mb-[21px]">
             FREE
@@ -68,7 +66,7 @@ const PricingPlan = () => {
 
         <div className="bg-themeBlue pricing-grid rounded-[14px] p-[22px]">
           <span className="font-light text-[50px] mb-4">
-            {subscriptionPlan === "Monthly" ? "$20" : "$240"}
+            {subscriptionPlan === "Monthly" ? "$20" : "$192"}
           </span>
           <br />
           <button className="bg-colorWhite font-medium rounded-[10px] px-[22px] py-[14px] mb-[21px]">
@@ -100,7 +98,7 @@ const PricingPlan = () => {
             Current Plan
           </div>
           <span className="font-light text-[50px] mb-4">
-            {subscriptionPlan === "Monthly" ? "$50" : "$600"}
+            {subscriptionPlan === "Monthly" ? "$50" : "$480"}
           </span>
           <br />
           <button className="bg-colorWhite font-medium rounded-[10px] px-[22px] py-[14px] mb-[21px] subscribe-shadow">
@@ -125,7 +123,7 @@ const PricingPlan = () => {
 
         <div className="bg-themeBlue pricing-grid rounded-[14px] p-[22px]">
           <span className="font-light text-[50px] mb-4">
-            {subscriptionPlan === "Monthly" ? "$80" : "$960"}
+            {subscriptionPlan === "Monthly" ? "$80" : "$768"}
           </span>
           <br />
           <button className="bg-colorWhite font-medium rounded-[10px] px-[22px] py-[14px] mb-[21px]">

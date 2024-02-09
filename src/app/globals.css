@@ -74,7 +74,7 @@ a:hover {
   font-family: "Outfit", sans-serif;
   font-display: swap;
   font: var(--font_16);
-  line-height: 20.16px;
+  line-height: 20px;
   z-index: 99;
 }
 
@@ -223,7 +223,7 @@ a:hover {
 .industry-we-serve h3 {
   font-size: var(--font_24);
   color: var(--colorGray);
-  line-height: 30.24px;
+  line-height: 30px;
   font-weight: 600;
 }
 

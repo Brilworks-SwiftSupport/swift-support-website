@@ -97,7 +97,7 @@ const Header = () => {
                 alt="SwiftSupport Logo"
                 width={isMobile ? 176 : 270}
                 height={isMobile ? 49 : 74}
-                // priority={true}
+                priority={true}
               />
             </Link>
           </div>
