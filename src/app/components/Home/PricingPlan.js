@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
@@ -12,7 +13,8 @@ const PricingPlan = () => {
         <h2 className="font-bold text-2xl md:text-3xl xl:text-4xl xl:leading-[45.36px] mb-[30px] text-center">
           Pricing Plans
         </h2>
-        <div className="flex relative">
+
+        <div className="flex relative z-[1]">
           <button
             type="text"
             className={` py-3 px-[27px] ${
@@ -35,6 +37,17 @@ const PricingPlan = () => {
           >
             Yearly
           </button>
+        </div>
+        <div className="hidden xs:flex items-center justify-end absolute">
+          <div className="relative top-9 left-44 z-[2]">
+            <Image
+              src="/images/save-arrow.svg"
+              className=""
+              width="200"
+              height="17"
+              alt="save 20% on yearly plan"
+            />
+          </div>
         </div>
       </div>
       <div className="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5">
@@ -65,10 +78,18 @@ const PricingPlan = () => {
         </div>
 
         <div className="bg-themeBlue pricing-grid rounded-[14px] p-[22px]">
-          <span className="font-light text-[50px] mb-4">
-            {subscriptionPlan === "Monthly" ? "$20" : "$192"}
-          </span>
-          <br />
+          <div className="font-light text-[50px] mb-4">
+            {subscriptionPlan === "Monthly" ? (
+              "$20"
+            ) : (
+              <div className="flex items-center justify-start gap-3">
+                $192{" "}
+                <span className="text-colorDarkBlue font-medium text-2xl line-through">
+                  $240
+                </span>
+              </div>
+            )}
+          </div>
           <button className="bg-colorWhite font-medium rounded-[10px] px-[22px] py-[14px] mb-[21px]">
             BASIC
           </button>
@@ -92,16 +113,20 @@ const PricingPlan = () => {
           </div>
         </div>
 
-        <div className="relative bg-themeYellow pricing-grid rounded-[14px] p-[22px] subscribe-main-shadow">
-          <div className="absolute top-[0px] right-[0px] rounded-tl-none rounded-tr-[12.09px] rounded-br-none rounded-bl-[12.09px] bg-black w-[130px] h-[42px]"></div>
-          <div className="absolute top-[11px] text-colorWhite text-base right-[20px] inline-block w-[90px]">
-            Current Plan
+        <div className="bg-themeBlue pricing-grid rounded-[14px] p-[22px]">
+          <div className="font-light text-[50px] mb-4">
+            {subscriptionPlan === "Monthly" ? (
+              "$50"
+            ) : (
+              <div className="flex items-center justify-start gap-3">
+                $480
+                <span className="text-colorDarkBlue font-medium text-2xl line-through">
+                  $600
+                </span>
+              </div>
+            )}
           </div>
-          <span className="font-light text-[50px] mb-4">
-            {subscriptionPlan === "Monthly" ? "$50" : "$480"}
-          </span>
-          <br />
-          <button className="bg-colorWhite font-medium rounded-[10px] px-[22px] py-[14px] mb-[21px] subscribe-shadow">
+          <button className="bg-colorWhite font-medium rounded-[10px] px-[22px] py-[14px] mb-[21px]">
             STANDARD
           </button>
           <div>
@@ -115,17 +140,28 @@ const PricingPlan = () => {
               <li>25 Team Seats included</li>
               <li>20 MB / File upload limit</li>
             </ul>
-            <button className="bg-colorWhite subscribed-btn text-colorBlack border-2 border-colorBlack rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full">
-              Subscribed
+            <button
+              onClick={() => router.push("https://app.swiftsupport.ai/login")}
+              className="bg-colorBlack subscribe-btn text-colorWhite rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full"
+            >
+              Subscribe
             </button>
           </div>
         </div>
 
         <div className="bg-themeBlue pricing-grid rounded-[14px] p-[22px]">
-          <span className="font-light text-[50px] mb-4">
-            {subscriptionPlan === "Monthly" ? "$80" : "$768"}
-          </span>
-          <br />
+          <div className="font-light text-[50px] mb-4">
+            {subscriptionPlan === "Monthly" ? (
+              "$80"
+            ) : (
+              <div className="flex items-center justify-start gap-3">
+                $768
+                <span className="text-colorDarkBlue font-medium text-2xl line-through">
+                  $960
+                </span>
+              </div>
+            )}
+          </div>
           <button className="bg-colorWhite font-medium rounded-[10px] px-[22px] py-[14px] mb-[21px]">
             PREMIUM
           </button>

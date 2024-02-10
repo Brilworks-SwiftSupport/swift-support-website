@@ -36,7 +36,7 @@ const PeopleSaying = () => {
   ];
 
   return (
-    <div className="container mx-auto section-padding !px-0">
+    <div className="mx-auto section-padding !px-0">
       <div className="flex flex-col items-center justify-center mb-[30px]">
         <h2 className="font-bold text-2xl md:text-3xl xl:text-4xl xl:leading-[45.36px] md:mb-30 md:mt-0 md:mb-2 mb-5 lg:w-[70%] text-center w-full">
           What people are saying about
