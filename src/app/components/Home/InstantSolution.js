@@ -49,7 +49,7 @@ const InstantSolution = () => {
             <Link
               rel="noopener"
               target="_blank"
-              href="https://app.swiftsupport.ai/login"
+              href="https://app.swiftsupport.ai/signup"
               className="button_black"
             >
               Start a Free Trial

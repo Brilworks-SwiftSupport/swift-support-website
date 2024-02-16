@@ -40,8 +40,8 @@ body {
 }
 
 html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 100px;
+  scroll-behavior: smooth !important;
+  scroll-padding-top: 130px;
 }
 
 img {
