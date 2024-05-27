@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import "./globals.css";
 import "./styles/Animation.scss";
+import Script from "next/script";
 
 const Header = dynamic(() => import("./components/Header"));
 const Footer = dynamic(() => import("./components/Footer"));
@@ -13,7 +14,39 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        {process.env.VERCEL_ENV === "production" && (
+          <>
+            <Script defer id="tag-manager">
+              {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-M752BTXP')`}
+            </Script>
+
+            <Script
+              defer
+              src={`${process.env.clearbitScript_URL}`}
+              referrerpolicy="strict-origin-when-cross-origin"
+            ></Script>
+          </>
+        )}
+      </head>
       <body suppressHydrationWarning={true}>
+        {process.env.VERCEL_ENV === "production" && (
+          <noscript>
+            <iframe
+              src="https://www.googletagmanager.com/ns.html?id=GTM-M752BTXP"
+              height="0"
+              width="0"
+              style={{
+                display: "none",
+                visibility: "hidden",
+              }}
+            ></iframe>
+          </noscript>
+        )}
         <Header />
         {children}
         <Footer />
