@@ -25,11 +25,13 @@ export default function RootLayout({ children }) {
               })(window,document,'script','dataLayer','GTM-M752BTXP')`}
             </Script>
 
-            <Script
-              defer
-              src={`${process.env.clearbitScript_URL}`}
-              referrerpolicy="strict-origin-when-cross-origin"
-            ></Script>
+            <Script defer id="clarity">
+              {`(function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+              })(window, document, "clarity", "script", "miinc76avt");`}
+            </Script>
           </>
         )}
       </head>
