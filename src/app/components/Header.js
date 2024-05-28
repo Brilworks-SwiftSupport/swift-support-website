@@ -9,6 +9,7 @@ import { scrollToSection } from "./lib/Common";
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 767 });
+  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1080 });
   const [hideHeader, setHideHeader] = useState(false);
 
   useEffect(() => {
@@ -45,6 +46,13 @@ const Header = () => {
         className="nav-underline flex items-center md:justify-center justify-start font-medium"
       >
         Features
+      </Link>
+      <Link
+        href="/blog"
+        onClick={() => setOpenNav(false)}
+        className="nav-underline flex items-center md:justify-center justify-start font-medium"
+      >
+        Blog
       </Link>
       <Link
         href="#pricing-plan"
@@ -90,13 +98,25 @@ const Header = () => {
             hideHeader || openNav ? "header-bg" : ""
           }`}
         >
-          <div className="py-2 xs:pr-0 pr-[calc(100vw_-_320px)]">
+          <div
+            className="py-2 xs:pr-0 pr-[calc(100vw_-_320px)]"
+            onClick={() => setOpenNav(false)}
+          >
             <Link href="/">
               <Image
+                className="block lg:hidden"
                 src="/images/logo.svg"
                 alt="SwiftSupport Logo"
-                width={isMobile ? 176 : 270}
-                height={isMobile ? 49 : 74}
+                width={176}
+                height={49}
+                priority={true}
+              />
+              <Image
+                className="hidden lg:block"
+                src="/images/logo.svg"
+                alt="SwiftSupport Logo"
+                width={270}
+                height={74}
                 priority={true}
               />
             </Link>

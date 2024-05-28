@@ -1,10 +1,8 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { useMediaQuery } from "react-responsive";
 
 const InstantSolution = () => {
-  const isMobile = useMediaQuery({ maxWidth: 767 });
   const colors = ["#f2ed7b", "#fbb8b8", "#83defc"];
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
 
