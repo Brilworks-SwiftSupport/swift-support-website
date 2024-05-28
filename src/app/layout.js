@@ -25,6 +25,19 @@ export default function RootLayout({ children }) {
               })(window,document,'script','dataLayer','GTM-M752BTXP')`}
             </Script>
 
+            <Script defer id="fb-pixel">
+              {`!function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '1454634965154491');
+              fbq('track', 'PageView')`}
+            </Script>
+
             <Script defer id="clarity">
               {`(function(c,l,a,r,i,t,y){
               c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -37,17 +50,28 @@ export default function RootLayout({ children }) {
       </head>
       <body suppressHydrationWarning={true}>
         {process.env.VERCEL_ENV === "production" && (
-          <noscript>
-            <iframe
-              src="https://www.googletagmanager.com/ns.html?id=GTM-M752BTXP"
-              height="0"
-              width="0"
-              style={{
-                display: "none",
-                visibility: "hidden",
-              }}
-            ></iframe>
-          </noscript>
+          <>
+            <noscript>
+              <iframe
+                src="https://www.googletagmanager.com/ns.html?id=GTM-M752BTXP"
+                height="0"
+                width="0"
+                style={{
+                  display: "none",
+                  visibility: "hidden",
+                }}
+              ></iframe>
+            </noscript>
+            <noscript>
+              <img
+                height="1"
+                width="1"
+                style="display:none"
+                src="https://www.facebook.com/tr?id=1454634965154491&ev=PageView&noscript=1"
+                alt="Facebook"
+              />
+            </noscript>
+          </>
         )}
         <Header />
         {children}
