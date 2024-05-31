@@ -128,7 +128,7 @@ const BlogList = () => {
                     `Blog-List-banner-${index + 1}`
                   }
                   quality={40}
-                  width="300"
+                  width="310"
                   height="150"
                   priority={index === 0}
                   sizes="(min-width: 1040px) 42.35vw, (min-width: 640px) 60.84vw, calc(100vw - 30px)"
@@ -149,9 +149,11 @@ const BlogList = () => {
 
                 <div className="flex flex-col p-[5%] items-start bg-colorWhite">
                   <div
-                    className={`text-colorBlack font-medium px-2 py-1 rounded-lg mb-2 bg-themePink`}
+                    className={`text-colorBlack font-medium px-1 py-1 rounded-lg mb-2 bg-themePink`}
                   >
-                    {content?.Category}
+                    {content?.Category === "Cloud DevOps and Data"
+                      ? "Cloud, DevOps and Data"
+                      : content?.Category}
                   </div>
                   <h2 className="mb-1">{name}</h2>
                   <p className="text-colorGray">

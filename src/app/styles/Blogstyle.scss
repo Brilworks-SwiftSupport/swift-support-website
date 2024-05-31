@@ -324,10 +324,8 @@
     height: 100%;
     background: linear-gradient(
       92.98deg,
-      #fbb8b8 5.1%,
-      #fbb8b8 5.11%,
       #83defc 52.15%,
-      #f2ed7b 100%
+      var(--colorDarkBlue) 100%
     );
 
     img {
@@ -350,10 +348,8 @@
     bottom: -18px;
     background: linear-gradient(
       92.98deg,
-      #fbb8b8 5.1%,
-      #fbb8b8 5.11%,
       #83defc 52.15%,
-      #f2ed7b 100%
+      var(--colorDarkBlue) 100%
     );
     z-index: -1;
   }
@@ -366,10 +362,8 @@
     top: -48px;
     background: linear-gradient(
       92.98deg,
-      #fbb8b8 5.1%,
-      #fbb8b8 5.11%,
-      #83defc 52.15%,
-      #f2ed7b 100%
+      var(--colorDarkBlue) 52.15%,
+      var(--themeBlue) 100%
     );
     z-index: -1;
   }

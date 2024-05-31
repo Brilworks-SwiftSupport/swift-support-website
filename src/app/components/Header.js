@@ -3,16 +3,32 @@ import React, { useEffect, useState } from "react";
 import { Navbar, Collapse } from "@material-tailwind/react";
 import Link from "next/link";
 import Image from "next/image";
-import { useMediaQuery } from "react-responsive";
 import { scrollToSection } from "./lib/Common";
 import { usePathname } from "next/navigation";
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
   const pathname = usePathname();
-  const isMobile = useMediaQuery({ maxWidth: 767 });
-  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1080 });
   const [hideHeader, setHideHeader] = useState(false);
+
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  const handleScrollProgress = () => {
+    const winScroll =
+      document.body.scrollTop || document.documentElement.scrollTop;
+    const height =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    setScrollProgress(scrolled);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScrollProgress);
+    return () => {
+      window.removeEventListener("scroll", handleScrollProgress);
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -177,6 +193,16 @@ const Header = () => {
           </div>
         </Collapse>
       </Navbar>
+      {pathname.startsWith("/blog/") && (
+        <div
+          id="myBar"
+          style={{
+            width: `${scrollProgress}%`,
+            height: "4px",
+            backgroundColor: "var(--colorDarkBlue)",
+          }}
+        />
+      )}
     </div>
   );
 };
