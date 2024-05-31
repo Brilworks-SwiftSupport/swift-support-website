@@ -69,7 +69,7 @@ const Footer = () => {
             />
           </Link>
         </div>
-        <div className="footer-underline flex items-center md:flex-row flex-col justify-center md:gap-[60px] xl:gap-[40px] gap-5 pt-8 pb-12">
+        <div className="footer-underline flex items-center md:flex-row flex-col justify-center md:gap-[40px] gap-5 pt-8 pb-12">
           <Link
             href="#features"
             onClick={(e) => scrollToSection(e, "features")}

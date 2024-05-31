@@ -31,11 +31,11 @@ const AccordionItem = ({
         <AccordionBody
           className={
             open === index
-              ? "border-b border-lightGray pt-0 pb-8 fade-in-content"
+              ? "border-b border-lightGray pt-0 lg:pb-8 pb-4 fade-in-content"
               : "hidden"
           }
         >
-          <div className="w-full flex flex-wrap flex-col-reverse lg:flex-row font-Outfit">
+          <div className="w-full flex flex-col-reverse md:flex-row font-Outfit">
             <p className="lg:w-6/12 w-full text-base text-colorGray">
               {content}
             </p>

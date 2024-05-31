@@ -146,7 +146,7 @@ const Article = ({ blok }) => {
   const author = blogAuthor(blok?.BlogAuthor);
 
   return (
-    <div className="md:mt-[8rem] mt-[6rem] blog-main">
+    <div className="md:mt-[8rem] mt-[6rem]">
       {!blok ? (
         <div className="flex items-center justify-center !py-60">
           Loading...
@@ -417,8 +417,8 @@ const Article = ({ blok }) => {
                         </div>
                       </div>
                     </div>
-                    <div className="md:w-1/4 w-full !float-left">
-                      <div className="h-full w-full box-border !pr-4 !pl-3">
+                    <div className="md:w-1/4 w-full float-left">
+                      <div className="h-full w-full box-border px-4">
                         <div className="h-full flex flex-col">
                           <BlogContactForm />
                         </div>

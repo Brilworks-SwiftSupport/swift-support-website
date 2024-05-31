@@ -4,23 +4,6 @@ const Storyblok = new StoryblokClient({
   accessToken: process.env.NEXT_PUBLIC_ACCESS_TOKEN,
 });
 
-export async function getblog() {
-  let stories = await Storyblok.get(
-    "cdn/stories",
-    {
-      starts_with: "blogs/",
-      per_page: 100,
-      version: process.env.NEXT_PUBLIC_STORYBLOK_VERSION,
-      // sort_by: "first_published_at:",
-    },
-    {
-      next: { revalidate: 7200 },
-    }
-  );
-  const storyData = stories.data.stories;
-  return storyData;
-}
-
 export async function getblogData(
   page_no,
   limit_per_page,
@@ -97,25 +80,3 @@ export async function getblogDataCategorization(
     totalData: stories.total,
   };
 }
-
-// export async function singlePopularBlog() {
-//   try {
-//     let stories = await Storyblok.get("cdn/stories", {
-//       starts_with: "blog/",
-//       per_page: 100,
-//       cv: Math.random(),
-//       version: process.env.NEXT_PUBLIC_STORYBLOK_VERSION,
-//     });
-
-//     const storyData = stories.data.stories;
-//     // Filter the data to include only items with priority field equal to 1
-//     const OnePopularData = storyData.filter(
-//       (item) => item && +item?.content?.Priority === 1
-//     );
-
-//     return OnePopularData;
-//   } catch (error) {
-//     console.error("Error fetching blog data:", error);
-//     return [];
-//   }
-// }

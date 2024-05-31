@@ -1,11 +1,13 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import "../../styles/Blogstyle.scss";
+import parse from "html-react-parser";
 import { useMediaQuery } from "react-responsive";
 import { getblogData } from "@/app/lib/getblog";
-import Link from "next/link";
 import { formattedDate } from "../lib/Common";
+import Svgs from "../lib/Svgs";
 
 const BlogList = () => {
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1080 });
@@ -55,6 +57,12 @@ const BlogList = () => {
     },
   ];
 
+  const getFirst20Words = (content) => {
+    const words = content.split(" ");
+    const first20Words = words.slice(0, 19);
+    return first20Words.join(" ") + (words.length > 20 ? "..." : "");
+  };
+
   const fetchData = async () => {
     setIsLoading(true);
     try {
@@ -68,6 +76,7 @@ const BlogList = () => {
       setIsLoading(false);
     }, 300);
   };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -138,28 +147,26 @@ const BlogList = () => {
                   sizes="(min-width: 1040px) 42.35vw, (min-width: 640px) 60.84vw, calc(100vw - 30px)"
                 />
 
-                <div className="flex flex-col p-[5%] items-start">
+                <div className="flex flex-col p-[5%] items-start bg-colorWhite">
                   <div
-                    className={`text-colorBlack font-medium px-2 py-1 rounded-lg mb-2`}
+                    className={`text-colorBlack font-medium px-2 py-1 rounded-lg mb-2 bg-themePink`}
                   >
-                    {content?.category}
+                    {content?.Category}
                   </div>
-                  <p className="mb-1">{name}</p>
-                  <h3 className="text-colorGray">{name}</h3>
+                  <h2 className="mb-1">{name}</h2>
+                  <p className="text-colorGray">
+                    {parse(getFirst20Words(content?.Content_1))}
+                  </p>
                 </div>
-                <div className="flex flex-col p-[5%] items-start border-t border-lightGray bg-lightGray bg-opacity-20">
-                  <div className="flex items-center gap-2 justify-start text-colorGray">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="14"
-                      height="14"
-                      fill="currentColor"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"></path>
-                      <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"></path>
-                    </svg>
-                    <span>{formattedDate(content?.Published)}</span>
+                <div className="w-full flex flex-row p-[5%] items-start border-t border-lightGray bg-lightGray bg-opacity-10">
+                  <div className="w-full flex items-center justify-between gap-2 text-colorGray">
+                    <div className="text-colorDarkBlue">
+                      By {content?.BlogAuthor}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Svgs name="calendar-icon" />
+                      <span>{formattedDate(content?.Published)}</span>
+                    </div>
                   </div>
                 </div>
               </Link>

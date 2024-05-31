@@ -140,7 +140,7 @@ const PeopleSaying = () => {
                       />
                     </div>
                   </div>
-                  <p className="text-base font-medium mb-5 md:w-4/5 w-full">
+                  <p className="text-base font-medium mb-5 md:w-[85%] w-full">
                     {clientComment}
                   </p>
                   <p className="text-xl font-normal text-colorDarkBlue">

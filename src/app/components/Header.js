@@ -102,7 +102,7 @@ const Header = () => {
       >
         <div
           className={`flex items-center md:flex-row justify-between header_padding ${
-            hideHeader || openNav ? "header-bg" : ""
+            hideHeader || openNav || pathname !== "/" ? "header-bg" : ""
           }`}
         >
           <div

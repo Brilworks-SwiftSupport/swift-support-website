@@ -98,10 +98,12 @@ export default async function Page(props) {
 export async function fetchData(params) {
   let slug = params?.slug ? `blogs/${params?.slug}` : "home";
   const storyblokApi = getStoryblokApi();
-  const { data } = await storyblokApi.get(`cdn/stories/${slug}`, {
+  let sbParams = {
     version: process.env.NEXT_PUBLIC_STORYBLOK_VERSION,
     resolve_links: "url",
-  });
+  };
+
+  const { data } = await storyblokApi?.get(`cdn/stories/${slug}`, sbParams);
   return {
     props: {
       story: data ? data.story : false,
