@@ -104,15 +104,23 @@ const BlogList = () => {
 
   return (
     <div className="container max-w-[1280px] h-full mx-auto section-padding md:!pt-[120px] !pt-[80px] !pb-0">
-      <div className="text-colorBlack font-light xl:text-[70px] md:text-[50px] text-[32px] flex text-center flex-col lg:mb-[60px] md:mb-10 mb-5">
+      <div className="text-colorBlack font-light xl:text-[70px] md:text-[50px] text-[32px] flex text-center flex-col lg:mb-[60px] md:mb-8 mb-5">
         <h1 className="font-medium">Blog</h1>
+        <p className="!text-xl font-normal">
+          Discover Hidden Tech Trends with Swiftsupport Blog Insights
+        </p>
       </div>
+
       <div
         className={`grid ${
           totalBlog > 0 ? "lg:grid-cols-3 md:grid-cols-2" : ""
         } grid-cols-1 !gap-8 items-center`}
       >
-        {blogDataPerPage && blogDataPerPage?.length ? (
+        {isLoading ? (
+          <div className="flex items-center justify-center text-xl pt-20 pb-36">
+            Loading...
+          </div>
+        ) : blogDataPerPage?.length ? (
           blogDataPerPage.map(({ slug, name, content }, index) => (
             <div
               className="blog-card min-w-[300px] h-full w-fit border border-lightGray rounded-[10px]"
@@ -175,8 +183,8 @@ const BlogList = () => {
             </div>
           ))
         ) : (
-          <div className="flex items-center justify-center py-24">
-            Loading...
+          <div className="flex items-center justify-center text-xl pt-20 pb-36">
+            No Data found.
           </div>
         )}
       </div>
