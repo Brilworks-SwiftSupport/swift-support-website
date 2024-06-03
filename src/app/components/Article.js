@@ -326,7 +326,6 @@ const Article = ({ blok }) => {
                       <div className="h-full w-full box-border px-4">
                         <div className="h-full flex flex-col">
                           <div className="blog-content">
-                            {modifyImagesWithLazyLoading(blok?.content)}
                             {blok?.CTA_1 && (
                               <div
                                 className={`${

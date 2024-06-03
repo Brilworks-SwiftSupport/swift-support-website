@@ -103,11 +103,13 @@ export async function fetchData(params) {
     resolve_links: "url",
   };
 
-  const { data } = await storyblokApi?.get(`cdn/stories/${slug}`, sbParams);
+  const blogData = await storyblokApi?.get(`cdn/stories/${slug}`, sbParams);
+  const { data } = blogData;
+
   return {
     props: {
-      story: data ? data.story : false,
-      key: data ? data.story.id : false,
+      story: data ? data?.story : false,
+      key: data ? data?.story?.id : false,
     },
     revalidate: 3600,
   };
