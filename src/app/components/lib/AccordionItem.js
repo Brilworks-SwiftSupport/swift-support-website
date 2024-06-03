@@ -22,7 +22,7 @@ const AccordionItem = ({
       <Accordion open={open === index} icon={<Icon id={index} open={open} />}>
         <AccordionHeader
           onClick={() => handleOpen(index)}
-          className={`xl:py-8 md:py-6 py-4 border-lightGray ${
+          className={`font-Outfit xl:py-8 md:py-6 py-4 border-lightGray ${
             index === 1 ? "border-t" : ""
           }  ${open === index ? "border-b-0 !pb-[14px]" : "border-b"}`}
         >
@@ -31,17 +31,17 @@ const AccordionItem = ({
         <AccordionBody
           className={
             open === index
-              ? "border-b border-lightGray pt-0 pb-8 fade-in-content"
+              ? "border-b border-lightGray pt-0 lg:pb-8 pb-4 fade-in-content"
               : "hidden"
           }
         >
-          <div className="w-full flex flex-wrap flex-col-reverse lg:flex-row">
+          <div className="w-full flex flex-col-reverse md:flex-row font-Outfit">
             <p className="lg:w-6/12 w-full text-base text-colorGray">
               {content}
             </p>
             <div className="lg:w-6/12 w-full md:pl-[20px] pl-0 mb-5 lg:mb-0">
               <Image
-                className="rounded-[15px]"
+                className="rounded-lg"
                 src={imageSrc}
                 alt={imageAlt}
                 width="412"

@@ -27,7 +27,7 @@ const ResolveCustomerQuestions = () => {
             Hybrid support model that combines{!isTablet && <br />}
             AI and human support
           </h2>
-          <form className="w-full">
+          <form className="w-full md:-mt-8 xl:mt-0">
             <div className="w-full md:w-4/5 lg:w-full mx-auto mb-[10px]">
               <label className="text-[#7E7E7E] text-base font-normal">
                 Email Address

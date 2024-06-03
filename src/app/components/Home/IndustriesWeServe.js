@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import AccordionItem from "../lib/AccordionItem";
+import { useMediaQuery } from "react-responsive";
 
 const IndustriesWeServe = () => {
+  const isMobileNTablet = useMediaQuery({ maxWidth: 1023 });
   const [open, setOpen] = useState(1);
   const [open2, setOpen2] = useState(0);
 
@@ -91,47 +93,68 @@ const IndustriesWeServe = () => {
     },
   ];
 
+  const mergedAccordionItems = leftAccordionItems.concat(rightAccordionItems);
+
   return (
     <div className="container mx-auto w-full section-padding">
-      <div className="flex items-center flex-col md:flex-row justify-between mb-10">
-        <h2 className="md:w-1/2 w-full md:text-[36px] text-[26px] font-bold text-left mb-4 md:mb-0">
+      <div className="flex items-center flex-col lg:flex-row justify-between md:mb-10 mb-6">
+        <h2 className="lg:w-1/2 w-full md:text-[36px] text-[26px] font-bold text-left mb-4 md:mb-0">
           Industries we serve
         </h2>
-        <p className="md:w-1/2 w-full md:text-lg text-[14px] font-normal text-colorGray md:pl-[5%]">
+        <p className="lg:w-1/2 w-full md:text-lg text-[14px] font-normal text-colorGray lg:pl-[5%]">
           Your customers deserve better, and with Swiftsupport, they get it. Our
           AI-powered chatbot can resolve over 80% of inquiries with lightning
           speed, leaving you and your customers free on what truly matters.
         </p>
       </div>
       <div className="flex flex-wrap industry-we-serve">
-        <div className="lg:w-1/2 w-full lg:pr-[60px] pr-0">
-          {leftAccordionItems.map((item, index) => (
-            <AccordionItem
-              key={index}
-              index={index + 1}
-              title={item.title}
-              imageSrc={item.imageSrc}
-              imageAlt={item.imageAlt}
-              content={item.content}
-              handleOpen={handleOpen}
-              open={open}
-            />
-          ))}
-        </div>
-        <div className="lg:w-1/2 w-full lg:pl-[60px] pl-0">
-          {rightAccordionItems.map((item, index) => (
-            <AccordionItem
-              key={index}
-              index={index + 1}
-              title={item.title}
-              imageSrc={item.imageSrc}
-              imageAlt={item.imageAlt}
-              content={item.content}
-              handleOpen={handleOpen2}
-              open={open2}
-            />
-          ))}
-        </div>
+        {isMobileNTablet ? (
+          <div className="w-full">
+            {mergedAccordionItems.map((item, index) => (
+              <AccordionItem
+                key={index}
+                index={index + 1}
+                title={item.title}
+                imageSrc={item.imageSrc}
+                imageAlt={item.imageAlt}
+                content={item.content}
+                handleOpen={handleOpen}
+                open={open}
+              />
+            ))}
+          </div>
+        ) : (
+          <>
+            <div className="lg:w-1/2 w-full lg:pr-[60px] pr-0">
+              {leftAccordionItems.map((item, index) => (
+                <AccordionItem
+                  key={index}
+                  index={index + 1}
+                  title={item.title}
+                  imageSrc={item.imageSrc}
+                  imageAlt={item.imageAlt}
+                  content={item.content}
+                  handleOpen={handleOpen}
+                  open={open}
+                />
+              ))}
+            </div>
+            <div className="lg:w-1/2 w-full lg:pl-[60px] pl-0">
+              {rightAccordionItems.map((item, index) => (
+                <AccordionItem
+                  key={index}
+                  index={index + 1}
+                  title={item.title}
+                  imageSrc={item.imageSrc}
+                  imageAlt={item.imageAlt}
+                  content={item.content}
+                  handleOpen={handleOpen2}
+                  open={open2}
+                />
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

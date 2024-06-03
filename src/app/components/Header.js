@@ -3,13 +3,32 @@ import React, { useEffect, useState } from "react";
 import { Navbar, Collapse } from "@material-tailwind/react";
 import Link from "next/link";
 import Image from "next/image";
-import { useMediaQuery } from "react-responsive";
 import { scrollToSection } from "./lib/Common";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
-  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const pathname = usePathname();
   const [hideHeader, setHideHeader] = useState(false);
+
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  const handleScrollProgress = () => {
+    const winScroll =
+      document.body.scrollTop || document.documentElement.scrollTop;
+    const height =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    setScrollProgress(scrolled);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScrollProgress);
+    return () => {
+      window.removeEventListener("scroll", handleScrollProgress);
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,26 +55,38 @@ const Header = () => {
 
   const navList = (
     <ul className="mt-2 mb-4 flex flex-col gap-3 items-center md:mb-0 md:mt-0 md:flex-row md:items-center md:gap-3 lg:gap-6">
+      {pathname === "/" && (
+        <Link
+          href="#features"
+          onClick={(e) => {
+            setOpenNav(false);
+            scrollToSection(e, "features");
+          }}
+          className="nav-underline flex items-center md:justify-center justify-start font-medium"
+        >
+          Features
+        </Link>
+      )}
+
       <Link
-        href="#features"
-        onClick={(e) => {
-          setOpenNav(false);
-          scrollToSection(e, "features");
-        }}
+        href="/blog"
+        onClick={() => setOpenNav(false)}
         className="nav-underline flex items-center md:justify-center justify-start font-medium"
       >
-        Features
+        Blog
       </Link>
-      <Link
-        href="#pricing-plan"
-        onClick={(e) => {
-          setOpenNav(false);
-          scrollToSection(e, "pricing-plan");
-        }}
-        className="nav-underline flex items-center md:justify-center justify-start font-medium"
-      >
-        Pricing
-      </Link>
+      {pathname === "/" && (
+        <Link
+          href="#pricing-plan"
+          onClick={(e) => {
+            setOpenNav(false);
+            scrollToSection(e, "pricing-plan");
+          }}
+          className="nav-underline flex items-center md:justify-center justify-start font-medium"
+        >
+          Pricing
+        </Link>
+      )}
 
       <Link
         href="https://cal.com/hiteshr/15min"
@@ -87,16 +118,28 @@ const Header = () => {
       >
         <div
           className={`flex items-center md:flex-row justify-between header_padding ${
-            hideHeader || openNav ? "header-bg" : ""
+            hideHeader || openNav || pathname !== "/" ? "header-bg" : ""
           }`}
         >
-          <div className="py-2 xs:pr-0 pr-[calc(100vw_-_320px)]">
+          <div
+            className="py-2 xs:pr-0 pr-[calc(100vw_-_320px)]"
+            onClick={() => setOpenNav(false)}
+          >
             <Link href="/">
               <Image
+                className="block lg:hidden"
                 src="/images/logo.svg"
                 alt="SwiftSupport Logo"
-                width={isMobile ? 176 : 270}
-                height={isMobile ? 49 : 74}
+                width={176}
+                height={49}
+                priority={true}
+              />
+              <Image
+                className="hidden lg:block"
+                src="/images/logo.svg"
+                alt="SwiftSupport Logo"
+                width={270}
+                height={74}
                 priority={true}
               />
             </Link>
@@ -150,6 +193,16 @@ const Header = () => {
           </div>
         </Collapse>
       </Navbar>
+      {pathname.startsWith("/blog/") && (
+        <div
+          id="myBar"
+          style={{
+            width: `${scrollProgress}%`,
+            height: "4px",
+            backgroundColor: "var(--colorDarkBlue)",
+          }}
+        />
+      )}
     </div>
   );
 };

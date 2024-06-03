@@ -11,6 +11,7 @@ module.exports = {
         colorBlack: "#24282c",
         colorGray: "#6f7a7d",
         colorDarkBlue: "#2d677c",
+        colorLightBlue: "#eaf9ff",
         lightGray: "#a6a8a8",
         themePink: "#fbb8b8",
         themeYellow: "#f2ed7b",
@@ -20,6 +21,11 @@ module.exports = {
       },
       screens: {
         xs: "480px",
+        slg: "980px",
+        sxl: "1200px",
+      },
+      fontFamily: {
+        Outfit: ["Outfit", "sans-serif"],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
