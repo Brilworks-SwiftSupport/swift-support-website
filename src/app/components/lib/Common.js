@@ -22,7 +22,6 @@ export function Icon({ id, open, openClass, closeClass }) {
 }
 
 export function scrollToSection(e, sectionId) {
-  e.preventDefault();
   const targetSection = document.getElementById(sectionId);
   if (targetSection) {
     targetSection.scrollIntoView({

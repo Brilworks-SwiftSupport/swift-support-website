@@ -61,14 +61,14 @@ const IndustriesWeServe = () => {
       content:
         "Provide 24/7 support with your AI service buddy — Swiftsupport. Empower students with personalized learning and streamline academic processes like instructions, assessments, data retrieval, updates, AI-driven surveys, and much more. Enjoy unparalleled efficiency at a fraction of the cost, scaling your impact without breaking the bank.",
       imageSrc: "/images/Education_img.webp",
-      imageAlt: "Education Education",
+      imageAlt: "Education image",
     },
     {
-      title: "Manufaturing",
+      title: "Manufacturing",
       content:
         "Fine-tuned AI agents to meet the demands of your manufacturing and application requirements precisely, our AI solution stands out by effectively identifying anomalies in processes, equipment, and assets, ultimately optimizing workflows to minimize risk through the utilization of advanced pattern recognition and machine learning capabilities.",
       imageSrc: "/images/Manufaturing_img.webp",
-      imageAlt: "Manufaturing image",
+      imageAlt: "Manufacturing image",
     },
     {
       title: "Logistics",
@@ -102,7 +102,7 @@ const IndustriesWeServe = () => {
           Industries we serve
         </h2>
         <p className="lg:w-1/2 w-full md:text-lg text-[14px] font-normal text-colorGray lg:pl-[5%]">
-          Your customers deserve better, and with Swiftsupport, they get it. Our
+          Your customers deserve better, and with SwiftSupport, they get it. Our
           AI-powered chatbot can resolve over 80% of inquiries with lightning
           speed, leaving you and your customers free on what truly matters.
         </p>

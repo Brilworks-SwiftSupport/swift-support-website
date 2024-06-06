@@ -59,8 +59,8 @@ const Header = () => {
         <Link
           href="#features"
           onClick={(e) => {
-            setOpenNav(false);
             scrollToSection(e, "features");
+            setOpenNav(false);
           }}
           className="nav-underline flex items-center md:justify-center justify-start font-medium"
         >
@@ -79,8 +79,8 @@ const Header = () => {
         <Link
           href="#pricing-plan"
           onClick={(e) => {
-            setOpenNav(false);
             scrollToSection(e, "pricing-plan");
+            setOpenNav(false);
           }}
           className="nav-underline flex items-center md:justify-center justify-start font-medium"
         >
@@ -130,17 +130,17 @@ const Header = () => {
                 className="block lg:hidden"
                 src="/images/logo.svg"
                 alt="SwiftSupport Logo"
-                width={176}
-                height={49}
-                priority={true}
+                width="176"
+                height="49"
+                priority
               />
               <Image
                 className="hidden lg:block"
                 src="/images/logo.svg"
                 alt="SwiftSupport Logo"
-                width={270}
-                height={74}
-                priority={true}
+                width="270"
+                height="74"
+                priority
               />
             </Link>
           </div>

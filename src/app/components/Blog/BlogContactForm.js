@@ -43,7 +43,7 @@ const BlogContactForm = () => {
       );
 
       if (response.ok) {
-        setFormData({ name: "", email: "", phone: "", message: "" });
+        setFormData({ name: "", email: "", message: "" });
         setRespMessage("Your response is submitted successfully.");
         clearMessage();
       } else {
