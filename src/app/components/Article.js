@@ -24,8 +24,6 @@ const Article = ({ blok }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [activeLink, setActiveLink] = useState(null);
 
-  // console.log(blok);
-
   const blogTableOfContent =
     blok.Content_1 +
       blok.Content_2 +
