@@ -14,8 +14,8 @@ const VideoSection = () => {
                 className="hover:scale-105"
                 src="/images/play_button.svg"
                 alt="Play Icon"
-                width={100}
-                height={100}
+                width="100"
+                height="100"
               />
             </span>
           )}

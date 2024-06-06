@@ -56,7 +56,7 @@ export default async function Page(props) {
 
         <meta
           property="og:url"
-          content={`${process.env.NEXT_PUBLIC_BASE_URL}blogs/${data?.story?.slug}/`}
+          content={`${process.env.NEXT_PUBLIC_BASE_URL}blog/${data?.story?.slug}/`}
         />
 
         <meta
@@ -96,7 +96,7 @@ export default async function Page(props) {
 }
 
 export async function fetchData(params) {
-  let slug = params?.slug ? `blogs/${params?.slug}` : "home";
+  let slug = params?.slug ? `blog/${params?.slug}` : "home";
   const storyblokApi = getStoryblokApi();
   let sbParams = {
     version: process.env.NEXT_PUBLIC_STORYBLOK_VERSION,

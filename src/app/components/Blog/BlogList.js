@@ -18,45 +18,6 @@ const BlogList = () => {
   const [blogDataPerPage, setBlogDataPerPage] = useState([]);
   const [totalBlog, setTotalBlog] = useState(0);
 
-  const blogData = [
-    {
-      category: "Business",
-      tagColor: "bg-themePink",
-      title: "Blog writing competition",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, odio!",
-      imageSrc: "/images/blog-1.webp",
-      publishDate: "24 May 2024",
-    },
-    {
-      category: "Travel",
-      tagColor: "bg-themeBlue",
-      title: "Trip to Swizerland",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, odio!",
-      imageSrc: "/images/blog-2.webp",
-      publishDate: "18 May 2024",
-    },
-    {
-      category: "Article",
-      tagColor: "bg-themeYellow",
-      title: "Blog competition",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, odio!",
-      imageSrc: "/images/blog-3.webp",
-      publishDate: "12 May 2024",
-    },
-    {
-      category: "Living",
-      tagColor: "bg-themeBlue",
-      title: "Hello World",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, odio!",
-      imageSrc: "/images/blog-2.webp",
-      publishDate: "7 May 2024",
-    },
-  ];
-
   const getFirst20Words = (content) => {
     const words = content.split(" ");
     const first20Words = words.slice(0, 19);
@@ -113,8 +74,10 @@ const BlogList = () => {
 
       <div
         className={`grid ${
-          totalBlog > 0 ? "lg:grid-cols-3 md:grid-cols-2" : ""
-        } grid-cols-1 !gap-8 items-center`}
+          isLoading || !blogDataPerPage?.length
+            ? "grid-cols-1"
+            : "xl:grid-cols-3 md:grid-cols-2 grid-cols-1"
+        } !gap-8`}
       >
         {isLoading ? (
           <div className="flex items-center justify-center text-xl pt-20 pb-36">
