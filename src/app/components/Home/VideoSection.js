@@ -1,6 +1,6 @@
 "use client";
-import Image from "next/image";
 import React, { useState } from "react";
+import Image from "next/image";
 
 const VideoSection = () => {
   const [isVideoPause, setVideoPause] = useState(true);
@@ -11,7 +11,7 @@ const VideoSection = () => {
           {isVideoPause && (
             <span className="play-icon-img xs:block hidden">
               <Image
-                className="hover:scale-105"
+                // className="hover:scale-105"
                 src="/images/play_button.svg"
                 alt="Play Icon"
                 width="100"
@@ -21,12 +21,12 @@ const VideoSection = () => {
           )}
         </span>
         <div onClick={() => setVideoPause(!isVideoPause)}>
-          <video
-            poster="/images/video-background.png"
+          <Image
+            src="/images/video-background.png"
             className="mx-auto rounded-[25px] md:rounded-[40px] lg:rounded-[50px]"
-            src="https://youtu.be/8-E1LbChJ88?feature=shared"
-            controls
-            loading="lazy"
+            // src="https://youtu.be/8-E1LbChJ88?feature=shared"
+            // controls
+            alt="Video Poster"
             width="1026"
             height="528"
           />
