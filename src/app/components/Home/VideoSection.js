@@ -3,11 +3,11 @@ import React, { useState } from "react";
 import Image from "next/image";
 
 const VideoSection = () => {
-  const [isVideoPause, setVideoPause] = useState(true);
+  // const [isVideoPause, setVideoPause] = useState(true);
   return (
     <div className="youtube-video-main lg:w-full md:w-[80%] mx-auto section-padding pt-8">
       <div className="intro-video relative">
-        <span className="video-play-icon z-10">
+        {/* <span className="video-play-icon z-10">
           {isVideoPause && (
             <span className="play-icon-img xs:block hidden">
               <Image
@@ -19,8 +19,9 @@ const VideoSection = () => {
               />
             </span>
           )}
-        </span>
-        <div onClick={() => setVideoPause(!isVideoPause)}>
+        </span> */}
+        {/* <div onClick={() => setVideoPause(!isVideoPause)}> */}
+        <div>
           <Image
             src="/images/video-background.png"
             className="mx-auto rounded-[25px] md:rounded-[40px] lg:rounded-[50px]"
