@@ -363,15 +363,8 @@ a:hover {
   animation: fadeIn 1s;
 }
 
-@media only screen and (max-width: 1600px) {
-  /* .section-padding {
-    padding: 3.125rem 4.375rem 3.125rem;
-  } */
-}
-@media only screen and (max-width: 1440px) {
-  /* .section-padding {
-    padding: 3.125rem 4.375rem 3.125rem;
-  } */
+.privacy-tnc strong {
+  font-weight: 600 !important;
 }
 
 @media only screen and (max-width: 991px) {
