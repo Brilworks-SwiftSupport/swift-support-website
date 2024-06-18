@@ -113,13 +113,13 @@ const Footer = () => {
             Contact
           </Link>
           <Link
-            href="#"
+            href="/privacy-policy"
             className="flex items-center justify-center font-medium"
           >
             Privacy Policy
           </Link>
           <Link
-            href="#"
+            href="/terms-and-conditions"
             className="flex items-center justify-center font-medium"
           >
             Terms & Conditions

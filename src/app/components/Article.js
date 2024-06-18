@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import "../styles/Blogstyle.scss";
-import { memo, useEffect, useRef, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { getblogData } from "../lib/getblog";
 import { usePathname } from "next/navigation";
@@ -17,7 +17,6 @@ const BlogContactForm = dynamic(() => import("./Blog/BlogContactForm"));
 
 const Article = ({ blok }) => {
   const pathname = usePathname();
-  const targetRef = useRef();
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1080 });
   const [blogData, setBlogData] = useState(null);
   const [headings, setHeadings] = useState([]);
