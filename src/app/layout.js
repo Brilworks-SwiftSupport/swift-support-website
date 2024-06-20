@@ -50,6 +50,12 @@ export default function RootLayout({ children }) {
               </Script>
             </>
           )}
+          {process.env.VERCEL_ENV === "production" && (
+            <meta
+              name="google-site-verification"
+              content="c0Wa7YSps4FhBSg1lMMWnE7_livU8FgBZAbCRtwW6JE"
+            />
+          )}
         </head>
         <body suppressHydrationWarning={true}>
           {process.env.VERCEL_ENV === "production" && (
