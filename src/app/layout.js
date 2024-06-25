@@ -55,6 +55,12 @@ export default function RootLayout({ children }) {
               </Script>
             </>
           )}
+          <script>{`window.chatBotConfig = {agentId: 232}`}</script>
+          <script
+            defer
+            id="chatbot-widget-script"
+            src="https://dev.swiftsupport.ai/ChatbotScripts/chatbotBubble.js"
+          />
         </head>
         <body suppressHydrationWarning={true}>
           {process.env.VERCEL_ENV === "production" && (
