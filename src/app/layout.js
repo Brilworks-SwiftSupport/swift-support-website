@@ -55,8 +55,11 @@ export default function RootLayout({ children }) {
               </Script>
             </>
           )}
-          <script>{`window.chatBotConfig = {agentId: 232}`}</script>
-          <script
+          <Script
+            defer
+            id="chatbot"
+          >{`window.chatBotConfig = {agentId: 251}`}</Script>
+          <Script
             defer
             id="chatbot-widget-script"
             src="https://dev.swiftsupport.ai/ChatbotScripts/chatbotBubble.js"
