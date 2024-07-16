@@ -100,7 +100,7 @@ const Header = () => {
       <Link
         rel="noopener"
         target="_blank"
-        href="https://app.swiftsupport.ai/signup"
+        href="https://dev.swiftsupport.ai/signup"
         onClick={() => setOpenNav(false)}
         className="button_black"
       >

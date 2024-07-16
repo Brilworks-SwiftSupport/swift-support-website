@@ -70,7 +70,7 @@ const PricingPlan = () => {
               <li>1 MB / File upload limit</li>
             </ul>
             <button
-              onClick={() => router.push("https://app.swiftsupport.ai/login")}
+              onClick={() => router.push("https://dev.swiftsupport.ai/login")}
               className="bg-colorBlack subscribe-btn text-colorWhite rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full"
             >
               Subscribe
@@ -106,7 +106,7 @@ const PricingPlan = () => {
               <li>10 MB / File upload limit</li>
             </ul>
             <button
-              onClick={() => router.push("https://app.swiftsupport.ai/login")}
+              onClick={() => router.push("https://dev.swiftsupport.ai/login")}
               className="bg-colorBlack subscribe-btn text-colorWhite rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full"
             >
               Subscribe
@@ -142,7 +142,7 @@ const PricingPlan = () => {
               <li>20 MB / File upload limit</li>
             </ul>
             <button
-              onClick={() => router.push("https://app.swiftsupport.ai/login")}
+              onClick={() => router.push("https://dev.swiftsupport.ai/login")}
               className="bg-colorBlack subscribe-btn text-colorWhite rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full"
             >
               Subscribe
@@ -178,7 +178,7 @@ const PricingPlan = () => {
               <li>50 MB / File upload limit</li>
             </ul>
             <button
-              onClick={() => router.push("https://app.swiftsupport.ai/login")}
+              onClick={() => router.push("https://dev.swiftsupport.ai/login")}
               className="bg-colorBlack subscribe-btn text-colorWhite rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full"
             >
               Subscribe

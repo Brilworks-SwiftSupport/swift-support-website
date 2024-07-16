@@ -42,7 +42,7 @@ const ResolveCustomerQuestions = () => {
               <Link
                 rel="noopener"
                 target="_blank"
-                href="https://app.swiftsupport.ai/signup"
+                href="https://dev.swiftsupport.ai/signup"
                 className="md:h-[60px] h-[50px] xl:w-[207px] md:w-2/6 w-full signup-button border border-colorBlack flex items-center justify-center"
               >
                 <p className="font-bold">Sign Up for Free</p>
