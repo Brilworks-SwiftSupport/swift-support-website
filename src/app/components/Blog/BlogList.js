@@ -39,10 +39,6 @@ const BlogList = () => {
     window.scrollTo({ top: 0 });
   }, [currentPage]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
   const getPageNumbers = () => {
     const pages = [];
     for (let i = -2; i <= 2; i++) {

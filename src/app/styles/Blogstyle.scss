@@ -262,6 +262,38 @@
       padding: 14px 20px 18px 15px !important;
     }
   }
+  blockquote,
+  blockquote::before {
+    background: #f4f4f4 !important;
+    border-left: solid 6px var(--colorDarkBlue);
+  }
+
+  blockquote {
+    margin: 0px 0px 20px 0px;
+    padding: 20px 20px 20px 50px;
+    p {
+      margin-bottom: 0 !important;
+    }
+    @media screen and (max-width: 768px) {
+      padding: 10px 10px 10px 25px;
+    }
+  }
+
+  blockquote::before {
+    content: "\201C";
+    display: block;
+    color: var(--colorDarkBlue);
+    font-family: Georgia, serif;
+    font-size: 60px;
+    height: 0;
+    left: -40px;
+    position: relative;
+    top: -26px;
+    @media screen and (max-width: 768px) {
+      left: -30px;
+      top: -20px;
+    }
+  }
 }
 
 .blog-inner .blog_content_CTA_1,
