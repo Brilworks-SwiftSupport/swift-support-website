@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import "../../styles/Blogstyle.scss";
-import parse from "html-react-parser";
 import { useMediaQuery } from "react-responsive";
 import { getblogData } from "@/app/lib/getblog";
 import { formattedDate } from "../lib/Common";
@@ -17,12 +16,6 @@ const BlogList = () => {
 
   const [blogDataPerPage, setBlogDataPerPage] = useState([]);
   const [totalBlog, setTotalBlog] = useState(0);
-
-  const getFirst20Words = (content) => {
-    const words = content.split(" ");
-    const first20Words = words.slice(0, 19);
-    return first20Words.join(" ") + (words.length > 20 ? "..." : "");
-  };
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -45,10 +38,6 @@ const BlogList = () => {
   useEffect(() => {
     window.scrollTo({ top: 0 });
   }, [currentPage]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
 
   const getPageNumbers = () => {
     const pages = [];
@@ -86,7 +75,7 @@ const BlogList = () => {
         ) : blogDataPerPage?.length ? (
           blogDataPerPage.map(({ slug, name, content }, index) => (
             <div
-              className="blog-card min-w-[300px] h-full w-fit border border-lightGray rounded-[10px]"
+              className="blog-card h-full border border-lightGray rounded-[10px]"
               key={index}
             >
               <Link as={`/blog/${slug}`} href={`/blog/[slug]`} prefetch={true}>
@@ -127,9 +116,6 @@ const BlogList = () => {
                       : content?.Category}
                   </div>
                   <h2 className="mb-1">{name}</h2>
-                  <p className="text-colorGray">
-                    {parse(getFirst20Words(content?.Content_1))}
-                  </p>
                 </div>
                 <div className="w-full flex flex-row p-[5%] items-start border-t border-lightGray bg-lightGray bg-opacity-10">
                   <div className="w-full flex items-center justify-between gap-2 text-colorGray">
