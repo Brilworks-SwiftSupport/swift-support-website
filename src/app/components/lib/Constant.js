@@ -1740,10 +1740,6 @@ export const COUNTRIES = [
 
 export const sitemapData = [
   {
-    loc: "https://swiftsupport.ai/",
-    lastmod: "2024-06-20T12:04:49.528Z",
-  },
-  {
     loc: "https://swiftsupport.ai/blog/",
     lastmod: "2024-06-20T12:04:49.528Z",
   },
