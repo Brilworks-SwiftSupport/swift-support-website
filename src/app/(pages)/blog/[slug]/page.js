@@ -1,116 +1,106 @@
 import { calculateReadingTime } from "@/app/components/lib/Common";
-import { getStoryblokApi } from "@storyblok/react/rsc";
 import StoryblokStory from "@storyblok/react/story";
+import { notFound } from "next/navigation";
 
-export const metadata = {
-  openGraph: {
-    siteName: "Swiftsupport",
-    locale: "en-US",
-    type: "article",
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: "@_Swiftsupport",
-    creator: "@_Swiftsupport",
-  },
-};
+// Fetch data with error handling and caching
+async function fetchData(slug) {
+  const url = new URL(`https://api.storyblok.com/v2/cdn/stories/blog/${slug}`);
+  url.searchParams.append('token', process.env.NEXT_PUBLIC_ACCESS_TOKEN || '');
+  url.searchParams.append('version', process.env.NEXT_PUBLIC_STORYBLOK_VERSION || 'published');
 
-export default async function Page(props) {
-  const { params } = props || {};
+  try {
+    const res = await fetch(url.toString(), { 
+      next: { revalidate: 3600 },
+      headers: { 'Accept-Encoding': 'gzip' } // Enable compression
+    });
 
-  const { props: data } = await fetchData(params);
-
-  if (!data?.story) {
+    if (!res.ok) throw new Error('Failed to fetch story data');
+    return await res.json().then(data => data.story);
+  } catch (error) {
+    console.error('Error fetching story:', error);
     return null;
   }
-
-  const totalDataWord =
-    data?.story?.content?.Content_1 +
-    data?.story?.content?.Content_2 +
-    data?.story?.content?.Content_3;
-
-  return (
-    <>
-      <head>
-        <title>
-          {data?.story?.content?.metatags?.title || data?.story?.content?.title}
-        </title>
-
-        <meta
-          name="description"
-          content={data?.story?.content?.metatags?.description}
-        />
-
-        <link
-          rel="canonical"
-          href={`${process.env.NEXT_PUBLIC_BASE_URL}blog/${data?.story?.slug}/`}
-        />
-
-        <meta
-          property="og:title"
-          content={
-            data?.story?.content?.metatags?.og_title ||
-            data?.story?.content?.title
-          }
-        />
-
-        <meta
-          property="og:url"
-          content={`${process.env.NEXT_PUBLIC_BASE_URL}blog/${data?.story?.slug}/`}
-        />
-
-        <meta
-          name="og:description"
-          content={
-            data?.story?.content?.metatags?.og_description ||
-            data?.story?.content?.metatags?.description
-          }
-        />
-
-        <meta
-          property="og:image"
-          content={
-            data?.story?.content?.metatags?.og_image ||
-            data?.story?.content?.mobile_banner?.filename
-          }
-        />
-        <meta name="author" content={data?.story?.content?.author} />
-        <meta
-          name="twitter:image"
-          content={
-            data?.story?.content?.metatags?.twitter_image ||
-            data?.story?.content?.mobile_banner?.filename
-          }
-        />
-        <meta name="twitter:label1" content="Written by" />
-        <meta name="twitter:data1" content={data?.story?.content?.author} />
-        <meta name="twitter:label2" content="Est. reading time" />
-        <meta
-          name="twitter:data2"
-          content={`${calculateReadingTime(totalDataWord)} minutes`}
-        />
-      </head>
-      <StoryblokStory story={data?.story} />
-    </>
-  );
 }
 
-export async function fetchData(params) {
-  let slug = params?.slug ? `blog/${params?.slug}` : "home";
-  const storyblokApi = getStoryblokApi();
-  let sbParams = {
-    version: process.env.NEXT_PUBLIC_STORYBLOK_VERSION,
-    resolve_links: "url",
-  };
+// Generate metadata with improved error handling
+export async function generateMetadata({ params }){
+  const story = await fetchData(params.slug);
+  if (!story) return notFound();
 
-  const blogData = await storyblokApi?.get(`cdn/stories/${slug}`, sbParams);
-  const { data } = blogData;
+  const { content } = story;
+  const totalDataWord = [content?.Content_1, content?.Content_2, content?.Content_3].filter(Boolean).join(' ');
+  const ogImage = content?.metatags?.og_image || content?.mobile_banner?.filename;
 
   return {
-    props: {
-      story: data ? data?.story : false,
-      key: data ? data?.story?.id : false,
+    title: content?.metatags?.title || content?.title,
+    description: content?.metatags?.description,
+    openGraph: {
+      title: content?.metatags?.og_title || content?.title,
+      description: content?.metatags?.og_description || content?.metatags?.description,
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}blog/${story.slug}/`,
+      siteName: "Swiftsupport",
+      locale: "en-US",
+      type: "article",
+      images: [{ url: ogImage, width: 1200, height: 630, alt: content?.title }],
     },
-    revalidate: 3600,
+    twitter: {
+      card: "summary_large_image",
+      site: "@_Swiftsupport",
+      creator: "@_Swiftsupport",
+      images: [content?.metatags?.twitter_image || content?.mobile_banner?.filename],
+    },
+    authors: [{ name: content?.author }],
+    alternates: {
+      canonical: `${process.env.NEXT_PUBLIC_BASE_URL}blog/${story.slug}/`,
+    },
+    other: {
+      "twitter:label1": "Written by",
+      "twitter:data1": content?.author,
+      "twitter:label2": "Est. reading time",
+      "twitter:data2": `${calculateReadingTime(totalDataWord)} minutes`,
+    },
   };
 }
+
+// Main page component with lazy loading
+export default async function Page({ params }) {
+  const story = await fetchData(params.slug);
+  if (!story) return notFound();
+
+  return <StoryblokStory story={story} />;
+}
+
+// Generate static params with improved error handling and pagination
+export async function generateStaticParams() {
+  const stories = await getBlogData();
+  return stories.map((story) => ({
+    slug: story.slug.replace('blog/', ''),
+  }));
+}
+
+async function getBlogData() {
+  const url = new URL('https://api.storyblok.com/v2/cdn/stories');
+  url.searchParams.append('cv', '1721647132');
+  url.searchParams.append('filter_query[component][in]', 'swiftsupport_article');
+  url.searchParams.append('page', '1');
+  url.searchParams.append('per_page', '100');
+  url.searchParams.append('starts_with', 'blog/');
+  url.searchParams.append('token', process.env.NEXT_PUBLIC_ACCESS_TOKEN || '');
+  url.searchParams.append('version', process.env.NEXT_PUBLIC_STORYBLOK_VERSION || 'published');
+
+  try {
+    const res = await fetch(url.toString(), { 
+      next: { revalidate: 3600 },
+      headers: { 'Accept-Encoding': 'gzip' } // Enable compression
+    });
+
+    if (!res.ok) throw new Error('Failed to fetch blog data');
+    const data = await res.json();
+    return data.stories || [];
+  } catch (error) {
+    console.error('Error fetching blog data:', error);
+    return [];
+  }
+}
+
+export const revalidate = 3600;

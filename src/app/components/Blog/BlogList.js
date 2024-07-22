@@ -23,12 +23,12 @@ const BlogList = () => {
       const blogData = await getblogData(currentPage, ITEMS_PER_PAGE);
       setBlogDataPerPage(blogData?.storyData);
       setTotalBlog(blogData?.totalData);
+          setIsLoading(false);
     } catch (error) {
       console.error(error);
-    }
-    setTimeout(() => {
       setIsLoading(false);
-    }, 300);
+    }
+;
   };
 
   useEffect(() => {
