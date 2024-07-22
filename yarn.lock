@@ -293,7 +293,7 @@
   dependencies:
     deepmerge "^4.2.2"
 
-"@sendgrid/mail@^8.1.3":
+"@sendgrid/mail@8.1.3":
   version "8.1.3"
   resolved "https://registry.npmjs.org/@sendgrid/mail/-/mail-8.1.3.tgz"
   integrity sha512-Wg5iKSUOER83/cfY6rbPa+o3ChnYzWwv1OcsR8gCV8SKi+sUPIMroildimlnb72DBkQxcbylxng1W7f0RIX7MQ==
@@ -325,7 +325,7 @@
   dependencies:
     storyblok-js-client "^6.7.2"
 
-"@storyblok/react@^3.0.10":
+"@storyblok/react@3.0.10":
   version "3.0.10"
   resolved "https://registry.npmjs.org/@storyblok/react/-/react-3.0.10.tgz"
   integrity sha512-7cyUdCoT/kTXFJLojPhqhguvcTjvIizPh3wf90Q99zrD7quMALX9E6Ag/gSGkyWdMTQ7Wcbh2zEQaZxEDx0FRg==
@@ -1540,7 +1540,7 @@ html-dom-parser@5.0.8:
     domhandler "5.0.3"
     htmlparser2 "9.1.0"
 
-html-react-parser@^5.1.10:
+html-react-parser@5.1.10:
   version "5.1.10"
   resolved "https://registry.npmjs.org/html-react-parser/-/html-react-parser-5.1.10.tgz"
   integrity sha512-gV22PvLij4wdEdtrZbGVC7Zy2OVWnQ0bYhX63S196ZRSx4+K0TuutCreHSXr+saUia8KeKB+2TYziVfijpH4Tw==
@@ -2494,7 +2494,7 @@ safe-regex-test@^1.0.0:
     get-intrinsic "^1.2.2"
     is-regex "^1.1.4"
 
-sass@^1.3.0, sass@^1.70.0:
+sass@^1.3.0, sass@1.70.0:
   version "1.70.0"
   resolved "https://registry.npmjs.org/sass/-/sass-1.70.0.tgz"
   integrity sha512-uUxNQ3zAHeAx5nRFskBnrWzDUJrrvpCPD5FNAoRvTi0WwremlheES3tg+56PaVtCs5QDRX5CBLxxKMDJMEa1WQ==

@@ -10,6 +10,10 @@ storyblokInit({
   use: [apiPlugin],
 });
 
+export const metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL),
+};
+
 const Header = dynamic(() => import("./components/Header"));
 const Footer = dynamic(() => import("./components/Footer"));
 
