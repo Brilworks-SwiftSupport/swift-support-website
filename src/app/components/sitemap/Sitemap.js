@@ -32,7 +32,7 @@ export default async function Sitemap() {
       <div className="py-10">
         <div className="mb-4">
           <h3 className="text-2xl border-b border-b-[#c5ccd0] font-bold pb-2 mb-3">
-            ABOUT Swiftsupport
+            About Swift Support
           </h3>
           <div className="grid gap-2 md:grid-cols-4 grid-cols-2">
             <div>
@@ -68,7 +68,7 @@ export default async function Sitemap() {
 
         <div className="mb-4">
           <h3 className="text-2xl border-b border-b-[#c5ccd0] font-bold pb-2 mb-3">
-            BLOGS
+            Blogs
           </h3>
           <div className="grid gap-[10px] grid-cols-1">
             {blogData.length ? (
