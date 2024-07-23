@@ -11,7 +11,6 @@ const Header = () => {
   const [openNav, setOpenNav] = useState(false);
   const pathname = usePathname();
   const [hideHeader, setHideHeader] = useState(false);
-
   const [scrollProgress, setScrollProgress] = useState(0);
 
   const handleScrollProgress = () => {
