@@ -8,7 +8,7 @@ import { formattedDate } from "../lib/Common";
 import Svgs from "../lib/Svgs";
 import BeatLoader from "../Loader";
 
-const ITEMS_PER_PAGE = 2;
+const ITEMS_PER_PAGE = 9;
 
 async function BlogList({ searchParams }) {
   const currentPage = parseInt(searchParams?.page) || 1;
