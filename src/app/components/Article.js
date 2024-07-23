@@ -428,7 +428,7 @@ const Article = ({ blok }) => {
           </div>
           <div className="container mx-auto md:!px-3 !px-4">
             <div className="flex flex-wrap flex-col xl:pb-20 md:pb-14 pb-8">
-              <div className="service_sec3">
+            <div className="service_sec3 mb-2">
                 <p className="home_sec2_txt3 !pb-0 md:!pt-8 !pt-0">
                   <p className="!ml-0 text-[2rem] font-bold !w-full">
                     You might also like
