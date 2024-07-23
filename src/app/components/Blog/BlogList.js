@@ -42,8 +42,8 @@ async function BlogList({ searchParams }) {
           Discover Hidden Tech Trends with Swiftsupport Blog Insights
         </p>
       </div>
-      <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 !gap-8">
-     
+      <div className="grid xl:grid-cols-3 min-h-[40vh] md:grid-cols-2 grid-cols-1 !gap-8">
+      
         {blogDataPerPage.length ? (
           blogDataPerPage.map(({ slug, name, content }, index) => (
             <div
@@ -105,10 +105,10 @@ async function BlogList({ searchParams }) {
             </div>
           ))
         ) : (
-          <BeatLoader/>
-          // <div className="flex items-center justify-center text-xl pt-20 pb-36">
-          //   No Data found.
-          // </div>
+       
+          <div className="flex items-center justify-center text-xl pt-20 pb-36">
+            No Data found.
+          </div>
         )}
       </div>
       {blogDataPerPage.length ? (
