@@ -309,6 +309,7 @@ const Article = ({ blok }) => {
                           src="/images/linkedin-share.svg"
                           width="43"
                           height="43"
+                        
                           alt="LinkedIn blog share"
                         />
                       </Link>
