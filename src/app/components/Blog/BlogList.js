@@ -7,26 +7,27 @@ import { useMediaQuery } from "react-responsive";
 import { getblogData } from "@/app/lib/getblog";
 import { formattedDate } from "../lib/Common";
 import Svgs from "../lib/Svgs";
+import BeatLoader from "../Loader";
 
 const BlogList = () => {
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1080 });
   const ITEMS_PER_PAGE = isTablet ? 8 : 9;
-  const [isLoading, setIsLoading] = useState(false);
+
   const [currentPage, setCurrentPage] = useState(1);
 
   const [blogDataPerPage, setBlogDataPerPage] = useState([]);
   const [totalBlog, setTotalBlog] = useState(0);
 
   const fetchData = async () => {
-    setIsLoading(true);
+ 
     try {
       const blogData = await getblogData(currentPage, ITEMS_PER_PAGE);
       setBlogDataPerPage(blogData?.storyData);
       setTotalBlog(blogData?.totalData);
-          setIsLoading(false);
+        
     } catch (error) {
       console.error(error);
-      setIsLoading(false);
+     
     }
 ;
   };
@@ -51,6 +52,7 @@ const BlogList = () => {
   };
 
   const pageNumbers = getPageNumbers();
+  
 
   return (
     <div className="container max-w-[1280px] h-full mx-auto section-padding md:!pt-[120px] !pt-[80px] !pb-0">
@@ -60,25 +62,22 @@ const BlogList = () => {
           Discover Hidden Tech Trends with Swiftsupport Blog Insights
         </p>
       </div>
-
-      <div
+     { !blogDataPerPage?.length ?<BeatLoader/> :
+     <> <div
         className={`grid ${
-          isLoading || !blogDataPerPage?.length
+         !blogDataPerPage?.length
             ? "grid-cols-1"
             : "xl:grid-cols-3 md:grid-cols-2 grid-cols-1"
         } !gap-8`}
       >
-        {isLoading ? (
-          <div className="flex items-center justify-center text-xl pt-20 pb-36">
-            Loading...
-          </div>
-        ) : blogDataPerPage?.length ? (
+        {blogDataPerPage?.length ? (
           blogDataPerPage.map(({ slug, name, content }, index) => (
             <div
-              className="blog-card h-full border border-lightGray rounded-[10px]"
+              className="blog-card h-full border flex border-lightGray rounded-[10px]"
               key={index}
             >
-              <Link as={`/blog/${slug}`} href={`/blog/[slug]`} prefetch={true}>
+              <Link className="flex flex-col h-full" as={`/blog/${slug}`} href={`/blog/[slug]`} prefetch={true}>
+                <div className="flex-[0.5]">
                 <Image
                   className="block md:hidden zoom-image"
                   src={content?.mobile_banner?.filename}
@@ -106,8 +105,8 @@ const BlogList = () => {
                   priority={index === 0}
                   sizes="(min-width: 1040px) 42.35vw, (min-width: 640px) 60.84vw, calc(100vw - 30px)"
                 />
-
-                <div className="flex flex-col p-[5%] items-start bg-colorWhite">
+</div>
+                <div className="flex flex-[0.4] flex-col p-[5%] h-full items-start bg-colorWhite">
                   <div
                     className={`text-colorBlack font-medium px-1 py-1 rounded-lg mb-2 bg-themePink`}
                   >
@@ -117,7 +116,7 @@ const BlogList = () => {
                   </div>
                   <h2 className="mb-1">{name}</h2>
                 </div>
-                <div className="w-full flex flex-row p-[5%] items-start border-t border-lightGray bg-lightGray bg-opacity-10">
+                <div className="w-full flex  flex-[0.1] flex-row p-[5%] items-start border-t border-lightGray bg-lightGray bg-opacity-10">
                   <div className="w-full flex items-center justify-between gap-2 text-colorGray">
                     <div className="text-colorDarkBlue">
                       By {content?.BlogAuthor}
@@ -137,9 +136,7 @@ const BlogList = () => {
           </div>
         )}
       </div>
-      {isLoading ? (
-        ""
-      ) : blogDataPerPage?.length ? (
+      { blogDataPerPage?.length ? (
         <div className="flex justify-center my-16">
           <ul className="list-none flex flex-wrap">
             <li
@@ -185,7 +182,7 @@ const BlogList = () => {
         </div>
       ) : (
         ""
-      )}
+      )}</>}
     </div>
   );
 };
