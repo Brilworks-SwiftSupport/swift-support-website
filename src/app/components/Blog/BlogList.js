@@ -79,7 +79,7 @@ const BlogList = () => {
               <Link className="flex flex-col h-full" as={`/blog/${slug}`} href={`/blog/[slug]`} prefetch={true}>
                 <div className="flex-[0.5]">
                 <Image
-                  className="block md:hidden zoom-image"
+                  className="block md:hidden w-full zoom-image"
                   src={content?.mobile_banner?.filename}
                   alt={
                     content?.mobile_banner?.alt ||
@@ -93,7 +93,7 @@ const BlogList = () => {
                   sizes="(min-width: 1040px) 42.35vw, (min-width: 640px) 60.84vw, calc(100vw - 30px)"
                 />
                 <Image
-                  className="hidden md:block zoom-image"
+                  className="hidden md:block w-full zoom-image"
                   src={content?.mobile_banner?.filename}
                   alt={
                     content?.mobile_banner?.alt ||
