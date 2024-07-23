@@ -1,32 +1,25 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from 'next/navigation';
 import "../../styles/Blogstyle.scss";
 import { getblogData } from "@/app/lib/getblog";
 import { formattedDate } from "../lib/Common";
 import Svgs from "../lib/Svgs";
+import BeatLoader from "../Loader";
 
-const ITEMS_PER_PAGE = 9;
+const ITEMS_PER_PAGE = 2;
 
-export async function generateStaticParams() {
-  const totalBlog = await getTotalBlogCount();
-  const totalPages = Math.ceil(totalBlog / ITEMS_PER_PAGE);
-  
-  return Array.from({ length: totalPages }, (_, i) => ({
-    page: (i + 1).toString(),
-  }));
-}
+async function BlogList({ searchParams }) {
+  const currentPage = parseInt(searchParams?.page) || 1;
 
-async function getTotalBlogCount() {
-  const blogData = await getblogData(1, 1);
-  return blogData?.totalData || 0;
-}
-
-async function BlogList({ params }) {
-  const currentPage = parseInt(params?.page) || 1;
   const blogData = await getblogData(currentPage, ITEMS_PER_PAGE);
   const blogDataPerPage = blogData?.storyData || [];
   const totalBlog = blogData?.totalData || 0;
+
+  if (blogDataPerPage.length === 0 && currentPage !== 1) {
+    notFound();
+  }
 
   const getPageNumbers = () => {
     const pages = [];
@@ -50,13 +43,14 @@ async function BlogList({ params }) {
         </p>
       </div>
       <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 !gap-8">
+     
         {blogDataPerPage.length ? (
           blogDataPerPage.map(({ slug, name, content }, index) => (
             <div
               className="blog-card h-full border flex border-lightGray rounded-[10px]"
               key={index}
             >
-              <Link className="flex flex-col h-full" as={`/blog/${slug}`} href={`/blog/[slug]`} prefetch={true}>
+              <Link className="flex flex-col h-full" as={`/blog/${slug}`} href={`/blog/[slug]`} prefetch={false}>
                 <div className="flex-[0.5]">
                   <Image
                     className="block md:hidden w-full zoom-image"
@@ -111,9 +105,10 @@ async function BlogList({ params }) {
             </div>
           ))
         ) : (
-          <div className="flex items-center justify-center text-xl pt-20 pb-36">
-            No Data found.
-          </div>
+          <BeatLoader/>
+          // <div className="flex items-center justify-center text-xl pt-20 pb-36">
+          //   No Data found.
+          // </div>
         )}
       </div>
       {blogDataPerPage.length ? (
@@ -122,7 +117,7 @@ async function BlogList({ params }) {
             <li className={`h-10 w-fit font-bold mr-4 mb-2 flex items-center justify-center ${
               currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
             }`}>
-              <Link href={currentPage > 1 ? `/blog?page=${currentPage - 1}` : '#'}>
+              <Link href={currentPage > 1 ? `/blog?page=${currentPage - 1}` : '/blog'} scroll={false}>
                 {"< PREV"}
               </Link>
             </li>
@@ -135,7 +130,7 @@ async function BlogList({ params }) {
                     : ""
                 }`}
               >
-                <Link href={`/blog?page=${page}`}>
+                <Link href={`/blog?page=${page}`} scroll={false}>
                   {page}
                 </Link>
               </li>
@@ -145,7 +140,7 @@ async function BlogList({ params }) {
                 ? "opacity-50 cursor-not-allowed"
                 : ""
             }`}>
-              <Link href={currentPage < Math.ceil(totalBlog / ITEMS_PER_PAGE) ? `/blog?page=${currentPage + 1}` : '#'}>
+              <Link href={currentPage < Math.ceil(totalBlog / ITEMS_PER_PAGE) ? `/blog?page=${currentPage + 1}` : '/blog'} scroll={false}>
                 {"NEXT >"}
               </Link>
             </li>
@@ -156,4 +151,10 @@ async function BlogList({ params }) {
   );
 }
 
-export default BlogList;
+export default function BlogListPage({ searchParams }) {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <BlogList searchParams={searchParams} />
+    </Suspense>
+  );
+}

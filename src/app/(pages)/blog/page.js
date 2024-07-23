@@ -1,6 +1,9 @@
-import BlogList from "@/app/components/Blog/BlogList";
+
+import BlogListPage from "@/app/components/Blog/BlogList";
 import React from "react";
-export const dynamic = 'force-static'
+
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata() {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || '';
 
@@ -32,10 +35,10 @@ export async function generateMetadata() {
   };
 }
 
-const page = () => {
+const page =({ searchParams })  => {
   return (
     <div className="bg_contactus">
-      <BlogList />
+    <BlogListPage searchParams={searchParams} />;
     </div>
   );
 };
