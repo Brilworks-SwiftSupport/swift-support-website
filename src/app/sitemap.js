@@ -11,7 +11,7 @@ export default async function sitemap() {
   // const blogData = await getblogData(0, 100);
 
   const blog = blogData.map((data) => ({
-    url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://swiftsupport.ai/'}${data.full_slug}`,
+    url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://swiftsupport.ai/'}${data.loc}`,
     lastModified: data.published_at,
   }));
 
