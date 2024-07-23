@@ -426,6 +426,88 @@ const Article = ({ blok }) => {
               </div>
             </div>
           </div>
+          <div className="container mx-auto md:!px-3 !px-4">
+            <div className="flex flex-wrap flex-col xl:pb-20 md:pb-14 pb-8">
+              <div className="service_sec3">
+                <p className="home_sec2_txt3 !pb-0 md:!pt-8 !pt-0">
+                  <p className="!ml-0 text-[2rem] font-bold !w-full">
+                    You might also like
+                  </p>
+                </p>
+              </div>
+              <div
+                className={`grid 
+                   xl:grid-cols-3 md:grid-cols-2
+                 grid-cols-1 items-center gap-[2rem]`}
+              >
+          
+                {  blogData
+                    ?.filter(({ slug }) => !pathname?.includes(slug))
+                    ?.slice(0, `${isTablet ? 2 : 3}`)
+                    ?.map(({ slug, name, content }, index) => (
+                      <div
+              className="blog-card h-fit border flex border-lightGray rounded-[10px]"
+              key={index}
+            >
+              <Link className="flex flex-col h-full" as={`/blog/${slug}`} href={`/blog/[slug]`} prefetch={false}>
+                <div className="flex-[0.5]">
+                  <Image
+                    className="block md:hidden w-full zoom-image"
+                    src={content?.mobile_banner?.filename}
+                    alt={
+                      content?.mobile_banner?.alt ||
+                      content?.Image?.alt ||
+                      `Blog-List-banner-${index + 1}`
+                    }
+                    quality={40}
+                    width={310}
+                    height={150}
+                    priority={index === 0}
+                    sizes="(min-width: 1040px) 42.35vw, (min-width: 640px) 60.84vw, calc(100vw - 30px)"
+                  />
+                  <Image
+                    className="hidden md:block w-full zoom-image"
+                    src={content?.mobile_banner?.filename}
+                    alt={
+                      content?.mobile_banner?.alt ||
+                      content?.Image?.alt ||
+                      `Blog-List-banner-${index + 1}`
+                    }
+                    
+                    width={450}
+                    height={230}
+                    priority={index === 0}
+                    sizes="(min-width: 1040px) 42.35vw, (min-width: 640px) 60.84vw, calc(100vw - 30px)"
+                  />
+                </div>
+                <div className="flex flex-[0.4] flex-col p-[5%] h-full items-start bg-colorWhite">
+                  {/* <div
+                    className={`text-colorBlack font-medium px-1 py-1 rounded-lg mb-2 bg-themePink`}
+                  >
+                    {content?.Category === "Cloud DevOps and Data"
+                      ? "Cloud, DevOps and Data"
+                      : content?.Category}
+                  </div> */}
+                  <h2 className="mb-1">{name}</h2>
+                </div>
+                <div className="w-full flex  flex-[0.1] flex-row p-[5%] items-start border-t border-lightGray bg-lightGray bg-opacity-10">
+                  <div className="w-full flex items-center justify-between gap-2 text-colorGray">
+                    <div className="text-colorDarkBlue">
+                      By {content?.BlogAuthor}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Svgs name="calendar-icon" />
+                      <span>{formattedDate(content?.Published)}</span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </div>
+                    ))
+              }
+              </div>
+            </div>
+          </div>
         </>
       )}
     </div>

@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { scrollToSection } from "./lib/Common";
 import { usePathname } from "next/navigation";
-// import { MenuCustomList } from "./Menu";
+import { MenuCustomList } from "./Menu";
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);

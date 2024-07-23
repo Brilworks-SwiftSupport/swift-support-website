@@ -7,13 +7,15 @@ import { getblogData } from "@/app/lib/getblog";
 import { formattedDate } from "../lib/Common";
 import Svgs from "../lib/Svgs";
 import BeatLoader from "../Loader";
+import SearchDiv from "./SearchDiv";
 
 const ITEMS_PER_PAGE = 9;
 
 async function BlogList({ searchParams }) {
   const currentPage = parseInt(searchParams?.page) || 1;
+  const currentSearchValue = searchParams?.search || ""
 
-  const blogData = await getblogData(currentPage, ITEMS_PER_PAGE);
+  const blogData = await getblogData(currentPage, ITEMS_PER_PAGE,false,currentSearchValue);
   const blogDataPerPage = blogData?.storyData || [];
   const totalBlog = blogData?.totalData || 0;
 
@@ -42,12 +44,14 @@ async function BlogList({ searchParams }) {
           Discover Hidden Tech Trends with Swiftsupport Blog Insights
         </p>
       </div>
+      <SearchDiv/>
       <div className="grid xl:grid-cols-3 min-h-[80vh] md:grid-cols-2 grid-cols-1 !gap-8">
+       
       
         {blogDataPerPage.length ? (
           blogDataPerPage.map(({ slug, name, content }, index) => (
             <div
-              className="blog-card h-full border flex border-lightGray rounded-[10px]"
+              className="blog-card h-fit border flex border-lightGray rounded-[10px]"
               key={index}
             >
               <Link className="flex flex-col h-full" as={`/blog/${slug}`} href={`/blog/[slug]`} prefetch={false}>
@@ -82,13 +86,13 @@ async function BlogList({ searchParams }) {
                   />
                 </div>
                 <div className="flex flex-[0.4] flex-col p-[5%] h-full items-start bg-colorWhite">
-                  <div
+                  {/* <div
                     className={`text-colorBlack font-medium px-1 py-1 rounded-lg mb-2 bg-themePink`}
                   >
                     {content?.Category === "Cloud DevOps and Data"
                       ? "Cloud, DevOps and Data"
                       : content?.Category}
-                  </div>
+                  </div> */}
                   <h2 className="mb-1">{name}</h2>
                 </div>
                 <div className="w-full flex  flex-[0.1] flex-row p-[5%] items-start border-t border-lightGray bg-lightGray bg-opacity-10">
