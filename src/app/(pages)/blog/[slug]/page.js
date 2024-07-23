@@ -51,7 +51,7 @@ export async function generateMetadata({ params }){
     },
     authors: [{ name: content?.author }],
     alternates: {
-      canonical: `${process.env.NEXT_PUBLIC_BASE_URL}blog/${story.slug}/`,
+      canonical: `${process.env.NEXT_PUBLIC_BASE_URL}/blog/${story.slug}/`,
     },
     other: {
       "twitter:label1": "Written by",
