@@ -1,7 +1,7 @@
 import { calculateReadingTime } from "@/app/components/lib/Common";
 import StoryblokStory from "@storyblok/react/story";
 import { notFound } from "next/navigation";
-
+export const dynamic = 'force-static'
 // Fetch data with error handling and caching
 async function fetchData(slug) {
   const url = new URL(`https://api.storyblok.com/v2/cdn/stories/blog/${slug}`);

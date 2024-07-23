@@ -1,6 +1,6 @@
 import BlogList from "@/app/components/Blog/BlogList";
 import React from "react";
-
+export const dynamic = 'force-static'
 export async function generateMetadata() {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || '';
 
