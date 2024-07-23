@@ -1,44 +1,32 @@
-"use client";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import "../../styles/Blogstyle.scss";
-import { useMediaQuery } from "react-responsive";
 import { getblogData } from "@/app/lib/getblog";
 import { formattedDate } from "../lib/Common";
 import Svgs from "../lib/Svgs";
-import BeatLoader from "../Loader";
 
-const BlogList = () => {
-  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1080 });
-  const ITEMS_PER_PAGE = isTablet ? 8 : 9;
+const ITEMS_PER_PAGE = 9;
 
-  const [currentPage, setCurrentPage] = useState(1);
+export async function generateStaticParams() {
+  const totalBlog = await getTotalBlogCount();
+  const totalPages = Math.ceil(totalBlog / ITEMS_PER_PAGE);
+  
+  return Array.from({ length: totalPages }, (_, i) => ({
+    page: (i + 1).toString(),
+  }));
+}
 
-  const [blogDataPerPage, setBlogDataPerPage] = useState([]);
-  const [totalBlog, setTotalBlog] = useState(0);
+async function getTotalBlogCount() {
+  const blogData = await getblogData(1, 1);
+  return blogData?.totalData || 0;
+}
 
-  const fetchData = async () => {
- 
-    try {
-      const blogData = await getblogData(currentPage, ITEMS_PER_PAGE);
-      setBlogDataPerPage(blogData?.storyData);
-      setTotalBlog(blogData?.totalData);
-        
-    } catch (error) {
-      console.error(error);
-     
-    }
-;
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    window.scrollTo({ top: 0 });
-  }, [currentPage]);
+async function BlogList({ params }) {
+  const currentPage = parseInt(params?.page) || 1;
+  const blogData = await getblogData(currentPage, ITEMS_PER_PAGE);
+  const blogDataPerPage = blogData?.storyData || [];
+  const totalBlog = blogData?.totalData || 0;
 
   const getPageNumbers = () => {
     const pages = [];
@@ -52,7 +40,6 @@ const BlogList = () => {
   };
 
   const pageNumbers = getPageNumbers();
-  
 
   return (
     <div className="container max-w-[1280px] h-full mx-auto section-padding md:!pt-[120px] !pt-[80px] !pb-0">
@@ -62,15 +49,8 @@ const BlogList = () => {
           Discover Hidden Tech Trends with Swiftsupport Blog Insights
         </p>
       </div>
-     { !blogDataPerPage?.length ?<BeatLoader/> :
-     <> <div
-        className={`grid ${
-         !blogDataPerPage?.length
-            ? "grid-cols-1"
-            : "xl:grid-cols-3 md:grid-cols-2 grid-cols-1"
-        } !gap-8`}
-      >
-        {blogDataPerPage?.length ? (
+      <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 !gap-8">
+        {blogDataPerPage.length ? (
           blogDataPerPage.map(({ slug, name, content }, index) => (
             <div
               className="blog-card h-full border flex border-lightGray rounded-[10px]"
@@ -78,34 +58,34 @@ const BlogList = () => {
             >
               <Link className="flex flex-col h-full" as={`/blog/${slug}`} href={`/blog/[slug]`} prefetch={true}>
                 <div className="flex-[0.5]">
-                <Image
-                  className="block md:hidden w-full zoom-image"
-                  src={content?.mobile_banner?.filename}
-                  alt={
-                    content?.mobile_banner?.alt ||
-                    content?.Image?.alt ||
-                    `Blog-List-banner-${index + 1}`
-                  }
-                  quality={40}
-                  width="310"
-                  height="150"
-                  priority={index === 0}
-                  sizes="(min-width: 1040px) 42.35vw, (min-width: 640px) 60.84vw, calc(100vw - 30px)"
-                />
-                <Image
-                  className="hidden md:block w-full zoom-image"
-                  src={content?.mobile_banner?.filename}
-                  alt={
-                    content?.mobile_banner?.alt ||
-                    content?.Image?.alt ||
-                    `Blog-List-banner-${index + 1}`
-                  }
-                  width="450"
-                  height="230"
-                  priority={index === 0}
-                  sizes="(min-width: 1040px) 42.35vw, (min-width: 640px) 60.84vw, calc(100vw - 30px)"
-                />
-</div>
+                  <Image
+                    className="block md:hidden w-full zoom-image"
+                    src={content?.mobile_banner?.filename}
+                    alt={
+                      content?.mobile_banner?.alt ||
+                      content?.Image?.alt ||
+                      `Blog-List-banner-${index + 1}`
+                    }
+                    quality={40}
+                    width={310}
+                    height={150}
+                    priority={index === 0}
+                    sizes="(min-width: 1040px) 42.35vw, (min-width: 640px) 60.84vw, calc(100vw - 30px)"
+                  />
+                  <Image
+                    className="hidden md:block w-full zoom-image"
+                    src={content?.mobile_banner?.filename}
+                    alt={
+                      content?.mobile_banner?.alt ||
+                      content?.Image?.alt ||
+                      `Blog-List-banner-${index + 1}`
+                    }
+                    width={450}
+                    height={230}
+                    priority={index === 0}
+                    sizes="(min-width: 1040px) 42.35vw, (min-width: 640px) 60.84vw, calc(100vw - 30px)"
+                  />
+                </div>
                 <div className="flex flex-[0.4] flex-col p-[5%] h-full items-start bg-colorWhite">
                   <div
                     className={`text-colorBlack font-medium px-1 py-1 rounded-lg mb-2 bg-themePink`}
@@ -136,55 +116,44 @@ const BlogList = () => {
           </div>
         )}
       </div>
-      { blogDataPerPage?.length ? (
+      {blogDataPerPage.length ? (
         <div className="flex justify-center my-16">
           <ul className="list-none flex flex-wrap">
-            <li
-              className={`h-10 w-fit font-bold mr-4 mb-2 flex items-center justify-center cursor-pointer ${
-                currentPage === 1 ? "opacity-50 !cursor-not-allowed" : ""
-              }`}
-              onClick={() => {
-                if (currentPage > 1) {
-                  setCurrentPage(currentPage - 1);
-                }
-              }}
-            >
-              {"< PREV"}
+            <li className={`h-10 w-fit font-bold mr-4 mb-2 flex items-center justify-center ${
+              currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
+            }`}>
+              <Link href={currentPage > 1 ? `/blog?page=${currentPage - 1}` : '#'}>
+                {"< PREV"}
+              </Link>
             </li>
             {pageNumbers.map((page) => (
               <li
                 key={page}
-                className={`h-10 w-10 rounded-[10px] font-bold mr-4 mb-2 flex items-center justify-center cursor-pointer ${
+                className={`h-10 w-10 rounded-[10px] font-bold mr-4 mb-2 flex items-center justify-center ${
                   currentPage === page
                     ? "border-2 border-themeBlue text-colorBlack"
                     : ""
                 }`}
-                onClick={() => setCurrentPage(page)}
               >
-                {page}
+                <Link href={`/blog?page=${page}`}>
+                  {page}
+                </Link>
               </li>
             ))}
-            <li
-              className={`h-10 w-fit font-bold mr-4 mb-2 flex items-center justify-center cursor-pointer ${
-                currentPage === Math.ceil(totalBlog / ITEMS_PER_PAGE)
-                  ? "!opacity-50 !cursor-not-allowed"
-                  : ""
-              }`}
-              onClick={() => {
-                if (currentPage < Math.ceil(totalBlog / ITEMS_PER_PAGE)) {
-                  setCurrentPage(currentPage + 1);
-                }
-              }}
-            >
-              {"NEXT >"}
+            <li className={`h-10 w-fit font-bold mr-4 mb-2 flex items-center justify-center ${
+              currentPage === Math.ceil(totalBlog / ITEMS_PER_PAGE)
+                ? "opacity-50 cursor-not-allowed"
+                : ""
+            }`}>
+              <Link href={currentPage < Math.ceil(totalBlog / ITEMS_PER_PAGE) ? `/blog?page=${currentPage + 1}` : '#'}>
+                {"NEXT >"}
+              </Link>
             </li>
           </ul>
         </div>
-      ) : (
-        ""
-      )}</>}
+      ) : null}
     </div>
   );
-};
+}
 
 export default BlogList;

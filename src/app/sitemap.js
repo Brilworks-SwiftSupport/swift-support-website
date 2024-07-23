@@ -8,13 +8,13 @@ export default async function sitemap() {
     lastModified: data.lastmod,
   }));
 
-  const blogData = await getblogData(0, 100);
+  
 
-  const blog = blogData.storyData.map((data) => ({
+  const blog = await getblogData(0, 100).storyData.map((data) => ({
     url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://swiftsupport.ai/'}${data.full_slug}`,
     lastModified: data.published_at,
   }));
-  console.log(blog)
+
 
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://swiftsupport.ai';
 
