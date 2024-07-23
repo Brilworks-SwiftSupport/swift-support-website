@@ -4,23 +4,30 @@ import "./styles/Animation.scss";
 import Script from "next/script";
 import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 import StoryblokProvider from "./components/StoryblokProvider";
+import { Outfit } from 'next/font/google'
+import Header from "./components/Header";
 
 storyblokInit({
   accessToken: process.env.NEXT_PUBLIC_ACCESS_TOKEN,
   use: [apiPlugin],
 });
+const outfit = Outfit({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--global-font',
+})
+
 
 export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL),
 };
 
-const Header = dynamic(() => import("./components/Header"));
 const Footer = dynamic(() => import("./components/Footer"));
 
 export default function RootLayout({ children }) {
   return (
     <StoryblokProvider>
-      <html lang="en">
+      <html lang="en" className={`${outfit.variable}`}>
         <head>
           {process.env.VERCEL_ENV === "production" && (
             <>
