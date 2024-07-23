@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { scrollToSection } from "./lib/Common";
 import { usePathname } from "next/navigation";
+// import { MenuCustomList } from "./Menu";
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
@@ -88,6 +89,7 @@ const Header = () => {
         </Link>
       )}
 
+
       <Link
         href="https://cal.com/hiteshr/15min"
         rel="noopener"
@@ -97,6 +99,10 @@ const Header = () => {
       >
         Contact
       </Link>
+      <div>
+      {/* <MenuCustomList/> */}
+      </div>
+   
       <Link
         rel="noopener"
         target="_blank"

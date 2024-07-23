@@ -42,7 +42,7 @@ async function BlogList({ searchParams }) {
           Discover Hidden Tech Trends with Swiftsupport Blog Insights
         </p>
       </div>
-      <div className="grid xl:grid-cols-3 min-h-[70vh] md:grid-cols-2 grid-cols-1 !gap-8">
+      <div className="grid xl:grid-cols-3 min-h-[80vh] md:grid-cols-2 grid-cols-1 !gap-8">
       
         {blogDataPerPage.length ? (
           blogDataPerPage.map(({ slug, name, content }, index) => (
@@ -74,6 +74,7 @@ async function BlogList({ searchParams }) {
                       content?.Image?.alt ||
                       `Blog-List-banner-${index + 1}`
                     }
+                    
                     width={450}
                     height={230}
                     priority={index === 0}
@@ -153,7 +154,7 @@ async function BlogList({ searchParams }) {
 
 export default function BlogListPage({ searchParams }) {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div><BeatLoader></BeatLoader></div>}>
       <BlogList searchParams={searchParams} />
     </Suspense>
   );
