@@ -7,7 +7,7 @@ const MenuListDynamic = ({menuItems}) => {
     <MenuList className=" rounded-[8px]  md:!z-[1] !z-[999] ">
        
         
-    {menuItems.map(({ title, description }) => (
+    {menuItems.map(({ title}) => (
       <Link href="#" key={title}>
         <MenuItem className="!flex !items-start py-2 ">
          
