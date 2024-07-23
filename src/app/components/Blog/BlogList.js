@@ -74,6 +74,7 @@ async function BlogList({ searchParams }) {
                       content?.Image?.alt ||
                       `Blog-List-banner-${index + 1}`
                     }
+                    
                     width={450}
                     height={230}
                     priority={index === 0}
@@ -153,7 +154,7 @@ async function BlogList({ searchParams }) {
 
 export default function BlogListPage({ searchParams }) {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div><BeatLoader></BeatLoader></div>}>
       <BlogList searchParams={searchParams} />
     </Suspense>
   );
