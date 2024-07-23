@@ -42,7 +42,7 @@ async function BlogList({ searchParams }) {
           Discover Hidden Tech Trends with Swiftsupport Blog Insights
         </p>
       </div>
-      <div className="grid xl:grid-cols-3 min-h-[40vh] md:grid-cols-2 grid-cols-1 !gap-8">
+      <div className="grid xl:grid-cols-3 min-h-[70vh] md:grid-cols-2 grid-cols-1 !gap-8">
       
         {blogDataPerPage.length ? (
           blogDataPerPage.map(({ slug, name, content }, index) => (
