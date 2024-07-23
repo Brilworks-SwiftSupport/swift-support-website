@@ -37,7 +37,7 @@ export async function generateMetadata() {
 
 const page =({ searchParams })  => {
   return (
-    <div className="bg_contactus min-h-[90vh]">
+    <div className="bg_contactus min-h-[100vh]">
     <BlogListPage searchParams={searchParams} />;
     </div>
   );
