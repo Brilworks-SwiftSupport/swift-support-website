@@ -13,11 +13,9 @@ const MenuListDynamic = dynamic(() => import( "./MenuList"));
 const menuItems = [
   {
     title: "Virtual assistance for Customer support",
- 
   },
   {
     title: "Virtual assistance Sales",
- 
   },
 ];
  
@@ -47,7 +45,6 @@ export function MenuCustomList() {
         </Button>
       </MenuHandler>
       <MenuListDynamic menuItems={menuItems}/>
-     
     </Menu>
   );
 }
