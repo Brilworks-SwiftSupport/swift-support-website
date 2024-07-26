@@ -7,9 +7,6 @@ import {
 } from "@material-tailwind/react";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import MenuListDynamic from "./MenuList";
-// import dynamic from "next/dynamic";
-
-// const MenuListDynamic = dynamic(() => import( "./MenuList"));
 
 const menuItems = [
   {
