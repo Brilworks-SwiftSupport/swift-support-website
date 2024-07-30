@@ -11,8 +11,8 @@ export default async function sitemap() {
   // const blogData = await getblogData(0, 100);
 
   const blog = blogData.map((data) => ({
-    url: `${data.loc}`,
-    lastModified: data.lastmod,
+    url: `${data?.loc}`,
+    lastModified: data?.lastmod ||"",
   }));
 
 
