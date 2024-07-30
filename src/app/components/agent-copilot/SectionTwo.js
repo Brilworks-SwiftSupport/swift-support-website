@@ -5,7 +5,7 @@ import ImageSection from "./ImageSection";
 
 const SectionTwo = () => {
   return (
-    <div className=" py-[150px] bg-[#fff] ">
+    <div className="lg:py-[150px] py-[100px] bg-[#fff] ">
    <div className="container mx-auto lg:px-[5rem]">
         <div className=" w-full px-[15px] flex mb-[80px] flex-col space-y-4 ">
           <div className="image flex justify-center">
@@ -17,12 +17,12 @@ const SectionTwo = () => {
               priority="true"
             ></Image>
           </div>
-          <div className=" flex-[0.2] flex  font-bold md:scale-[1] scale-[0.8]  justify-center text-[40px]">
+          <div className=" flex-[0.2] flex  font-bold md:scale-[1] scale-[0.8]  justify-center lg:text-[40px] text-[38px]">
             <span className="text-blue-500  mr-2"> Pre-Call</span>
             Assist
           </div>
         </div>
-        <div className="flex flex-col lg:gap-[unset] gap-[6rem] ">
+        <div className="flex flex-col lg:gap-[unset]  gap-[5rem] ">
         <div className="flex lg:flex-row  flex-col lg:h-[665px]">
           <DiscriptionList />
           <ImageSection />
