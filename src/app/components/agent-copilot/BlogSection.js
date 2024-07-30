@@ -59,7 +59,6 @@ const BlogSection = async () => {
                   />
                 </div>
                 <div className="flex flex-[0.4] flex-col pt-[5%] h-full items-start bg-colorWhite">
-                 
                   <h2 className="mb-1 text-[1.6rem]">{name}</h2>
                 </div>
                 <div className="flex flex-[0.4] flex-col pt-[5%] h-full items-start bg-colorWhite ">

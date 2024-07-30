@@ -12,14 +12,15 @@
 .splide{
  padding: 8rem 0 8rem 0;
 }
-.splide__slide {
-   
+.splide_ {
+   overflow: visible;
 
 //   display: flex;
 //   justify-content: center;
 
 }
 
+.splide__track {overflow: visible;}
 
 .splide-list{
    

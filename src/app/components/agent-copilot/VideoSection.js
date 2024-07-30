@@ -36,7 +36,7 @@ const VideoSection = () => {
                         <button
                             
                             onClick={togglePlayPause}
-                            className={`bg-[#01a9f4] w-[100px] h-[100px] rounded-full flex items-center justify-center ${isPlaying ?"opacity-[0]":""} transition-all duration-[0.5s] hover:opacity-[1] `}
+                            className={`bg-[#01a9f4] w-[150px] h-[100px] rounded-xl flex items-center justify-center ${isPlaying ?"opacity-[0]":""} transition-all duration-[0.5s] hover:opacity-[1] `}
                         >
                             {isPlaying ? (
                                 <FaPause className="text-white text-3xl" />
