@@ -5,7 +5,7 @@ import {
   MenuHandler,
   Button,
 } from "@material-tailwind/react";
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import { IoIosArrowUp } from "react-icons/io";
 import MenuListDynamic from "./MenuList";
 
 const menuItems = [
@@ -34,12 +34,11 @@ export function MenuCustomList() {
           className="!flex items-center !focus:outline-none gap-3 text-base !text-[#000]  capitalize tracking-normal nav-underline  md:justify-center justify-start font-medium"
         >
           Technology
-          <ChevronDownIcon
-            strokeWidth={2.5}
+          <IoIosArrowUp strokeWidth={2.5}
             className={`h-3.5 w-3.5 transition-transform ${
               openMenu ? "rotate-180" : ""
-            }`}
-          />
+            }`} />
+        
         </Button>
       </MenuHandler>
       <MenuListDynamic menuItems={menuItems}/>
