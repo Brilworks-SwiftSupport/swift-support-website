@@ -12,7 +12,7 @@ export default async function sitemap() {
 
   const blog = blogData.map((data) => ({
     url: `${data.loc}`,
-    lastModified: data.published_at,
+    lastModified: data.lastmod,
   }));
 
 
