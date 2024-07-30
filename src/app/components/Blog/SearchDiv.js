@@ -10,13 +10,13 @@ const SearchDiv = () => {
     
     const searchQueryUpdated = useCallback(()=>{
         searchQuery?.trim() ? router.push(`/blog?search=${searchQuery || ""}`) :router.push(`/blog`);
-    },[searchQuery])
+    },[searchQuery ,router])
 
     useEffect(()=>{
      setTimeout(()=>{
         searchQueryUpdated()
      },900)
-    },[searchQuery])
+    },[searchQuery ,searchQueryUpdated])
     
   return (
 

@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect } from "react";
 import {
   Menu,
@@ -5,20 +6,14 @@ import {
   Button,
 } from "@material-tailwind/react";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
-import dynamic from "next/dynamic";
-
-const MenuListDynamic = dynamic(() => import( "./MenuList"));
+import MenuListDynamic from "./MenuList";
 
 const menuItems = [
   {
     title: "Virtual assistance for Customer support",
-    // description:
-    //   "AI-powered chatbot providing virtual customer support by efficiently resolving user issues and inquiries.",
   },
   {
     title: "Virtual assistance Sales",
-    // description:
-    //   "AI-powered chatbot offering virtual assistance for sales, engaging customers, and driving conversions efficiently.",
   },
 ];
  
@@ -38,7 +33,7 @@ export function MenuCustomList() {
           variant="text"
           className="!flex items-center !focus:outline-none gap-3 text-base !text-[#000]  capitalize tracking-normal nav-underline  md:justify-center justify-start font-medium"
         >
-          Technology{" "}
+          Technology
           <ChevronDownIcon
             strokeWidth={2.5}
             className={`h-3.5 w-3.5 transition-transform ${
@@ -48,7 +43,6 @@ export function MenuCustomList() {
         </Button>
       </MenuHandler>
       <MenuListDynamic menuItems={menuItems}/>
-     
     </Menu>
   );
 }

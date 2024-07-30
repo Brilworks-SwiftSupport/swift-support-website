@@ -1,0 +1,43 @@
+.splide__pagination__page{
+ border-radius: 0px;
+ width: 40px;
+ height: 4px !important;
+
+
+ background: #202020;
+}
+.splide__pagination__page.is-active{
+    background:#fff !important;
+}
+.splide{
+ padding: 8rem 0 8rem 0;
+}
+.splide__slide {
+   
+
+//   display: flex;
+//   justify-content: center;
+
+}
+
+
+.splide-list{
+   
+    .splide__pagination {
+        position: absolute !important;
+        bottom: 4% !important;
+        top: unset !important;
+     path{
+        fill: #fff;
+     }
+    }
+    .splide__arrow{
+        position: absolute !important;
+        bottom: 0% !important;
+        margin: 0px 10%;
+        top: unset !important;
+       path{
+        fill:white  !important;
+       }
+    }
+}

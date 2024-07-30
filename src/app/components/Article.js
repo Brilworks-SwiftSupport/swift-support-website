@@ -154,6 +154,46 @@ const Article = ({ blok }) => {
             <div className="flex flex-wrap -mx-4">
               <div className="sxl:basis-3/4 sxl:flex-shrink-0 sxl:flex-grow-0 sxl:max-w-[75%] sxl:ml-[20%] sxl:mb-6 mb-4 !px-4 min-h-[1px] w-full">
                 <div className="slg:w-[calc(100%_-_170px)]">
+                <div
+                  className="w-full inline-flex flex-wrap !font-semibold items-center mb-3 min-h-[24px]"
+                  aria-label="Breadcrumb"
+                >
+              
+                  <span className="blog-navigation">
+                    <Link title="Brilworks Blog." href="/">
+                      Swift Support
+                    </Link>
+                  </span>
+                  <span className="self-center md:mx-2 mx-1 mt-[2px]">
+                    <Image
+                      className="!w-[20px]"
+                      src="/images/black_aerrow-1.png"
+                      alt="arrow"
+                      width="20"
+                      height="10"
+                      priority="true"
+                    />
+                  </span>
+                  <span className="blog-navigation">
+                    <Link title="Go to Blog." href="/blog">
+                      Blog
+                    </Link>
+                  </span>
+                  <span className="self-center md:mx-2 mx-1 mt-[2px]">
+                    <Image
+                      className="!w-[20px]"
+                      src="/images/black_aerrow-1.png"
+                      alt="arrow"
+                      width="20"
+                      height="10"
+                      priority="true"
+                    />
+                  </span>
+               
+                  
+                  <span>{blok?.story?.content?.title}</span>
+               
+                </div>
                   <h1 className="md:!text-[3rem] !text-[2rem] !font-bold !mb-5 md:leading-[57px] leading-[44px] -tracking-[.52px]">
                     {blok?.title}
                   </h1>
@@ -428,7 +468,11 @@ const Article = ({ blok }) => {
           </div>
           <div className="container mx-auto md:!px-3 !px-4">
             <div className="flex flex-wrap flex-col xl:pb-20 md:pb-14 pb-8">
+<<<<<<< HEAD
             <div className="service_sec3 mb-2">
+=======
+              <div className="service_sec3 mb-2">
+>>>>>>> 2479ae2005ec82210c38382e056966fb14d50407
                 <p className="home_sec2_txt3 !pb-0 md:!pt-8 !pt-0">
                   <p className="!ml-0 text-[2rem] font-bold !w-full">
                     You might also like
