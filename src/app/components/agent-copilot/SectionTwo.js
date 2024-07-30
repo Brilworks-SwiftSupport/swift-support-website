@@ -6,7 +6,7 @@ import ImageSection from "./ImageSection";
 const SectionTwo = () => {
   return (
     <div className=" py-[150px] bg-[#fff] ">
-      <div className="container mx-auto px-[5rem]">
+   <div className="container mx-auto lg:px-[5rem]">
         <div className=" w-full px-[15px] flex mb-[80px] flex-col space-y-4 ">
           <div className="image flex justify-center">
             <Image
@@ -22,19 +22,20 @@ const SectionTwo = () => {
             Assist
           </div>
         </div>
-
-        <div className="flex h-[665px]">
+        <div className="flex flex-col lg:gap-[unset] gap-[6rem] ">
+        <div className="flex lg:flex-row  flex-col lg:h-[665px]">
           <DiscriptionList />
           <ImageSection />
         </div>
-        <div className="flex  h-[665px]">
+        <div className="flex lg:flex-row  flex-col lg:h-[665px]">
           <ImageSection />
 
           <DiscriptionList />
         </div>
-        <div className="flex  h-[665px]">
+        <div className="flex lg:flex-row  flex-col lg:h-[665px]">
           <DiscriptionList />
           <ImageSection />
+        </div>
         </div>
       </div>
     </div>

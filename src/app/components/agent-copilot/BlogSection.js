@@ -18,7 +18,7 @@ const BlogSection = async () => {
   }
 
   return (
-    <div className="container mx-auto py-[100px] px-[120px]">
+    <div className="container lg:mx-auto px-[5%] py-[10%] lg:py-[100px] lg:px-[120px]">
       <div className="grid xl:grid-cols-3 min-h-[80vh] md:grid-cols-2 grid-cols-1 !gap-10">
         {blogDataPerPage.length ? (
           blogDataPerPage.map(({ slug, name, content }, index) => (

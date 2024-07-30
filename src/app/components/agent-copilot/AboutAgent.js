@@ -3,8 +3,8 @@ import React from "react";
 
 const AboutAgent = () => {
   return (
-    <div className=" pt-[50px] lg:pt-[150px] pb-[60px] md:pb-[250px] bg-[url(/images/agent-copilot/bottom.svg)] bg-bottom bg-no-repeat w-[95%] mx-auto flex justify-center items-center">
-      <div className="flex flex-col space-y-5 justify-center items-center container px-[5rem]">
+    <div className=" pt-[50px] lg:pt-[150px] pb-[60px] md:pb-[250px] bg-[url(/images/agent-copilot/bottom.svg)] bg-bottom bg-no-repeat lg:w-[95%] mx-auto flex justify-center items-center">
+      <div className="flex flex-col space-y-5 justify-center items-center container lg:px-[5rem]">
         <div className="flex flex-col justify-center  md:mb-[75px]  mb-[45px] items-center">
           <Image
             src={"/images/logo.svg"}

@@ -13,14 +13,14 @@
  padding: 8rem 0 8rem 0;
 }
 .splide_ {
-   overflow: visible;
+//    overflow: visible;
 
 //   display: flex;
 //   justify-content: center;
 
 }
 
-.splide__track {overflow: visible;}
+// .splide__track {overflow: visible;}
 
 .splide-list{
    
@@ -41,4 +41,19 @@
         fill:white  !important;
        }
     }
+}
+
+  
+  @media (max-width: 767px) {
+    .splide__arrow{
+    display: none;
+    }
+    .splide{
+        padding: 2rem 0 2rem 0;
+       }
+.splide__track {
+    padding: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
 }

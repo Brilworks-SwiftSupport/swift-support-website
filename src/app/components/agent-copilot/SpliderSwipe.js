@@ -12,14 +12,14 @@ import '@splidejs/react-splide/css/sea-green';
 import '@splidejs/react-splide/css/core';
 
 import "./splide.scss"
-import Image from "next/image";
+// import Image from "next/image";
 import FoundationSwiperDataDiv from "./FoundationSwiperDataDiv";
 
 
 const SpliderSwipe = () => {
   return (
     <div>
-<Splide hasTrack={ true } aria-label="" options={{
+<Splide hasTrack={ true } aria-label=""  options={{
     
     padding:{left:280 , right:160},
     

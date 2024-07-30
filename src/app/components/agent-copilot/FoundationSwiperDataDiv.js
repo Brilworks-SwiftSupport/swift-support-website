@@ -3,8 +3,8 @@ import React from "react";
 
 const FoundationSwiperDataDiv = () => {
   return (
-    <div className="flex shadow-lg h-[560px] w-[1300px]  ">
-      <div className="flex rounded-lg   bg-[#fff] bg-opacity-[0.1] ">
+    <div className="flex shadow-lg lg:h-[560px] lg:w-[1300px]  w-full  ">
+      <div className="flex rounded-lg  flex-col lg:flex-row  bg-[#fff] bg-opacity-[0.1] ">
         <div className="flex-[0.5] p-4 ">
           <Image
             src={"/images/Education_img.webp"}
@@ -16,25 +16,25 @@ const FoundationSwiperDataDiv = () => {
         </div>
         <div className="flex-[0.5] flex justify-between flex-col space-y-5 p-5">
           <div className="space-y-5">
-            <h1 className="text-[40px] font-bold text-white">
+            <h1 className="lg:text-[40px] text-[20px] font-bold text-white">
               Powerd by LLaMb
             </h1>
-            <p className="text-white text-[22px]">
+            <p className="text-white lg:text-[22px] text-[15px]">
               LLaMB is a new low code framworks for building powerfull
               generative ai Agents in the enterprise safely securely and fast
             </p>
 
             <ul className="list-outside pl-6 space-y-1">
-              <li className="text-[#ffffff54] marker:text-[#ffffff54] font-[400] text-[18px] leading-[32px] list-disc ">
+              <li className="text-[#ffffff54] marker:text-[#ffffff54] font-[400] lg:text-[18px] text-[15px] leading-[32px] list-disc ">
                 Built in Trust Layer
               </li>
-              <li className="text-[#ffffff54] marker:text-[#ffffff54] font-[400] text-[18px] leading-[32px] list-disc ">
+              <li className="text-[#ffffff54] marker:text-[#ffffff54] font-[400] lg:text-[18px] text-[15px] leading-[32px] list-disc ">
                 Dynamic prompts
               </li>
-              <li className="text-[#ffffff54] marker:text-[#ffffff54] font-[400] text-[18px] leading-[32px] list-disc ">
+              <li className="text-[#ffffff54] marker:text-[#ffffff54] font-[400] lg:text-[18px] text-[15px] leading-[32px] list-disc ">
                 Built in Trust Layer
               </li>
-              <li className="text-[#ffffff54] marker:text-[#ffffff54] font-[400] text-[18px] leading-[32px] list-disc ">
+              <li className="text-[#ffffff54] marker:text-[#ffffff54] font-[400] lg:text-[18px] text-[15px] leading-[32px] list-disc ">
                 Dynamic prompts
               </li>
             </ul>

@@ -19,8 +19,8 @@ const VideoSection = () => {
     };
 
     return (
-        <div className="h-[95vh] bg-[#01a9f4] flex items-center justify-center">
-            <div className="container mx-auto py-[70px]">
+        <div className="lg:h-[95vh] bg-[#01a9f4] flex items-center justify-center">
+        <div className="container lg:mx-auto px-[5%] py-[10%] lg:py-[100px] lg:px-[120px]">
                 <div className="mx-auto lg:w-[1300px] lg:h-[700px] relative">
                     <video
                         ref={videoRef}
@@ -36,7 +36,7 @@ const VideoSection = () => {
                         <button
                             
                             onClick={togglePlayPause}
-                            className={`bg-[#01a9f4] w-[150px] h-[100px] rounded-xl flex items-center justify-center ${isPlaying ?"opacity-[0]":""} transition-all duration-[0.5s] hover:opacity-[1] `}
+                            className={`bg-[#01a9f4] lg:w-[150px] lg:h-[100px] h-[3rem] w-[4rem] lg:rounded-xl rounded-lg flex items-center justify-center ${isPlaying ?"opacity-[0]":""} transition-all duration-[0.5s] hover:opacity-[1] `}
                         >
                             {isPlaying ? (
                                 <FaPause className="text-white text-3xl" />
