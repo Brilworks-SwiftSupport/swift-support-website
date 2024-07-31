@@ -7,6 +7,7 @@ import {
 } from "@material-tailwind/react";
 import { IoIosArrowUp } from "react-icons/io";
 import MenuListDynamic from "./MenuList";
+import { usePathname } from "next/navigation";
 
 const menuItems = [
   {
@@ -18,6 +19,7 @@ const menuItems = [
 ];
  
 export function MenuCustomList() {
+  const pathname = usePathname()
   const [openMenu, setOpenMenu] = React.useState(false);
 
   useEffect(()=>{
@@ -31,7 +33,7 @@ export function MenuCustomList() {
       <MenuHandler >
         <Button
           variant="text"
-          className="!flex items-center !focus:outline-none gap-3 text-base !text-[#000]  capitalize tracking-normal nav-underline  md:justify-center justify-start font-medium"
+          className={`!flex items-center !focus:outline-none gap-3 text-base  ${pathname.includes("agent-copilot") ? "!text-[#fff] " : "!text-[#000]"}   capitalize tracking-normal nav-underline  md:justify-center justify-start font-medium`}
         >
           Technology
           <IoIosArrowUp strokeWidth={2.5}

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { Navbar, Collapse } from "@material-tailwind/react";
 import Link from "next/link";
 import Image from "next/image";
@@ -12,8 +12,20 @@ const Header = () => {
   const pathname = usePathname();
   const [hideHeader, setHideHeader] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [scroll,SetScroll] = useState(0)
 
   const handleScrollProgress = () => {
+    if (window && window.scrollY ) {
+  
+      console.log(window.scrollY)
+      if (window.scrollY< 100) {
+        setHideHeader(false);
+     
+      } else {
+        setHideHeader(true);
+      }
+      SetScroll(window.scrollY/1000)
+    }
     const winScroll =
       document.body.scrollTop || document.documentElement.scrollTop;
     const height =
@@ -23,38 +35,27 @@ const Header = () => {
     setScrollProgress(scrolled);
   };
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScrollProgress);
-    return () => {
-      window.removeEventListener("scroll", handleScrollProgress);
-    };
-  }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window && window.scrollY && document.documentElement) {
-        if (window.scrollY > 30) {
-          setHideHeader(true);
-        } else {
-          setHideHeader(false);
-        }
-      }
-    };
 
     window.addEventListener(
       "resize",
       () => window.innerWidth >= 767 && setOpenNav(false)
     );
 
-    window.addEventListener("scroll", handleScroll);
-
+    window.addEventListener("scroll", handleScrollProgress);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleScrollProgress);
     };
-  }, []);
+  }, );
+
+
+useEffect(()=>{
+ console.log(hideHeader)
+},[hideHeader])
 
   const navList = (
-    <ul className="mt-2 mb-4 flex flex-col gap-3 items-center md:mb-0 md:mt-0 md:flex-row md:items-center md:gap-3 lg:gap-6">
+    <ul className={`mt-2 mb-4 flex flex-col gap-3 items-center md:mb-0 md:mt-0 md:flex-row md:items-center md:gap-3 lg:gap-6`}>
       {pathname === "/" && (
         <Link
           href="#features"
@@ -62,7 +63,7 @@ const Header = () => {
             scrollToSection(e, "features");
             setOpenNav(false);
           }}
-          className="nav-underline flex items-center md:justify-center justify-start font-medium"
+          className={`nav-underline flex items-center md:justify-center justify-start font-medium  ${pathname.includes("agent-copilot") ? "!text-[#fff]" : ""}`}
         >
           Features
         </Link>
@@ -71,7 +72,7 @@ const Header = () => {
       <Link
         href="/blog"
         onClick={() => setOpenNav(false)}
-        className="nav-underline flex items-center md:justify-center justify-start font-medium"
+        className={`nav-underline flex items-center md:justify-center justify-start font-medium  ${pathname.includes("agent-copilot") ? "!text-[#fff]" : ""}`}
       >
         Blog
       </Link>
@@ -82,7 +83,7 @@ const Header = () => {
             scrollToSection(e, "pricing-plan");
             setOpenNav(false);
           }}
-          className="nav-underline flex items-center md:justify-center justify-start font-medium"
+          className={`nav-underline flex items-center md:justify-center justify-start font-medium  ${pathname.includes("agent-copilot") ? "text-[#fff]" : ""}`}
         >
           Pricing
         </Link>
@@ -94,7 +95,7 @@ const Header = () => {
         rel="noopener"
         target="_blank"
         onClick={() => setOpenNav(false)}
-        className="nav-underline flex items-center md:justify-center justify-start font-medium"
+        className={`nav-underline flex items-center md:justify-center justify-start font-medium  ${pathname.includes("agent-copilot") ? "!text-[#fff]" : ""}`}
       >
         Contact
       </Link>
@@ -107,7 +108,7 @@ const Header = () => {
         target="_blank"
         href="https://app.swiftsupport.ai/signup"
         onClick={() => setOpenNav(false)}
-        className="button_black"
+        className={` ${pathname.includes("agent-copilot") ? "!text-[#000] !bg-white black-button" : " button_black"}`}
       >
         Sign Up
       </Link>
@@ -115,15 +116,18 @@ const Header = () => {
   );
 
   return (
-    <div className="header">
+    <div className={`header `}>
       <Navbar
-        className={`rounded-none border-none z-10 max-w-full py-0 px-0 ${
-          openNav ? "h-[100vh]" : "bg-transparent"
+       style={{backgroundColor:`rgba(255,255,255,${scroll})`}}
+        className={`rounded-none border-none z-10 max-w-full py-0 px-0 ${pathname.includes("agent-copilot") ? "!bg-black" : ""} ${
+          openNav ? "h-[100vh]" : ""
         }`}
       >
         <div
-          className={`flex items-center md:flex-row justify-between header_padding ${
-            hideHeader || openNav || pathname !== "/" ? "header-bg" : ""
+
+       style={{backgroundColor:`rgba(255,255,255,${scroll})`}}
+          className={`flex items-center md:flex-row justify-between header_padding ${pathname.includes("agent-copilot") ? "!bg-black " : ""} ${
+        ""    // hideHeader || openNav || pathname !== "/" ? "header-bg" : "" 
           }`}
         >
           <div
@@ -133,7 +137,7 @@ const Header = () => {
             <Link href="/">
               <Image
                 className="block lg:hidden"
-                src="/images/logo.svg"
+                src={pathname.includes("agent-copilot")?"/images/footer-logo.svg":"/images/logo.svg"}
                 alt="SwiftSupport Logo"
                 width="176"
                 height="49"
@@ -141,7 +145,7 @@ const Header = () => {
               />
               <Image
                 className="hidden lg:block"
-                src="/images/logo.svg"
+                src={pathname.includes("agent-copilot")?"/images/footer-logo.svg":"/images/logo.svg"}
                 alt="SwiftSupport Logo"
                 width="270"
                 height="74"
@@ -172,12 +176,12 @@ const Header = () => {
                 </svg>
               ) : (
                 <Image
-                  src="/images/menu-icon.svg"
+                  src={"/images/menu-icon.svg"}
                   alt="Menu icon"
                   width={20}
                   height={20}
                   priority={true}
-                  className="top-[45px] left-[20px] mr-3"
+                  className={` ${pathname.includes("agent-copilot")? "invert":"" } top-[45px] left-[20px] mr-3`}
                 />
               )}
             </div>
