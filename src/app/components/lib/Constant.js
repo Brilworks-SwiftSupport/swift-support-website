@@ -1777,5 +1777,16 @@ export const blogData = [
   {
     loc: "https://www.swiftsupport.ai/blog/swiftsupport-in-customer-service",
     lastmod: "2024-06-06T06:46:28.121Z",
-  }
+  }, {
+    loc: "https://www.swiftsupport.ai/blog/advanced-algorithms-to-improve-customer-service",
+    lastmod: "2024-07-22T11:18:52.334Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/the-dos-and-don-ts-of-healthcare-chatbot-implementation",
+    lastmod: "2024-07-19T08:31:10.395Z",
+  },
+  
+   
 ]
+
+
