@@ -35,18 +35,17 @@ export default function RootLayout({ children }) {
                 name="google-site-verification"
                 content="c0Wa7YSps4FhBSg1lMMWnE7_livU8FgBZAbCRtwW6JE"
               />
-              
             </>
           )}
           <Script
-                defer
-                id="chatbot"
-              >{`window.chatBotConfig = {agentId: 317}`}</Script>
-              <Script
-                defer
-                id="chatbot-widget-script"
-                src="https://dev.swiftsupport.ai/ChatbotScripts/chatbotBubble.js"
-              />
+            defer
+            id="chatbot"
+          >{`window.chatBotConfig = {agentId: 302}`}</Script>
+          <Script
+            defer
+            id="chatbot-widget-script"
+            src="https://dev.swiftsupport.ai/ChatbotScripts/chatbotBubble.js"
+          />
         </head>
         <body suppressHydrationWarning={true}>
           <Header />
