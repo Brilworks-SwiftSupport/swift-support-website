@@ -6,7 +6,7 @@ export const dynamic = 'force-static'
 async function fetchData(slug) {
   const url = new URL(`https://api.storyblok.com/v2/cdn/stories/blog/${slug}`);
   url.searchParams.append('token', process.env.NEXT_PUBLIC_ACCESS_TOKEN || '');
-  url.searchParams.append('version', "draft" );
+  url.searchParams.append('version',process.env.NEXT_PUBLIC_STORYBLOK_VERSION );
 
   try {
     const res = await fetch(url.toString(), { 
