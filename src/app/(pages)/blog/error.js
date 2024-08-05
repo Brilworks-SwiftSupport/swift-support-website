@@ -7,7 +7,7 @@ export default function Error({ error, reset }) {
         <div className="flex-container">
           <div className="text-center">
             <h1 className="!pt-[90px] text-center">
-              {error}
+              {console.log(error)}
               <span className="!text-[5rem] mr-2" id="digit1">
                 4
               </span>
