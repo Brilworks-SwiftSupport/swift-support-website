@@ -20,7 +20,9 @@ async function BlogList({ searchParams }) {
   const totalBlog = blogData?.totalData || 0;
 
   if (blogDataPerPage.length === 0 && currentPage !== 1) {
-    notFound();
+    // notFound();
+    return <><BeatLoader></BeatLoader></>
+
   }
 
   const getPageNumbers = () => {
