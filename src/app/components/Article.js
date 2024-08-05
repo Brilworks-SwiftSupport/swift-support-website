@@ -24,9 +24,9 @@ const Article = ({ blok }) => {
   const [activeLink, setActiveLink] = useState(null);
 
   const blogTableOfContent =
-    blok.Content_1 +
-      blok.Content_2 +
-      blok.Content_3 +
+    blok?.Content_1 +
+      blok?.Content_2 +
+      blok?.Content_3 +
       `${blok?.FAQ?.length && "<h2>FAQ</h2>"}` || "";
 
   const readingTime = calculateReadingTime(blogTableOfContent);
@@ -34,7 +34,7 @@ const Article = ({ blok }) => {
   async function fetchData() {
     try {
       const blogData = await getblogData(1, isTablet ? 3 : 4);
-      setBlogData(blogData.storyData);
+      setBlogData(blogData?.storyData);
     } catch (error) {
       console.error(error);
     }
