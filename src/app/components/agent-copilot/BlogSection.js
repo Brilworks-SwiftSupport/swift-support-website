@@ -67,14 +67,14 @@ const BlogSection = async () => {
                       ...(
                         content?.metatags?.description || content?.Quick_Summary
                       )
-                        .split(" ")
-                        .slice(0, 10),
+                        ?.split(" ")
+                        ?.slice(0, 10),
                       (
                         content?.metatags?.description || content?.Quick_Summary
-                      ).split(" ").length > 10
+                      )?.split(" ").length > 10
                         ? "..."
                         : "",
-                    ].join(" ")}
+                    ]?.join(" ")}
                   </h2>
                 </div>
                 <div className="w-full flex  flex-[0.1] flex-row pt-[5%] items-start ">
