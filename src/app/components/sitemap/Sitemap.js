@@ -8,7 +8,7 @@ async function getBlogData() {
   url.searchParams.append('per_page', '100');
   url.searchParams.append('starts_with', 'blog/');
   url.searchParams.append('token', process.env.NEXT_PUBLIC_ACCESS_TOKEN);
-  url.searchParams.append('version', process.env.NEXT_PUBLIC_STORYBLOK_VERSION);
+  url.searchParams.append('version', process.env"draft");
 
   const res = await fetch(url.toString(), { next: { revalidate: 3600 } });
   
