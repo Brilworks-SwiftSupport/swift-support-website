@@ -381,6 +381,7 @@
   align-items: center;
   display: flex;
   @media screen and (max-width: 1024px) {
+    margin: 33px auto 33px 0;
     display: block !important;
   }
 }
