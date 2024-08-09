@@ -35,6 +35,7 @@ export async function generateMetadata() {
   };
 }
 
+
 const page =({ searchParams })  => {
   return (
     <div className="bg_contactus ">
