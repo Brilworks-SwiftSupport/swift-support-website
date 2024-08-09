@@ -50,9 +50,7 @@ const Header = () => {
   }, );
 
 
-useEffect(()=>{
- console.log(hideHeader)
-},[hideHeader])
+
 
   const navList = (
     <ul className={`mt-2 mb-4 flex flex-col gap-3 items-center md:mb-0 md:mt-0 md:flex-row md:items-center md:gap-3 lg:gap-6`}>

@@ -103,4 +103,4 @@ async function getBlogData() {
   }
 }
 
-export const revalidate = 3600;
+export const revalidate = 0;
