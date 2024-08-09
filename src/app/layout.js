@@ -40,11 +40,11 @@ export default function RootLayout({ children }) {
           <Script
             defer
             id="chatbot"
-          >{`window.chatBotConfig = {agentId: 302}`}</Script>
+          >{`window.chatBotConfig = {agentId: 171}`}</Script>
           <Script
             defer
             id="chatbot-widget-script"
-            src="https://dev.swiftsupport.ai/ChatbotScripts/chatbotBubble.js"
+            src="https://app.swiftsupport.ai/ChatbotScripts/chatbotBubble.js"
           />
         </head>
         <body suppressHydrationWarning={true}>
