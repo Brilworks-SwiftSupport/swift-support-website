@@ -12,7 +12,7 @@ export async function getblogData(
 ) {
   // Define the base parameters for the API call
   let apiParams = {
-    starts_with: "blog/",
+    starts_with: "swiftsupport-blog/",
     // with_tag: "Swiftsupport",
     page: page_no || 1,
     per_page: limit_per_page || 9,
