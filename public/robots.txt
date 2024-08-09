@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /?s=
+Disallow: /swiftsupport-blog/*
 Disallow: /search/
 Disallow: /next/static
 
