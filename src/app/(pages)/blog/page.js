@@ -30,7 +30,7 @@ export async function generateMetadata() {
       site: "@_SwiftSupport",
     },
     alternates: {
-      canonical: `${baseUrl}/blog`,
+      canonical: `${baseUrl}blog`,
     },
   };
 }
