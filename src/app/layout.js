@@ -37,6 +37,7 @@ export default function RootLayout({ children }) {
               />
             </>
           )}
+           <meta name="robots" content="noindex,nofollow" />
           <Script
             defer
             id="chatbot"

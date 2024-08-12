@@ -1,9 +1,8 @@
 User-agent: *
-Allow: /
+Disallow: /*
 Disallow: /?s=
 Disallow: /swiftsupport-blog/*
 Disallow: /search/
 Disallow: /next/static
-
 
 Sitemap: https://www.swiftsupport.ai/sitemap.xml
