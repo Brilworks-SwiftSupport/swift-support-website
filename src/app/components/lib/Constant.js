@@ -1757,32 +1757,32 @@ export const sitemapData = [
 
 export const blogData = [
   {
-    loc: "https://www.swiftsupport.ai/blog/how-chatbots-customer-service-help-smbs-grow",
+    loc: "https://www.swiftsupport.ai/blog/how-chatbots-customer-service-help-smbs-grow/",
     lastmod: "2024-07-22T11:18:52.334Z",
   },
   {
-    loc: "https://www.swiftsupport.ai/blog/the-role-of-ai-assistants-in-customer-support",
+    loc: "https://www.swiftsupport.ai/blog/the-role-of-ai-assistants-in-customer-support/",
     lastmod: "2024-07-19T08:31:10.395Z",
   },
   {
-    loc: "https://www.swiftsupport.ai/blog/enhance-customer-satisfaction-with-ai",
+    loc: "https://www.swiftsupport.ai/blog/enhance-customer-satisfaction-with-ai/",
     lastmod: "2024-07-19T08:31:49.344Z",
   },
  
   {
-    loc: "https://www.swiftsupport.ai/blog/ai-in-customer-support",
+    loc: "https://www.swiftsupport.ai/blog/ai-in-customer-support/",
     lastmod: "2024-07-19T08:32:15.502Z",
   },
    
   {
-    loc: "https://www.swiftsupport.ai/blog/swiftsupport-in-customer-service",
+    loc: "https://www.swiftsupport.ai/blog/swiftsupport-in-customer-service/",
     lastmod: "2024-06-06T06:46:28.121Z",
   }, {
-    loc: "https://www.swiftsupport.ai/blog/advanced-algorithms-to-improve-customer-service",
+    loc: "https://www.swiftsupport.ai/blog/advanced-algorithms-to-improve-customer-service/",
     lastmod: "2024-07-22T11:18:52.334Z",
   },
   {
-    loc: "https://www.swiftsupport.ai/blog/the-dos-and-don-ts-of-healthcare-chatbot-implementation",
+    loc: "https://www.swiftsupport.ai/blog/the-dos-and-don-ts-of-healthcare-chatbot-implementation/",
     lastmod: "2024-07-19T08:31:10.395Z",
   },
   
