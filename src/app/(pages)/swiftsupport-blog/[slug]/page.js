@@ -22,45 +22,6 @@ async function fetchData(slug) {
   }
 }
 
-// Generate metadata with improved error handling
-export async function generateMetadata({ params }){
-  const story = await fetchData(params.slug);
-  if (!story) return notFound();
-
-  const { content } = story;
-  const totalDataWord = [content?.Content_1, content?.Content_2, content?.Content_3].filter(Boolean).join(' ');
-  const ogImage = content?.metatags?.og_image || content?.mobile_banner?.filename;
-
-  return {
-    title: content?.metatags?.title || content?.title,
-    description: content?.metatags?.description,
-    openGraph: {
-      title: content?.metatags?.og_title || content?.title,
-      description: content?.metatags?.og_description || content?.metatags?.description,
-      url: `${process.env.NEXT_PUBLIC_BASE_URL}blog/${story.slug}/`,
-      siteName: "Swiftsupport",
-      locale: "en-US",
-      type: "article",
-      images: [{ url: ogImage, width: 1200, height: 630, alt: content?.title }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      site: "@_Swiftsupport",
-      creator: "@_Swiftsupport",
-      images: [content?.metatags?.twitter_image || content?.mobile_banner?.filename],
-    },
-    authors: [{ name: content?.author }],
-    alternates: {
-      canonical: `${process.env.NEXT_PUBLIC_BASE_URL}/blog/${story.slug}/`,
-    },
-    other: {
-      "twitter:label1": "Written by",
-      "twitter:data1": content?.author,
-      "twitter:label2": "Est. reading time",
-      "twitter:data2": `${calculateReadingTime(totalDataWord)} minutes`,
-    },
-  };
-}
 
 // Main page component with lazy loading
 export default async function Page({ params }) {
