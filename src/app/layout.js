@@ -37,11 +37,11 @@ export default function RootLayout({ children }) {
               />
             </>
           )}
-           <meta name="robots" content="noindex,nofollow" />
+          <meta name="robots" content="noindex,nofollow" />
           <Script
             defer
             id="chatbot"
-          >{`window.chatBotConfig = {agentId: 171}`}</Script>
+          >{`window.chatBotConfig = {agentId: 176}`}</Script>
           <Script
             defer
             id="chatbot-widget-script"
