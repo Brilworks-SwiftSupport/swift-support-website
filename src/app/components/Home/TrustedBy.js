@@ -7,7 +7,7 @@ const TrustedBy = () => {
       <p className="md:text-[36px] text-[26px] font-bold text-center mb-10">
         Trusted by 500+ companies.
       </p>
-      <div className="flex flex-wrap items-center justify-center md:gap-[60px] xl:gap-[80px] gap-10">
+      <div className="trusted-logo flex flex-wrap items-center justify-center md:gap-[60px] xl:gap-[80px] gap-5">
         <Image
           src="/images/Logo (1).svg"
           alt="SwiftSupport Logo"
@@ -15,31 +15,32 @@ const TrustedBy = () => {
           height="35"
         />
         <Image
-          src="/images/Logo (2).svg"
+          src="/images/Logo (2).png"
           alt="SwiftSupport Logo"
           width="172"
           height="40"
         />
+
         <Image
-          src="/images/Logo (3).svg"
+          src="/images/Logo (3).png"
           alt="SwiftSupport Logo"
           width="119"
           height="30"
         />
         <Image
-          src="/images/Logo (4).svg"
+          src="/images/Logo (4).png"
           alt="SwiftSupport Logo"
           width="134"
           height="34"
         />
         <Image
-          src="/images/Logo (5).svg"
+          src="/images/Logo (5).png"
           alt="SwiftSupport Logo"
           width="154"
           height="27"
         />
         <Image
-          src="/images/Logo (6).svg"
+          src="/images/Logo (6).png"
           alt="SwiftSupport Logo"
           width="140"
           height="30"
