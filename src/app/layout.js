@@ -41,7 +41,7 @@ export default function RootLayout({ children }) {
           <Script
             defer
             id="chatbot"
-          >{`window.chatBotConfig = {agentId: 191}`}</Script>
+          >{`window.chatBotConfig = {agentId: 192}`}</Script>
           <Script
             defer
             id="chatbot-widget-script"
