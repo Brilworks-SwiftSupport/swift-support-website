@@ -118,10 +118,10 @@ const PricingPlan = () => {
         <div className="bg-themeBlue pricing-grid rounded-[14px] p-[22px]">
           <div className="font-light text-[50px] mb-4">
             {subscriptionPlan === "Monthly" ? (
-              "CUSTOM"
+              "Custom"
             ) : (
               <div className="flex items-center justify-start gap-3">
-                CUSTOM
+                Custom
               </div>
             )}
           </div>
@@ -134,7 +134,7 @@ const PricingPlan = () => {
             </h3>
             <ul className="pricing-list">
               <li>Multiple agents</li>
-              <li>Multiple Datastore</li>
+              <li>Multiple datastore</li>
               <li>Unlimited queries</li>
               <li>Big file upload</li>
             </ul>
