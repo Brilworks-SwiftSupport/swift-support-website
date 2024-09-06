@@ -35,11 +35,10 @@ export default function RootLayout({ children }) {
                 name="google-site-verification"
                 content="c0Wa7YSps4FhBSg1lMMWnE7_livU8FgBZAbCRtwW6JE"
               />
-              
             </>
           )}
-                <Script defer id="chatbot-widget-script" strategy="afterInteractive">
-        {`
+          <Script defer id="chatbot-widget-script" strategy="afterInteractive">
+            {`
           window.chatBotConfig = {agentId: 194};
           (function() {
             var script = document.createElement('script');
@@ -48,16 +47,14 @@ export default function RootLayout({ children }) {
             document.body.appendChild(script);
           })();
         `}
-      </Script>
+          </Script>
         </head>
         <body suppressHydrationWarning={true}>
           <Header />
           {children}
           <Footer />
           <LoadScripts />
-  
         </body>
-        
       </html>
     </StoryblokProvider>
   );

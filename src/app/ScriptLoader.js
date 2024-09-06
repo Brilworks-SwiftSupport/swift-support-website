@@ -1,21 +1,37 @@
-"use client"
-import { useEffect, useState } from 'react';
+"use client";
+import { useEffect, useState } from "react";
 import Script from "next/script";
 
 const LoadScripts = ({}) => {
-  const [script, setScript] = useState(<></>)
+  const [script, setScript] = useState(<></>);
+
+  useEffect(() => {
+    const triggerChatbot = () => {
+      const chatbotButton = document.getElementById(
+        "swiftSupport-bubble-button"
+      );
+      if (chatbotButton) {
+        chatbotButton.click();
+      }
+    };
+
+    const timeoutId = setTimeout(triggerChatbot, 500);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
+
   useEffect(() => {
     const loadScripts = () => {
       setTimeout(() => {
-        setScript(<ScriptAnalytics/>)
+        setScript(<ScriptAnalytics />);
       }, 3000); // Adjust the delay as needed (3000ms = 3 seconds)
     };
 
-    if (document.readyState === 'complete') {
+    if (document.readyState === "complete") {
       loadScripts();
     } else {
-      window.addEventListener('load', loadScripts);
-      return () => window.removeEventListener('load', loadScripts);
+      window.addEventListener("load", loadScripts);
+      return () => window.removeEventListener("load", loadScripts);
     }
   }, []);
 
@@ -25,7 +41,7 @@ const LoadScripts = ({}) => {
 export default LoadScripts;
 
 const ScriptAnalytics = () => {
-  return (         
+  return (
     <>
       <Script defer id="tag-manager">
         {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -34,7 +50,7 @@ const ScriptAnalytics = () => {
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
       })(window,document,'script','dataLayer','${process.env.NEXT_PUBLIC_GTM_ID}')`}
       </Script>
-     
+
       <Script defer id="fb-pixel">
         {`!function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -56,5 +72,5 @@ const ScriptAnalytics = () => {
       })(window, document, "clarity", "script", '${process.env.NEXT_PUBLIC_CLARITY_ID}');`}
       </Script>
     </>
-  )
-}
+  );
+};
