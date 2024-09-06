@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import Script from "next/script";
 
 const LoadScripts = ({}) => {
@@ -7,8 +7,8 @@ const LoadScripts = ({}) => {
   useEffect(() => {
     const loadScripts = () => {
       setTimeout(() => {
-        setScript(<ScritpAnaltics/>)
-      }, 3000); // Adjust the delay as needed (5000ms = 5 seconds)
+        setScript(<ScriptAnalytics/>)
+      }, 3000); // Adjust the delay as needed (3000ms = 3 seconds)
     };
 
     if (document.readyState === 'complete') {
@@ -24,10 +24,8 @@ const LoadScripts = ({}) => {
 
 export default LoadScripts;
 
-
-
-const ScritpAnaltics=()=>{
-  return(         
+const ScriptAnalytics = () => {
+  return (         
     <>
       <Script defer id="tag-manager">
         {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -58,5 +56,5 @@ const ScritpAnaltics=()=>{
       })(window, document, "clarity", "script", '${process.env.NEXT_PUBLIC_CLARITY_ID}');`}
       </Script>
     </>
-)
+  )
 }

@@ -38,22 +38,26 @@ export default function RootLayout({ children }) {
               
             </>
           )}
-          {/* <Script
-                defer
-                id="chatbot"
-              >{`window.chatBotConfig = {agentId: 317}`}</Script>
-              <Script
-                defer
-                id="chatbot-widget-script"
-                src="https://dev.swiftsupport.ai/ChatbotScripts/chatbotBubble.js"
-              /> */}
+                <Script defer id="chatbot-widget-script" strategy="afterInteractive">
+        {`
+          window.chatBotConfig = {agentId: 194};
+          (function() {
+            var script = document.createElement('script');
+            script.defer = true;
+            script.src = "https://app.swiftsupport.ai/ChatbotScripts/chatbotBubble.js";
+            document.body.appendChild(script);
+          })();
+        `}
+      </Script>
         </head>
         <body suppressHydrationWarning={true}>
           <Header />
           {children}
           <Footer />
           <LoadScripts />
+  
         </body>
+        
       </html>
     </StoryblokProvider>
   );
