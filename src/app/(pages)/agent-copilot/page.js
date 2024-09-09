@@ -11,14 +11,14 @@ import React from 'react'
 const page = () => {
   return (
     <div className="">
-        {/* <Main/>
+        <Main/>
         <AboutAgent/>
         <SectionOne/>
         <SectionTwo/>
         <SectionThree/>
        <FoundationTech/>
        <VideoSection/>
-       <BlogSection/> */}
+       <BlogSection/>
 
     </div>
   )
