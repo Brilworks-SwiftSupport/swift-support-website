@@ -240,12 +240,18 @@ a:hover {
   transform: translate(-50%, -50%);
 }
 
-.trusted-logo:not(:first-child) {
+.trusted-logo:not(:first-child) img {
   opacity: 0.6;
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
+  transition: opacity 0.3s, filter 0.3s;
 }
 
+.trusted-logo:not(:first-child) img:hover {
+  opacity: 1;
+  -webkit-filter: grayscale(0);
+  filter: grayscale(0);
+}
 .industry-we-serve h3 {
   font-size: var(--font_24);
   color: var(--colorGray);

@@ -16,7 +16,6 @@ const PricingPlan = () => {
         <h2 className="font-bold text-2xl md:text-3xl xl:text-4xl xl:leading-[45.36px] mb-[30px] text-center">
           Pricing Plans
         </h2>
-
         <div className="flex relative z-[1]">
           <button
             type="text"
