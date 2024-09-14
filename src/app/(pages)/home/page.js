@@ -1,12 +1,18 @@
 "use client";
 import React from "react";
 import InstantSolution from "../../components/Home/InstantSolution";
-import VideoSection from "../../components/Home/VideoSection";
+// import VideoSection from "../../components/Home/VideoSection";
 import dynamic from "next/dynamic";
 
 const TrustedBy = dynamic(() => import("../../components/Home/TrustedBy"));
+const AppIntegrationSection = dynamic(() =>
+  import("@/app/components/Home/AppIntegrationSection")
+);
 const IndustriesWeServe = dynamic(() =>
   import("../../components/Home/IndustriesWeServe")
+);
+const HelpBusinesses = dynamic(() =>
+  import("@/app/components/Home/HelpBusinesses")
 );
 const ManageDataSource = dynamic(() =>
   import("../../components/Home/ManageDataSource")
@@ -39,9 +45,11 @@ const page = () => {
     <>
       <InstantSolution />
       <div className="bg_one">
-        <VideoSection />
+        <AppIntegrationSection />
+        {/* <VideoSection /> */}
         <TrustedBy />
         <IndustriesWeServe />
+        <HelpBusinesses />
         <ManageDataSource />
       </div>
       <FrictionlessAndFuturistic />
