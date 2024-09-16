@@ -104,11 +104,7 @@ const PeopleSaying = () => {
                         height={30}
                       />
                       <Image
-                        src={
-                          index === 2
-                            ? "/images/icon_star_white.png"
-                            : "/images/icon_star.png"
-                        }
+                        src="/images/icon_star.png"
                         alt="star-icon"
                         width={30}
                         height={30}
