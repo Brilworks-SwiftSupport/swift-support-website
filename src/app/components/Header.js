@@ -12,19 +12,16 @@ const Header = () => {
   const pathname = usePathname();
   const [hideHeader, setHideHeader] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [scroll,SetScroll] = useState(0)
+  const [scroll, SetScroll] = useState(0);
 
   const handleScrollProgress = () => {
-    if (window && window.scrollY ) {
-  
-      console.log(window.scrollY)
-      if (window.scrollY< 100) {
+    if (window && window.scrollY) {
+      if (window.scrollY < 100) {
         setHideHeader(false);
-     
       } else {
         setHideHeader(true);
       }
-      SetScroll(window.scrollY/1000)
+      SetScroll(window.scrollY / 1000);
     }
     const winScroll =
       document.body.scrollTop || document.documentElement.scrollTop;
@@ -35,9 +32,7 @@ const Header = () => {
     setScrollProgress(scrolled);
   };
 
-
   useEffect(() => {
-
     window.addEventListener(
       "resize",
       () => window.innerWidth >= 767 && setOpenNav(false)
@@ -47,13 +42,12 @@ const Header = () => {
     return () => {
       window.removeEventListener("scroll", handleScrollProgress);
     };
-  }, );
-
-
-
+  });
 
   const navList = (
-    <ul className={`mt-2 mb-4 flex flex-col gap-3 items-center md:mb-0 md:mt-0 md:flex-row md:items-center md:gap-3 lg:gap-6`}>
+    <ul
+      className={`mt-2 mb-4 flex flex-col gap-3 items-center md:mb-0 md:mt-0 md:flex-row md:items-center md:gap-3 lg:gap-6`}
+    >
       {pathname === "/" && (
         <Link
           href="#features"
@@ -61,7 +55,9 @@ const Header = () => {
             scrollToSection(e, "features");
             setOpenNav(false);
           }}
-          className={`nav-underline flex items-center md:justify-center justify-start font-medium  ${pathname.includes("agent-copilot") ? "!text-[#fff]" : ""}`}
+          className={`nav-underline flex items-center md:justify-center justify-start font-medium  ${
+            pathname.includes("agent-copilot") ? "!text-[#fff]" : ""
+          }`}
         >
           Features
         </Link>
@@ -70,7 +66,9 @@ const Header = () => {
       <Link
         href="/blog"
         onClick={() => setOpenNav(false)}
-        className={`nav-underline flex items-center md:justify-center justify-start font-medium  ${pathname.includes("agent-copilot") ? "!text-[#fff]" : ""}`}
+        className={`nav-underline flex items-center md:justify-center justify-start font-medium  ${
+          pathname.includes("agent-copilot") ? "!text-[#fff]" : ""
+        }`}
       >
         Blog
       </Link>
@@ -81,32 +79,39 @@ const Header = () => {
             scrollToSection(e, "pricing-plan");
             setOpenNav(false);
           }}
-          className={`nav-underline flex items-center md:justify-center justify-start font-medium  ${pathname.includes("agent-copilot") ? "text-[#fff]" : ""}`}
+          className={`nav-underline flex items-center md:justify-center justify-start font-medium  ${
+            pathname.includes("agent-copilot") ? "text-[#fff]" : ""
+          }`}
         >
           Pricing
         </Link>
       )}
-
 
       <Link
         href="https://cal.com/hiteshr/15min"
         rel="noopener"
         target="_blank"
         onClick={() => setOpenNav(false)}
-        className={`nav-underline flex items-center md:justify-center justify-start font-medium  ${pathname.includes("agent-copilot") ? "!text-[#fff]" : ""}`}
+        className={`nav-underline flex items-center md:justify-center justify-start font-medium  ${
+          pathname.includes("agent-copilot") ? "!text-[#fff]" : ""
+        }`}
       >
         Contact
       </Link>
       <div>
-      <MenuCustomList/>
+        <MenuCustomList />
       </div>
-   
+
       <Link
         rel="noopener"
         target="_blank"
         href="https://app.swiftsupport.ai/signup"
         onClick={() => setOpenNav(false)}
-        className={` ${pathname.includes("agent-copilot") ? "!text-[#000] !bg-white black-button" : " button_black"}`}
+        className={` ${
+          pathname.includes("agent-copilot")
+            ? "!text-[#000] !bg-white black-button"
+            : " button_black"
+        }`}
       >
         Sign Up
       </Link>
@@ -116,16 +121,17 @@ const Header = () => {
   return (
     <div className={`header `}>
       <Navbar
-       style={{backgroundColor:`rgba(255,255,255,${scroll})`}}
-        className={`rounded-none border-none z-10 max-w-full py-0 px-0 ${pathname.includes("agent-copilot") ? "!bg-black" : ""} ${
-          openNav ? "h-[100vh]" : ""
-        }`}
+        style={{ backgroundColor: `rgba(255,255,255,${scroll})` }}
+        className={`rounded-none border-none z-10 max-w-full py-0 px-0 ${
+          pathname.includes("agent-copilot") ? "!bg-black" : ""
+        } ${openNav ? "h-[100vh]" : ""}`}
       >
         <div
-
-       style={{backgroundColor:`rgba(255,255,255,${scroll})`}}
-          className={`flex items-center md:flex-row justify-between header_padding ${pathname.includes("agent-copilot") ? "!bg-black " : ""} ${
-        ""    // hideHeader || openNav || pathname !== "/" ? "header-bg" : "" 
+          style={{ backgroundColor: `rgba(255,255,255,${scroll})` }}
+          className={`flex items-center md:flex-row justify-between header_padding ${
+            pathname.includes("agent-copilot") ? "!bg-black " : ""
+          } ${
+            "" // hideHeader || openNav || pathname !== "/" ? "header-bg" : ""
           }`}
         >
           <div
@@ -135,7 +141,11 @@ const Header = () => {
             <Link href="/">
               <Image
                 className="block lg:hidden"
-                src={pathname.includes("agent-copilot")?"/images/footer-logo.svg":"/images/logo.svg"}
+                src={
+                  pathname.includes("agent-copilot")
+                    ? "/images/footer-logo.svg"
+                    : "/images/logo.svg"
+                }
                 alt="SwiftSupport Logo"
                 width="176"
                 height="49"
@@ -143,7 +153,11 @@ const Header = () => {
               />
               <Image
                 className="hidden lg:block"
-                src={pathname.includes("agent-copilot")?"/images/footer-logo.svg":"/images/logo.svg"}
+                src={
+                  pathname.includes("agent-copilot")
+                    ? "/images/footer-logo.svg"
+                    : "/images/logo.svg"
+                }
                 alt="SwiftSupport Logo"
                 width="270"
                 height="74"
@@ -179,7 +193,9 @@ const Header = () => {
                   width={20}
                   height={20}
                   priority={true}
-                  className={` ${pathname.includes("agent-copilot")? "invert":"" } top-[45px] left-[20px] mr-3`}
+                  className={` ${
+                    pathname.includes("agent-copilot") ? "invert" : ""
+                  } top-[45px] left-[20px] mr-3`}
                 />
               )}
             </div>
