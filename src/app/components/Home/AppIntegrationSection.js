@@ -47,6 +47,7 @@ const AppIntegrationSection = () => {
       { imgSrc: "/images/shopify.svg", altText: "Shopify-icon" },
       { imgSrc: "/images/wordpress.svg", altText: "Wordpress-icon" },
     ];
+
     return (
       <div className="grid grid-cols-8 gap-10 justify-items-center pt-16 pb-36">
         {/* First row - 3 icons centered */}
