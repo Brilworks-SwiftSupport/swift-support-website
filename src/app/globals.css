@@ -253,6 +253,19 @@ a:hover {
   transform: translate(-50%, -50%);
 }
 
+.trusted-logo:not(:first-child) img {
+  opacity: 0.6;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  transition: opacity 0.3s, filter 0.3s;
+}
+
+.trusted-logo:not(:first-child) img:hover {
+  opacity: 1;
+  -webkit-filter: grayscale(0);
+  filter: grayscale(0);
+}
+
 .industry-we-serve h3 {
   font-size: var(--font_24);
   color: var(--colorGray);
@@ -316,6 +329,7 @@ a:hover {
 .subscribe-shadow {
   box-shadow: 0px 40.30768585205078px 26.871793746948242px 0px #0000001a;
 }
+
 .bg-app-integration {
   background: url("/images/integration-bg.webp");
   background-size: cover;
@@ -505,6 +519,9 @@ a:hover {
     padding: 0.5rem;
     border: 1px solid var(--colorBlack);
     border-radius: 25px;
+  }
+  .bg-app-integration {
+    background: url("/images/phone-app-integration-bg.webp");
   }
 }
 
