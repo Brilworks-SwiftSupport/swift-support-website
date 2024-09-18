@@ -7,9 +7,71 @@ const PricingPlan = () => {
   const [subscriptionPlan, setSubscriptionPlan] = useState("Monthly");
   const router = useRouter();
 
+  const pricingPlans = [
+    {
+      price: "$0",
+      label: "FREE",
+      features: [
+        "1 Agent",
+        "200 query/month",
+        "1 Data store",
+        "Total storage 50MB",
+        "25 web pages",
+        "File upload limit 1MB/File",
+        "No slack integration",
+        "No Hubspot integration",
+        "No google drive integration",
+        "Not able to remove branding",
+      ],
+      buttonLink: "https://app.swiftsupport.ai/login",
+      buttonText: "Subscribe",
+    },
+    {
+      price: subscriptionPlan === "Monthly" ? "$50" : "$480",
+      discount: subscriptionPlan === "Yearly" ? "$600" : null,
+      label: "BUSINESS",
+      features: [
+        "5 Agent",
+        "20k query/month",
+        "5 Data store",
+        "File upload limit 10MB/File",
+        "Total storage 200MB",
+        "500 web pages",
+        "Auto sync datastore",
+        "5 team seat",
+        "Remove swift support branding",
+        "Slack integration",
+        "HubSpot integration",
+        "Google drive integration",
+      ],
+      buttonLink: "https://app.swiftsupport.ai/login",
+      buttonText: "Subscribe",
+    },
+    {
+      price: "Custom",
+      label: "CUSTOM",
+      features: [
+        "Unlimited agent",
+        "Unlimited query/month",
+        "Unlimited Data store",
+        "File upload limit 10MB/File",
+        "Total storage 100MB",
+        "10000 web pages",
+        "Auto sync datastore",
+        "Unlimited team seat",
+        "Remove swift support branding",
+        "Slack integration",
+        "HubSpot integration",
+        "Google drive integration",
+      ],
+      buttonLink: "https://cal.com/hiteshr/15min",
+      buttonText: "Contact Us",
+    },
+  ];
+
   return (
     <div
-      className="container mx-auto section-padding max-w-[1280px]"
+      className="container mx-auto section-padding max-w-[1400px]"
       id="pricing-plan"
     >
       <div className="flex flex-col items-center justify-center md:mb-[58px] mb-7">
@@ -54,101 +116,85 @@ const PricingPlan = () => {
         </div>
       </div>
       <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
-        <div className="bg-themeBlue pricing-grid rounded-[14px] p-[22px]">
-          <div className="font-light text-[50px] mb-4">
-            <div className="flex items-center justify-start gap-3">$0</div>
-          </div>
-          <button className="bg-colorWhite font-medium rounded-[10px] px-[22px] py-[14px] mb-[21px]">
-            FREE
-          </button>
-          <div>
-            <h3 className="font-bold text-[22px] text-colorDarkBlue mb-[14px]">
-              Features
-            </h3>
-            <ul className="pricing-list">
-              <li>1 Agent</li>
-              <li>1 Datastore</li>
-              <li>500 queries / month</li>
-              <li>1 MB / File upload limit</li>
-            </ul>
-            <button
-              onClick={() => router.push("https://app.swiftsupport.ai/login")}
-              className="bg-colorBlack subscribe-btn text-colorWhite rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full"
-            >
-              Subscribe
-            </button>
-          </div>
-        </div>
-
-        <div className="bg-themeBlue pricing-grid rounded-[14px] p-[22px]">
-          <div className="font-light text-[50px] mb-4">
-            {subscriptionPlan === "Monthly" ? (
-              "$49"
-            ) : (
-              <div className="flex items-center justify-start gap-3">
-                $468{" "}
-                <span className="text-colorDarkBlue font-medium text-2xl line-through">
-                  $588
-                </span>
+        {pricingPlans.map((plan, index) => (
+          <div
+            key={index}
+            className="bg-themeBlue pricing-grid rounded-[14px] p-[22px] flex flex-col justify-between"
+          >
+            <div className="flex-grow">
+              <div className="font-light text-[50px] mb-4">
+                <div className="flex items-center justify-start gap-3">
+                  {plan.price}
+                  {plan.discount && (
+                    <span className="text-colorDarkBlue font-medium text-2xl line-through">
+                      {plan.discount}
+                    </span>
+                  )}
+                </div>
               </div>
-            )}
-          </div>
-          <button className="bg-colorWhite font-medium rounded-[10px] px-[22px] py-[14px] mb-[21px]">
-            BUSINESS
-          </button>
-          <div>
-            <h3 className="font-bold text-[22px] text-colorDarkBlue mb-[14px]">
-              Features
-            </h3>
-            <ul className="pricing-list">
-              <li>1 Agent</li>
-              <li>1 Datastore</li>
-              <li>5000 queries / month</li>
-              <li>10 MB / File upload limit</li>
-            </ul>
-            <button
-              onClick={() => router.push("https://app.swiftsupport.ai/login")}
-              className="bg-colorBlack subscribe-btn text-colorWhite rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full"
-            >
-              Subscribe
-            </button>
-          </div>
-        </div>
-
-        <div className="bg-themeBlue pricing-grid rounded-[14px] p-[22px]">
-          <div className="font-light text-[50px] mb-4">
-            {subscriptionPlan === "Monthly" ? (
-              "Custom"
-            ) : (
-              <div className="flex items-center justify-start gap-3">
-                Custom
+              <button className="bg-colorWhite font-medium rounded-[10px] px-[22px] py-[14px] mb-[21px]">
+                {plan.label}
+              </button>
+              <div>
+                <h3 className="font-bold text-[22px] text-colorDarkBlue mb-[14px]">
+                  Features
+                </h3>
+                <ul className="pricing-list">
+                  {plan.features.map((feature, idx) => (
+                    <li key={idx}>{feature}</li>
+                  ))}
+                </ul>
               </div>
-            )}
-          </div>
-          <button className="bg-colorWhite font-medium rounded-[10px] px-[22px] py-[14px] mb-[21px]">
-            CUSTOM
-          </button>
-          <div>
-            <h3 className="font-bold text-[22px] text-colorDarkBlue mb-[14px]">
-              Features
-            </h3>
-            <ul className="pricing-list">
-              <li>Multiple agents</li>
-              <li>Multiple datastore</li>
-              <li>Unlimited queries</li>
-              <li>Big file upload</li>
-            </ul>
+            </div>
+
             <button
-              onClick={() =>
-                window.open("https://cal.com/hiteshr/15min", "_blank")
-              }
-              className="bg-colorBlack subscribe-btn text-colorWhite rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full"
+              onClick={() => window.open(plan.buttonLink, "_blank")}
+              className="bg-colorBlack subscribe-btn text-colorWhite rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full mt-5"
             >
-              Contact Us
+              {plan.buttonText}
             </button>
           </div>
-        </div>
+        ))}
       </div>
+
+      {/* <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
+        {pricingPlans.map((plan, index) => (
+          <div
+            key={index}
+            className="bg-themeBlue pricing-grid rounded-[14px] p-[22px]"
+          >
+            <div className="font-light text-[50px] mb-4">
+              <div className="flex items-center justify-start gap-3">
+                {plan.price}
+                {plan.discount && (
+                  <span className="text-colorDarkBlue font-medium text-2xl line-through">
+                    {plan.discount}
+                  </span>
+                )}
+              </div>
+            </div>
+            <button className="bg-colorWhite font-medium rounded-[10px] px-[22px] py-[14px] mb-[21px]">
+              {plan.label}
+            </button>
+            <div>
+              <h3 className="font-bold text-[22px] text-colorDarkBlue mb-[14px]">
+                Features
+              </h3>
+              <ul className="pricing-list">
+                {plan.features.map((feature, idx) => (
+                  <li key={idx}>{feature}</li>
+                ))}
+              </ul>
+              <button
+                onClick={() => window.open(plan.buttonLink, "_blank")}
+                className="bg-colorBlack subscribe-btn text-colorWhite rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full"
+              >
+                {plan.buttonText}
+              </button>
+            </div>
+          </div>
+        ))}
+      </div> */}
     </div>
   );
 };

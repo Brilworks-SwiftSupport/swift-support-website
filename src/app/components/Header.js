@@ -1,5 +1,5 @@
 "use client";
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar, Collapse } from "@material-tailwind/react";
 import Link from "next/link";
 import Image from "next/image";
@@ -105,15 +105,28 @@ const Header = () => {
       <Link
         rel="noopener"
         target="_blank"
+        href="https://app.swiftsupport.ai/login"
+        onClick={() => setOpenNav(false)}
+        className={` ${
+          pathname.includes("agent-copilot")
+            ? "!text-[#000] !bg-white black-button"
+            : "button_black white-button !py-3 !px-7"
+        }`}
+      >
+        Login
+      </Link>
+      <Link
+        rel="noopener"
+        target="_blank"
         href="https://app.swiftsupport.ai/signup"
         onClick={() => setOpenNav(false)}
         className={` ${
           pathname.includes("agent-copilot")
             ? "!text-[#000] !bg-white black-button"
-            : " button_black"
+            : "button_black !py-3 !px-7"
         }`}
       >
-        Sign Up
+        Try for Free
       </Link>
     </ul>
   );
@@ -216,7 +229,7 @@ const Header = () => {
           </div>
         </Collapse>
       </Navbar>
-      {pathname.startsWith("/blog/") && (
+      {pathname.includes("/blog/") && pathname !== "/blog/" && (
         <div
           id="myBar"
           style={{

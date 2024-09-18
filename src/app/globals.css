@@ -129,6 +129,13 @@ a:hover {
   transition: var(--common_transition);
   cursor: pointer !important;
 }
+
+.white-button {
+  background: var(--colorWhite) !important;
+  border: 2px solid var(--colorBlack) !important;
+  color: var(--colorBlack) !important;
+}
+
 .black-button {
   align-items: center;
   justify-content: center;
@@ -299,15 +306,12 @@ a:hover {
 }
 .pricing-list li {
   padding-left: 24px;
-  padding-bottom: 13px;
+  padding-bottom: 10px;
   position: relative;
   font-size: 18px;
   color: var(--colorBlack);
   font-weight: 400;
   margin-left: 0;
-}
-.pricing-list li:last-child {
-  padding-bottom: 35px;
 }
 
 .pricing-list li::before {

@@ -62,7 +62,7 @@ const page = () => {
       </div>
       <div className="bg_one">
         <SwiftIntegration />
-        {/* <PricingPlan /> */}
+        <PricingPlan />
       </div>
     </>
   );
