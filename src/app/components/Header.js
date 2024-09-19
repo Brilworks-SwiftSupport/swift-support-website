@@ -46,7 +46,7 @@ const Header = () => {
 
   const navList = (
     <ul
-      className={`mt-2 mb-4 flex flex-col gap-3 items-center md:mb-0 md:mt-0 md:flex-row md:items-center md:gap-3 lg:gap-6`}
+      className={`mt-2 mb-4 flex flex-col gap-2 items-center md:mb-0 md:mt-0 md:flex-row md:items-center md:gap-3 lg:gap-6`}
     >
       {pathname === "/" && (
         <Link
@@ -113,7 +113,7 @@ const Header = () => {
             : "button_black white-button !py-3 !px-7"
         }`}
       >
-        Login
+        Log in
       </Link>
       <Link
         rel="noopener"
@@ -126,7 +126,7 @@ const Header = () => {
             : "button_black !py-3 !px-7"
         }`}
       >
-        Try for Free
+        Sign up for free
       </Link>
     </ul>
   );
