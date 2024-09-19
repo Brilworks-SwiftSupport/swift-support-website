@@ -89,7 +89,6 @@ const Header = () => {
         </Link>
       )}
 
-
       <Link
         href="https://cal.com/hiteshr/15min"
         rel="noopener"
@@ -99,18 +98,33 @@ const Header = () => {
       >
         Contact
       </Link>
-      <div>
-      {/* <MenuCustomList/> */}
-      </div>
-   
+      <div>{/* <MenuCustomList/> */}</div>
+
+      <Link
+        rel="noopener"
+        target="_blank"
+        href="https://app.swiftsupport.ai/login"
+        onClick={() => setOpenNav(false)}
+        className={` ${
+          pathname.includes("agent-copilot")
+            ? "!text-[#000] !bg-white black-button"
+            : "button_black white-button !py-3 !px-7"
+        }`}
+      >
+        Log in
+      </Link>
       <Link
         rel="noopener"
         target="_blank"
         href="https://app.swiftsupport.ai/signup"
         onClick={() => setOpenNav(false)}
-        className="button_black"
+        className={` ${
+          pathname.includes("agent-copilot")
+            ? "!text-[#000] !bg-white black-button"
+            : "button_black !py-3 !px-7"
+        }`}
       >
-        Sign Up
+        Sign up for free
       </Link>
     </ul>
   );

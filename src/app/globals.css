@@ -129,6 +129,13 @@ a:hover {
   transition: var(--common_transition);
   cursor: pointer !important;
 }
+
+.white-button {
+  background: var(--colorWhite) !important;
+  border: 2px solid var(--colorBlack) !important;
+  color: var(--colorBlack) !important;
+}
+
 .button_black:hover {
   color: var(--colorBlack) !important;
   background: var(--colorWhite);
