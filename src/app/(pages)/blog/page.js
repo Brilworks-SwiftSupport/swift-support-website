@@ -1,18 +1,21 @@
-
 import BlogListPage from "@/app/components/Blog/BlogList";
 import React from "react";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || '';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
 
   return {
-    title: "Blog | Swift Support",
-    description: "Explore our Blog page to find information about who we are and who we work with, and details about our  product.",
+    title:
+      "SwiftSupport.ai Blogs | Learn About Customer Support with AI Chatbots",
+    description:
+      "Explore SwiftSupport.ai Blogs for expert insights on enhancing customer support with AI chatbots/LiveChats. Learn how to revolutionize your service experience and boost customer satisfaction.",
     openGraph: {
-      title: "Blog | Swift Support",
-      description: "Explore our Blog page to find information about who we are and who we work with, and details about our product.",
+      title:
+        "SwiftSupport.ai Blogs | Learn About Customer Support with AI Chatbots",
+      description:
+        "Explore SwiftSupport.ai Blogs for expert insights on enhancing customer support with AI chatbots/LiveChats. Learn how to revolutionize your service experience and boost customer satisfaction.",
       url: `${baseUrl}sitemap/`,
       siteName: "Swift Support",
       images: [
@@ -25,8 +28,10 @@ export async function generateMetadata() {
     },
     twitter: {
       card: "summary_large_image",
-      title: "Blog | Swift Support",
-      description: "Explore our Blog page to find information about who we are and who we work with, and details about our product.",
+      title:
+        "SwiftSupport.ai Blogs | Learn About Customer Support with AI Chatbots",
+      description:
+        "Explore SwiftSupport.ai Blogs for expert insights on enhancing customer support with AI chatbots/LiveChats. Learn how to revolutionize your service experience and boost customer satisfaction.",
       site: "@_SwiftSupport",
     },
     alternates: {
@@ -35,11 +40,10 @@ export async function generateMetadata() {
   };
 }
 
-
-const page =({ searchParams })  => {
+const page = ({ searchParams }) => {
   return (
     <div className="bg_contactus ">
-    <BlogListPage searchParams={searchParams} />;
+      <BlogListPage searchParams={searchParams} />;
     </div>
   );
 };

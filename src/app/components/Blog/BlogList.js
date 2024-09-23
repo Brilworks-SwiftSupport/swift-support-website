@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from 'next/navigation';
+import { notFound } from "next/navigation";
 import "../../styles/Blogstyle.scss";
 import { getblogData } from "@/app/lib/getblog";
 import { formattedDate } from "../lib/Common";
@@ -13,9 +13,14 @@ const ITEMS_PER_PAGE = 9;
 
 async function BlogList({ searchParams }) {
   const currentPage = parseInt(searchParams?.page) || 1;
-  const currentSearchValue = searchParams?.search || ""
+  const currentSearchValue = searchParams?.search || "";
 
-  const blogData = await getblogData(currentPage, ITEMS_PER_PAGE,false,currentSearchValue);
+  const blogData = await getblogData(
+    currentPage,
+    ITEMS_PER_PAGE,
+    false,
+    currentSearchValue
+  );
   const blogDataPerPage = blogData?.storyData || [];
   const totalBlog = blogData?.totalData || 0;
 
@@ -44,17 +49,20 @@ async function BlogList({ searchParams }) {
           Discover Hidden Tech Trends with Swiftsupport Blog Insights
         </p>
       </div>
-      <SearchDiv/>
+      <SearchDiv />
       <div className="grid xl:grid-cols-3 min-h-[80vh] md:grid-cols-2 grid-cols-1 !gap-8">
-       
-      
         {blogDataPerPage.length ? (
           blogDataPerPage.map(({ slug, name, content }, index) => (
             <div
               className="blog-card h-fit border flex border-lightGray rounded-[10px]"
               key={index}
             >
-              <Link className="flex flex-col h-full" as={`/blog/${slug}`} href={`/blog/[slug]`} prefetch={false}>
+              <Link
+                className="flex flex-col h-full"
+                as={`/blog/${slug}`}
+                href={`/blog/[slug]`}
+                prefetch={false}
+              >
                 <div className="flex-[0.5]">
                   <Image
                     className="block md:hidden w-full zoom-image"
@@ -78,7 +86,6 @@ async function BlogList({ searchParams }) {
                       content?.Image?.alt ||
                       `Blog-List-banner-${index + 1}`
                     }
-                    
                     width={450}
                     height={230}
                     priority={index === 0}
@@ -110,7 +117,6 @@ async function BlogList({ searchParams }) {
             </div>
           ))
         ) : (
-       
           <div className="flex items-center justify-center text-xl pt-20 pb-36">
             No Data found.
           </div>
@@ -119,10 +125,17 @@ async function BlogList({ searchParams }) {
       {blogDataPerPage.length ? (
         <div className="flex justify-center my-16">
           <ul className="list-none flex flex-wrap">
-            <li className={`h-10 w-fit font-bold mr-4 mb-2 flex items-center justify-center ${
-              currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
-            }`}>
-              <Link href={currentPage > 1 ? `/blog?page=${currentPage - 1}` : '/blog'} scroll={false}>
+            <li
+              className={`h-10 w-fit font-bold mr-4 mb-2 flex items-center justify-center ${
+                currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+            >
+              <Link
+                href={
+                  currentPage > 1 ? `/blog?page=${currentPage - 1}` : "/blog"
+                }
+                scroll={false}
+              >
                 {"< PREV"}
               </Link>
             </li>
@@ -140,12 +153,21 @@ async function BlogList({ searchParams }) {
                 </Link>
               </li>
             ))}
-            <li className={`h-10 w-fit font-bold mr-4 mb-2 flex items-center justify-center ${
-              currentPage === Math.ceil(totalBlog / ITEMS_PER_PAGE)
-                ? "opacity-50 cursor-not-allowed"
-                : ""
-            }`}>
-              <Link href={currentPage < Math.ceil(totalBlog / ITEMS_PER_PAGE) ? `/blog?page=${currentPage + 1}` : '/blog'} scroll={false}>
+            <li
+              className={`h-10 w-fit font-bold mr-4 mb-2 flex items-center justify-center ${
+                currentPage === Math.ceil(totalBlog / ITEMS_PER_PAGE)
+                  ? "opacity-50 cursor-not-allowed"
+                  : ""
+              }`}
+            >
+              <Link
+                href={
+                  currentPage < Math.ceil(totalBlog / ITEMS_PER_PAGE)
+                    ? `/blog?page=${currentPage + 1}`
+                    : "/blog"
+                }
+                scroll={false}
+              >
                 {"NEXT >"}
               </Link>
             </li>
@@ -158,7 +180,13 @@ async function BlogList({ searchParams }) {
 
 export default function BlogListPage({ searchParams }) {
   return (
-    <Suspense fallback={<div><BeatLoader></BeatLoader></div>}>
+    <Suspense
+      fallback={
+        <div>
+          <BeatLoader></BeatLoader>
+        </div>
+      }
+    >
       <BlogList searchParams={searchParams} />
     </Suspense>
   );

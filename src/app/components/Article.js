@@ -44,6 +44,21 @@ const Article = ({ blok }) => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const { hash } = window.location;
+    if (hash) {
+      const headingId = hash.replace("#", ""); // Remove the # symbol to get the ID
+      setTimeout(() => {
+        const targetElement = document.getElementById(headingId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: "smooth",
+          });
+        }
+      }, 500);
+    }
+  }, []);
+
   function modifyImagesWithLazyLoading(html) {
     return parse(html, {
       replace: (node, index) => {
@@ -78,11 +93,21 @@ const Article = ({ blok }) => {
     setHeadings(headings);
   }, [blogTableOfContent, !isLoading]);
 
+  function textToId(headingText) {
+    return headingText
+      .toLowerCase() // Convert to lowercase
+      .replace(/[^\w\s]/g, "") // Remove all non-word characters (punctuation, etc.)
+      .replace(/\s+/g, "-");
+  }
+
   useEffect(() => {
     // Add temporary IDs to the headings for smooth scrolling
     const headings = document.querySelectorAll("h2");
     headings.forEach((heading, index) => {
-      heading.id = `temp-section-${index}`;
+      let headingText = heading.textContent || heading.innerText;
+
+      let headingId = textToId(headingText);
+      heading.id = headingId;
     });
   }, [!isLoading]);
 
@@ -95,6 +120,7 @@ const Article = ({ blok }) => {
 
     if (targetElement) {
       targetElement.scrollIntoView({ behavior: "smooth" });
+      window.history.pushState(null, "", targetId);
     }
   };
 
@@ -102,11 +128,14 @@ const Article = ({ blok }) => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const headingPositions = headings.map((heading, index) => {
-        const targetElement = document.getElementById(`temp-section-${index}`);
+        let headingText = heading.text;
+
+        let headingId = textToId(headingText);
+        const targetElement = document.getElementById(`${headingId}`);
 
         if (targetElement) {
           return {
-            id: `${index}`,
+            id: `${headingId}`,
             offsetTop: targetElement.offsetTop,
           };
         }
@@ -256,12 +285,14 @@ const Article = ({ blok }) => {
                             className="mb-2 hover:cursor-pointer hover:underline"
                           >
                             <Link
-                              href={`#temp-section-${index}`}
+                              href={`#${textToId(heading?.text)}`}
                               onClick={(e) =>
                                 handleTableOfContentLinkClick(e, index)
                               }
                               className={`${
-                                index == activeLink ? "text-colorDarkBlue" : ""
+                                textToId(heading?.text) == activeLink
+                                  ? "text-colorDarkBlue"
+                                  : ""
                               }`}
                             >
                               {heading?.text}
@@ -309,7 +340,6 @@ const Article = ({ blok }) => {
                           src="/images/linkedin-share.svg"
                           width="43"
                           height="43"
-                        
                           alt="LinkedIn blog share"
                         />
                       </Link>
@@ -428,7 +458,7 @@ const Article = ({ blok }) => {
           </div>
           <div className="container mx-auto md:!px-3 !px-4">
             <div className="flex flex-wrap flex-col xl:pb-20 md:pb-14 pb-8">
-            <div className="service_sec3 mb-2">
+              <div className="service_sec3 mb-2">
                 <p className="home_sec2_txt3 !pb-0 md:!pt-8 !pt-0">
                   <p className="!ml-0 text-[2rem] font-bold !w-full">
                     You might also like
@@ -440,71 +470,73 @@ const Article = ({ blok }) => {
                    xl:grid-cols-3 md:grid-cols-2
                  grid-cols-1 items-center gap-[2rem]`}
               >
-          
-                {  blogData
-                    ?.filter(({ slug }) => !pathname?.includes(slug))
-                    ?.slice(0, `${isTablet ? 2 : 3}`)
-                    ?.map(({ slug, name, content }, index) => (
-                      <div
-              className="blog-card h-fit border flex border-lightGray rounded-[10px]"
-              key={index}
-            >
-              <Link className="flex flex-col h-full" as={`/blog/${slug}`} href={`/blog/[slug]`} prefetch={false}>
-                <div className="flex-[0.5]">
-                  <Image
-                    className="block md:hidden w-full zoom-image"
-                    src={content?.mobile_banner?.filename}
-                    alt={
-                      content?.mobile_banner?.alt ||
-                      content?.Image?.alt ||
-                      `Blog-List-banner-${index + 1}`
-                    }
-                    quality={40}
-                    width={310}
-                    height={150}
-                    priority={index === 0}
-                    sizes="(min-width: 1040px) 42.35vw, (min-width: 640px) 60.84vw, calc(100vw - 30px)"
-                  />
-                  <Image
-                    className="hidden md:block w-full zoom-image"
-                    src={content?.mobile_banner?.filename}
-                    alt={
-                      content?.mobile_banner?.alt ||
-                      content?.Image?.alt ||
-                      `Blog-List-banner-${index + 1}`
-                    }
-                    
-                    width={450}
-                    height={230}
-                    priority={index === 0}
-                    sizes="(min-width: 1040px) 42.35vw, (min-width: 640px) 60.84vw, calc(100vw - 30px)"
-                  />
-                </div>
-                <div className="flex flex-[0.4] flex-col p-[5%] h-full items-start bg-colorWhite">
-                  {/* <div
+                {blogData
+                  ?.filter(({ slug }) => !pathname?.includes(slug))
+                  ?.slice(0, `${isTablet ? 2 : 3}`)
+                  ?.map(({ slug, name, content }, index) => (
+                    <div
+                      className="blog-card h-fit border flex border-lightGray rounded-[10px]"
+                      key={index}
+                    >
+                      <Link
+                        className="flex flex-col h-full"
+                        as={`/blog/${slug}`}
+                        href={`/blog/[slug]`}
+                        prefetch={false}
+                      >
+                        <div className="flex-[0.5]">
+                          <Image
+                            className="block md:hidden w-full zoom-image"
+                            src={content?.mobile_banner?.filename}
+                            alt={
+                              content?.mobile_banner?.alt ||
+                              content?.Image?.alt ||
+                              `Blog-List-banner-${index + 1}`
+                            }
+                            quality={40}
+                            width={310}
+                            height={150}
+                            priority={index === 0}
+                            sizes="(min-width: 1040px) 42.35vw, (min-width: 640px) 60.84vw, calc(100vw - 30px)"
+                          />
+                          <Image
+                            className="hidden md:block w-full zoom-image"
+                            src={content?.mobile_banner?.filename}
+                            alt={
+                              content?.mobile_banner?.alt ||
+                              content?.Image?.alt ||
+                              `Blog-List-banner-${index + 1}`
+                            }
+                            width={450}
+                            height={230}
+                            priority={index === 0}
+                            sizes="(min-width: 1040px) 42.35vw, (min-width: 640px) 60.84vw, calc(100vw - 30px)"
+                          />
+                        </div>
+                        <div className="flex flex-[0.4] flex-col p-[5%] h-full items-start bg-colorWhite">
+                          {/* <div
                     className={`text-colorBlack font-medium px-1 py-1 rounded-lg mb-2 bg-themePink`}
                   >
                     {content?.Category === "Cloud DevOps and Data"
                       ? "Cloud, DevOps and Data"
                       : content?.Category}
                   </div> */}
-                  <h2 className="mb-1">{name}</h2>
-                </div>
-                <div className="w-full flex  flex-[0.1] flex-row p-[5%] items-start border-t border-lightGray bg-lightGray bg-opacity-10">
-                  <div className="w-full flex items-center justify-between gap-2 text-colorGray">
-                    <div className="text-colorDarkBlue">
-                      By {content?.BlogAuthor}
+                          <h2 className="mb-1">{name}</h2>
+                        </div>
+                        <div className="w-full flex  flex-[0.1] flex-row p-[5%] items-start border-t border-lightGray bg-lightGray bg-opacity-10">
+                          <div className="w-full flex items-center justify-between gap-2 text-colorGray">
+                            <div className="text-colorDarkBlue">
+                              By {content?.BlogAuthor}
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <Svgs name="calendar-icon" />
+                              <span>{formattedDate(content?.Published)}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </Link>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Svgs name="calendar-icon" />
-                      <span>{formattedDate(content?.Published)}</span>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </div>
-                    ))
-              }
+                  ))}
               </div>
             </div>
           </div>
