@@ -16,7 +16,7 @@ const InstantSolution = () => {
   const currentColor = colors[currentColorIndex];
 
   return (
-    <div className="instant-solution section-padding !pt-[150px]">
+    <div className="instant-solution section-padding !pt-[150px] mt-[6%]">
       <div className="container mx-auto">
         <div className="mb-[29px]">
           <p className="uppercase md:text-[22px] text-lg font-semibold text-colorGray leading-[27.72px] text-center">
