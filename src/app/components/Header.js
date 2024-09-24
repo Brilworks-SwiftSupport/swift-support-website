@@ -44,7 +44,7 @@ const Header = () => {
 
     window.addEventListener(
       "resize",
-      () => window.innerWidth >= 767 && setOpenNav(false)
+      () => window.innerWidth >= 980 && setOpenNav(false)
     );
 
     window.addEventListener("scroll", handleScroll);
@@ -55,7 +55,7 @@ const Header = () => {
   }, []);
 
   const navList = (
-    <ul className="mt-2 mb-4 flex flex-col gap-3 items-center md:mb-0 md:mt-0 md:flex-row md:items-center md:gap-3 lg:gap-6">
+    <ul className="mt-2 mb-4 flex flex-col gap-3 items-center md:mb-0 md:mt-0 slg:flex-row slg:items-center slg:gap-3 lg:gap-6">
       {pathname === "/" && (
         <Link
           href="#features"
@@ -108,7 +108,7 @@ const Header = () => {
         className={` ${
           pathname.includes("agent-copilot")
             ? "!text-[#000] !bg-white black-button"
-            : "button_black white-button !py-3 !px-7"
+            : "button_black white-button !py-3 !px-7 slg:mb-0 mb-2"
         }`}
       >
         Log in
@@ -147,7 +147,7 @@ const Header = () => {
           >
             <Link href="/">
               <Image
-                className="block lg:hidden"
+                className="block xl:hidden"
                 src="/images/logo.svg"
                 alt="SwiftSupport Logo"
                 width="176"
@@ -155,7 +155,7 @@ const Header = () => {
                 priority
               />
               <Image
-                className="hidden lg:block"
+                className="hidden xl:block"
                 src="/images/logo.svg"
                 alt="SwiftSupport Logo"
                 width="270"
@@ -165,9 +165,9 @@ const Header = () => {
             </Link>
           </div>
           <div className="flex items-center gap-4">
-            <div className="mr-4 hidden md:block">{navList}</div>
+            <div className="mr-4 hidden slg:block">{navList}</div>
             <div
-              className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent md:hidden"
+              className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent slg:hidden"
               onClick={() => setOpenNav(!openNav)}
             >
               {openNav ? (
@@ -204,7 +204,7 @@ const Header = () => {
         >
           <div className={openNav ? "w-[88%] mx-auto md:pt-8 py-4" : "hidden"}>
             <div
-              className={`flex md:flex-row flex-col md:gap-12 lg:gap-20 gap-8 ${
+              className={`flex slg:flex-row flex-col md:gap-12 lg:gap-20 gap-8 ${
                 openNav ? "mb-6" : ""
               }`}
             >
