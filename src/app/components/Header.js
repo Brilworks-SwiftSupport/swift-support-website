@@ -237,7 +237,10 @@ const Header = () => {
           />
         )}
         <div className={pathname === "/" ? "relative" : "hidden"}>
-          <div className="fixed z-10" style={{ top: `${navbarHeight}px` }}>
+          <div
+            className="fixed z-10 w-full"
+            style={{ top: `${navbarHeight}px` }}
+          >
             <Image
               className="!w-full"
               src="/images/Gitex Global.webp"
