@@ -71,7 +71,7 @@ const SearchButton = () => {
         onSubmit={handleSubmit}
       >
         <Image
-          className="self-center absolute xl:top-[45%] md:top-[36%] top-[25%] left-3 md:w-[40px] w-[30px] md:h-[40px] h-[30px] bg-colorWhite"
+          className="self-center absolute xl:top-[45%] md:top-[36%] top-[25%] left-3 md:w-[40px] w-[30px] md:h-[40px] h-[30px]"
           src="/images/Google-Bard.svg"
           width="40"
           height="40"

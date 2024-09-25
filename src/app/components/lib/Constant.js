@@ -1737,7 +1737,6 @@ export const COUNTRIES = [
   },
 ];
 
-
 export const sitemapData = [
   {
     loc: "https://swiftsupport.ai/blog/",
@@ -1751,31 +1750,87 @@ export const sitemapData = [
     loc: "https://swiftsupport.ai/terms-and-conditions/",
     lastmod: "2024-06-20T12:04:49.528Z",
   },
-
 ];
-
 
 export const blogData = [
   {
-    loc: "https://www.swiftsupport.ai/blog/how-chatbots-customer-service-help-smbs-grow",
+    loc: "https://www.swiftsupport.ai/blog/how-chatbots-for-education-are-shaping-the-future-of-learning/",
+    lastmod: "2024-09-17T11:18:52.334Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/enhancing-chatbot-customer-service-with-data-analytics/",
+    lastmod: "2024-09-11T11:18:52.334Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/transforming-law-firms-with-legal-chatbots/",
+    lastmod: "2024-09-04T11:18:52.334Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/saas-chatbot-an-ultimate-solution-for-your-business/",
+    lastmod: "2024-09-03T08:31:10.395Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/creating-a-personalized-customer-experience-with-chatbot/",
+    lastmod: "2024-08-30T08:31:49.344Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/a-step-by-step-guide-for-ai-chatbot-training/",
+    lastmod: "2024-08-29T08:31:49.344Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/the-future-of-ai-in-customer-service-trends-and-predictions/",
+    lastmod: "2024-08-28T08:31:49.344Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/10-machine-learning-algorithms-that-ai-chatbots-use/",
+    lastmod: "2024-08-23T08:31:49.344Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/multi-source-data-integration-in-chatbot/",
+    lastmod: "2024-08-20T08:31:49.344Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/top-use-cases-of-chatbots-in-healthcare/",
+    lastmod: "2024-08-12T08:31:49.344Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/understanding-the-reasons-and-challenges-of-chatbots-in-crm/",
+    lastmod: "2024-08-07T08:31:49.344Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/how-chatbots-enhance-support-efficiency-in-financial-services/",
+    lastmod: "2024-08-05T08:31:49.344Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/the-dos-and-don-ts-of-healthcare-chatbot-implementation/",
+    lastmod: "2024-07-30T08:31:10.395Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/chatbots-in-e-commerce/",
+    lastmod: "2024-07-25T08:31:10.395Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/advanced-algorithms-to-improve-customer-service/",
+    lastmod: "2024-07-23T11:18:52.334Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/how-chatbots-customer-service-help-smbs-grow/",
     lastmod: "2024-07-22T11:18:52.334Z",
   },
   {
-    loc: "https://www.swiftsupport.ai/blog/the-role-of-ai-assistants-in-customer-support",
-    lastmod: "2024-07-19T08:31:10.395Z",
+    loc: "https://www.swiftsupport.ai/blog/the-role-of-ai-assistants-in-customer-support/",
+    lastmod: "2024-07-18T08:31:10.395Z",
   },
   {
-    loc: "https://www.swiftsupport.ai/blog/enhance-customer-satisfaction-with-ai",
-    lastmod: "2024-07-19T08:31:49.344Z",
+    loc: "https://www.swiftsupport.ai/blog/enhance-customer-satisfaction-with-ai/",
+    lastmod: "2024-07-18T08:31:10.395Z",
   },
- 
   {
-    loc: "https://www.swiftsupport.ai/blog/ai-in-customer-support",
-    lastmod: "2024-07-19T08:32:15.502Z",
+    loc: "https://www.swiftsupport.ai/blog/ai-in-customer-support/",
+    lastmod: "2024-07-17T08:32:15.502Z",
   },
-   
   {
-    loc: "https://www.swiftsupport.ai/blog/swiftsupport-in-customer-service",
-    lastmod: "2024-06-06T06:46:28.121Z",
-  }
-]
+    loc: "https://www.swiftsupport.ai/blog/swiftsupport-in-customer-service/",
+    lastmod: "2024-06-03T06:46:28.121Z",
+  },
+];

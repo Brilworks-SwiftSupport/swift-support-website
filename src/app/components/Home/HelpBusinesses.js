@@ -23,19 +23,19 @@ const HelpBusinesses = () => {
       imgSrc: "/images/active-directory.png",
       imgSrcAlt: "Data-Source",
       title: "Manage all your AI Data Sources",
-      desc: "Integrate and control all your data sources in one powerful platform",
+      desc: "Integrate and control all your data sources in one powerful platform.",
     },
     {
       imgSrc: "/images/robotic-process-automation.png",
       imgSrcAlt: "Frictionless-service",
       title: "Frictionless, Futuristic Automation",
-      desc: "Save time with AI-driven workflows and automated responses",
+      desc: "Save time with AI-driven workflows and automated responses.",
     },
     {
       imgSrc: "/images/customer-service.png",
       imgSrcAlt: "24X7-Support",
       title: "24/7 Omnichannel Support",
-      desc: "Provide consistent support across chat, email, phone, and social media-anytime,anywhere.",
+      desc: "Provide consistent support across chat, email, phone, and social media-anytime, anywhere.",
     },
     {
       imgSrc: "/images/customer.png",
@@ -47,7 +47,7 @@ const HelpBusinesses = () => {
       imgSrc: "/images/supporting.png",
       imgSrcAlt: "Quick-support",
       title: "Proactive Support",
-      desc: "Predict and resolve issues before they escalate",
+      desc: "Predict and resolve issues before they escalate.",
     },
     {
       imgSrc: "/images/decision.png",
