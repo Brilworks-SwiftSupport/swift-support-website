@@ -11,6 +11,9 @@ const AppIntegrationSection = dynamic(() =>
 const IndustriesWeServe = dynamic(() =>
   import("../../components/Home/IndustriesWeServe")
 );
+const HelpBusinesses = dynamic(() =>
+  import("@/app/components/Home/HelpBusinesses")
+);
 const ManageDataSource = dynamic(() =>
   import("../../components/Home/ManageDataSource")
 );
@@ -46,6 +49,7 @@ const page = () => {
         {/* <VideoSection /> */}
         <TrustedBy />
         <IndustriesWeServe />
+        <HelpBusinesses />
         <ManageDataSource />
       </div>
       <FrictionlessAndFuturistic />

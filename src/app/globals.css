@@ -326,6 +326,12 @@ a:hover {
 .subscribe-shadow {
   box-shadow: 0px 40.30768585205078px 26.871793746948242px 0px #0000001a;
 }
+
+.app-integration-gradient {
+  background: rgb(248, 245, 170);
+  background: linear-gradient(180deg, #f8f5aa 0%, #ffd7d7 27%, #97e3fd 100%);
+}
+
 .form-group {
   display: flex;
   align-items: center;

@@ -54,6 +54,12 @@ const TrustedBy = () => {
       width: 140,
       height: 30,
     },
+    {
+      src: "/images/brilworks-logo.png",
+      alt: "Trusted company logo 1",
+      width: 150,
+      height: 40,
+    },
   ];
 
   return (
