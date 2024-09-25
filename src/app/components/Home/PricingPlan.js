@@ -1,11 +1,9 @@
 "use client";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const PricingPlan = () => {
   const [subscriptionPlan, setSubscriptionPlan] = useState("Monthly");
-  const router = useRouter();
 
   const pricingPlans = [
     {
@@ -14,14 +12,14 @@ const PricingPlan = () => {
       features: [
         "1 Agent",
         "200 query/month",
-        "1 Data store",
+        "1 Datastore",
         "Total storage 50MB",
         "25 web pages",
         "File upload limit 1MB/File",
-        "No slack integration",
-        "No Hubspot integration",
-        "No google drive integration",
-        "Not able to remove branding",
+        "Remove SwiftSupport branding",
+        "Slack integration",
+        "Hubspot integration",
+        "Google drive integration",
       ],
       buttonLink: "https://app.swiftsupport.ai/login",
       buttonText: "Subscribe",
@@ -33,13 +31,13 @@ const PricingPlan = () => {
       features: [
         "5 Agent",
         "20k query/month",
-        "5 Data store",
+        "5 Datastore",
         "File upload limit 10MB/File",
         "Total storage 200MB",
         "500 web pages",
         "Auto sync datastore",
         "5 team seat",
-        "Remove swift support branding",
+        "Remove SwiftSupport branding",
         "Slack integration",
         "HubSpot integration",
         "Google drive integration",
@@ -53,13 +51,13 @@ const PricingPlan = () => {
       features: [
         "Unlimited agent",
         "Unlimited query/month",
-        "Unlimited Data store",
+        "Unlimited datastore",
         "File upload limit 10MB/File",
         "Total storage 100MB",
         "10000 web pages",
         "Auto sync datastore",
         "Unlimited team seat",
-        "Remove swift support branding",
+        "Remove SwiftSupport branding",
         "Slack integration",
         "HubSpot integration",
         "Google drive integration",
@@ -140,9 +138,28 @@ const PricingPlan = () => {
                   Features
                 </h3>
                 <ul className="pricing-list">
-                  {plan.features.map((feature, idx) => (
-                    <li key={idx}>{feature}</li>
-                  ))}
+                  {plan.features.map((feature, idx) => {
+                    // Check if the plan label is "FREE" and the feature matches the ones to be strikethrough
+                    const strikeThrough =
+                      plan.label === "FREE" &&
+                      [
+                        "Remove SwiftSupport branding",
+                        "Slack integration",
+                        "Hubspot integration",
+                        "Google drive integration",
+                      ].includes(feature);
+
+                    return (
+                      <li
+                        key={idx}
+                        className={
+                          strikeThrough ? "line-through text-gray-500" : ""
+                        }
+                      >
+                        {feature}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             </div>
