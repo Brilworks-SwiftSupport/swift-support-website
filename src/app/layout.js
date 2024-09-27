@@ -69,7 +69,7 @@ export default function RootLayout({ children }) {
           <meta name="robots" content="index, follow" />
           <Script defer id="chatbot-widget-script" strategy="afterInteractive">
             {`
-          window.chatBotConfig = {agentId: 194};
+          window.chatBotConfig = {agentId: 213};
           (function() {
             var script = document.createElement('script');
             script.defer = true;
