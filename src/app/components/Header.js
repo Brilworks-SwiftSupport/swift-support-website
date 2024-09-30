@@ -6,13 +6,14 @@ import Image from "next/image";
 import { scrollToSection } from "./lib/Common";
 import { usePathname } from "next/navigation";
 import { MenuCustomList } from "./Menu";
+import { useGoogleLogin } from "@react-oauth/google";
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
   const pathname = usePathname();
   const [hideHeader, setHideHeader] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [scroll, SetScroll] = useState(0);
+  const [scroll, setScroll] = useState(0);
 
   const handleScrollProgress = () => {
     if (window && window.scrollY) {
@@ -21,7 +22,7 @@ const Header = () => {
       } else {
         setHideHeader(true);
       }
-      SetScroll(window.scrollY / 1000);
+      setScroll(window.scrollY / 1000);
     }
     const winScroll =
       document.body.scrollTop || document.documentElement.scrollTop;
@@ -43,6 +44,29 @@ const Header = () => {
       window.removeEventListener("scroll", handleScrollProgress);
     };
   });
+
+  // Initialize Google One Tap Login
+  const googleLogin = useGoogleLogin({
+    onSuccess: (credentialResponse) => {
+      console.log("Google One Tap Success:", credentialResponse);
+      // You can send the token to your backend for further processing
+    },
+    onError: () => {
+      console.error("Google One Tap Login Failed");
+    },
+    useOneTap: true, // This will enable the One Tap popup
+    promptMomentNotification: (moment) => {
+      console.log("One Tap Prompt Moment:", moment);
+      if (moment.isNotDisplayed() || moment.isSkippedMoment()) {
+        console.log("One Tap not displayed or skipped");
+      }
+    },
+  });
+
+  // Use useEffect to automatically trigger the One Tap when the component loads
+  useEffect(() => {
+    googleLogin(); // This will only trigger One Tap
+  }, [googleLogin]);
 
   const navList = (
     <ul
@@ -115,6 +139,23 @@ const Header = () => {
       >
         Log in
       </Link>
+      {/* <div>
+        <h2>Sign up with Google</h2>
+        <GoogleLogin
+          onSuccess={handleSuccess}
+          onError={handleError}
+          useOneTap={true}
+          promptMomentNotification={(moment) => {
+            console.log("Google One Tap moment:", moment);
+            if (moment.isDismissedMoment()) {
+              console.log("User dismissed the One Tap UI");
+            }
+            if (moment.isNotDisplayed() || moment.isSkippedMoment()) {
+              console.log("One Tap not displayed");
+            }
+          }}
+        />
+      </div> */}
       <Link
         rel="noopener"
         target="_blank"

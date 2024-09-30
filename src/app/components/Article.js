@@ -9,7 +9,7 @@ import { memo, useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { getblogData } from "../lib/getblog";
 import { usePathname } from "next/navigation";
-import { blogAuthor, calculateReadingTime, formattedDate } from "./lib/Common";
+import { blogAuthor, formattedDate } from "./lib/Common";
 import BlogFAQ from "./Blog/BlogFAQ";
 import Svgs from "./lib/Svgs";
 
@@ -28,8 +28,6 @@ const Article = ({ blok }) => {
       blok?.Content_2 +
       blok?.Content_3 +
       `${blok?.FAQ?.length && "<h2>FAQ</h2>"}` || "";
-
-  const readingTime = calculateReadingTime(blogTableOfContent);
 
   async function fetchData() {
     try {
@@ -143,137 +141,13 @@ const Article = ({ blok }) => {
   const author = blogAuthor(blok?.BlogAuthor);
 
   return (
-    <div className="md:mt-[8rem] mt-[6rem]">
+    <div>
       {!blok ? (
         <div className="flex items-center justify-center !py-60">
           Loading...
         </div>
       ) : (
         <>
-          <div className="container max-w-[1280px] mx-auto my-0 !px-4">
-            <div className="flex flex-wrap -mx-4">
-              <div className="sxl:basis-3/4 sxl:flex-shrink-0 sxl:flex-grow-0 sxl:max-w-[75%] sxl:ml-[20%] sxl:mb-6 mb-4 !px-4 min-h-[1px] w-full">
-                <div className="slg:w-[calc(100%_-_170px)]">
-                <div
-                  className="w-full inline-flex flex-wrap !font-semibold items-center mb-3 min-h-[24px]"
-                  aria-label="Breadcrumb"
-                >
-              
-                  <span className="blog-navigation">
-                    <Link title="Brilworks Blog." href="/">
-                      Swift Support
-                    </Link>
-                  </span>
-                  <span className="self-center md:mx-2 mx-1 mt-[2px]">
-                    <Image
-                      className="!w-[20px]"
-                      src="/images/black_aerrow-1.png"
-                      alt="arrow"
-                      width="20"
-                      height="10"
-                      priority="true"
-                    />
-                  </span>
-                  <span className="blog-navigation">
-                    <Link title="Go to Blog." href="/blog">
-                      Blog
-                    </Link>
-                  </span>
-                  <span className="self-center md:mx-2 mx-1 mt-[2px]">
-                    <Image
-                      className="!w-[20px]"
-                      src="/images/black_aerrow-1.png"
-                      alt="arrow"
-                      width="20"
-                      height="10"
-                      priority="true"
-                    />
-                  </span>
-               
-                  
-                  <span>{blok?.story?.content?.title}</span>
-               
-                </div>
-                  <h1 className="md:!text-[3rem] !text-[2rem] !font-bold !mb-5 md:leading-[57px] leading-[44px] -tracking-[.52px]">
-                    {blok?.title}
-                  </h1>
-                </div>
-                <div className="slg:w-[calc(100%_-_170px)] flex xl:items-end items-start xl:flex-row flex-col justify-between md:gap-1 gap-2">
-                  {author && (
-                    <div className="flex items-center justify-between">
-                      <Image
-                        src={author?.authorImage}
-                        width="54"
-                        height="56"
-                        alt={author?.name}
-                        className="!rounded-full md:!w-14 md:!h-14 !w-10 !h-10"
-                      />
-                      <div className="pl-[10px]">
-                        <Link
-                          className="md:text-[20px] text-base font-bold text-colorDarkBlue"
-                          href={author?.authorLinkedIn}
-                          title={`Posts by ${author?.name}`}
-                          rel="author external"
-                        >
-                          {author?.name}
-                        </Link>
-                        <br />
-                        <span className=" text-colorGray">
-                          {formattedDate(blok?.Published)}
-                        </span>
-                      </div>
-                    </div>
-                  )}
-                  <div className="flex sxl:items-center items-start sxl:flex-row flex-col !text-[16px] pb-1 md:mt-4 md:gap-0 gap-2">
-                    <div className="flex items-center md:mr-5 text-colorGray">
-                      <Svgs name="clock-icon" />
-                      &nbsp;
-                      {readingTime} mins read
-                    </div>
-                    <div className="flex items-center text-colorGray">
-                      <Svgs name="calendar-icon" />
-                      &nbsp; Last updated {formattedDate(blok?.Published)}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-wrap -mx-4">
-              <div className="sxl:basis-3/4 sxl:flex-shrink-0 sxl:flex-grow-0 sxl:max-w-[75%] sxl:ml-[20%] !px-4 min-h-[1px] w-full">
-                <div className="h-auto relative md:mb-6 mb-4 slg:!w-[calc(100%_-_170px)] overflow-hidden bg-cover bg-center">
-                  <Image
-                    className="rounded-lg block md:hidden max-h-[288px] h-auto object-cover"
-                    src={blok?.mobile_banner?.filename || blok?.image?.filename}
-                    alt={blok?.image?.alt}
-                    width="343"
-                    height="177"
-                    priority={true}
-                    sizes="(min-width: 1040px) 42.35vw, (min-width: 640px) 60.84vw, calc(100vw - 30px)"
-                  />
-                  <Image
-                    className="rounded-lg hidden md:block max-h-[288px] h-auto object-cover"
-                    src={blok?.image?.filename || blok?.mobile_banner?.filename}
-                    alt={blok?.image?.alt}
-                    width="758"
-                    height="169"
-                    priority={true}
-                    sizes="(min-width: 1040px) 42.35vw, (min-width: 640px) 60.84vw, calc(100vw - 30px)"
-                  />
-                </div>
-                {blok?.Quick_Summary && (
-                  <div>
-                    <div className="slg:w-[calc(100%_-_170px)] w-full text-left text-xl md:mb-6 mb-4 text-colorBlack">
-                      <span className="font-bold text-colorDarkBlue">
-                        Quick Summary:-{" "}
-                      </span>
-                      {blok?.Quick_Summary}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-
           <div className="container max-w-[1280px] mx-auto my-0 px-4">
             <div className="flex flex-wrap -mx-4">
               <div className="slg:basis-1/5 slg:flex-shrink-0 slg:flex-grow-0 slg:max-w-[20%] !px-4 min-h-[1px] w-full slg:block hidden">
@@ -349,7 +223,6 @@ const Article = ({ blok }) => {
                           src="/images/linkedin-share.svg"
                           width="43"
                           height="43"
-                        
                           alt="LinkedIn blog share"
                         />
                       </Link>
@@ -468,10 +341,7 @@ const Article = ({ blok }) => {
           </div>
           <div className="container mx-auto md:!px-3 !px-4">
             <div className="flex flex-wrap flex-col xl:pb-20 md:pb-14 pb-8">
-
-            <div className="service_sec3 mb-2">
-
-
+              <div className="service_sec3 mb-2">
                 <p className="home_sec2_txt3 !pb-0 md:!pt-8 !pt-0">
                   <p className="!ml-0 text-[2rem] font-bold !w-full">
                     You might also like
@@ -483,71 +353,73 @@ const Article = ({ blok }) => {
                    xl:grid-cols-3 md:grid-cols-2
                  grid-cols-1 items-center gap-[2rem]`}
               >
-          
-                {  blogData
-                    ?.filter(({ slug }) => !pathname?.includes(slug))
-                    ?.slice(0, `${isTablet ? 2 : 3}`)
-                    ?.map(({ slug, name, content }, index) => (
-                      <div
-              className="blog-card h-fit border flex border-lightGray rounded-[10px]"
-              key={index}
-            >
-              <Link className="flex flex-col h-full" as={`/blog/${slug}`} href={`/blog/[slug]`} prefetch={false}>
-                <div className="flex-[0.5]">
-                  <Image
-                    className="block md:hidden w-full zoom-image"
-                    src={content?.mobile_banner?.filename}
-                    alt={
-                      content?.mobile_banner?.alt ||
-                      content?.Image?.alt ||
-                      `Blog-List-banner-${index + 1}`
-                    }
-                    quality={40}
-                    width={310}
-                    height={150}
-                    priority={index === 0}
-                    sizes="(min-width: 1040px) 42.35vw, (min-width: 640px) 60.84vw, calc(100vw - 30px)"
-                  />
-                  <Image
-                    className="hidden md:block w-full zoom-image"
-                    src={content?.mobile_banner?.filename}
-                    alt={
-                      content?.mobile_banner?.alt ||
-                      content?.Image?.alt ||
-                      `Blog-List-banner-${index + 1}`
-                    }
-                    
-                    width={450}
-                    height={230}
-                    priority={index === 0}
-                    sizes="(min-width: 1040px) 42.35vw, (min-width: 640px) 60.84vw, calc(100vw - 30px)"
-                  />
-                </div>
-                <div className="flex flex-[0.4] flex-col p-[5%] h-full items-start bg-colorWhite">
-                  {/* <div
+                {blogData
+                  ?.filter(({ slug }) => !pathname?.includes(slug))
+                  ?.slice(0, `${isTablet ? 2 : 3}`)
+                  ?.map(({ slug, name, content }, index) => (
+                    <div
+                      className="blog-card h-fit border flex border-lightGray rounded-[10px]"
+                      key={index}
+                    >
+                      <Link
+                        className="flex flex-col h-full"
+                        as={`/blog/${slug}`}
+                        href={`/blog/[slug]`}
+                        prefetch={false}
+                      >
+                        <div className="flex-[0.5]">
+                          <Image
+                            className="block md:hidden w-full zoom-image"
+                            src={content?.mobile_banner?.filename}
+                            alt={
+                              content?.mobile_banner?.alt ||
+                              content?.Image?.alt ||
+                              `Blog-List-banner-${index + 1}`
+                            }
+                            quality={40}
+                            width={310}
+                            height={150}
+                            priority={index === 0}
+                            sizes="(min-width: 1040px) 42.35vw, (min-width: 640px) 60.84vw, calc(100vw - 30px)"
+                          />
+                          <Image
+                            className="hidden md:block w-full zoom-image"
+                            src={content?.mobile_banner?.filename}
+                            alt={
+                              content?.mobile_banner?.alt ||
+                              content?.Image?.alt ||
+                              `Blog-List-banner-${index + 1}`
+                            }
+                            width={450}
+                            height={230}
+                            priority={index === 0}
+                            sizes="(min-width: 1040px) 42.35vw, (min-width: 640px) 60.84vw, calc(100vw - 30px)"
+                          />
+                        </div>
+                        <div className="flex flex-[0.4] flex-col p-[5%] h-full items-start bg-colorWhite">
+                          {/* <div
                     className={`text-colorBlack font-medium px-1 py-1 rounded-lg mb-2 bg-themePink`}
                   >
                     {content?.Category === "Cloud DevOps and Data"
                       ? "Cloud, DevOps and Data"
                       : content?.Category}
                   </div> */}
-                  <h2 className="mb-1">{name}</h2>
-                </div>
-                <div className="w-full flex  flex-[0.1] flex-row p-[5%] items-start border-t border-lightGray bg-lightGray bg-opacity-10">
-                  <div className="w-full flex items-center justify-between gap-2 text-colorGray">
-                    <div className="text-colorDarkBlue">
-                      By {content?.BlogAuthor}
+                          <h2 className="mb-1">{name}</h2>
+                        </div>
+                        <div className="w-full flex  flex-[0.1] flex-row p-[5%] items-start border-t border-lightGray bg-lightGray bg-opacity-10">
+                          <div className="w-full flex items-center justify-between gap-2 text-colorGray">
+                            <div className="text-colorDarkBlue">
+                              By {content?.BlogAuthor}
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <Svgs name="calendar-icon" />
+                              <span>{formattedDate(content?.Published)}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </Link>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Svgs name="calendar-icon" />
-                      <span>{formattedDate(content?.Published)}</span>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </div>
-                    ))
-              }
+                  ))}
               </div>
             </div>
           </div>

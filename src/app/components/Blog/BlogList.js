@@ -61,7 +61,7 @@ async function BlogList({ searchParams }) {
         {blogDataPerPage.length ? (
           blogDataPerPage.map(({ slug, name, content }, index) => (
             <div
-              className="blog-card h-fit border flex border-lightGray rounded-[10px]"
+              className="blog-card h-full border flex border-lightGray rounded-[10px]"
               key={index}
             >
               <Link
@@ -100,16 +100,20 @@ async function BlogList({ searchParams }) {
                   />
                 </div>
                 <div className="flex flex-[0.4] flex-col p-[5%] h-full items-start bg-colorWhite">
-                  <h2 className="mb-1">{name}</h2>
+                  <h2 className="mb-1 min-h-[60px] flex items-center">
+                    {name}
+                  </h2>
                 </div>
                 <div className="w-full flex  flex-[0.1] flex-row p-[5%] items-start border-t border-lightGray bg-lightGray bg-opacity-10">
                   <div className="w-full flex items-center justify-between gap-2 text-colorGray">
-                    <div className="text-colorDarkBlue">
+                    <div className="text-colorDarkBlue text-xs md:text-sm">
                       By {content?.BlogAuthor}
                     </div>
                     <div className="flex items-center gap-2">
                       <Svgs name="calendar-icon" />
-                      <span>{formattedDate(content?.Published)}</span>
+                      <span className="text-xs md:text-sm">
+                        {formattedDate(content?.Published)}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -183,7 +187,7 @@ export default function BlogListPage({ searchParams }) {
     <Suspense
       fallback={
         <div>
-          <BeatLoader></BeatLoader>
+          <BeatLoader />
         </div>
       }
     >

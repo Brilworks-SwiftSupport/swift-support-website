@@ -99,3 +99,7 @@ export const calculateReadingTime = (content) => {
 
   return readingTime;
 };
+
+export function handleTernaryExecution(condition, trueValue, falseValue) {
+  return condition ? trueValue : falseValue;
+}
