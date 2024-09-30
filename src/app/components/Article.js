@@ -9,7 +9,7 @@ import { memo, useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { getblogData } from "../lib/getblog";
 import { usePathname } from "next/navigation";
-import { blogAuthor, calculateReadingTime, formattedDate } from "./lib/Common";
+import { blogAuthor, formattedDate } from "./lib/Common";
 import BlogFAQ from "./Blog/BlogFAQ";
 import Svgs from "./lib/Svgs";
 
@@ -28,8 +28,6 @@ const Article = ({ blok }) => {
       blok.Content_2 +
       blok.Content_3 +
       `${blok?.FAQ?.length && "<h2>FAQ</h2>"}` || "";
-
-  const readingTime = calculateReadingTime(blogTableOfContent);
 
   async function fetchData() {
     try {
@@ -172,97 +170,13 @@ const Article = ({ blok }) => {
   const author = blogAuthor(blok?.BlogAuthor);
 
   return (
-    <div className="md:mt-[8rem] mt-[6rem]">
+    <div>
       {!blok ? (
         <div className="flex items-center justify-center !py-60">
           Loading...
         </div>
       ) : (
         <>
-          <div className="container max-w-[1280px] mx-auto my-0 !px-4">
-            <div className="flex flex-wrap -mx-4">
-              <div className="sxl:basis-3/4 sxl:flex-shrink-0 sxl:flex-grow-0 sxl:max-w-[75%] sxl:ml-[20%] sxl:mb-6 mb-4 !px-4 min-h-[1px] w-full">
-                <div className="slg:w-[calc(100%_-_170px)]">
-                  <h1 className="md:!text-[3rem] !text-[2rem] !font-bold !mb-5 md:leading-[57px] leading-[44px] -tracking-[.52px]">
-                    {blok?.title}
-                  </h1>
-                </div>
-                <div className="slg:w-[calc(100%_-_170px)] flex xl:items-end items-start xl:flex-row flex-col justify-between md:gap-1 gap-2">
-                  {author && (
-                    <div className="flex items-center justify-between">
-                      <Image
-                        src={author?.authorImage}
-                        width="54"
-                        height="56"
-                        alt={author?.name}
-                        className="!rounded-full md:!w-14 md:!h-14 !w-10 !h-10"
-                      />
-                      <div className="pl-[10px]">
-                        <Link
-                          className="md:text-[20px] text-base font-bold text-colorDarkBlue"
-                          href={author?.authorLinkedIn}
-                          title={`Posts by ${author?.name}`}
-                          rel="author external"
-                        >
-                          {author?.name}
-                        </Link>
-                        <br />
-                        <span className=" text-colorGray">
-                          {formattedDate(blok?.Published)}
-                        </span>
-                      </div>
-                    </div>
-                  )}
-                  <div className="flex sxl:items-center items-start sxl:flex-row flex-col !text-[16px] pb-1 md:mt-4 md:gap-0 gap-2">
-                    <div className="flex items-center md:mr-5 text-colorGray">
-                      <Svgs name="clock-icon" />
-                      &nbsp;
-                      {readingTime} mins read
-                    </div>
-                    <div className="flex items-center text-colorGray">
-                      <Svgs name="calendar-icon" />
-                      &nbsp; Last updated {formattedDate(blok?.Published)}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-wrap -mx-4">
-              <div className="sxl:basis-3/4 sxl:flex-shrink-0 sxl:flex-grow-0 sxl:max-w-[75%] sxl:ml-[20%] !px-4 min-h-[1px] w-full">
-                <div className="h-auto relative md:mb-6 mb-4 slg:!w-[calc(100%_-_170px)] overflow-hidden bg-cover bg-center">
-                  <Image
-                    className="rounded-lg block md:hidden max-h-[288px] h-auto object-cover"
-                    src={blok?.mobile_banner?.filename || blok?.image?.filename}
-                    alt={blok?.image?.alt}
-                    width="343"
-                    height="177"
-                    priority={true}
-                    sizes="(min-width: 1040px) 42.35vw, (min-width: 640px) 60.84vw, calc(100vw - 30px)"
-                  />
-                  <Image
-                    className="rounded-lg hidden md:block max-h-[288px] h-auto object-cover"
-                    src={blok?.image?.filename || blok?.mobile_banner?.filename}
-                    alt={blok?.image?.alt}
-                    width="758"
-                    height="169"
-                    priority={true}
-                    sizes="(min-width: 1040px) 42.35vw, (min-width: 640px) 60.84vw, calc(100vw - 30px)"
-                  />
-                </div>
-                {blok?.Quick_Summary && (
-                  <div>
-                    <div className="slg:w-[calc(100%_-_170px)] w-full text-left text-xl md:mb-6 mb-4 text-colorBlack">
-                      <span className="font-bold text-colorDarkBlue">
-                        Quick Summary:-{" "}
-                      </span>
-                      {blok?.Quick_Summary}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-
           <div className="container max-w-[1280px] mx-auto my-0 px-4">
             <div className="flex flex-wrap -mx-4">
               <div className="slg:basis-1/5 slg:flex-shrink-0 slg:flex-grow-0 slg:max-w-[20%] !px-4 min-h-[1px] w-full slg:block hidden">
