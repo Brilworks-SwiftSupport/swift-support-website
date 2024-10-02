@@ -1754,6 +1754,18 @@ export const sitemapData = [
 
 export const blogData = [
   {
+    loc: "https://www.swiftsupport.ai/blog/unlock-success-with-real-estate-ai-bots-that-win-clients/",
+    lastmod: "2024-10-02T04:17:54.447Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/use-cases-of-ai-chatbot-for-field-service-across-various-industries/",
+    lastmod: "2024-10-01T07:03:31.236Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/use-cases-of-a-travel-chatbot-for-enhanced-traveler-experience/",
+    lastmod: "2024-10-01T06:33:36.901Z",
+  },
+  {
     loc: "https://www.swiftsupport.ai/blog/ai-chatbot-in-manufacturing-top-use-cases-benefits/",
     lastmod: "2024-09-27T07:23:42.905Z",
   },
