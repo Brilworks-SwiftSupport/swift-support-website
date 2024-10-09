@@ -1750,16 +1750,24 @@ export const sitemapData = [
     loc: "https://swiftsupport.ai/terms-and-conditions/",
     lastmod: "2024-06-20T12:04:49.528Z",
   },
+  {
+    loc: "https://www.swiftsupport.ai/guide/how-to-add-live-chat-to-website/",
+    lastmod: "2024-10-09T08:58:03.856Z",
+  },
 ];
 
 export const blogData = [
   {
+    loc: "https://www.swiftsupport.ai/blog/understanding-ai-agent-performance-metrics-for-better-results/",
+    lastmod: "2024-10-08T08:58:03.856Z",
+  },
+  {
     loc: "https://www.swiftsupport.ai/blog/unlock-success-with-real-estate-ai-bots-that-win-clients/",
-    lastmod: "2024-10-02T04:17:54.447Z",
+    lastmod: "2024-10-08T09:01:00.044Z",
   },
   {
     loc: "https://www.swiftsupport.ai/blog/use-cases-of-ai-chatbot-for-field-service-across-various-industries/",
-    lastmod: "2024-10-01T07:03:31.236Z",
+    lastmod: "2024-10-02T05:19:14.244Z",
   },
   {
     loc: "https://www.swiftsupport.ai/blog/use-cases-of-a-travel-chatbot-for-enhanced-traveler-experience/",
@@ -1852,10 +1860,6 @@ export const blogData = [
   {
     loc: "https://www.swiftsupport.ai/blog/ai-in-customer-support/",
     lastmod: "2024-08-09T06:48:24.316Z",
-  },
-  {
-    loc: "https://www.swiftsupport.ai/blog/ai-assistants-in-customer-service/",
-    lastmod: "2024-07-17T10:11:01.437Z",
   },
   {
     loc: "https://www.swiftsupport.ai/blog/swiftsupport-in-customer-service/",
