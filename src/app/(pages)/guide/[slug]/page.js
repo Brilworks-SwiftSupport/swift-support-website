@@ -84,7 +84,6 @@ export async function generateMetadata({ params }) {
 
 export default async function Page({ params }) {
   const storyData = await getGuideData(params.slug);
-  console.log(storyData.story.content);
   const { title_section, FAQ_section, content } = storyData.story.content;
 
   return (
