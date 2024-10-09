@@ -41,8 +41,22 @@
 }
 
 .blog-content {
-  a {
-    word-wrap: break-word;
+  p,
+  a,
+  blockquote,
+  span,
+  div,
+  strong,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  li,
+  ul,
+  ol {
+    font-family: var(--global-font) !important;
   }
   font-family: var(--global-font) !important;
   div {

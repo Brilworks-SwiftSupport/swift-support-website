@@ -205,7 +205,7 @@ const Article = ({ blok }) => {
                               }
                               className={`${
                                 textToId(heading?.text) == activeLink
-                                  ? "text-colorDarkBlue"
+                                  ? "text-colorDarkBlue font-semibold"
                                   : ""
                               }`}
                             >
@@ -279,7 +279,7 @@ const Article = ({ blok }) => {
                             )}
 
                             {blok?.Content_1 && (
-                              <div className="blog_content_new">
+                              <div>
                                 {modifyImagesWithLazyLoading(
                                   blok?.Content_1 || ""
                                 )}
@@ -295,7 +295,7 @@ const Article = ({ blok }) => {
                               </div>
                             )}
                             {blok?.Content_2 && (
-                              <div className="blog_content_new">
+                              <div>
                                 {modifyImagesWithLazyLoading(
                                   blok?.Content_2 || ""
                                 )}
@@ -313,7 +313,7 @@ const Article = ({ blok }) => {
                               </div>
                             )}
                             {blok?.Content_3 && (
-                              <div className="blog_content_new">
+                              <div>
                                 {modifyImagesWithLazyLoading(
                                   blok?.Content_3 || ""
                                 )}
@@ -370,10 +370,10 @@ const Article = ({ blok }) => {
               </div>
             </div>
           </div>
-          <div className="container mx-auto md:!px-3 !px-4">
+          <div className="container max-w-[1280px] mx-auto md:!px-3 !px-4">
             <div className="flex flex-wrap flex-col xl:pb-20 md:pb-14 pb-8">
-              <div className="service_sec3 mb-2">
-                <p className="home_sec2_txt3 !pb-0 md:!pt-8 !pt-0">
+              <div className="mb-4">
+                <p className="!pb-0 md:!pt-8 !pt-0">
                   <p className="!ml-0 text-[2rem] font-bold !w-full">
                     You might also like
                   </p>
@@ -389,7 +389,7 @@ const Article = ({ blok }) => {
                   ?.slice(0, `${isTablet ? 2 : 3}`)
                   ?.map(({ slug, name, content }, index) => (
                     <div
-                      className="blog-card h-fit border flex border-lightGray rounded-[10px]"
+                      className="blog-card h-full border flex border-lightGray rounded-[10px]"
                       key={index}
                     >
                       <Link

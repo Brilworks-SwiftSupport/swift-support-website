@@ -241,13 +241,15 @@ const Header = () => {
             className="fixed z-10 w-full"
             style={{ top: `${navbarHeight}px` }}
           >
-            <Image
-              className="!w-full"
-              src="/images/Gitex Global.webp"
-              alt="upcoming-event"
-              width="1440"
-              height="80"
-            />
+            <Link href="https://www.gitex.com/" target="_blank">
+              <Image
+                className="!w-full"
+                src="/images/Gitex Global.webp"
+                alt="upcoming-event"
+                width="1440"
+                height="80"
+              />
+            </Link>
           </div>
         </div>
       </div>
