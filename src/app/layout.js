@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import "./globals.css";
 import "./styles/Animation.scss";
+import "./styles/Customstyle.scss";
 import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 import StoryblokProvider from "./components/StoryblokProvider";
 import { Outfit } from "next/font/google";
@@ -30,12 +31,13 @@ export default function RootLayout({ children }) {
     <StoryblokProvider>
       <html lang="en" className={`${outfit.variable}`}>
         <head>
-          {process.env.VERCEL_ENV === "production" && (
+          {process.env.VERCEL_ENV === "production" ? (
             <>
               <meta
                 name="google-site-verification"
                 content="c0Wa7YSps4FhBSg1lMMWnE7_livU8FgBZAbCRtwW6JE"
               />
+              <meta name="robots" content="index, follow" />
               <Script
                 id="tag-manager"
                 strategy="afterInteractive"
@@ -65,6 +67,42 @@ export default function RootLayout({ children }) {
                 y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
                 })(window, document, "clarity", "script", '${process.env.CLARITY_ID}');`}
               </Script>
+
+              <Script
+                defer
+                id="chatbot-widget-script"
+                strategy="afterInteractive"
+              >
+                {`window.chatBotConfig = {agentId: 213};
+                (function() {
+                  var script = document.createElement('script');
+                  script.defer = true;
+                  script.src = "https://app.swiftsupport.ai/ChatbotScripts/chatbotBubble.js";
+                  document.body.appendChild(script);
+                })();
+              `}
+              </Script>
+            </>
+          ) : (
+            <>
+              <meta name="robots" content="noindex,nofollow" />
+              <Script
+                id="tag-manager"
+                strategy="afterInteractive"
+              >{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                  })(window,document,'script','dataLayer','GTM-PZQ9LFDT');`}</Script>
+              <Script
+                strategy="afterInteractive"
+                id="chatbot"
+              >{`window.chatBotConfig = {agentId: 192}`}</Script>
+              <Script
+                strategy="afterInteractive"
+                id="chatbot-widget-script"
+                src="https://app.swiftsupport.ai/ChatbotScripts/chatbotBubble.js"
+              />
             </>
           )}
           <meta name="robots" content="noindex,nofollow" />
@@ -79,7 +117,7 @@ export default function RootLayout({ children }) {
           />
         </head>
         <body suppressHydrationWarning={true}>
-          {process.env.VERCEL_ENV === "production" && (
+          {process.env.VERCEL_ENV === "production" ? (
             <>
               <noscript>
                 <iframe
@@ -113,6 +151,15 @@ export default function RootLayout({ children }) {
                 />
               </noscript>
             </>
+          ) : (
+            <noscript>
+              <iframe
+                src="https://www.googletagmanager.com/ns.html?id=GTM-PZQ9LFDT"
+                height="0"
+                width="0"
+                style="display:none;visibility:hidden"
+              ></iframe>
+            </noscript>
           )}
           <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_APP_ID}>
             <Header />

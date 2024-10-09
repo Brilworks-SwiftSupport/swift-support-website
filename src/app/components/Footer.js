@@ -24,7 +24,43 @@ const Footer = () => {
         </div>
         <div className="flex items-center justify-center md:gap-1 gap-[1px]">
           <Link
-            href="#"
+            href="https://www.instagram.com/swiftsupport.ai/"
+            rel="noopener"
+            target="_blank"
+            onMouseOver={() => setHoverItem("instagram")}
+            onMouseLeave={() => setHoverItem("")}
+          >
+            <Image
+              className={
+                hoverItem === "instagram" ? "cursor-pointer scale-110" : ""
+              }
+              src="/images/icon_instagram.svg"
+              alt="Instagram icon"
+              width="60"
+              height="60"
+            />
+          </Link>
+          <Link
+            href="https://x.com/Swiftsupport_ai"
+            rel="noopener"
+            target="_blank"
+            onMouseOver={() => setHoverItem("twitter")}
+            onMouseLeave={() => setHoverItem("")}
+          >
+            <Image
+              className={
+                hoverItem === "twitter" ? "cursor-pointer scale-110" : ""
+              }
+              src="/images/icon_twitter.svg"
+              alt="Twitter icon"
+              width="50"
+              height="50"
+            />
+          </Link>
+          <Link
+            href="https://www.facebook.com/Swiftsupportai"
+            rel="noopener"
+            target="_blank"
             onMouseOver={() => setHoverItem("facebook")}
             onMouseLeave={() => setHoverItem("")}
           >
@@ -38,17 +74,20 @@ const Footer = () => {
               height="38"
             />
           </Link>
+
           <Link
-            href="#"
-            onMouseOver={() => setHoverItem("twitter")}
+            href="https://www.youtube.com/@SwiftSupportdotai"
+            rel="noopener"
+            target="_blank"
+            onMouseOver={() => setHoverItem("youtube")}
             onMouseLeave={() => setHoverItem("")}
           >
             <Image
               className={
-                hoverItem === "twitter" ? "cursor-pointer scale-110" : ""
+                hoverItem === "youtube" ? "cursor-pointer scale-110" : ""
               }
-              src="/images/icon_twitter.svg"
-              alt="Twitter icon"
+              src="/images/icon_youtube.svg"
+              alt="Youtube icon"
               width="50"
               height="50"
             />
