@@ -153,7 +153,9 @@ const PricingPlan = () => {
                       <li
                         key={idx}
                         className={
-                          strikeThrough ? "line-through text-gray-500" : ""
+                          strikeThrough
+                            ? "cross-mark line-through text-gray-500"
+                            : ""
                         }
                       >
                         {feature}
