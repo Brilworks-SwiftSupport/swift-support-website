@@ -9,21 +9,21 @@ const ImageWithGridSection = ({ sectionName }) => {
     gridData: [
       {
         title: "Problem",
-        description: "Average Response time 2 - 4 hrs or 4 - 8 hrs",
+        description: "Critical - 2-4 hours, Non critical - 4-8 hours",
         bgColor: "bg-[#FFEFEF]",
       },
       {
         title: "Impact",
-        description: "Waiting Customer",
+        description: "Customer needs to wait",
         bgColor: "bg-[#EAFAFF]",
       },
       {
         title: "Solution",
-        description: "Build Custom Work Flow & Email Automation",
+        description: "1/3 emails can be automated",
         bgColor: "bg-[#E3FFF3]",
       },
       {
-        title: "Benefit",
+        title: "Output",
         description: "Response Time < 1sec",
         bgColor: "bg-[#F9F1FF]",
       },
@@ -32,32 +32,6 @@ const ImageWithGridSection = ({ sectionName }) => {
   const aiCopilotData = {
     imageSrc: "/images/AI-COPILOT.svg",
     imageAlt: "ai-copilot",
-    gridData: [
-      {
-        title: "Problem",
-        description: "Increase Men Power",
-        bgColor: "bg-[#FFEFEF]",
-      },
-      {
-        title: "Impact",
-        description: "High Cost",
-        bgColor: "bg-[#EAFAFF]",
-      },
-      {
-        title: "Solution",
-        description: "Web Chat & WhatsApp Chat",
-        bgColor: "bg-[#E3FFF3]",
-      },
-      {
-        title: "Benefit",
-        description: "Reducing Cost 66%",
-        bgColor: "bg-[#F9F1FF]",
-      },
-    ],
-  };
-  const aiAgentData = {
-    imageSrc: "/images/AI-AGENT.svg",
-    imageAlt: "ai-agent",
     gridData: [
       {
         title: "Problem",
@@ -71,12 +45,38 @@ const ImageWithGridSection = ({ sectionName }) => {
       },
       {
         title: "Solution",
-        description: "Make Search Faster & Streamline Data",
+        description: "a. Make Search Faster, b. Streamline Data",
         bgColor: "bg-[#E3FFF3]",
       },
       {
-        title: "Benefit",
-        description: "Response Time < 1sec",
+        title: "Output",
+        description: "Resolution on Time",
+        bgColor: "bg-[#F9F1FF]",
+      },
+    ],
+  };
+  const aiAgentData = {
+    imageSrc: "/images/AI-AGENT.svg",
+    imageAlt: "ai-agent",
+    gridData: [
+      {
+        title: "Problem",
+        description: "Increase Men Power",
+        bgColor: "bg-[#FFEFEF]",
+      },
+      {
+        title: "Impact",
+        description: "High Cost",
+        bgColor: "bg-[#EAFAFF]",
+      },
+      {
+        title: "Solution",
+        description: "a. Web Chat, b. WhatsApp Chat",
+        bgColor: "bg-[#E3FFF3]",
+      },
+      {
+        title: "Output",
+        description: "Reducing Cost 66%",
         bgColor: "bg-[#F9F1FF]",
       },
     ],

@@ -21,7 +21,8 @@ const HeroSection = () => {
         </p>
         <div className="flex items-center justify-center flex-wrap gap-5 lg:!mb-[110px] md:!mb-[60px] !mb-10">
           <Link
-            href="#"
+            href="https://www.youtube.com/@SwiftSupportdotai"
+            target="_blank"
             className="flex items-center justify-center gap-2 font-semibold border-colorBlack border bg-colorBlack text-colorWhite rounded-[30px] px-6 py-4 text-xl"
           >
             <Image
@@ -33,7 +34,8 @@ const HeroSection = () => {
             Watch Demo
           </Link>
           <Link
-            href="#"
+            href="https://app.swiftsupport.ai/signup"
+            target="_blank"
             className="font-semibold text-xl border-colorBlack border rounded-[30px] !bg-colorWhite px-6 py-4"
           >
             Try Now

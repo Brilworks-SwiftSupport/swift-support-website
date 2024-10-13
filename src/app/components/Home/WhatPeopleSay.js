@@ -3,15 +3,12 @@ import Image from "next/image";
 import React from "react";
 import "@splidejs/splide/dist/css/splide.min.css";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
 
 const WhatPeopleSay = () => {
   return (
     <div className="bg-[#FFFBFB] py-[80px]">
       <div className="container max-w-[1080px] mx-auto w-full">
-        <h2 className="new-h2 mb-[50px]">
-          What people are saying about SwiftSupport
-        </h2>
+        <h2 className="new-h2 mb-[50px]">What people are saying</h2>
         <div>
           <Splide
             options={{

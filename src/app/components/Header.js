@@ -66,7 +66,7 @@ const Header = () => {
   const navList = (
     <ul className="mt-2 mb-4 flex flex-col gap-1 items-center md:mb-0 md:mt-0 md:flex-row md::items-center">
       <div className="flex flex-col md:flex-row gap-0 lg:gap-3 items-center">
-        {pathname === "/" && (
+        {/* {pathname === "/" && (
           <Link
             href="#features"
             onClick={(e) => {
@@ -79,7 +79,7 @@ const Header = () => {
           >
             Features
           </Link>
-        )}
+        )} */}
 
         <Link
           href="/blog"

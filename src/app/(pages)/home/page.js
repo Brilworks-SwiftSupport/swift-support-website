@@ -62,7 +62,7 @@ const page = () => {
             AI Responses—Boost Efficiency Instantly! 
           </>
         }
-        buttonLink="#"
+        buttonLink="https://app.swiftsupport.ai/signup"
         buttonText="Start Free Trial"
       />
       <ImageWithGridSection sectionName="AI Copilot" />
@@ -74,7 +74,7 @@ const page = () => {
             Let AI optimize your campaigns effortlessly.
           </>
         }
-        buttonLink="#"
+        buttonLink="https://app.swiftsupport.ai/signup"
         buttonText="Start Free Trial"
       />
       <ImageWithGridSection sectionName="AI Agent" />
@@ -86,7 +86,7 @@ const page = () => {
             Faster! Elevate Your Email
           </>
         }
-        buttonLink="#"
+        buttonLink="https://app.swiftsupport.ai/signup"
         buttonText="Start Free Trial"
       />
       <WhySwiftSupport />

@@ -3,14 +3,14 @@ import React from "react";
 
 const AIAutomateBusiness = () => {
   return (
-    <div className="bg-[#F6FDFF] py-[60px]">
-      <div className="container max-w-[1080px] mx-auto w-full">
+    <div className="bg-[#F6FDFF] py-[60px] h-full">
+      <div className="container max-w-[1080px] mx-auto w-full h-full">
         <h2 className="new-h2 w-[80%] mx-auto lg:mb-[50px] md:mb-10 mb-6">
           Ever imagined having AI automate your business seamlessly?
         </h2>
-        <div className="flex items-center lg:flex-row flex-col justify-center gap-6 w-full">
-          <div className="card-with-shadow p-5 pr-10">
-            <div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full h-full">
+          <div className="card-with-shadow p-5 pr-10 h-full flex flex-col">
+            <div className="flex-1">
               <div className="text-sm flex gap-1 mb-4">
                 <Image
                   src="/images/before-after-arrow.svg"
@@ -42,8 +42,8 @@ const AIAutomateBusiness = () => {
               </ul>
             </div>
           </div>
-          <div className="card-with-shadow p-5 pr-10">
-            <div>
+          <div className="card-with-shadow p-5 pr-10 h-full flex flex-col">
+            <div className="flex-1">
               <div className="text-sm flex gap-1 mb-4">
                 <Image
                   src="/images/before-after-arrow.svg"
@@ -57,13 +57,17 @@ const AIAutomateBusiness = () => {
                 AI-Driven Efficiency and Automation
               </h3>
               <ul className="ai-automate">
-                <li>Tedious manual tasks for support and email management</li>
-                <li>Long hours spent reading and training staff</li>
-                <li>Delayed expertise and slow response to inquiries</li>
-                <li>Customers expect instant replies, driving up costs</li>
                 <li>
-                  Maintaining 24/7 support becomes expensive and inefficient
+                  AI automates email, quotes, and task categorization
+                  effortlessly
                 </li>
+                <li>
+                  Instant AI assistance for field agents and troubleshooting
+                </li>
+                <li>
+                  24/7 AI support reduces costs and improves response time
+                </li>
+                <li>Boost team productivity by 2.5x with AI automation</li>
               </ul>
             </div>
           </div>
