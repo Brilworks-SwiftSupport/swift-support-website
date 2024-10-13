@@ -102,7 +102,8 @@ const Header = () => {
         )}
 
         <Link
-          href="https://cal.com/hiteshr/15min"
+          // href="https://cal.com/hiteshr/15min"
+          href="https://cal.com/swiftsupport/demo"
           rel="noopener"
           target="_blank"
           onClick={() => setOpenNav(false)}
@@ -253,7 +254,7 @@ const Header = () => {
             className="fixed z-10 w-full"
             style={{ top: `${navbarHeight}px` }}
           >
-            <Link href="https://www.gitex.com/" target="_blank">
+            <Link href="https://cal.com/swiftsupport/demo" target="_blank">
               <Image
                 className="!w-full max-h-[105px]"
                 src="/images/Gitex Global.webp"

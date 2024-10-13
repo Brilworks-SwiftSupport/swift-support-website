@@ -90,10 +90,10 @@ const AIPoweredSolution = () => {
                 <h3 className="text-colorBlack font-semibold text-2xl mb-4">
                   {title}
                 </h3>
-                <p className="text-colorBlack text-base mb-[30px]">
+                <p className="text-colorBlack text-lg mb-[30px]">
                   {description}
                 </p>
-                <div className="w-fit">
+                {/* <div className="w-fit">
                   <Link
                     href={buttonURL || "#"}
                     className="border-colorBlack border text-colorBlack rounded-[30px] px-6 py-4 text-xl flex gap-2"
@@ -106,7 +106,7 @@ const AIPoweredSolution = () => {
                       height="24"
                     />{" "}
                   </Link>
-                </div>
+                </div> */}
               </div>
             </div>
           )

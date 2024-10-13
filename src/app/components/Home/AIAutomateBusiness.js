@@ -9,7 +9,7 @@ const AIAutomateBusiness = () => {
           Ever imagined having AI automate your business seamlessly?
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full h-full">
-          <div className="card-with-shadow p-5 pr-10 h-full flex flex-col">
+          <div className="card-with-shadow p-5 h-full flex flex-col">
             <div className="flex-1">
               <div className="text-sm flex gap-1 mb-4">
                 <Image
@@ -42,7 +42,7 @@ const AIAutomateBusiness = () => {
               </ul>
             </div>
           </div>
-          <div className="card-with-shadow p-5 pr-10 h-full flex flex-col">
+          <div className="card-with-shadow p-5 h-full flex flex-col">
             <div className="flex-1">
               <div className="text-sm flex gap-1 mb-4">
                 <Image
