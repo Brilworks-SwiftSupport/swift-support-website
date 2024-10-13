@@ -32,7 +32,7 @@ const WhatPeopleSay = () => {
             }}
           >
             <SplideSlide>
-              <div className="bg-colorWhite flex min-w-[530px]">
+              <div className="bg-colorWhite flex md:min-w-[530px] min-w-[320px]">
                 <Image
                   src="/images/Dianna.png"
                   alt="client"

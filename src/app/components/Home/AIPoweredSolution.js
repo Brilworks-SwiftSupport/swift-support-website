@@ -66,12 +66,12 @@ const AIPoweredSolution = () => {
         {accrossIndustrySolution?.map(
           ({ title, description, buttonURL, imageSrc }, index) => (
             <div
-              className="flex items-center justify-center gap-[30px] lg:mb-[60px] md:mb-10 mb-6 mx-4"
+              className="flex items-center justify-center flex-wrap gap-[30px] lg:mb-[60px] md:mb-10 mb-6 mx-4"
               key={index}
             >
               <div
                 className={`md:w-1/2 w-full ${
-                  (index + 1) % 2 === 0 ? "order-2" : "order-1"
+                  (index + 1) % 2 === 0 ? "lg:order-2" : "order-1"
                 }`}
               >
                 <Image
@@ -84,7 +84,7 @@ const AIPoweredSolution = () => {
               </div>
               <div
                 className={`md:w-1/2 w-full ${
-                  (index + 1) % 2 === 0 ? "order-1" : "order-2"
+                  (index + 1) % 2 === 0 ? "lg:order-1" : "order-2"
                 }`}
               >
                 <h3 className="text-colorBlack font-semibold text-2xl mb-4">

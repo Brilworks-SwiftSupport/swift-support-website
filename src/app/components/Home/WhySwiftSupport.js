@@ -57,10 +57,13 @@ const WhySwiftSupport = () => {
   return (
     <div className="py-[90px]">
       <div className="container max-w-[1080px] mx-auto w-full">
-        <h2 className="new-h2 mb-5">Why SwiftSupport ?</h2>
-        <p className="text-colorBlack text-[32px] leading-tight mb-[40px] text-center">
+        <h2 className="new-h2 w-ful mb-[40px]">
+          Unlock the Full Potential of
+          <br /> Your Support Teams
+        </h2>
+        {/* <p className="text-colorBlack text-[32px] leading-tight mb-[40px] text-center">
           “Unlock the Full Potential of Your Support Teams”
-        </p>
+        </p> */}
         <div className="grid md:grid-cols-2 grid-cols-1 gap-5 mb-[30px] mx-5 md:mx-0">
           {whyChooseSwiftSupportData.map(
             ({ title, description, imageSrc }, index) => {

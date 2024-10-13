@@ -91,7 +91,10 @@ const ImageWithGridSection = ({ sectionName }) => {
   const sectionData = showDataBasedOnSectionName[sectionName] || {};
 
   return (
-    <div className="py-[60px]">
+    <div
+      className="py-[60px]"
+      id={sectionName?.replace(" ", "-")?.toLowerCase()}
+    >
       <div className="container max-w-[1080px] mx-auto w-full">
         {sectionData?.title && (
           <h2 className="new-h2 w-[80%] mx-auto lg:mb-[50px] md:mb-10 mb-6">
