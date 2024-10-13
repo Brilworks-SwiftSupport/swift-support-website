@@ -7,9 +7,11 @@ const HeroSection = () => {
     <div className="hero-section section-padding !pt-[200px] mt-[6%]">
       <div className="container max-w-[1080px] mx-auto">
         <h1 className="md:text-[68px] leading-tight text-4xl md:w-[80%] w-full text-colorBlack font-semibold mx-auto text-center">
-          Your customers deserve{" "}
-          <span className="h-highlight">SwiftSupport</span>, always!
+          AI-Powered Support for Your Business
         </h1>
+        <p className="text-colorBlack font-medium text-2xl text-center">
+          Your customers deserve SwiftSupport, always!
+        </p>
         <div className="banner-underline"></div>
         {/* <div className="!w-[418px] !h-4 bg-gradient-to-r from-[#F3EE7C] via-[#83DEFC] via-33% to-[#FFFFFF] to-70% lg:mb-[50px] md:mb-[40px] mb-7" /> */}
         <p className="md:text-2xl text-xl text-colorBlack text-center md:pb-[60px] pb-8">

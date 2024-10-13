@@ -74,8 +74,8 @@ const Footer = () => {
           {pathname === "/" && (
             <>
               <Link
-                href="#features"
-                onClick={(e) => scrollToSection(e, "features")}
+                href="#unlock-full potential"
+                onClick={(e) => scrollToSection(e, "unlock-full potential")}
                 className="text-center text-base"
               >
                 Features
@@ -88,20 +88,20 @@ const Footer = () => {
               >
                 Pricing
               </Link>
-              <Link
+              {/* <Link
                 href="#about-us"
                 onClick={(e) => scrollToSection(e, "about-us")}
                 className="text-center text-base"
               >
                 About
-              </Link>
+              </Link> */}
             </>
           )}
           <Link href="/blog" className="text-center text-base">
             Blog
           </Link>
           <Link
-            href="https://cal.com/hiteshr/15min"
+            href="https://cal.com/swiftsupport/demo"
             rel="noopener"
             target="_blank"
             className="text-center text-base"
