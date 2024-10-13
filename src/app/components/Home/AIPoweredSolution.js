@@ -66,7 +66,7 @@ const AIPoweredSolution = () => {
         {accrossIndustrySolution?.map(
           ({ title, description, buttonURL, imageSrc }, index) => (
             <div
-              className="flex items-center justify-center flex-wrap gap-[30px] lg:mb-[60px] md:mb-10 mb-6 mx-4"
+              className="flex items-center justify-center flex-row gap-[30px] lg:mb-[60px] md:mb-10 mb-6 mx-4"
               key={index}
             >
               <div
