@@ -69,7 +69,7 @@ const PricingPlan = () => {
 
   return (
     <div
-      className="container mx-auto section-padding max-w-[1400px]"
+      className="container mx-auto lg:py-[80px] md:py-[60px] py-10 max-w-[1080px]"
       id="pricing-plan"
     >
       <div className="flex flex-col items-center justify-center md:mb-[58px] mb-7">
@@ -80,7 +80,7 @@ const PricingPlan = () => {
         <div className="flex relative z-[1]">
           <button
             type="text"
-            className={` py-3 px-[27px] ${
+            className={` py-3 px-[27px] text-colorBlack ${
               subscriptionPlan === "Monthly"
                 ? "bg-themeBlue rounded-t-[10px] z-20"
                 : "bg-[#D7F4FE] border-themeBlue border border-r-0 rounded-tl-[10px] -mr-2 z-10 relative "
@@ -91,7 +91,7 @@ const PricingPlan = () => {
           </button>
           <button
             type="text"
-            className={` py-3 px-[27px] ${
+            className={` py-3 px-[27px] text-colorBlack ${
               subscriptionPlan === "Monthly"
                 ? "bg-[#D7F4FE] border-themeBlue border border-l-0 rounded-tr-[10px] -ml-2 z-10 relative "
                 : "bg-themeBlue rounded-t-[10px] z-20"
@@ -113,7 +113,7 @@ const PricingPlan = () => {
           </div>
         </div>
       </div>
-      <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
+      <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 mx-4">
         {pricingPlans.map((plan, index) => (
           <div
             key={index}
@@ -121,7 +121,7 @@ const PricingPlan = () => {
           >
             <div className="flex-grow">
               <div className="font-light text-[50px] mb-4">
-                <div className="flex items-center justify-start gap-3">
+                <div className="flex items-center justify-start gap-3 font-medium">
                   {plan.price}
                   {plan.discount && (
                     <span className="text-colorDarkBlue font-medium text-2xl line-through">
@@ -130,7 +130,7 @@ const PricingPlan = () => {
                   )}
                 </div>
               </div>
-              <button className="bg-colorWhite font-medium rounded-[10px] px-[22px] py-[14px] mb-[21px]">
+              <button className="bg-colorWhite text-colorBlack font-semibold rounded-[10px] px-[22px] py-[14px] mb-[21px]">
                 {plan.label}
               </button>
               <div>
@@ -175,45 +175,6 @@ const PricingPlan = () => {
           </div>
         ))}
       </div>
-
-      {/* <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
-        {pricingPlans.map((plan, index) => (
-          <div
-            key={index}
-            className="bg-themeBlue pricing-grid rounded-[14px] p-[22px]"
-          >
-            <div className="font-light text-[50px] mb-4">
-              <div className="flex items-center justify-start gap-3">
-                {plan.price}
-                {plan.discount && (
-                  <span className="text-colorDarkBlue font-medium text-2xl line-through">
-                    {plan.discount}
-                  </span>
-                )}
-              </div>
-            </div>
-            <button className="bg-colorWhite font-medium rounded-[10px] px-[22px] py-[14px] mb-[21px]">
-              {plan.label}
-            </button>
-            <div>
-              <h3 className="font-bold text-[22px] text-colorDarkBlue mb-[14px]">
-                Features
-              </h3>
-              <ul className="pricing-list">
-                {plan.features.map((feature, idx) => (
-                  <li key={idx}>{feature}</li>
-                ))}
-              </ul>
-              <button
-                onClick={() => window.open(plan.buttonLink, "_blank")}
-                className="bg-colorBlack subscribe-btn text-colorWhite rounded-[10px] px-[22px] py-[14px] text-[21px] font-medium w-full"
-              >
-                {plan.buttonText}
-              </button>
-            </div>
-          </div>
-        ))}
-      </div> */}
     </div>
   );
 };

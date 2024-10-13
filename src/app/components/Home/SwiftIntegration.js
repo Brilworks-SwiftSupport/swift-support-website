@@ -5,7 +5,7 @@ import { useMediaQuery } from "react-responsive";
 const SwiftIntegration = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
   return (
-    <div className="container mx-auto section-padding">
+    <div className="container mx-auto section-padding lg:pt-20 md:pt-14 pt-10">
       <div className="flex flex-col items-center justify-center md:mb-[58px] mb-7">
         <h2 className="font-bold text-2xl md:text-3xl xl:text-4xl xl:leading-[45.36px] mb-[30px] text-center">
           Swift Integration: Effortlessly Embed Our AI Chatbot

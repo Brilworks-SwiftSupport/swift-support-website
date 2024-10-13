@@ -17,7 +17,7 @@
   --font_56: 3.5rem;
   --font_58: 3.625rem;
   --font_70: 4.375rem;
-  --colorBlack: #24282c;
+  --colorBlack: #212121;
   --colorGray: #6f7a7d;
   --lightGray: #a6a8a8;
   --themePink: #fbb8b8;
@@ -91,18 +91,19 @@ a:hover {
   top: 0;
   left: 0;
   margin-top: 0;
+  font: var(--font_16);
   font-family: var(--global-font);
   font-display: swap;
-  font: var(--font_16);
   line-height: 20px;
   z-index: 99;
+  background: var(--colorWhite);
 }
 
-.header-bg {
+/* .header-bg {
   transition: var(--common_transition);
   background-color: var(--colorWhite);
   box-shadow: 0 2px 10px -1px rgba(0, 0, 0, 0.2);
-}
+} */
 
 .header a {
   font-family: var(--global-font);
@@ -112,7 +113,48 @@ a:hover {
 }
 
 .header_padding {
-  padding: 0 4.375rem;
+  padding: 0 1.625rem;
+}
+
+.new-button-black {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 11px 24px;
+  background: var(--colorBlack);
+  border: 1px solid var(--colorBlack);
+  color: var(--colorWhite) !important;
+  border-radius: 30px;
+  transition: var(--common_transition);
+  cursor: pointer;
+}
+.new-button-black-large {
+  font-size: 20px;
+  padding: 21px 30px;
+}
+
+.new-h2 {
+  font-size: 52px;
+  font-weight: 600;
+  line-height: 72px;
+  text-align: center;
+  color: var(--colorBlack);
+}
+.new-h3 {
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 58px;
+  text-align: center;
+  color: var(--colorBlack);
+}
+
+.card-with-shadow {
+  border-radius: 10px;
+  background: var(--colorWhite);
+  box-shadow: 0px 8px 32px 0px #0000000f;
+  box-shadow: 0px 4px 8px 0px #00000008;
 }
 
 .button_black {
@@ -158,6 +200,13 @@ a:hover {
 .instant-solution {
   width: 100%;
   background-image: url("/images/header-banner.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.hero-section {
+  width: 100%;
+  background-image: url("/images/hero-section-bg.svg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -336,6 +385,7 @@ a:hover {
 .app-integration-gradient {
   background: rgb(248, 245, 170);
   background: linear-gradient(180deg, #f8f5aa 0%, #ffd7d7 27%, #97e3fd 100%);
+  box-shadow: 0px 2px 8px 0px #00000014;
 }
 
 .form-group {
