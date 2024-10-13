@@ -124,3 +124,103 @@
     margin-bottom: 0 !important;
   }
 }
+
+.ai-automate li {
+  padding-left: 32px;
+  position: relative;
+  font-size: 16px;
+  line-height: 30px;
+  vertical-align: middle;
+  color: var(--colorBlack);
+  padding-bottom: 14px;
+}
+.ai-automate li.rewind:last-child {
+  padding-bottom: 0;
+}
+
+.ai-automate li::before {
+  content: "";
+  width: 23px;
+  height: 22px;
+  left: 0;
+  top: 4px;
+  background-image: url(/images/green-double-a.svg);
+  background-position: -460px -88px;
+  position: absolute;
+}
+
+.ai-automate li.rewind::before {
+  width: 24px;
+  height: 24px;
+  background-image: url(/images/rewind-time.svg);
+  background-position: -457px -95px;
+}
+
+// .h-highlight {
+//   background: linear-gradient(90deg, #f3ee7c 0%, #83defc 33.6%, #ffffff 69.4%);
+//   position: relative;
+//   background-repeat: no-repeat;
+//   background-size: 418px 16px;
+//   background-position: 0 100%; /* Adjust background position to move it under the text */
+//   padding-bottom: 20px;
+// }
+// .h-highlight::before {
+//   content: "";
+//   position: absolute;
+//   left: 0;
+//   right: 0;
+//   bottom: 0;
+//   z-index: -1;
+//   background-size: 100% 100%;
+// }
+
+.banner-underline {
+  width: 476px;
+  height: 16px;
+  background: linear-gradient(90deg, #f3ee7c 0%, #83defc 33.6%, #ffffff 69.4%);
+  margin: 8px 19.5% 50px 19.5%;
+  border-radius: 16px;
+  @media screen and ((max-width: 1080px) and (min-width: 768px)) {
+    font-size: 260px;
+    line-height: 260px;
+  }
+  @media screen and (max-width: 767px) {
+    width: 360px;
+    max-width: 476px;
+    height: 14px;
+  }
+}
+
+.container-cta {
+  position: relative;
+}
+
+.container-cta::before {
+  content: "";
+  position: absolute;
+  top: -80%;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    92.98deg,
+    rgba(251, 184, 184, 0.7) 5.1%,
+    rgba(251, 184, 184, 0.7) 5.11%,
+    rgba(131, 222, 252, 0.7) 52.15%,
+    rgba(242, 237, 123, 0.7) 100%
+  );
+  filter: blur(64px);
+  width: 800px;
+  height: 188px;
+  margin: 0 auto;
+  border-radius: 300px;
+  z-index: 0; /* place behind the content */
+}
+
+.content {
+  position: relative; /* to position it on top of the blurred gradient */
+  z-index: 1;
+}
+
+h2 {
+  margin-bottom: 10px;
+}

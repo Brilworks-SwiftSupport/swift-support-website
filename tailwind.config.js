@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        colorBlack: "#24282c",
+        colorBlack: "#212121",
         colorGray: "#6f7a7d",
         colorDarkBlue: "#2d677c",
         colorLightBlue: "#eaf9ff",
@@ -25,7 +25,7 @@ module.exports = {
         sxl: "1200px",
       },
       fontFamily: {
-        Outfit: ["Outfit", "sans-serif"],
+        Outfit: ["Urbanist", "sans-serif"],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
