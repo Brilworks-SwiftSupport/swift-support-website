@@ -4,10 +4,11 @@ import React from "react";
 const WhyGridIconWithText = ({ title, description, imageSrc }) => {
   return (
     <div className="pt-[1px] pb-[3px] pr-[3px] pl-[1px] rounded-[20px] app-integration-gradient">
-      <div className="bg-colorWhite rounded-[20px] p-5 flex items-center gap-[18px]">
+      <div className="h-full bg-colorWhite rounded-[20px] p-5 flex items-center lg:flex-row flex-col md:gap-[18px] gap-4">
         <div>
-          <div className="bg-[#F9F9F9] !w-[100px] !h-[100px] rounded-[20px] flex items-center justify-center">
+          <div className="bg-[#F9F9F9] md:w-[100px] w-16 md:h-[100px] h-16 rounded-[20px] flex items-center justify-center">
             <Image
+              className="md:w-[54px] md:h-[54px] w-7 h-7"
               src={imageSrc}
               alt={`${title}-image`}
               width="54"
@@ -16,7 +17,7 @@ const WhyGridIconWithText = ({ title, description, imageSrc }) => {
           </div>
         </div>
         <div>
-          <h3 className="text-colorBlack text-2xl font-semibold mb-3">
+          <h3 className="text-colorBlack md:text-2xl text-xl font-semibold mb-3">
             {title}
           </h3>
           <p className="text-base text-colorBlack">{description}</p>
@@ -55,16 +56,16 @@ const WhySwiftSupport = () => {
   ];
 
   return (
-    <div className="py-[90px]">
+    <div className="lg:py-[90px] md:py-[60px] py-10">
       <div className="container max-w-[1080px] mx-auto w-full">
-        <h2 className="new-h2 w-ful mb-[40px]">
+        <h2 className="new-h2 w-ful mb-[40px] px-4">
           Unlock the Full Potential of
-          <br /> Your Support Teams
+          <br className="md:block hidden" /> Your Support Teams
         </h2>
         {/* <p className="text-colorBlack text-[32px] leading-tight mb-[40px] text-center">
           “Unlock the Full Potential of Your Support Teams”
         </p> */}
-        <div className="grid md:grid-cols-2 grid-cols-1 gap-5 mb-[30px] mx-5 md:mx-0">
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-5 mb-[30px] mx-5">
           {whyChooseSwiftSupportData.map(
             ({ title, description, imageSrc }, index) => {
               return (

@@ -65,7 +65,7 @@ const Header = () => {
 
   const navList = (
     <ul className="mt-2 mb-4 flex flex-col gap-1 items-center md:mb-0 md:mt-0 md:flex-row md::items-center">
-      <div className="flex flex-col md:flex-row gap-0 lg:gap-3 items-center">
+      <div className="flex flex-col md:flex-row gap-3 items-center">
         {/* {pathname === "/" && (
           <Link
             href="#features"
@@ -84,7 +84,9 @@ const Header = () => {
         <Link
           href="/blog"
           onClick={() => setOpenNav(false)}
-          className="nav-underline flex items-center md:justify-center justify-start font-medium"
+          className={`nav-underline flex items-center md:justify-center justify-start font-medium ${
+            openNav ? "mt-4 md:mt-9" : ""
+          }`}
         >
           Blog
         </Link>
@@ -125,7 +127,7 @@ const Header = () => {
             : "new-button-black !text-colorWhite"
         }`}
       >
-        Sign Up
+        Log In
       </Link>
       {/* <Link
         rel="noopener"
@@ -157,10 +159,7 @@ const Header = () => {
               hideHeader || openNav || pathname !== "/" ? "header-bg" : ""
             }`}
           >
-            <div
-              className="xs:pr-0 pr-[calc(100vw_-_320px)]"
-              onClick={() => setOpenNav(false)}
-            >
+            <div className="xs:pr-0" onClick={() => setOpenNav(false)}>
               <Link href="/">
                 <Image
                   className="!w-3/5 md:!w-4/5 lg:w-full"
@@ -254,13 +253,18 @@ const Header = () => {
             className="fixed z-10 w-full"
             style={{ top: `${navbarHeight}px` }}
           >
-            <Link href="https://cal.com/swiftsupport/demo" target="_blank">
+            <Link
+              href="https://cal.com/swiftsupport/demo"
+              className="w-full"
+              target="_blank"
+            >
               <Image
-                className="!w-full max-h-[105px]"
+                className="w-full md:max-h-[105px]"
                 src="/images/Gitex Global.webp"
                 alt="upcoming-event"
                 width="1440"
                 height="80"
+                priority
               />
             </Link>
           </div>

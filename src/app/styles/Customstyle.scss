@@ -133,6 +133,9 @@
   vertical-align: middle;
   color: var(--colorBlack);
   padding-bottom: 14px;
+  @media screen and (max-width: 767px) {
+    padding-bottom: 10px;
+  }
 }
 .ai-automate li.rewind:last-child {
   padding-bottom: 0;
@@ -156,25 +159,8 @@
   background-position: -457px -95px;
 }
 
-// .h-highlight {
-//   background: linear-gradient(90deg, #f3ee7c 0%, #83defc 33.6%, #ffffff 69.4%);
-//   position: relative;
-//   background-repeat: no-repeat;
-//   background-size: 418px 16px;
-//   background-position: 0 100%; /* Adjust background position to move it under the text */
-//   padding-bottom: 20px;
-// }
-// .h-highlight::before {
-//   content: "";
-//   position: absolute;
-//   left: 0;
-//   right: 0;
-//   bottom: 0;
-//   z-index: -1;
-//   background-size: 100% 100%;
-// }
-
 .banner-underline {
+  max-width: 100%;
   width: 476px;
   height: 16px;
   background: linear-gradient(90deg, #f3ee7c 0%, #83defc 33.6%, #ffffff 69.4%);
@@ -185,9 +171,10 @@
     line-height: 260px;
   }
   @media screen and (max-width: 767px) {
-    width: 360px;
-    max-width: 476px;
-    height: 14px;
+    width: 240px;
+    height: 12px;
+    margin: 8px 19.5% 50px 12.5%;
+    border-radius: 16px;
   }
 }
 
@@ -213,11 +200,14 @@
   height: 188px;
   margin: 0 auto;
   border-radius: 300px;
-  z-index: 0; /* place behind the content */
+  z-index: 0;
+  @media screen and (max-width: 767px) {
+    top: -55%;
+  }
 }
 
 .content {
-  position: relative; /* to position it on top of the blurred gradient */
+  position: relative;
   z-index: 1;
 }
 

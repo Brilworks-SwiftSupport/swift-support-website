@@ -9,7 +9,12 @@ const ImageWithGridSection = ({ sectionName }) => {
     gridData: [
       {
         title: "Problem",
-        description: "Critical - 2-4 hours, Non critical - 4-8 hours",
+        description: (
+          <>
+            Critical - 2-4 hours,
+            <br className="md:hidden block" /> Non critical - 4-8 hours
+          </>
+        ),
         bgColor: "bg-[#FFEFEF]",
       },
       {
@@ -45,7 +50,12 @@ const ImageWithGridSection = ({ sectionName }) => {
       },
       {
         title: "Solution",
-        description: "a. Make Search Faster, b. Streamline Data",
+        description: (
+          <>
+            a. Make Search Faster, <br className="md:hidden block" />
+            b. Streamline Data
+          </>
+        ),
         bgColor: "bg-[#E3FFF3]",
       },
       {
@@ -71,7 +81,12 @@ const ImageWithGridSection = ({ sectionName }) => {
       },
       {
         title: "Solution",
-        description: "a. Web Chat, b. WhatsApp Chat",
+        description: (
+          <>
+            a. Web Chat,
+            <br className="md:hidden block" /> b. WhatsApp Chat
+          </>
+        ),
         bgColor: "bg-[#E3FFF3]",
       },
       {
@@ -92,16 +107,16 @@ const ImageWithGridSection = ({ sectionName }) => {
 
   return (
     <div
-      className="py-[60px]"
+      className="md:py-[60px] py-10"
       id={sectionName?.replace(" ", "-")?.toLowerCase()}
     >
       <div className="container max-w-[1080px] mx-auto w-full">
         {sectionData?.title && (
-          <h2 className="new-h2 w-[80%] mx-auto lg:mb-[50px] md:mb-10 mb-6">
+          <h2 className="new-h2 md:w-[80%] w-full mx-auto lg:mb-[50px] md:mb-10 mb-6 px-4">
             {sectionData?.title}
           </h2>
         )}
-        <div className="flex items-center justify-center mb-[30px]">
+        <div className="flex items-center justify-center mb-[30px] px-4">
           <Image
             className="w-full"
             src={sectionData?.imageSrc}
@@ -110,7 +125,7 @@ const ImageWithGridSection = ({ sectionName }) => {
             height="510"
           />
         </div>
-        <div className="grid grid-cols-2 gap-5 mb-[30px] mx-5">
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-5 md:mb-[30px] mb-0 mx-5">
           {sectionData?.gridData.map((item, index) => (
             <div key={index} className={`${item.bgColor} rounded-[20px] p-5`}>
               <p className="text-colorBlack text-xl font-medium mb-[10px]">

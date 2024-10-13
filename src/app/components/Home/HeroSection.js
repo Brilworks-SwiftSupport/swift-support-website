@@ -4,9 +4,9 @@ import React from "react";
 
 const HeroSection = () => {
   return (
-    <div className="hero-section section-padding !pt-[200px] mt-[6%]">
+    <div className="hero-section section-padding lg:!pt-[200px] md:!pt-[150px] !pt-[100px] mt-[6%]">
       <div className="container max-w-[1080px] mx-auto">
-        <h1 className="md:text-[68px] leading-tight text-4xl md:w-[80%] w-full text-colorBlack font-semibold mx-auto text-center">
+        <h1 className="lg:text-[68px] md:text-[48px] leading-tight text-4xl md:w-[80%] w-full text-colorBlack font-semibold mx-auto text-center mb-4">
           AI-Powered Support for Your Business
         </h1>
         <p className="text-colorBlack font-medium text-2xl text-center">
@@ -45,6 +45,7 @@ const HeroSection = () => {
         </div>
         <div className="flex items-center justify-center !mt-5">
           <Image
+            className="max-w-full"
             src="/images/solution-providing.svg"
             alt="solution-providing"
             width="1020"

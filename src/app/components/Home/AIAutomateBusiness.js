@@ -3,12 +3,12 @@ import React from "react";
 
 const AIAutomateBusiness = () => {
   return (
-    <div className="bg-[#F6FDFF] py-[60px] h-full">
+    <div className="bg-[#F6FDFF] md:py-[60px] py-10 h-full">
       <div className="container max-w-[1080px] mx-auto w-full h-full">
-        <h2 className="new-h2 w-[80%] mx-auto lg:mb-[50px] md:mb-10 mb-6">
+        <h2 className="new-h2 md:w-[80%] w-full mx-auto lg:mb-[50px] md:mb-10 mb-6 px-4">
           Ever imagined having AI automate your business seamlessly?
         </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full h-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full h-full px-6">
           <div className="card-with-shadow p-5 h-full flex flex-col">
             <div className="flex-1">
               <div className="text-sm flex gap-1 mb-4">
@@ -20,7 +20,7 @@ const AIAutomateBusiness = () => {
                 />{" "}
                 Before
               </div>
-              <h3 className="text-colorBlack text-2xl font-semibold mb-4">
+              <h3 className="text-colorBlack md:text-2xl text-xl font-semibold mb-4">
                 Manual, Time-Consuming Processes
               </h3>
               <ul className="ai-automate">

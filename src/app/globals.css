@@ -530,6 +530,14 @@ a:hover {
   .button_black {
     padding: 12px 24px;
   }
+  .new-h2 {
+    font-size: 36px;
+    line-height: 42px;
+  }
+  .new-h3 {
+    font-size: 32px;
+    line-height: 36px;
+  }
 }
 
 @media only screen and (max-width: 767px) {
@@ -565,6 +573,14 @@ a:hover {
     padding: 0.5rem;
     border: 1px solid var(--colorBlack);
     border-radius: 25px;
+  }
+  .new-h2 {
+    font-size: 32px;
+    line-height: 42px;
+  }
+  .new-h3 {
+    font-size: 28px;
+    line-height: 36px;
   }
 }
 
