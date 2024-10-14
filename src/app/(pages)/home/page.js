@@ -47,9 +47,9 @@ const page = () => {
       <HomepageCTA
         title={
           <>
-            Elevate Your Email Campaigns with AI!{" "}
-            <br className="lg:block hidden" />
-            Let AI optimize your campaigns effortlessly.
+            Empower Service Agents with Instant Access
+            <br className="lg:block hidden" /> to Critical Data—Solve Queries
+            Faster!
           </>
         }
         buttonLink="https://app.swiftsupport.ai/signup"
@@ -59,15 +59,15 @@ const page = () => {
       <HomepageCTA
         title={
           <>
-            Empower Service Agents with Instant Access to
-            <br className="lg:block hidden" /> Critical Data—Solve Queries
-            Faster! Elevate Your Email
+            Enhance Customer Engagement with Real-Time,
+            <br className="lg:block hidden" /> AI-Driven Responses—On Any
+            Platform!
           </>
         }
         buttonLink="https://app.swiftsupport.ai/signup"
         buttonText="Start Free Trial"
       />
-      <WhySwiftSupport />
+      {/* <WhySwiftSupport /> */}
       <AppIntegrationSection />
       <AIPoweredSolution />
       <WhatPeopleSay />

@@ -1,6 +1,13 @@
 "use client";
 import React, { useEffect, useState, useRef } from "react";
-import { Navbar, Collapse } from "@material-tailwind/react";
+import {
+  Navbar,
+  Collapse,
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
+} from "@material-tailwind/react";
 import Link from "next/link";
 import Image from "next/image";
 import { scrollToSection } from "./lib/Common";
@@ -114,7 +121,60 @@ const Header = () => {
           Contact
         </Link>
       </div>
-      <div>{/* <MenuCustomList/> */}</div>
+      <div>
+        <Menu
+          className="font-Urbanist font-medium"
+          placement="bottom"
+          dismiss={{ itemPress: true, ancestorScroll: true }}
+          animate={{
+            mount: { y: 0 },
+            unmount: { y: 25 },
+          }}
+          offset={15}
+        >
+          <MenuHandler>
+            <MenuItem className="flex items-center pt-2 my-1">
+              <Link
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                }}
+                className="!flex !items-center nav-underline"
+              >
+                <p className="font-medium">Guide</p>
+                <svg
+                  className="w-4 h-[6px] ms-2"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 10 6"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="m1 1 4 4 4-4"
+                  />
+                </svg>
+              </Link>
+            </MenuItem>
+          </MenuHandler>
+          <MenuList
+            dismissible
+            className="flex flex-col !z-[100] rounded-b-lg border-none min-w-[180px] mt-5 p-1"
+          >
+            <MenuItem className="flex items-center gap-4 py-2 px-3 hover:bg-[#EAFAFF] hover:rounded-lg">
+              <Link
+                className="font-Urbanist font-medium"
+                href="/guide/how-to-add-live-chat-to-website/"
+              >
+                How to Add Live Chat ?
+              </Link>
+            </MenuItem>
+          </MenuList>
+        </Menu>
+      </div>
 
       <Link
         rel="noopener"
@@ -146,11 +206,11 @@ const Header = () => {
   );
 
   return (
-    <div className="container mx-auto max-w-[1080px] bg-white">
+    <div className="container mx-auto max-w-[1280px] bg-white">
       <div className="header">
         <Navbar
           ref={navbarRef}
-          className={`rounded-none border-none z-10 max-w-[1080px] mx-auto lg:py-7 md:py-4 py-2 px-0 ${
+          className={`rounded-none border-none z-10 max-w-[1280px] mx-auto lg:py-7 md:py-4 py-2 px-0 ${
             openNav ? "h-[100vh]" : ""
           }`}
         >
