@@ -52,13 +52,13 @@ const BlogFAQ = ({ FAQData }) => {
               >
                 <AccordionHeader
                   onClick={() => handleOpen(index + 1)}
-                  className="accordion-button font-Outfit"
+                  className="accordion-button font-Urbanist"
                 >
                   <h3 itemProp="name">{Question}</h3>
                 </AccordionHeader>
                 <AccordionBody>
                   <div
-                    className="accordion-body font-Outfit"
+                    className="accordion-body font-Urbanist"
                     itemScope="true"
                     itemProp="acceptedAnswer"
                     itemType="https://schema.org/Answer"

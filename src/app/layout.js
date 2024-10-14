@@ -13,7 +13,7 @@ storyblokInit({
   accessToken: process.env.NEXT_PUBLIC_ACCESS_TOKEN,
   use: [apiPlugin],
 });
-const outfit = Urbanist({
+const urbanist = Urbanist({
   subsets: ["latin"],
   display: "swap",
   variable: "--global-font",
@@ -28,7 +28,7 @@ const Footer = dynamic(() => import("./components/Footer"));
 export default function RootLayout({ children }) {
   return (
     <StoryblokProvider>
-      <html lang="en" className={`${outfit.variable}`}>
+      <html lang="en" className={`${urbanist.variable}`}>
         <head>
           {process.env.VERCEL_ENV === "production" ? (
             <>

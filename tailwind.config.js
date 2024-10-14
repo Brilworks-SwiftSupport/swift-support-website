@@ -25,7 +25,7 @@ module.exports = {
         sxl: "1200px",
       },
       fontFamily: {
-        Outfit: ["Urbanist", "sans-serif"],
+        Urbanist: ["Urbanist", "sans-serif"],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
