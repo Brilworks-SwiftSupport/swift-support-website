@@ -130,6 +130,7 @@ const Header = () => {
             mount: { y: 0 },
             unmount: { y: 25 },
           }}
+          allowHover
           offset={15}
         >
           <MenuHandler>
@@ -162,7 +163,7 @@ const Header = () => {
           </MenuHandler>
           <MenuList
             dismissible
-            className="flex flex-col !z-[100] rounded-b-lg border-none min-w-[180px] mt-5 p-1"
+            className="flex flex-col !z-[100] rounded-b-lg border min-w-[180px] mt-5 p-1"
           >
             <MenuItem className="flex items-center gap-4 py-2 px-3 hover:bg-[#EAFAFF] hover:rounded-lg">
               <Link
