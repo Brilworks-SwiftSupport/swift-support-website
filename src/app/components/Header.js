@@ -7,15 +7,19 @@ import {
   MenuHandler,
   MenuList,
   MenuItem,
+  Accordion,
+  AccordionHeader,
+  AccordionBody,
 } from "@material-tailwind/react";
 import Link from "next/link";
 import Image from "next/image";
-import { scrollToSection } from "./lib/Common";
+import { Icon, scrollToSection } from "./lib/Common";
 import { usePathname } from "next/navigation";
 // import { MenuCustomList } from "./Menu";
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
+  const [openAccordion, setOpenAccordion] = useState(false);
   const pathname = usePathname();
   const navbarRef = useRef(null);
   const [navbarHeight, setNavbarHeight] = useState(0);
@@ -70,9 +74,12 @@ const Header = () => {
     };
   }, []);
 
+  const handleOpen = (value) =>
+    setOpenAccordion(openAccordion === value ? 0 : value);
+
   const navList = (
-    <ul className="mt-2 mb-4 flex flex-col gap-1 items-center md:mb-0 md:mt-0 md:flex-row md::items-center">
-      <div className="flex flex-col md:flex-row gap-3 items-center">
+    <ul className="w-full mt-2 mb-4 flex flex-col md:gap-1 gap-3 items-start md:mb-0 md:mt-0 md:flex-row md:items-center">
+      <div className="flex flex-col md:flex-row gap-3 md:items-center items-start w-full">
         {/* {pathname === "/" && (
           <Link
             href="#features"
@@ -91,7 +98,7 @@ const Header = () => {
         <Link
           href="/blog"
           onClick={() => setOpenNav(false)}
-          className={`nav-underline flex items-center md:justify-center justify-start font-medium ${
+          className={` w-full nav-underline md:border-b-0 border-b border-[#e5e7eb] flex items-center md:justify-center justify-start font-medium !px-3 ${
             openNav ? "mt-4 md:mt-9" : ""
           }`}
         >
@@ -104,7 +111,7 @@ const Header = () => {
               scrollToSection(e, "pricing-plan");
               setOpenNav(false);
             }}
-            className="nav-underline flex items-center md:justify-center justify-start font-medium"
+            className="w-full nav-underline md:border-b-0 border-b border-[#e5e7eb] flex items-center md:justify-center justify-start font-medium !px-3"
           >
             Pricing
           </Link>
@@ -116,12 +123,12 @@ const Header = () => {
           rel="noopener"
           target="_blank"
           onClick={() => setOpenNav(false)}
-          className="nav-underline flex items-center md:justify-center justify-start font-medium"
+          className="w-full nav-underline flex items-center md:border-b-0 border-b border-[#e5e7eb] md:justify-center justify-start font-medium !px-3"
         >
           Contact
         </Link>
       </div>
-      <div>
+      <div className="hidden md:block">
         <Menu
           className="font-Urbanist font-medium"
           placement="bottom"
@@ -134,7 +141,7 @@ const Header = () => {
           offset={15}
         >
           <MenuHandler>
-            <MenuItem className="flex items-center pt-2 my-1">
+            <MenuItem className="flex items-center pt-2 my-1 px-0">
               <Link
                 href="#"
                 onClick={(e) => {
@@ -163,7 +170,7 @@ const Header = () => {
           </MenuHandler>
           <MenuList
             dismissible
-            className="flex flex-col !z-[100] rounded-b-lg border min-w-[180px] mt-5 p-1"
+            className="flex flex-col !z-[100] rounded-b-lg border min-w-[180px] mt-2 p-1"
           >
             <MenuItem className="flex items-center gap-4 py-2 px-3 hover:bg-[#EAFAFF] hover:rounded-lg">
               <Link
@@ -176,6 +183,38 @@ const Header = () => {
           </MenuList>
         </Menu>
       </div>
+      <div className="md:hidden block w-full">
+        <Accordion
+          open={openAccordion === 2}
+          icon={
+            <Icon
+              openClass="rotate-180"
+              closeClass={"rotate-0"}
+              id={2}
+              open={openAccordion}
+            />
+          }
+          className="border-b border-[#e5e7eb] !px-3"
+        >
+          <AccordionHeader
+            onClick={() => handleOpen(2)}
+            className={`flex justify-between items-center border-none w-full py-[5px] font-Urbanist text-colorBlack text-base font-medium select-none transition-colors${
+              openAccordion === 2 ? "" : ""
+            }`}
+          >
+            Guide
+          </AccordionHeader>
+          <AccordionBody className={openAccordion === 2 ? "" : ""}>
+            <Link
+              className="font-Urbanist font-medium ml-4"
+              href="/guide/how-to-add-live-chat-to-website/"
+              onClick={() => setOpenNav(false)}
+            >
+              How to Add Live Chat ?
+            </Link>
+          </AccordionBody>
+        </Accordion>
+      </div>
 
       <Link
         rel="noopener"
@@ -185,7 +224,7 @@ const Header = () => {
         className={`${openNav ? "" : "!hidden"} ${
           pathname.includes("agent-copilot")
             ? "!text-[#000] !bg-white black-button"
-            : "new-button-black !text-colorWhite"
+            : "new-button-black !text-colorWhite ml-3"
         }`}
       >
         Log In
@@ -208,10 +247,10 @@ const Header = () => {
 
   return (
     <div className="container mx-auto max-w-[1280px] bg-white">
-      <div className="header">
+      <div className="header border-b border-[#e5e7eb]">
         <Navbar
           ref={navbarRef}
-          className={`rounded-none border-none z-10 max-w-[1280px] mx-auto lg:py-7 md:py-4 py-2 px-0 ${
+          className={`rounded-none border-none z-10 max-w-[1280px] mx-auto lg:py-4 md:py-4 py-2 px-0 ${
             openNav ? "h-[100vh]" : ""
           }`}
         >
@@ -287,7 +326,11 @@ const Header = () => {
             className={`bg-white ${openNav ? "!h-full mt-2" : ""}`}
           >
             <div
-              className={openNav ? "w-[88%] mx-auto md:pt-8 py-4" : "hidden"}
+              className={
+                openNav
+                  ? "w-full mx-auto md:pt-8 py-4 border-t border-[#e5e7eb]"
+                  : "hidden"
+              }
             >
               <div
                 className={`flex slg:flex-row flex-col md:gap-12 lg:gap-20 gap-8 ${

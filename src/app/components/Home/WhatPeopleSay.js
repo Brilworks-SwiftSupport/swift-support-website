@@ -66,13 +66,13 @@ const WhatPeopleSay = () => {
                     />
                   </div>
                   <div>
-                    <Image
+                    {/* <Image
                       className="md:mb-5 mb-3 w-[15%] md:w-[unset]"
                       src="/images/quote-icon.svg"
                       alt="client"
                       width="36"
                       height="28"
-                    />
+                    /> */}
                     <p className="text-colorBlack text-base md:mb-[30px] mb-4">
                       SwiftSupport's AI chatbot revolutionized our customer
                       service, delivering prompt responses and enhancing overall
@@ -87,13 +87,13 @@ const WhatPeopleSay = () => {
             </SplideSlide>
             <SplideSlide>
               <div className="bg-colorWhite flex !rounded-[10px] md:!mx-[100px] lg:!mx-[unset] mx-4">
-                <Image
+                {/* <Image
                   className="rounded-l-[10px] md:min-w-[198px]"
                   src="/images/Sinan.png"
                   alt="client"
                   width="198"
                   height="309"
-                />
+                /> */}
                 <div className="md:p-[30px] p-3">
                   <div className="flex gap-[6px] items-center justify-start md:mb-[30px] mb-4">
                     <Image
