@@ -5,15 +5,6 @@ import Button from "../Common/Button";
 const GuideFirstSection = ({ data }) => {
   const { title, description, banner_image, button_text, youtube_link } = data;
 
-  function getYouTubeEmbedURL(url) {
-    const videoIdMatch = url?.match(
-      /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
-    );
-    const videoId = videoIdMatch ? videoIdMatch[1] : null;
-
-    return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
-  }
-
   return (
     <div className="container mx-auto">
       <div className="usecase flex mt-24">
@@ -29,22 +20,10 @@ const GuideFirstSection = ({ data }) => {
               </div>
             </div>
             <div className="lg:w-2/4 w-full">
-              {/* <iframe
-                className="w-full"
-                title={"Youtube Video"}
-                width="320"
-                height="300"
-
-                src={`https://www.youtube.com/embed/${
-                  youtube_link?.url?.match(
-                    /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
-                  )[[1]]
-                }`}
-              /> */}
               <iframe
                 className="w-full"
                 width="320"
-                height="300"
+                height="360"
                 src="https://www.youtube.com/embed/WFA536oxEn4"
                 title="YouTube video player"
                 frameBorder="0"
@@ -52,15 +31,6 @@ const GuideFirstSection = ({ data }) => {
                 referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
               ></iframe>
-
-              {/* <Image
-                className="h-full"
-                src={banner_image?.filename}
-                alt={banner_image?.alt}
-                width="650"
-                height="390"
-                priority
-              /> */}
             </div>
           </div>
         </div>
