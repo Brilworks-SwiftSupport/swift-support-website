@@ -45,12 +45,12 @@ const GuideFirstSection = ({ data }) => {
                 className="w-full"
                 width="320"
                 height="300"
-                src={youtube_link?.url}
+                src="https://www.youtube.com/embed/WFA536oxEn4"
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
-                allowfullscreen
+                allowFullScreen
               ></iframe>
 
               {/* <Image
