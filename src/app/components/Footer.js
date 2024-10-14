@@ -41,7 +41,7 @@ const Footer = () => {
   return (
     <div className="footer">
       <div>
-        <div className="flex items-center justify-center pt-[30px] pb-[45px]">
+        <div className="flex items-center justify-center md:pt-[30px] py-6 pd:b-[45px]">
           <Image
             src="/images/footer-logo.svg"
             alt="SwiftSupport footer logo"
@@ -49,7 +49,7 @@ const Footer = () => {
             height={isMobile ? 49 : 70}
           />
         </div>
-        <div className="flex items-center justify-center gap-[18px] mb-[60px]">
+        <div className="flex items-center justify-center md:gap-[18px] gap-2 lg:mb-[60px] md:mb-10 mb-8">
           {socialIcons.map(({ imageSrc, imageAlt, hrefUrl }, index) => {
             return (
               <Link
@@ -70,7 +70,7 @@ const Footer = () => {
             );
           })}
         </div>
-        <div className="footer-underline flex items-center md:flex-row flex-col justify-center lg:gap-[60px] md:gap-10 gap-5 pb-10">
+        <div className="footer-underline flex items-center md:flex-row flex-col justify-center lg:gap-[60px] md:gap-10 gap-4 md:pb-10 pb-5">
           {pathname === "/" && (
             <>
               <Link

@@ -55,7 +55,7 @@ const AIPoweredSolution = () => {
     },
   ];
   return (
-    <div className="pt-[90px] pb-[30px]">
+    <div className="lg:pt-[90px] md:pt-[60px] pt-10 pb-[30px]">
       <div className="container max-w-[1080px] mx-auto w-full">
         <h2 className="new-h2 mb-5">AI-Powered Solutions Across Industries</h2>
         <p className="text-colorBlack text-center text-2xl w-4/5 mx-auto lg:mb-[40px] md:mb-7 mb-5">
@@ -66,12 +66,12 @@ const AIPoweredSolution = () => {
         {accrossIndustrySolution?.map(
           ({ title, description, buttonURL, imageSrc }, index) => (
             <div
-              className="flex items-center justify-center flex-row gap-[30px] lg:mb-[60px] md:mb-10 mb-6 mx-4"
+              className="flex items-center justify-center md:flex-row flex-col gap-[30px] lg:mb-[60px] md:mb-10 mb-6 mx-4"
               key={index}
             >
               <div
                 className={`md:w-1/2 w-full ${
-                  (index + 1) % 2 === 0 ? "lg:order-2" : "order-1"
+                  (index + 1) % 2 === 0 ? "md:order-1 order-2" : "order-2"
                 }`}
               >
                 <Image
@@ -84,13 +84,13 @@ const AIPoweredSolution = () => {
               </div>
               <div
                 className={`md:w-1/2 w-full ${
-                  (index + 1) % 2 === 0 ? "lg:order-1" : "order-2"
+                  (index + 1) % 2 === 0 ? "md:order-2 order-1" : "order-1"
                 }`}
               >
                 <h3 className="text-colorBlack font-semibold text-2xl mb-4">
                   {title}
                 </h3>
-                <p className="text-colorBlack text-lg mb-[30px]">
+                <p className="text-colorBlack text-base lg:text-lg md:mb-[30px]">
                   {description}
                 </p>
                 {/* <div className="w-fit">

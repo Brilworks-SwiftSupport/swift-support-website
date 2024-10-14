@@ -3,8 +3,10 @@ import Image from "next/image";
 import React from "react";
 import "@splidejs/splide/dist/css/splide.min.css";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
+import { useMediaQuery } from "react-responsive";
 
 const WhatPeopleSay = () => {
+  const isMobile = useMediaQuery({ maxWidth: 1024 });
   return (
     <div className="bg-[#FFFBFB] py-[80px]">
       <div className="container max-w-[1080px] mx-auto w-full">
@@ -18,29 +20,20 @@ const WhatPeopleSay = () => {
               gap: 15,
               pagination: false,
               isNavigation: true,
-              perPage: 2,
-              breakpoints: {
-                1023: {
-                  perPage: 2,
-                  gap: 15,
-                },
-                480: {
-                  perPage: 1,
-                  gap: 10,
-                },
-              },
+              perPage: isMobile ? 1 : 2,
             }}
           >
             <SplideSlide>
-              <div className="bg-colorWhite flex md:min-w-[530px] min-w-[320px]">
+              <div className="bg-colorWhite flex !rounded-[10px] md:!mx-[100px] lg:!mx-[unset] mx-4">
                 <Image
+                  className="rounded-l-[10px] md:min-w-[198px]"
                   src="/images/Dianna.png"
                   alt="client"
                   width="198"
                   height="309"
                 />
-                <div className="p-[30px]">
-                  <div className="flex gap-[6px] items-center justify-start mb-[30px]">
+                <div className="md:p-[30px] p-3">
+                  <div className="flex gap-[6px] items-center justify-start md:mb-[30px] mb-4">
                     <Image
                       src="/images/star-icon.svg"
                       alt="client"
@@ -74,13 +67,13 @@ const WhatPeopleSay = () => {
                   </div>
                   <div>
                     <Image
-                      className="mb-5"
+                      className="md:mb-5 mb-3 w-[15%] md:w-[unset]"
                       src="/images/quote-icon.svg"
                       alt="client"
                       width="36"
                       height="28"
                     />
-                    <p className="text-colorBlack text-base mb-[30px]">
+                    <p className="text-colorBlack text-base md:mb-[30px] mb-4">
                       SwiftSupport's AI chatbot revolutionized our customer
                       service, delivering prompt responses and enhancing overall
                       satisfaction.
@@ -93,55 +86,56 @@ const WhatPeopleSay = () => {
               </div>
             </SplideSlide>
             <SplideSlide>
-              <div className="bg-colorWhite flex min-w-[530px]">
+              <div className="bg-colorWhite flex !rounded-[10px] md:!mx-[100px] lg:!mx-[unset] mx-4">
                 <Image
+                  className="rounded-l-[10px] md:min-w-[198px]"
                   src="/images/Sinan.png"
                   alt="client"
                   width="198"
                   height="309"
                 />
-                <div className="p-[30px]">
-                  <div className="flex gap-[6px] items-center justify-start mb-[30px]">
+                <div className="md:p-[30px] p-3">
+                  <div className="flex gap-[6px] items-center justify-start md:mb-[30px] mb-4">
                     <Image
                       src="/images/star-icon.svg"
-                      alt="client"
+                      alt="star-icon"
                       width="17"
                       height="17"
                     />
                     <Image
                       src="/images/star-icon.svg"
-                      alt="client"
+                      alt="star-icon"
                       width="17"
                       height="17"
                     />
                     <Image
                       src="/images/star-icon.svg"
-                      alt="client"
+                      alt="star-icon"
                       width="17"
                       height="17"
                     />
                     <Image
                       src="/images/star-icon.svg"
-                      alt="client"
+                      alt="star-icon"
                       width="17"
                       height="17"
                     />
                     <Image
                       src="/images/star-icon.svg"
-                      alt="client"
+                      alt="star-icon"
                       width="17"
                       height="17"
                     />
                   </div>
                   <div>
                     <Image
-                      className="mb-5"
+                      className="md:mb-5 mb-3 w-[15%] md:w-[unset]"
                       src="/images/quote-icon.svg"
-                      alt="client"
+                      alt="quote-img"
                       width="36"
                       height="28"
                     />
-                    <p className="text-colorBlack text-base mb-[30px]">
+                    <p className="text-colorBlack text-base md:mb-[30px] mb-4">
                       Our customer service reached new heights with
                       SwiftSupport's AI chatbot, ensuring rapid responses and
                       heightened satisfaction
@@ -155,126 +149,6 @@ const WhatPeopleSay = () => {
             </SplideSlide>
           </Splide>
         </div>
-        {/* <div className="flex gap-8">
-          <div className="bg-colorWhite flex min-w-[530px]">
-            <Image
-              src="/images/Dianna.png"
-              alt="client"
-              width="198"
-              height="309"
-            />
-            <div className="p-[30px]">
-              <div className="flex gap-[6px] items-center justify-start mb-[30px]">
-                <Image
-                  src="/images/star-icon.svg"
-                  alt="client"
-                  width="17"
-                  height="17"
-                />
-                <Image
-                  src="/images/star-icon.svg"
-                  alt="client"
-                  width="17"
-                  height="17"
-                />
-                <Image
-                  src="/images/star-icon.svg"
-                  alt="client"
-                  width="17"
-                  height="17"
-                />
-                <Image
-                  src="/images/star-icon.svg"
-                  alt="client"
-                  width="17"
-                  height="17"
-                />
-                <Image
-                  src="/images/star-icon.svg"
-                  alt="client"
-                  width="17"
-                  height="17"
-                />
-              </div>
-              <div>
-                <Image
-                  className="mb-5"
-                  src="/images/quote-icon.svg"
-                  alt="client"
-                  width="36"
-                  height="28"
-                />
-                <p className="text-colorBlack text-base mb-[30px]">
-                  SwiftSupport's AI chatbot revolutionized our customer service,
-                  delivering prompt responses and enhancing overall
-                  satisfaction.
-                </p>
-                <span className="text-colorBlack text-xl font-medium">
-                  Dianna
-                </span>
-              </div>
-            </div>
-          </div>
-          <div className="bg-colorWhite flex min-w-[530px]">
-            <Image
-              src="/images/Sinan.png"
-              alt="client"
-              width="198"
-              height="309"
-            />
-            <div className="p-[30px]">
-              <div className="flex gap-[6px] items-center justify-start mb-[30px]">
-                <Image
-                  src="/images/star-icon.svg"
-                  alt="client"
-                  width="17"
-                  height="17"
-                />
-                <Image
-                  src="/images/star-icon.svg"
-                  alt="client"
-                  width="17"
-                  height="17"
-                />
-                <Image
-                  src="/images/star-icon.svg"
-                  alt="client"
-                  width="17"
-                  height="17"
-                />
-                <Image
-                  src="/images/star-icon.svg"
-                  alt="client"
-                  width="17"
-                  height="17"
-                />
-                <Image
-                  src="/images/star-icon.svg"
-                  alt="client"
-                  width="17"
-                  height="17"
-                />
-              </div>
-              <div>
-                <Image
-                  className="mb-5"
-                  src="/images/quote-icon.svg"
-                  alt="client"
-                  width="36"
-                  height="28"
-                />
-                <p className="text-colorBlack text-base mb-[30px]">
-                  Our customer service reached new heights with SwiftSupport's
-                  AI chatbot, ensuring rapid responses and heightened
-                  satisfaction
-                </p>
-                <span className="text-colorBlack text-xl font-medium">
-                  Sinan
-                </span>
-              </div>
-            </div>
-          </div>
-        </div> */}
       </div>
     </div>
   );
