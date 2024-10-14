@@ -5,6 +5,7 @@ import Link from "next/link";
 import BlogFAQ from "../Blog/BlogFAQ";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import BeatLoader from "../Loader";
 // const ProductSuggestion = dynamic(() => import("./ProductSuggestion"));
 // const UseCaseSuggestion = dynamic(() => import("./UseCaseSuggestion"));
 
@@ -12,9 +13,25 @@ const GuideContentSection = ({ content, FAQData }) => {
   const pathname = usePathname();
   const [headings, setHeadings] = useState([]);
   const [activeLink, setActiveLink] = useState(null);
+  const [isLoading, setIsLoading] = useState(null);
 
   const blogTableOfContent =
     content + `${FAQData?.length && "<h2>FAQ</h2>"}` || "";
+
+  useEffect(() => {
+    const { hash } = window.location;
+    if (hash) {
+      const headingId = hash.replace("#", ""); // Remove the # symbol to get the ID
+      setTimeout(() => {
+        const targetElement = document.getElementById(headingId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: "smooth",
+          });
+        }
+      }, 500);
+    }
+  }, []);
 
   function modifyImagesWithLazyLoading(html) {
     return parse(html, {
@@ -27,7 +44,7 @@ const GuideContentSection = ({ content, FAQData }) => {
         if (node.type === "tag" && node.name === "a") {
           if (
             node.attribs.href &&
-            !node.attribs.href.includes("brilworks.com")
+            !node.attribs.href.includes("swiftsupport.ai")
           ) {
             node.attribs.rel = "nofollow noopener";
           } else {
@@ -58,6 +75,24 @@ const GuideContentSection = ({ content, FAQData }) => {
     });
   }, []);
 
+  function textToId(headingText) {
+    return headingText
+      .toLowerCase() // Convert to lowercase
+      .replace(/[^\w\s]/g, "") // Remove all non-word characters (punctuation, etc.)
+      .replace(/\s+/g, "-");
+  }
+
+  useEffect(() => {
+    // Add temporary IDs to the headings for smooth scrolling
+    const headings = document.querySelectorAll("h2");
+    headings.forEach((heading, index) => {
+      let headingText = heading.textContent || heading.innerText;
+
+      let headingId = textToId(headingText);
+      heading.id = headingId;
+    });
+  }, [!isLoading]);
+
   const handleTableOfContentLinkClick = (e, index) => {
     setActiveLink(index);
     e.preventDefault();
@@ -67,6 +102,7 @@ const GuideContentSection = ({ content, FAQData }) => {
 
     if (targetElement) {
       targetElement.scrollIntoView({ behavior: "smooth" });
+      window.history.pushState(null, "", targetId);
     }
   };
 
@@ -74,11 +110,14 @@ const GuideContentSection = ({ content, FAQData }) => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const headingPositions = headings.map((heading, index) => {
-        const targetElement = document.getElementById(`temp-section-${index}`);
+        let headingText = heading.text;
+
+        let headingId = textToId(headingText);
+        const targetElement = document.getElementById(`${headingId}`);
 
         if (targetElement) {
           return {
-            id: `${index}`,
+            id: `${headingId}`,
             offsetTop: targetElement.offsetTop,
           };
         }
@@ -125,10 +164,10 @@ const GuideContentSection = ({ content, FAQData }) => {
                       className="mb-2 hover:cursor-pointer hover:underline"
                     >
                       <Link
-                        href={`#temp-section-${index}`}
+                        href={`#${textToId(heading?.text)}`}
                         onClick={(e) => handleTableOfContentLinkClick(e, index)}
                         className={`${
-                          index == activeLink
+                          textToId(heading?.text) == activeLink
                             ? "text-colorDarkBlue font-semibold"
                             : ""
                         }`}
@@ -138,8 +177,8 @@ const GuideContentSection = ({ content, FAQData }) => {
                     </li>
                   ))
                 ) : (
-                  <div className="flex align-middle justify-center">
-                    Loading...
+                  <div className="flex align-middle justify-center py-10">
+                    <BeatLoader />
                   </div>
                 )}
               </ul>
