@@ -5,7 +5,7 @@ const GuideFirstSection = ({ data }) => {
   const { title, description, banner_image, button_text, youtube_link } = data;
 
   function getYouTubeEmbedURL(url) {
-    const videoIdMatch = url.match(
+    const videoIdMatch = url?.match(
       /(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})|youtu\.be\/([a-zA-Z0-9_-]{11})/
     );
     const videoId = videoIdMatch ? videoIdMatch[1] || videoIdMatch[2] : null;
@@ -37,7 +37,7 @@ const GuideFirstSection = ({ data }) => {
                 title={"Youtube Video"}
                 width="320"
                 height="300"
-                src={`${getYouTubeEmbedURL(`${youtube_link?.url}`)}`}
+                src={getYouTubeEmbedURL(youtube_link?.url)}
                 allowfullscreen
               />
 
