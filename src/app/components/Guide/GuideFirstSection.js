@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Button from "../Common/Button";
 
@@ -6,15 +7,11 @@ const GuideFirstSection = ({ data }) => {
 
   function getYouTubeEmbedURL(url) {
     const videoIdMatch = url?.match(
-      /(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})|youtu\.be\/([a-zA-Z0-9_-]{11})/
+      /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
     );
-    const videoId = videoIdMatch ? videoIdMatch[1] || videoIdMatch[2] : null;
+    const videoId = videoIdMatch ? videoIdMatch[1] : null;
 
-    if (videoId) {
-      return `https://www.youtube.com/embed/${videoId}`;
-    } else {
-      return null;
-    }
+    return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
   }
 
   return (
@@ -32,14 +29,29 @@ const GuideFirstSection = ({ data }) => {
               </div>
             </div>
             <div className="lg:w-2/4 w-full">
-              <iframe
+              {/* <iframe
                 className="w-full"
                 title={"Youtube Video"}
                 width="320"
                 height="300"
-                src={getYouTubeEmbedURL(youtube_link?.url)}
+
+                src={`https://www.youtube.com/embed/${
+                  youtube_link?.url?.match(
+                    /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+                  )[[1]]
+                }`}
+              /> */}
+              <iframe
+                className="w-full"
+                width="320"
+                height="300"
+                src={youtube_link?.url}
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
                 allowfullscreen
-              />
+              ></iframe>
 
               {/* <Image
                 className="h-full"
