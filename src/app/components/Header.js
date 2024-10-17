@@ -149,7 +149,7 @@ const Header = () => {
                 }}
                 className="!flex !items-center nav-underline"
               >
-                <p className="font-medium">Guide</p>
+                <p className="!font-medium">Guide</p>
                 <svg
                   className="w-4 h-[6px] ms-2"
                   aria-hidden="true"
@@ -174,12 +174,20 @@ const Header = () => {
           >
             <MenuItem className="flex items-center gap-4 py-2 px-3 hover:bg-[#EAFAFF] hover:rounded-lg">
               <Link
-                className="font-Urbanist font-medium"
+                className="font-Urbanist !font-medium"
                 href="/guide/how-to-add-live-chat-to-website/"
               >
                 How to Add Live Chat ?
               </Link>
             </MenuItem>
+            {/* <MenuItem className="flex items-center gap-4 py-2 px-3 hover:bg-[#EAFAFF] hover:rounded-lg">
+              <Link
+                className="font-Urbanist font-medium"
+                href="/guide/how-to-build-an-ai-agent/"
+              >
+                How To Build Your Own AI Agent ?
+              </Link>
+            </MenuItem> */}
           </MenuList>
         </Menu>
       </div>
@@ -198,7 +206,7 @@ const Header = () => {
         >
           <AccordionHeader
             onClick={() => handleOpen(2)}
-            className={`flex justify-between items-center border-none w-full py-[5px] font-Urbanist text-colorBlack text-base font-medium select-none transition-colors${
+            className={`flex justify-between items-center border-none w-full py-[5px] font-Urbanist text-colorBlack text-base !font-medium select-none transition-colors${
               openAccordion === 2 ? "" : ""
             }`}
           >
@@ -206,7 +214,7 @@ const Header = () => {
           </AccordionHeader>
           <AccordionBody className={openAccordion === 2 ? "" : ""}>
             <Link
-              className="font-Urbanist font-medium ml-4"
+              className="font-Urbanist !font-medium ml-4"
               href="/guide/how-to-add-live-chat-to-website/"
               onClick={() => setOpenNav(false)}
             >

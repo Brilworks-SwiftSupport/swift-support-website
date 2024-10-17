@@ -1,9 +1,12 @@
 "use client";
 import React from "react";
 import Button from "../Common/Button";
+import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 const GuideFirstSection = ({ data }) => {
   const { title, description, banner_image, button_text, youtube_link } = data;
+  const pathname = usePathname();
 
   return (
     <div className="container mx-auto">
@@ -20,17 +23,28 @@ const GuideFirstSection = ({ data }) => {
               </div>
             </div>
             <div className="lg:w-2/4 w-full">
-              <iframe
-                className="w-full"
-                width="320"
-                height="360"
-                src="https://www.youtube.com/embed/WFA536oxEn4"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-              ></iframe>
+              {pathname === "/how-to-add-live-chat-to-website/" ? (
+                <iframe
+                  className="w-full"
+                  width="320"
+                  height="360"
+                  src="https://www.youtube.com/embed/WFA536oxEn4"
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                ></iframe>
+              ) : (
+                <Image
+                  className="h-full"
+                  src={banner_image?.filename}
+                  alt={banner_image?.alt || "guide-banner-image"}
+                  width="650"
+                  height="400"
+                  priority
+                />
+              )}
             </div>
           </div>
         </div>

@@ -54,9 +54,9 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   try {
     const storyData = await getGuideData(params.slug);
-    const { title, description } = storyData.story;
+    const { title, description } = storyData?.story?.content?.Metatags;
     return {
-      title: title,
+      title: title || storyData?.story?.name,
       description: description,
       openGraph: {
         title: title,

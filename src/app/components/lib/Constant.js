@@ -1758,32 +1758,44 @@ export const sitemapData = [
 
 export const blogData = [
   {
+    loc: "https://www.swiftsupport.ai/blog/ai-agents-vs-chatbots:-a-comprehensive-overview/",
+    lastmod: "2024-10-16T10:41:30.033Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/top-8-chatbot-ui-design-examples-you-need-to-see/",
+    lastmod: "2024-10-11T15:20:19.627Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/the-best-ai-chatbots-of-2024/",
+    lastmod: "2024-10-11T15:24:40.667Z",
+  },
+  {
     loc: "https://www.swiftsupport.ai/blog/understanding-ai-agent-performance-metrics-for-better-results/",
-    lastmod: "2024-10-08T08:58:03.856Z",
+    lastmod: "2024-10-11T15:24:36.419Z",
   },
   {
     loc: "https://www.swiftsupport.ai/blog/unlock-success-with-real-estate-ai-bots-that-win-clients/",
-    lastmod: "2024-10-08T09:01:00.044Z",
+    lastmod: "2024-10-11T15:24:26.342Z",
   },
   {
     loc: "https://www.swiftsupport.ai/blog/use-cases-of-ai-chatbot-for-field-service-across-various-industries/",
-    lastmod: "2024-10-02T05:19:14.244Z",
+    lastmod: "2024-10-11T15:24:23.275Z",
   },
   {
     loc: "https://www.swiftsupport.ai/blog/use-cases-of-a-travel-chatbot-for-enhanced-traveler-experience/",
-    lastmod: "2024-10-01T06:33:36.901Z",
+    lastmod: "2024-10-11T15:24:19.479Z",
   },
   {
     loc: "https://www.swiftsupport.ai/blog/ai-chatbot-in-manufacturing-top-use-cases-benefits/",
-    lastmod: "2024-09-27T07:23:42.905Z",
+    lastmod: "2024-10-11T15:24:15.446Z",
   },
   {
     loc: "https://www.swiftsupport.ai/blog/ai-chatbots-for-ecommerce-use-cases-benefits/",
-    lastmod: "2024-09-26T08:33:12.492Z",
+    lastmod: "2024-10-11T15:24:06.464Z",
   },
   {
     loc: "https://www.swiftsupport.ai/blog/chatbot-statistics-for-2024-trends-predictions/",
-    lastmod: "2024-09-25T07:05:24.835Z",
+    lastmod: "2024-10-11T15:24:04.578Z",
   },
   {
     loc: "https://www.swiftsupport.ai/blog/how-chatbots-for-education-are-shaping-the-future-of-learning/",
@@ -1795,11 +1807,11 @@ export const blogData = [
   },
   {
     loc: "https://www.swiftsupport.ai/blog/transforming-law-firms-with-legal-chatbots/",
-    lastmod: "2024-09-05T11:52:50.032Z",
+    lastmod: "2024-10-11T15:23:59.952Z",
   },
   {
     loc: "https://www.swiftsupport.ai/blog/saas-chatbot-an-ultimate-solution-for-your-business/",
-    lastmod: "2024-09-03T11:15:13.016Z",
+    lastmod: "2024-10-11T15:24:02.926Z",
   },
   {
     loc: "https://www.swiftsupport.ai/blog/creating-a-personalized-customer-experience-with-chatbot/",
