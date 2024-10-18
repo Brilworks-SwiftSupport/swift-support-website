@@ -15,15 +15,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { Icon, scrollToSection } from "./lib/Common";
 import { usePathname } from "next/navigation";
-// import { MenuCustomList } from "./Menu";
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
   const [openAccordion, setOpenAccordion] = useState(false);
   const pathname = usePathname();
   const navbarRef = useRef(null);
-  const [navbarHeight, setNavbarHeight] = useState(0);
   const [hideHeader, setHideHeader] = useState(false);
+  const [guideList, setGuideList] = useState([]);
+  // const [solutionList, setSolutionList] = useState([]);
 
   const [scrollProgress, setScrollProgress] = useState(0);
 
@@ -38,17 +38,41 @@ const Header = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScrollProgress);
+    const fetchSlugs = async () => {
+      try {
+        const guideURL = `https://api.storyblok.com/v2/cdn/stories?starts_with=guide/&version=${process.env.NEXT_PUBLIC_STORYBLOK_VERSION}&token=${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`;
+        const guideURLRes = await fetch(guideURL);
+
+        if (!guideURLRes.ok) {
+          throw new Error(`HTTP error! status: ${guideURLRes.status}`);
+        }
+        const guideData = await guideURLRes.json();
+        const guideSlugList = guideData.stories.map((story) => ({
+          name: story?.content?.short_title,
+          path: "/guide/" + story.slug + "/",
+        }));
+        setGuideList(guideSlugList);
+
+        // const solutionURL = `https://api.storyblok.com/v2/cdn/stories?starts_with=sulutions/&version=${process.env.NEXT_PUBLIC_STORYBLOK_VERSION}&token=${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`;
+        // const solutionURLRes = await fetch(solutionURL);
+        // if (!solutionURLRes.ok) {
+        //   throw new Error(`HTTP error! status: ${guideURLRes.status}`);
+        // }
+        // const solutionData = await solutionURLRes.json();
+        // const solutionSlugList = solutionData.stories.map((story) => ({
+        //   name: story?.name,
+        //   path: "/solutions/" + story.slug + "/",
+        // }));
+        // setSolutionList(solutionSlugList);
+      } catch (error) {
+        console.error("Fetch error:", error);
+      }
+    };
+    fetchSlugs();
+
     return () => {
       window.removeEventListener("scroll", handleScrollProgress);
     };
-  }, []);
-
-  useEffect(() => {
-    if (navbarRef.current) {
-      const height = navbarRef.current.offsetHeight;
-      setNavbarHeight(height);
-    }
   }, []);
 
   useEffect(() => {
@@ -68,7 +92,6 @@ const Header = () => {
     );
 
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -172,55 +195,115 @@ const Header = () => {
             dismissible
             className="flex flex-col !z-[100] rounded-b-lg border min-w-[180px] mt-2 p-1"
           >
-            <MenuItem className="flex items-center gap-4 py-2 px-3 hover:bg-[#EAFAFF] hover:rounded-lg">
-              <Link
-                className="font-Urbanist !font-medium"
-                href="/guide/how-to-add-live-chat-to-website/"
-              >
-                How to Add Live Chat ?
-              </Link>
-            </MenuItem>
-            {/* <MenuItem className="flex items-center gap-4 py-2 px-3 hover:bg-[#EAFAFF] hover:rounded-lg">
-              <Link
-                className="font-Urbanist font-medium"
-                href="/guide/how-to-build-an-ai-agent/"
-              >
-                How To Build Your Own AI Agent ?
-              </Link>
-            </MenuItem> */}
+            {guideList.length &&
+              guideList.map((guide, index) => (
+                <MenuItem
+                  key={index}
+                  className="flex items-center gap-4 py-2 px-3 hover:bg-[#EAFAFF] hover:rounded-lg"
+                >
+                  <Link
+                    className="font-Urbanist font-medium"
+                    href={guide?.path}
+                  >
+                    {guide?.name}
+                  </Link>
+                </MenuItem>
+              ))}
           </MenuList>
         </Menu>
       </div>
+      {/* <div className="hidden md:block">
+        <Menu
+          className="font-Urbanist font-medium"
+          placement="bottom"
+          dismiss={{ itemPress: true, ancestorScroll: true }}
+          animate={{
+            mount: { y: 0 },
+            unmount: { y: 25 },
+          }}
+          allowHover
+          offset={15}
+        >
+          <MenuHandler>
+            <MenuItem className="flex items-center pt-2 my-1 px-0">
+              <Link
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                }}
+                className="!flex !items-center nav-underline"
+              >
+                <p className="!font-medium">Solutions</p>
+                <svg
+                  className="w-4 h-[6px] ms-2"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 10 6"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="m1 1 4 4 4-4"
+                  />
+                </svg>
+              </Link>
+            </MenuItem>
+          </MenuHandler>
+          <MenuList
+            dismissible
+            className="flex flex-col !z-[100] rounded-b-lg border min-w-[180px] mt-2 p-1"
+          >
+            {solutionList.length &&
+              solutionList.map((solution, index) => (
+                <MenuItem
+                  key={index}
+                  className="flex items-center gap-4 py-2 px-3 hover:bg-[#EAFAFF] hover:rounded-lg"
+                >
+                  <Link
+                    className="font-Urbanist font-medium"
+                    href={solution.path}
+                  >
+                    {solution.name}
+                  </Link>
+                </MenuItem>
+              ))}
+          </MenuList>
+        </Menu>
+      </div> */}
       <div className="md:hidden block w-full">
         <Accordion
-          open={openAccordion === 2}
+          open={openAccordion === 1}
           icon={
             <Icon
               openClass="rotate-180"
               closeClass={"rotate-0"}
-              id={2}
+              id={1}
               open={openAccordion}
             />
           }
           className="border-b border-[#e5e7eb] !px-3"
         >
           <AccordionHeader
-            onClick={() => handleOpen(2)}
-            className={`flex justify-between items-center border-none w-full py-[5px] font-Urbanist text-colorBlack text-base !font-medium select-none transition-colors${
-              openAccordion === 2 ? "" : ""
-            }`}
+            onClick={() => handleOpen(1)}
+            className={`flex justify-between items-center border-none w-full py-[5px] font-Urbanist text-colorBlack text-base !font-medium select-none transition-colors`}
           >
             Guide
           </AccordionHeader>
-          <AccordionBody className={openAccordion === 2 ? "" : ""}>
-            <Link
-              className="font-Urbanist !font-medium ml-4"
-              href="/guide/how-to-add-live-chat-to-website/"
-              onClick={() => setOpenNav(false)}
-            >
-              How to Add Live Chat ?
-            </Link>
-          </AccordionBody>
+          {guideList.length &&
+            guideList.map((guide, index) => (
+              <AccordionBody key={index}>
+                <Link
+                  className="font-Urbanist !font-medium ml-4"
+                  href={guide?.path}
+                  onClick={() => setOpenNav(false)}
+                >
+                  {guide?.name}
+                </Link>
+              </AccordionBody>
+            ))}
         </Accordion>
       </div>
 
@@ -360,27 +443,6 @@ const Header = () => {
             }}
           />
         )}
-        <div className={pathname === "/" ? "relative" : "hidden"}>
-          <div
-            className="fixed z-10 w-full"
-            style={{ top: `${navbarHeight}px` }}
-          >
-            <Link
-              href="https://cal.com/swiftsupport/demo"
-              className="w-full"
-              target="_blank"
-            >
-              <Image
-                className="w-full md:max-h-[105px]"
-                src="/images/Gitex Global.webp"
-                alt="upcoming-event"
-                width="1440"
-                height="80"
-                priority
-              />
-            </Link>
-          </div>
-        </div>
       </div>
     </div>
   );
