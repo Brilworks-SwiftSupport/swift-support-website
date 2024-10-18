@@ -4,7 +4,7 @@ import React from "react";
 
 const HeroSection = () => {
   return (
-    <div className="hero-section section-padding lg:!pt-[200px] md:!pt-[150px] !pt-[100px] mt-[6%]">
+    <div className="hero-section section-padding lg:!pt-[100px] md:!pt-[150px] !pt-[100px] mt-[6%]">
       <div className="container max-w-[1080px] mx-auto">
         <h1 className="lg:text-[68px] md:text-[48px] leading-tight text-4xl md:w-[80%] w-full text-colorBlack font-semibold mx-auto text-center mb-4">
           AI-Powered Support for Your Business
