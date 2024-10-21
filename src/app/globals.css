@@ -449,6 +449,10 @@ a:hover {
   animation: beat-loader 0.5s infinite ease-in-out;
 }
 
+.form-shadow {
+  box-shadow: 0px 2px 8px 0px #00000014;
+}
+
 @keyframes beat-loader {
   0% {
     transform: scale(1);

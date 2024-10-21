@@ -16,6 +16,7 @@ module.exports = {
         themePink: "#fbb8b8",
         themeYellow: "#f2ed7b",
         themeBlue: "#83defc",
+        themeBlueLight: "#F6FDFF",
         colorOrange: "#ffae50",
         colorWhite: "#fff",
       },
