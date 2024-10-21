@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const AppIntegrationSection = () => {
   return (
-    <div className="bg-[#F6FDFF]">
+    <div className="bg-themeBlueLight">
       <div className="container mx-auto max-w-[1080px] py-[80px] flex flex-row items-center">
         <div className="flex flex-col lg:flex-row items-center gap-5 md:gap-0">
           <div className="mb-4 lg:mb-0 md:pr-5">

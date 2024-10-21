@@ -1758,8 +1758,12 @@ export const sitemapData = [
 
 export const blogData = [
   {
+    loc: "https://www.swiftsupport.ai/blog/chatgpt-vs-gemini-vs-claude:-a-comprehensive-comparison-of-ai-models/",
+    lastmod: "2024-10-18T09:50:28.806Z",
+  },
+  {
     loc: "https://www.swiftsupport.ai/blog/ai-agents-vs-chatbots:-a-comprehensive-overview/",
-    lastmod: "2024-10-16T10:41:30.033Z",
+    lastmod: "2024-10-21T04:18:55.993Z",
   },
   {
     loc: "https://www.swiftsupport.ai/blog/top-8-chatbot-ui-design-examples-you-need-to-see/",

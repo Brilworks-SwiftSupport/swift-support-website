@@ -5,12 +5,14 @@ import "@splidejs/splide/dist/css/splide.min.css";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { useMediaQuery } from "react-responsive";
 
-const WhatPeopleSay = () => {
+const WhatPeopleSay = ({ title }) => {
   const isMobile = useMediaQuery({ maxWidth: 1024 });
   return (
-    <div className="bg-[#FFFBFB] py-[80px]">
+    <div className="bg-[#FFFBFB] py-[80px] md:py-[60px] pt-[30px]">
       <div className="container max-w-[1080px] mx-auto w-full">
-        <h2 className="new-h2 mb-[50px]">What people are saying</h2>
+        <h2 className="new-h2 mb-[50px]">
+          {title || "What people are saying"}
+        </h2>
         <div>
           <Splide
             options={{

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-const WhyGridIconWithText = ({ title, description, imageSrc }) => {
+export const WhyGridIconWithText = ({ title, description, imageSrc }) => {
   return (
     <div className="pt-[1px] pb-[3px] pr-[3px] pl-[1px] rounded-[20px] app-integration-gradient">
       <div className="h-full bg-colorWhite rounded-[20px] p-5 flex items-center lg:flex-row flex-col md:gap-[18px] gap-4">
@@ -20,7 +20,7 @@ const WhyGridIconWithText = ({ title, description, imageSrc }) => {
           <h3 className="text-colorBlack md:text-2xl text-xl font-semibold mb-3">
             {title}
           </h3>
-          <p className="text-base text-colorBlack">{description}</p>
+          <p className="!text-base text-colorBlack">{description}</p>
         </div>
       </div>
     </div>

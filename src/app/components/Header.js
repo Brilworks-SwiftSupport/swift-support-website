@@ -23,7 +23,7 @@ const Header = () => {
   const navbarRef = useRef(null);
   const [hideHeader, setHideHeader] = useState(false);
   const [guideList, setGuideList] = useState([]);
-  // const [solutionList, setSolutionList] = useState([]);
+  const [solutionList, setSolutionList] = useState([]);
 
   const [scrollProgress, setScrollProgress] = useState(0);
 
@@ -53,17 +53,17 @@ const Header = () => {
         }));
         setGuideList(guideSlugList);
 
-        // const solutionURL = `https://api.storyblok.com/v2/cdn/stories?starts_with=sulutions/&version=${process.env.NEXT_PUBLIC_STORYBLOK_VERSION}&token=${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`;
-        // const solutionURLRes = await fetch(solutionURL);
-        // if (!solutionURLRes.ok) {
-        //   throw new Error(`HTTP error! status: ${guideURLRes.status}`);
-        // }
-        // const solutionData = await solutionURLRes.json();
-        // const solutionSlugList = solutionData.stories.map((story) => ({
-        //   name: story?.name,
-        //   path: "/solutions/" + story.slug + "/",
-        // }));
-        // setSolutionList(solutionSlugList);
+        const solutionURL = `https://api.storyblok.com/v2/cdn/stories?starts_with=solutions/&version=${process.env.NEXT_PUBLIC_STORYBLOK_VERSION}&token=${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`;
+        const solutionURLRes = await fetch(solutionURL);
+        if (!solutionURLRes.ok) {
+          throw new Error(`HTTP error! status: ${guideURLRes.status}`);
+        }
+        const solutionData = await solutionURLRes.json();
+        const solutionSlugList = solutionData.stories.map((story) => ({
+          name: story?.name,
+          path: "/solutions/" + story.slug + "/",
+        }));
+        setSolutionList(solutionSlugList);
       } catch (error) {
         console.error("Fetch error:", error);
       }
@@ -212,7 +212,7 @@ const Header = () => {
           </MenuList>
         </Menu>
       </div>
-      {/* <div className="hidden md:block">
+      <div className="hidden md:block">
         <Menu
           className="font-Urbanist font-medium"
           placement="bottom"
@@ -272,7 +272,7 @@ const Header = () => {
               ))}
           </MenuList>
         </Menu>
-      </div> */}
+      </div>
       <div className="md:hidden block w-full">
         <Accordion
           open={openAccordion === 1}
@@ -337,11 +337,11 @@ const Header = () => {
   );
 
   return (
-    <div className="container mx-auto max-w-[1280px] bg-white">
+    <div className="container mx-auto max-w-[1200px] bg-white">
       <div className="header border-b border-[#e5e7eb]">
         <Navbar
           ref={navbarRef}
-          className={`rounded-none border-none z-10 max-w-[1280px] mx-auto lg:py-4 md:py-4 py-2 px-0 ${
+          className={`rounded-none border-none z-10 max-w-[1200px] mx-auto lg:py-4 md:py-4 py-2 px-0 ${
             openNav ? "h-[100vh]" : ""
           }`}
         >
