@@ -1754,6 +1754,14 @@ export const sitemapData = [
     loc: "https://www.swiftsupport.ai/guide/how-to-add-live-chat-to-website/",
     lastmod: "2024-10-09T08:58:03.856Z",
   },
+  {
+    loc: "https://www.swiftsupport.ai/guide/how-to-build-an-ai-agent/",
+    lastmod: "2024-10-20T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/solutions/streamline-your-sales-workflows/",
+    lastmod: "2024-10-21T08:58:03.856Z",
+  },
 ];
 
 export const blogData = [
