@@ -42,6 +42,21 @@ const Article = ({ blok }) => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const { hash } = window.location;
+    if (hash) {
+      const headingId = hash.replace("#", ""); // Remove the # symbol to get the ID
+      setTimeout(() => {
+        const targetElement = document.getElementById(headingId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: "smooth",
+          });
+        }
+      }, 500);
+    }
+  }, []);
+
   function modifyImagesWithLazyLoading(html) {
     return parse(html, {
       replace: (node, index) => {
@@ -76,11 +91,21 @@ const Article = ({ blok }) => {
     setHeadings(headings);
   }, [blogTableOfContent, !isLoading]);
 
+  function textToId(headingText) {
+    return headingText
+      .toLowerCase() // Convert to lowercase
+      .replace(/[^\w\s]/g, "") // Remove all non-word characters (punctuation, etc.)
+      .replace(/\s+/g, "-");
+  }
+
   useEffect(() => {
     // Add temporary IDs to the headings for smooth scrolling
     const headings = document.querySelectorAll("h2");
     headings.forEach((heading, index) => {
-      heading.id = `temp-section-${index}`;
+      let headingText = heading.textContent || heading.innerText;
+
+      let headingId = textToId(headingText);
+      heading.id = headingId;
     });
   }, [!isLoading]);
 
@@ -93,6 +118,7 @@ const Article = ({ blok }) => {
 
     if (targetElement) {
       targetElement.scrollIntoView({ behavior: "smooth" });
+      window.history.pushState(null, "", targetId);
     }
   };
 
@@ -100,11 +126,14 @@ const Article = ({ blok }) => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const headingPositions = headings.map((heading, index) => {
-        const targetElement = document.getElementById(`temp-section-${index}`);
+        let headingText = heading.text;
+
+        let headingId = textToId(headingText);
+        const targetElement = document.getElementById(`${headingId}`);
 
         if (targetElement) {
           return {
-            id: `${index}`,
+            id: `${headingId}`,
             offsetTop: targetElement.offsetTop,
           };
         }
@@ -170,12 +199,12 @@ const Article = ({ blok }) => {
                             className="mb-2 hover:cursor-pointer hover:underline"
                           >
                             <Link
-                              href={`#temp-section-${index}`}
+                              href={`#${textToId(heading?.text)}`}
                               onClick={(e) =>
                                 handleTableOfContentLinkClick(e, index)
                               }
                               className={`${
-                                index == activeLink
+                                textToId(heading?.text) == activeLink
                                   ? "text-colorDarkBlue font-semibold"
                                   : ""
                               }`}
@@ -344,19 +373,23 @@ const Article = ({ blok }) => {
           <div className="container max-w-[1280px] mx-auto md:!px-3 !px-4">
             <div className="flex flex-wrap flex-col xl:pb-20 md:pb-14 pb-8">
               <div className="mb-4">
-                <p className="home_sec2_txt3 !pb-0 md:!pt-8 !pt-0">
+                <p className="!pb-0 md:!pt-8 !pt-0">
                   <p className="!ml-0 text-[2rem] font-bold !w-full">
                     You might also like
                   </p>
                 </p>
               </div>
-              <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 !gap-8">
+              <div
+                className={`grid 
+                   xl:grid-cols-3 md:grid-cols-2
+                 grid-cols-1 items-center gap-[2rem]`}
+              >
                 {blogData
                   ?.filter(({ slug }) => !pathname?.includes(slug))
                   ?.slice(0, `${isTablet ? 2 : 3}`)
                   ?.map(({ slug, name, content }, index) => (
                     <div
-                      className="blog-card h-full border flex border-lightGray rounded-[10px]"
+                      className="blog-card h-fit border flex border-lightGray rounded-[10px]"
                       key={index}
                     >
                       <Link

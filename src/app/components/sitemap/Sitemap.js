@@ -1,19 +1,22 @@
 import Link from "next/link";
 
 async function getBlogData() {
-  const url = new URL('https://api.storyblok.com/v2/cdn/stories');
-  url.searchParams.append('cv', '1721647132');
-  url.searchParams.append('filter_query[component][in]', 'swiftsupport_article');
-  url.searchParams.append('page', '1');
-  url.searchParams.append('per_page', '100');
-  url.searchParams.append('starts_with', 'blog/');
-  url.searchParams.append('token', process.env.NEXT_PUBLIC_ACCESS_TOKEN);
-  url.searchParams.append('version', "draft");
+  const url = new URL("https://api.storyblok.com/v2/cdn/stories");
+  url.searchParams.append("cv", "1721647132");
+  url.searchParams.append(
+    "filter_query[component][in]",
+    "swiftsupport_article"
+  );
+  url.searchParams.append("page", "1");
+  url.searchParams.append("per_page", "100");
+  url.searchParams.append("starts_with", "blog/");
+  url.searchParams.append("token", process.env.NEXT_PUBLIC_ACCESS_TOKEN);
+  url.searchParams.append("version", process.env.NEXT_PUBLIC_STORYBLOK_VERSION);
 
   const res = await fetch(url.toString(), { next: { revalidate: 3600 } });
-  
+
   if (!res.ok) {
-    throw new Error('Failed to fetch blog data');
+    throw new Error("Failed to fetch blog data");
   }
 
   const data = await res.json();
@@ -51,15 +54,8 @@ export default async function Sitemap() {
             </div>
             <div>
               <li>
-                <Link href={`${baseUrl}blog`} className="font-medium">
+                <Link href={`${baseUrl}blog/`} className="font-medium">
                   Blog
-                </Link>
-              </li>
-            </div>
-            <div>
-              <li>
-                <Link href={`${baseUrl}about-us`} className="font-medium">
-                  About
                 </Link>
               </li>
             </div>

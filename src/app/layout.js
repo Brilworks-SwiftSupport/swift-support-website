@@ -4,7 +4,7 @@ import "./styles/Animation.scss";
 import "./styles/Customstyle.scss";
 import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 import StoryblokProvider from "./components/StoryblokProvider";
-import { Outfit } from "next/font/google";
+import { Urbanist } from "next/font/google";
 import Header from "./components/Header";
 import LoadScripts from "./ScriptLoader";
 import Script from "next/script";
@@ -14,7 +14,7 @@ storyblokInit({
   accessToken: process.env.NEXT_PUBLIC_ACCESS_TOKEN,
   use: [apiPlugin],
 });
-const outfit = Outfit({
+const urbanist = Urbanist({
   subsets: ["latin"],
   display: "swap",
   variable: "--global-font",
@@ -29,7 +29,7 @@ const Footer = dynamic(() => import("./components/Footer"));
 export default function RootLayout({ children }) {
   return (
     <StoryblokProvider>
-      <html lang="en" className={`${outfit.variable}`}>
+      <html lang="en" className={`${urbanist.variable}`}>
         <head>
           {process.env.VERCEL_ENV === "production" ? (
             <>
@@ -105,16 +105,6 @@ export default function RootLayout({ children }) {
               />
             </>
           )}
-          <meta name="robots" content="noindex,nofollow" />
-          <Script
-            strategy="afterInteractive"
-            id="chatbot"
-          >{`window.chatBotConfig = {agentId: 192}`}</Script>
-          <Script
-            strategy="afterInteractive"
-            id="chatbot-widget-script"
-            src="https://app.swiftsupport.ai/ChatbotScripts/chatbotBubble.js"
-          />
         </head>
         <body suppressHydrationWarning={true}>
           {process.env.VERCEL_ENV === "production" ? (
@@ -122,17 +112,6 @@ export default function RootLayout({ children }) {
               <noscript>
                 <iframe
                   src={`https://www.googletagmanager.com/ns.html?id=${process.env.GTM_ID}`}
-                  height="0"
-                  width="0"
-                  style={{
-                    display: "none",
-                    visibility: "hidden",
-                  }}
-                ></iframe>
-              </noscript>
-              <noscript>
-                <iframe
-                  src={`https://www.googletagmanager.com/ns.html?id=GTM-K2S5ZMG7${process.env.GTM_ID}`}
                   height="0"
                   width="0"
                   style={{

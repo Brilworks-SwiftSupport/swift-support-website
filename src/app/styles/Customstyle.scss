@@ -37,7 +37,7 @@
   font-family: var(--global-font) !important;
   h1 {
     font-size: 58px;
-    font-weight: 700;
+    font-weight: 600;
     line-height: 64px;
 
     @media screen and ((max-width: 1080px) and (min-width: 768px)) {
@@ -123,4 +123,217 @@
   .faq-bottom .accordion-item:nth-last-child(1) {
     margin-bottom: 0 !important;
   }
+}
+
+.solutions {
+  h1 {
+    font-size: 68px;
+    font-weight: 600;
+    line-height: 82px;
+    color: var(--colorBlack);
+    @media screen and ((max-width: 1080px) and (min-width: 768px)) {
+      font-size: 58px;
+      line-height: 68px;
+    }
+    @media screen and (max-width: 767px) {
+      font-size: 48px;
+      line-height: 54px;
+    }
+  }
+  p {
+    font-size: 1.5rem;
+    @media screen and ((max-width: 1080px) and (min-width: 768px)) {
+      font-size: 1.25rem;
+    }
+    @media screen and (max-width: 767px) {
+      font-size: 1.125rem;
+    }
+  }
+  h2 {
+    font-size: 52px;
+    font-weight: 600;
+    line-height: 72px;
+    @media screen and ((max-width: 1080px) and (min-width: 768px)) {
+      font-size: 44px;
+      line-height: 50px;
+    }
+    @media screen and (max-width: 767px) {
+      font-size: 32px;
+      line-height: 40px;
+    }
+  }
+}
+
+.ai-automate li {
+  padding-left: 32px;
+  position: relative;
+  font-size: 16px;
+  line-height: 30px;
+  vertical-align: middle;
+  color: var(--colorBlack);
+  padding-bottom: 14px;
+  @media screen and (max-width: 767px) {
+    padding-bottom: 10px;
+  }
+}
+.ai-automate li.rewind:last-child {
+  padding-bottom: 0;
+}
+
+.ai-automate li::before {
+  content: "";
+  width: 23px;
+  height: 22px;
+  left: 0;
+  top: 4px;
+  background-image: url(/images/green-double-a.svg);
+  background-position: -460px -88px;
+  position: absolute;
+}
+
+.ai-automate li.rewind::before {
+  width: 24px;
+  height: 24px;
+  background-image: url(/images/rewind-time.svg);
+  background-position: -457px -95px;
+}
+
+.banner-underline {
+  max-width: 100%;
+  width: 288px;
+  height: 10px;
+  background: linear-gradient(
+    90deg,
+    #d8ea9a 0%,
+    #afe5ca 25.5%,
+    #fbb8b8 47.5%,
+    #ffffff 58.5%
+  );
+  margin: 0 19.5% 0 0;
+  @media screen and ((max-width: 1080px) and (min-width: 768px)) {
+    font-size: 260px;
+    line-height: 260px;
+  }
+  @media screen and (max-width: 767px) {
+    width: 288px;
+    height: 10px;
+    margin: 0 19.5% 10px 0;
+  }
+}
+
+.small-head-underline {
+  max-width: 100%;
+  width: 168px;
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    #d8ea9a 0%,
+    #afe5ca 25.5%,
+    #fbb8b8 47.5%,
+    #ffffff 58.5%
+  );
+  margin: 2px 19.5% 8px 0;
+}
+
+.hover-btn-border,
+.hover-btn-border:hover {
+  border: 1px solid;
+  border-image-source: linear-gradient(
+    20.7deg,
+    #fbb8b8 -20.76%,
+    #83defc 17.31%,
+    #f2ed7b 71%
+  );
+}
+
+.play-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  background: var(--colorBlack);
+  color: var(--colorWhite);
+  gap: 8px;
+  border-radius: 80px;
+  border: 1px solid var(--colorBlack);
+  transition: border 0.3s ease;
+  div {
+    background: #ffffff;
+  }
+  &:hover {
+    background: var(--colorWhite);
+    color: var(--colorBlack);
+    div {
+      background: linear-gradient(
+        20.7deg,
+        #fbb8b8 -20.76%,
+        #83defc 17.31%,
+        #f2ed7b 71%
+      );
+      img {
+        filter: grayscale(100);
+      }
+    }
+  }
+}
+
+.full-potential {
+  .absolute.inset-0.z-10.h-full.bg-white.rounded-md.shadow {
+    background: linear-gradient(
+      90.06deg,
+      rgba(216, 234, 154, 0.5) 0.05%,
+      rgba(175, 229, 202, 0.5) 26.12%,
+      rgba(251, 184, 184, 0.5) 101.07%
+    ) !important;
+  }
+  li[role="tab"] {
+    background: #f9f9f9;
+    padding: 27px 0 27px 0;
+    margin: 0 4px 0 4px;
+    border-radius: 10px;
+    @media screen and (max-width: 1024px) {
+      padding: 16px 0 16px 0;
+    }
+    @media screen and (max-width: 767px) {
+      padding: 10px 0 10px 0;
+      margin: 4px 0 4px 0;
+    }
+  }
+}
+
+.container-cta {
+  position: relative;
+}
+
+.container-cta::before {
+  content: "";
+  position: absolute;
+  top: -80%;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    92.98deg,
+    rgba(251, 184, 184, 0.7) 5.1%,
+    rgba(251, 184, 184, 0.7) 5.11%,
+    rgba(131, 222, 252, 0.7) 52.15%,
+    rgba(242, 237, 123, 0.7) 100%
+  );
+  filter: blur(64px);
+  width: 800px;
+  height: 188px;
+  margin: 0 auto;
+  border-radius: 300px;
+  z-index: 0;
+  @media screen and (max-width: 767px) {
+    top: -55%;
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+h2 {
+  margin-bottom: 10px;
 }

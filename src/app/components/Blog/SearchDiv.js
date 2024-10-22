@@ -40,7 +40,7 @@ const SearchDiv = () => {
               <input
                 type="submit"
                 className="w-auto !mr-1  !bg-black px-2 py-1  rounded-lg font-semibold text-base !text-white border !cursor-pointer
-                     hover:border-themeColor focus:ring focus:outline-none focus:border-themeColor focus:!ring-[#00C4C8] active:border-themeColor absolute bg-themeColor"
+                   hover:border-themeColor focus:ring focus:outline-none focus:border-themeColor focus:!ring-[#00C4C8] active:border-themeColor absolute bg-themeColor"
                 value="Search"
               />
               <div className="w-full  ">

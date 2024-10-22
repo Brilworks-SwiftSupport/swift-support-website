@@ -17,7 +17,7 @@ async function BlogList({ searchParams }) {
 
   const blogData = await getblogData(
     currentPage,
-    100 || ITEMS_PER_PAGE,
+    ITEMS_PER_PAGE,
     false,
     currentSearchValue
   );
@@ -38,6 +38,14 @@ async function BlogList({ searchParams }) {
     // notFound();
     return <BeatLoader />;
   }
+
+  //This function is to statically generate all the link for blogs and paste in constant.js file
+  // const staticBlogList = blogDataPerPage.map((data) => {
+  //   return {
+  //     loc: `https://www.swiftsupport.ai/blog/${data.slug}/`,
+  //     lastmod: `${data.published_at}`,
+  //   };
+  // });
 
   const getPageNumbers = () => {
     const pages = [];
@@ -60,9 +68,7 @@ async function BlogList({ searchParams }) {
           Discover Hidden Tech Trends with Swiftsupport Blog Insights
         </p>
       </div>
-
       <SearchDiv />
-
       <div className="grid xl:grid-cols-3 min-h-[80vh] md:grid-cols-2 grid-cols-1 !gap-8">
         {blogDataPerPage.length ? (
           blogDataPerPage.map(({ slug, name, content }, index) => (
@@ -106,11 +112,18 @@ async function BlogList({ searchParams }) {
                   />
                 </div>
                 <div className="flex flex-[0.4] flex-col p-[5%] h-full items-start bg-colorWhite">
+                  {/* <div
+                    className={`text-colorBlack font-medium px-1 py-1 rounded-lg mb-2 bg-themePink`}
+                  >
+                    {content?.Category === "Cloud DevOps and Data"
+                      ? "Cloud, DevOps and Data"
+                      : content?.Category}
+                  </div> */}
                   <h2 className="mb-1 min-h-[60px] flex items-center">
                     {name}
                   </h2>
                 </div>
-                <div className="w-full flex  flex-[0.1] flex-row p-[5%] items-start border-t border-lightGray bg-lightGray bg-opacity-10">
+                <div className="w-full flex flex-[0.1] flex-row md:p-[5%] p-4 items-start border-t border-lightGray bg-lightGray bg-opacity-10 mt-auto">
                   <div className="w-full flex items-center justify-between gap-2 text-colorGray">
                     <div className="text-colorDarkBlue text-xs md:text-sm">
                       By {content?.BlogAuthor}

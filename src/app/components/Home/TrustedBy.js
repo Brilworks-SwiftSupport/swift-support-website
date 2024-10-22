@@ -49,7 +49,7 @@ const TrustedBy = () => {
       height: 27,
     },
     {
-      src: "/images/service-buddy.webp",
+      src: "/images/service buddy.webp",
       alt: "Trusted company logo 8",
       width: 140,
       height: 30,
