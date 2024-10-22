@@ -1,0 +1,140 @@
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+
+const HeroSection = () => {
+  return (
+    <div className="hero-section !py-[60px] lg:mt-[6%] md:mt-[10%] mt-[14%]">
+      <div className="container max-w-[1200px] mx-auto">
+        <div className="w-full flex flex-col">
+          <div className="flex gap-6 lg:gap-0 lg:flex-row flex-col items-center xl:px-0 px-4">
+            <div className="lg:w-1/2 w-full flex flex-col">
+              <h1 className="lg:text-[54px] md:text-[42px] leading-tight text-[34px] w-full text-colorBlack font-bold mx-auto mb-[30px]">
+                <span>
+                  AI-Powered Support
+                  <div className="banner-underline" />
+                </span>
+                for Your Business
+              </h1>
+              <p className="lg:!text-2xl !text-xl md:!leading-tight text-colorBlack lg:mb-[50px] md:mb-10 mb-8">
+                Swift Support's mission is to streamline customer interactions
+                and reduce wait times by providing businesses with&nbsp;
+                <span className="bg-clip-text text-transparent bg-text-theme-gradient">
+                  AI Automation, AI Co-pilots, & AI Agents.
+                </span>
+              </p>
+
+              <div className="flex items-center justify-start flex-wrap gap-5 md:!mb-[60px] !mb-8">
+                <Link
+                  href="https://www.youtube.com/@SwiftSupportdotai"
+                  target="_blank"
+                  className="play-icon-btn rounded-[80px] pl-2 pr-[30px] py-2 text-base"
+                >
+                  <div className="p-[14px] !pl-4 rounded-full">
+                    <Image
+                      src="/images/play-arrow.svg"
+                      alt="solution-providing"
+                      width="14"
+                      height="16"
+                    />
+                  </div>
+                  Watch Demo
+                </Link>
+                <Link
+                  href="https://app.swiftsupport.ai/signup"
+                  target="_blank"
+                  className="font-semibold text-base border-colorBlack border rounded-[80px] !bg-colorWhite px-[30px] py-[18px]"
+                >
+                  Try Now
+                </Link>
+              </div>
+              <div className="flex items-center justify-start">
+                <Image
+                  src="/images/image_avtar.svg"
+                  alt="image-avtar"
+                  width="42"
+                  height="42"
+                />
+                <Image
+                  className="-ml-[10px]"
+                  src="/images/image_avtar (1).svg"
+                  alt="image-avtar"
+                  width="42"
+                  height="42"
+                />
+                <Image
+                  className="-ml-[10px]"
+                  src="/images/image_avtar (2).svg"
+                  alt="image-avtar"
+                  width="42"
+                  height="42"
+                />
+                <div className="flex items-center justify-center w-[42px] h-[42px] bg-themeBlue rounded-full -ml-[10px] border border-colorWhite">
+                  <p className="text-sm text-center">2k+</p>
+                </div>
+                <p className="mx-[10px] text-base">Customers</p>
+              </div>
+            </div>
+            <div className="lg:w-1/2 w-full h-full">
+              <Image
+                className="h-full !w-full"
+                src={"/images/hero-img.webp"}
+                alt={"hero-image"}
+                width="615"
+                height="641"
+                priority
+              />
+            </div>
+          </div>
+        </div>
+        {/* <h1 className="lg:text-[68px] md:text-[48px] leading-tight text-4xl md:w-[80%] w-full text-colorBlack font-semibold mx-auto text-center mb-4">
+          AI-Powered Support for Your Business
+        </h1>
+        <p className="text-colorBlack font-medium text-2xl text-center">
+          Your customers deserve SwiftSupport, always!
+        </p>
+        <div className="banner-underline"></div>
+        <p className="md:text-2xl text-xl text-colorBlack text-center md:pb-[60px] pb-8">
+          Swift Support's mission is to streamline customer interactions and
+          reduce wait times by providing businesses with&nbsp;
+          <span className="text-[#2563EB] font-semibold">
+            AI Automation, AI Co-pilots, and AI Agents.
+          </span>
+        </p>
+        <div className="flex items-center justify-center flex-wrap gap-5 lg:!mb-[110px] md:!mb-[60px] !mb-10">
+          <Link
+            href="https://www.youtube.com/@SwiftSupportdotai"
+            target="_blank"
+            className="flex items-center justify-center gap-2 font-semibold border-colorBlack border bg-colorBlack text-colorWhite rounded-[30px] px-6 py-4 text-xl"
+          >
+            <Image
+              src="/images/play-arrow.svg"
+              alt="solution-providing"
+              width="12"
+              height="14"
+            />
+            Watch Demo
+          </Link>
+          <Link
+            href="https://app.swiftsupport.ai/signup"
+            target="_blank"
+            className="font-semibold text-xl border-colorBlack border rounded-[30px] !bg-colorWhite px-6 py-4"
+          >
+            Try Now
+          </Link>
+        </div>
+        <div className="flex items-center justify-center !mt-5">
+          <Image
+            className="max-w-full"
+            src="/images/solution-providing.svg"
+            alt="solution-providing"
+            width="1020"
+            height="380"
+          />
+        </div> */}
+      </div>
+    </div>
+  );
+};
+
+export default HeroSection;

@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        colorBlack: "#24282c",
+        colorBlack: "#212121",
         colorGray: "#6f7a7d",
         colorDarkBlue: "#2d677c",
         colorLightBlue: "#eaf9ff",
@@ -17,6 +17,7 @@ module.exports = {
         themePink: "#fbb8b8",
         themeYellow: "#f2ed7b",
         themeBlue: "#83defc",
+        themeBlueLight: "#F6FDFF",
         colorOrange: "#ffae50",
         colorWhite: "#fff",
       },
@@ -26,14 +27,16 @@ module.exports = {
         sxl: "1200px",
       },
       fontFamily: {
-        Outfit: ["Outfit", "sans-serif"],
+        Urbanist: ["Urbanist", "sans-serif"],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "text-theme-gradient":
+          "linear-gradient(255.7deg, #FF8585 21.78%, #56D5FF 42.63%, #DCD536 72.03%)",
       },
     },
   },
   plugins: [],
-} ;
+};

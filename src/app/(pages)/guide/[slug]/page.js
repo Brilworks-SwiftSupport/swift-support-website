@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
-import LoadingSpinner from "@/app/components/LoadingSpinner";
+import BeatLoader from "@/app/components/Loader";
 import GuideContentSection from "@/app/components/Guide/GuideContentSection";
 import GuideFirstSection from "@/app/components/Guide/GuideFirstSection";
 async function fetchWithErrorHandling(url, options) {
@@ -54,9 +54,9 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   try {
     const storyData = await getGuideData(params.slug);
-    const { title, description } = storyData.story;
+    const { title, description } = storyData?.story?.content?.Metatags;
     return {
-      title: title,
+      title: title || storyData?.story?.name,
       description: description,
       openGraph: {
         title: title,
@@ -87,7 +87,7 @@ export default async function Page({ params }) {
   const { title_section, FAQ_section, content } = storyData.story.content;
 
   return (
-    <Suspense fallback={<LoadingSpinner />}>
+    <Suspense fallback={<BeatLoader />}>
       <GuideFirstSection data={title_section?.[0]} />
       <GuideContentSection content={content?.content} FAQData={FAQ_section} />
     </Suspense>

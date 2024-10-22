@@ -1,69 +1,80 @@
 "use client";
 import React from "react";
-import InstantSolution from "../../components/Home/InstantSolution";
-// import VideoSection from "../../components/Home/VideoSection";
 import dynamic from "next/dynamic";
+// import VideoSection from "../../components/Home/VideoSection";
+import HeroSection from "@/app/components/Home/HeroSection";
+import UnlockFullPotential from "@/app/components/Home/UnlockFullPotential";
 
-const TrustedBy = dynamic(() => import("../../components/Home/TrustedBy"));
+const AIAutomateBusiness = dynamic(() =>
+  import("@/app/components/Home/AIAutomateBusiness")
+);
 const AppIntegrationSection = dynamic(() =>
   import("@/app/components/Home/AppIntegrationSection")
 );
-const IndustriesWeServe = dynamic(() =>
-  import("../../components/Home/IndustriesWeServe")
+const ImageWithGridSection = dynamic(() =>
+  import("@/app/components/Home/ImageWithGridSection")
 );
-const HelpBusinesses = dynamic(() =>
-  import("@/app/components/Home/HelpBusinesses")
+const WhySwiftSupport = dynamic(() =>
+  import("@/app/components/Home/WhySwiftSupport")
 );
-const ManageDataSource = dynamic(() =>
-  import("../../components/Home/ManageDataSource")
+const WhatPeopleSay = dynamic(() =>
+  import("@/app/components/Home/WhatPeopleSay")
 );
-const FrictionlessAndFuturistic = dynamic(() =>
-  import("../../components/Home/FrictionlessAndFuturistic")
-);
-const CustomizeExperience = dynamic(() =>
-  import("../../components/Home/CustomizeExperience")
-);
-const OptimizeAndDataStorage = dynamic(() =>
-  import("../../components/Home/OptimizeAndDataStorage")
-);
-const ExperienceAIBuild = dynamic(() =>
-  import("../../components/Home/ExperienceAIBuild")
-);
-const PeopleSaying = dynamic(() =>
-  import("../../components/Home/PeopleSaying")
-);
-const ResolveCustomerQuestions = dynamic(() =>
-  import("../../components/Home/ResolveCustomerQuestions")
-);
-const SwiftIntegration = dynamic(() =>
-  import("../../components/Home/SwiftIntegration")
+const HomepageCTA = dynamic(() => import("@/app/components/Home/HomepageCTA"));
+const AIPoweredSolution = dynamic(() =>
+  import("@/app/components/Home/AIPoweredSolution")
 );
 const PricingPlan = dynamic(() => import("../../components/Home/PricingPlan"));
 
 const page = () => {
   return (
     <>
-      <InstantSolution />
-      <div className="bg_one">
-        <AppIntegrationSection />
-        {/* <VideoSection /> */}
-        <TrustedBy />
-        <IndustriesWeServe />
-        <HelpBusinesses />
-        <ManageDataSource />
-      </div>
-      <FrictionlessAndFuturistic />
-      <div className="bg_two">
-        <CustomizeExperience />
-        <OptimizeAndDataStorage />
-        <ExperienceAIBuild />
-        <PeopleSaying />
-        <ResolveCustomerQuestions />
-      </div>
-      <div className="bg_one">
-        <SwiftIntegration />
-        <PricingPlan />
-      </div>
+      {/* New Design */}
+      <HeroSection />
+      <UnlockFullPotential />
+      {/* <ImageWithGridSection sectionName="Unlock Full Potential" /> */}
+      <HomepageCTA
+        title={
+          <>
+            Automate Email Workflows with Lightning-Fast{" "}
+            <br className="lg:block hidden" />
+            AI Responses—Boost Efficiency Instantly! 
+          </>
+        }
+        buttonLink="https://app.swiftsupport.ai/signup"
+        buttonText="Start Free Trial"
+      />
+      <AppIntegrationSection />
+      <AIAutomateBusiness />
+      {/* <ImageWithGridSection sectionName="AI Copilot" /> */}
+      {/* <HomepageCTA
+        title={
+          <>
+            Empower Service Agents with Instant Access
+            <br className="lg:block hidden" /> to Critical Data—Solve Queries
+            Faster!
+          </>
+        }
+        buttonLink="https://app.swiftsupport.ai/signup"
+        buttonText="Start Free Trial"
+      /> */}
+      {/* <ImageWithGridSection sectionName="AI Agent" /> */}
+      {/* <HomepageCTA
+        title={
+          <>
+            Enhance Customer Engagement with Real-Time,
+            <br className="lg:block hidden" /> AI-Driven Responses—On Any
+            Platform!
+          </>
+        }
+        buttonLink="https://app.swiftsupport.ai/signup"
+        buttonText="Start Free Trial"
+      /> */}
+      {/* <WhySwiftSupport /> */}
+
+      <AIPoweredSolution />
+      <WhatPeopleSay />
+      <PricingPlan />
     </>
   );
 };
