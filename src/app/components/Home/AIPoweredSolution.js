@@ -59,7 +59,7 @@ const AIPoweredSolution = () => {
         <h2 className="new-h2 mb-5 px-2 md:px-0">
           AI-Powered Solutions Across Industries
         </h2>
-        <p className="text-colorBlack text-center text-2xl md:w-4/5 w-full mx- px-4 lg:mb-[40px] md:mb-7 mb-5">
+        <p className="text-colorBlack md:text-center text-left text-2xl md:w-4/5 w-full mx-auto px-4 lg:mb-[40px] md:mb-7 mb-5">
           SwiftSupport makes an impact in industries where efficiency and
           customer satisfaction are key. Explore how we can help.
         </p>

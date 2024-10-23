@@ -41,7 +41,7 @@ const Footer = () => {
   return (
     <div className="footer">
       <div>
-        <div className="flex items-center justify-center md:pt-[30px] py-6 pd:b-[45px]">
+        <div className="flex items-center justify-center md:pt-[30px] py-6 pb-[45px]">
           <Image
             src="/images/footer-logo.svg"
             alt="SwiftSupport footer logo"
