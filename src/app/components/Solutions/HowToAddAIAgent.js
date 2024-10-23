@@ -16,8 +16,8 @@ const HowToAddAIAgent = ({ howToAddAIAgentData }) => {
       }}
     >
       <div className="absolute inset-0 bg-black opacity-80 z-0"></div>
-      <div className="relative container max-w-[1080px] mx-auto z-10">
-        <h2 className="mb-5 md:text-center text-left text-colorWhite">
+      <div className="relative container max-w-[1200px] mx-auto z-10">
+        <h2 className="mb-5 md:text-center text-left !text-colorWhite">
           {title}
         </h2>
         <p className="md:mb-10 mb-8 text-center text-colorWhite">

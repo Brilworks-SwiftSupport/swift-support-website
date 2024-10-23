@@ -15,7 +15,7 @@ const GuideFirstSection = ({ data }) => {
           <div className="flex gap-6 lg:flex-row flex-col items-center md:py-20 py-8 md:px-0 sxl:px-4 px-4">
             <div className="lg:w-2/4 w-full">
               <h1 className="mb-6">{title}</h1>
-              <p className="lg:!text-2xl !text-xl md:!leading-tight lg:w-[90%] text-colorGray">
+              <p className="lg:!text-2xl !text-xl md:!leading-tight lg:w-[90%] text-colorBlack">
                 {description}
               </p>
               <div className="lg:mt-12 mt-5">
@@ -29,7 +29,7 @@ const GuideFirstSection = ({ data }) => {
               </div>
             </div>
             <div className="lg:w-2/4 w-full">
-              {pathname === "/how-to-add-live-chat-to-website/" ? (
+              {pathname === "/guide/how-to-add-live-chat-to-website/" ? (
                 <iframe
                   className="w-full"
                   width="320"

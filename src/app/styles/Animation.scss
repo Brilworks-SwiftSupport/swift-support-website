@@ -32,7 +32,6 @@
     height: 2px;
     left: 50%;
     position: absolute;
-    background: var(--colorBlack);
     transition: width 0.3s ease 0s, left 0.3s ease 0s;
     width: 0;
   }
@@ -212,8 +211,9 @@
   margin-bottom: 0.25rem;
   box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
-  .subscribe-btn {
-    opacity: 0.9;
+  .subscribe-btn:first-child {
+    background-color: var(--colorBlack) !important;
+    color: var(--colorWhite) !important;
   }
   .subscribed-btn {
     box-shadow: 0px 30px 20px 0px rgba(0, 0, 0, 0.1);

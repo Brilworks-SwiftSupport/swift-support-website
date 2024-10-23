@@ -157,7 +157,7 @@ const Header = () => {
       </div> */}
       <div className="hidden md:block">
         <Menu
-          className="font-Urbanist font-medium"
+          className="font-medium"
           placement="bottom"
           dismiss={{ itemPress: true, ancestorScroll: true }}
           animate={{
@@ -205,10 +205,7 @@ const Header = () => {
                   key={index}
                   className="flex items-center gap-4 py-2 px-3 hover:bg-[#EAFAFF] hover:rounded-lg"
                 >
-                  <Link
-                    className="font-Urbanist font-medium"
-                    href={guide?.path}
-                  >
+                  <Link className="font-medium" href={guide?.path}>
                     {guide?.name}
                   </Link>
                 </MenuItem>
@@ -218,7 +215,7 @@ const Header = () => {
       </div>
       <div className="hidden md:block">
         <Menu
-          className="font-Urbanist font-medium"
+          className="font-medium"
           placement="bottom"
           dismiss={{ itemPress: true, ancestorScroll: true }}
           animate={{
@@ -266,10 +263,7 @@ const Header = () => {
                   key={index}
                   className="flex items-center gap-4 py-2 px-3 hover:bg-[#EAFAFF] hover:rounded-lg"
                 >
-                  <Link
-                    className="font-Urbanist font-medium"
-                    href={solution.path}
-                  >
+                  <Link className="font-medium" href={solution.path}>
                     {solution.name}
                   </Link>
                 </MenuItem>
@@ -292,15 +286,15 @@ const Header = () => {
         >
           <AccordionHeader
             onClick={() => handleOpen(1)}
-            className={`flex justify-between items-center border-none w-full py-[5px] font-Urbanist text-colorBlack text-base !font-medium select-none transition-colors`}
+            className={`flex justify-between items-center border-none w-full py-[5px] text-colorBlack text-base !font-medium select-none transition-colors font-Urbanist`}
           >
             Guide
           </AccordionHeader>
           {guideList.length &&
             guideList.map((guide, index) => (
-              <AccordionBody key={index}>
+              <AccordionBody key={index} className="py-[10px]">
                 <Link
-                  className="font-Urbanist !font-medium ml-4"
+                  className="!font-medium ml-4"
                   href={guide?.path}
                   onClick={() => setOpenNav(false)}
                 >
@@ -310,20 +304,62 @@ const Header = () => {
             ))}
         </Accordion>
       </div>
-
-      <Link
-        rel="noopener"
-        target="_blank"
-        href="https://app.swiftsupport.ai/login"
-        onClick={() => setOpenNav(false)}
-        className={`${openNav ? "" : "!hidden"} ${
-          pathname.includes("agent-copilot")
-            ? "!text-[#000] !bg-white black-button"
-            : "new-button-black !text-colorWhite ml-3"
-        }`}
-      >
-        Log In
-      </Link>
+      <div className="md:hidden block w-full">
+        <Accordion
+          open={openAccordion === 2}
+          icon={
+            <Icon
+              openClass="rotate-180"
+              closeClass={"rotate-0"}
+              id={2}
+              open={openAccordion}
+            />
+          }
+          className="border-b border-[#e5e7eb] !px-3"
+        >
+          <AccordionHeader
+            onClick={() => handleOpen(2)}
+            className={`flex justify-between items-center border-none w-full py-[5px] text-colorBlack text-base !font-medium select-none transition-colors font-Urbanist`}
+          >
+            Solutions
+          </AccordionHeader>
+          {solutionList.length &&
+            solutionList.map((solution, index) => (
+              <AccordionBody key={index} className="py-[10px]">
+                <Link
+                  className="!font-medium ml-4"
+                  href={solution?.path}
+                  onClick={() => setOpenNav(false)}
+                >
+                  {solution?.name}
+                </Link>
+              </AccordionBody>
+            ))}
+        </Accordion>
+      </div>
+      <div className="w-full flex items-center justify-center">
+        <Link
+          rel="noopener"
+          target="_blank"
+          href="https://app.swiftsupport.ai/login"
+          onClick={() => setOpenNav(false)}
+          className={`${openNav ? "" : "!hidden"} ${
+            pathname.includes("agent-copilot")
+              ? "!text-[#000] !bg-white black-button"
+              : "new-button-black  !py-[5px] !pr-[5px]"
+          }`}
+        >
+          <span className="pl-5 pr-[14px]">Let’s Get Started</span>
+          <div className="w-9 h-9 flex items-center justify-center rounded-full bg-colorWhite">
+            <Image
+              src="/images/right-arrow-black.svg"
+              alt="right-arrow-black"
+              width="15"
+              height="12"
+            />
+          </div>
+        </Link>
+      </div>
       {/* <Link
         rel="noopener"
         target="_blank"
@@ -406,13 +442,21 @@ const Header = () => {
                 target="_blank"
                 href="https://app.swiftsupport.ai/login"
                 onClick={() => setOpenNav(false)}
-                className={` ${
+                className={`${
                   pathname.includes("agent-copilot")
                     ? "!text-[#000] !bg-white black-button"
-                    : "new-button-black"
+                    : "new-button-black !py-[5px] !pr-[5px]"
                 }`}
               >
-                Log in
+                <span className="pl-5 pr-[14px]">Let’s Get Started</span>
+                <div className="w-9 h-9 flex items-center justify-center rounded-full bg-colorWhite">
+                  <Image
+                    src="/images/right-arrow-black.svg"
+                    alt="right-arrow-black"
+                    width="15"
+                    height="12"
+                  />
+                </div>
               </Link>
             </div>
           </div>

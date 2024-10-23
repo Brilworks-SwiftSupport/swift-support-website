@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import {
   Tabs,
   TabsHeader,
@@ -145,7 +145,7 @@ const UnlockFullPotential = () => {
           <TabsHeader className="!rounded-none border-y border-[#EDEDED] mb-[50px] md:flex-row flex-col md:px-0">
             {data.map(({ title, value, iconSrc }) => (
               <Tab key={value} value={value}>
-                <div className="flex items-center gap-2 md:text-[26px] text-[22px] leading-normal font-semibold font-Urbanist">
+                <div className="flex items-center gap-2 md:text-[26px] text-[22px] leading-normal font-semibold text-colorBlack">
                   <Image src={iconSrc} width={46} height={46} alt="tab-icon" />
                   {title}
                 </div>
@@ -173,29 +173,29 @@ const UnlockFullPotential = () => {
                 <TabPanel key={value} value={value}>
                   <div className="flex gap-8 lg:flex-row flex-col items-center xl:px-0 px-4">
                     <div className="lg:w-1/2 w-full flex flex-col">
-                      <h3 className="lg:text-[26px] leading-tight text-[20px] w-full text-colorBlack font-bold font-Urbanist">
+                      <h3 className="lg:text-[26px] leading-tight text-[20px] w-full text-colorBlack font-bold">
                         <span>
                           {title}
                           <div className="small-head-underline" />
                         </span>
                       </h3>
-                      <p className="!text-base leading-tight text-colorBlack lg:mb-[30px] md:mb-7 mb-5 font-Urbanist">
+                      <p className="!text-base leading-tight text-colorBlack lg:mb-[30px] md:mb-7 mb-5">
                         {description}
                       </p>
 
-                      <span className="text-xl font-medium text-colorBlack mb-5 font-Urbanist">
+                      <span className="text-xl font-medium text-colorBlack mb-5">
                         {subTitle}
                       </span>
 
                       <div className="flex flex-col gap-5">
                         <div className="border border-[#EDEDED] rounded-[10px] p-5 pr-8">
-                          <p className="text-[#FF5454] font-semibold mb-4 font-Urbanist">
+                          <p className="text-[#FF5454] font-semibold mb-4">
                             {problem.label}
                           </p>
                           {problem.issues.map((issue, idx) => (
                             <p
                               key={idx}
-                              className="font-medium text-colorBlack mb-[10px] last:mb-0 font-Urbanist"
+                              className="font-medium text-colorBlack mb-[10px] last:mb-0"
                             >
                               <span className="font-semibold text-base">
                                 {issue.label}
@@ -205,7 +205,7 @@ const UnlockFullPotential = () => {
                           ))}
                         </div>
 
-                        <div className="border border-[#EDEDED] rounded-[10px] p-5 pr-8 font-Urbanist">
+                        <div className="border border-[#EDEDED] rounded-[10px] p-5 pr-8">
                           <p className="text-[#10B981] font-semibold mb-4">
                             {solution.label}
                           </p>
@@ -214,7 +214,7 @@ const UnlockFullPotential = () => {
                           </p>
                         </div>
 
-                        <div className="border border-[#EDEDED] border-b-[#3B82F6] !border-b-2 rounded-[10px] p-5 pr-8 bg-[#F6F8FD] font-Urbanist">
+                        <div className="border border-[#EDEDED] border-b-[#3B82F6] !border-b-2 rounded-[10px] p-5 pr-8 bg-[#F6F8FD]">
                           <p className="text-[#3B82F6] font-semibold mb-4">
                             {output.label}
                           </p>
