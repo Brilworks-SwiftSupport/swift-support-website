@@ -4,7 +4,7 @@ import React from "react";
 
 const HeroSection = () => {
   return (
-    <div className="hero-section !py-[60px] lg:mt-[6%] md:mt-[10%] mt-[14%]">
+    <div className="hero-section xl:pb-[60px] xl:pt-[5px] 3xl:!py-[60px] py-[60px] lg:mt-[6%] md:mt-[10%] mt-[14%]">
       <div className="container max-w-[1200px] mx-auto">
         <div className="w-full flex flex-col">
           <div className="flex gap-6 lg:gap-0 lg:flex-row flex-col items-center xl:px-0 px-4">

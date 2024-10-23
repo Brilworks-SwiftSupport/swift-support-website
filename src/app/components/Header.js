@@ -467,7 +467,7 @@ const Header = () => {
             <div
               className={
                 openNav
-                  ? "w-full mx-auto md:pt-8 py-4 border-t border-[#e5e7eb]"
+                  ? "w-full mx-auto md:pt-8 py-4 pt-0 border-t border-[#e5e7eb]"
                   : "hidden"
               }
             >

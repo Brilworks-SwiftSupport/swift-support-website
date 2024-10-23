@@ -143,20 +143,16 @@ const PricingPlan = () => {
   ];
 
   return (
-    <div
-      className="container mx-auto max-w-[1200px] lg:py-[80px] md:py-[60px] py-10"
-      id="pricing-plan"
-    >
-      <div className="md:mb-[58px] mb-7">
-        <h2 className="new-h2 mb-[50px] text-center">Pricing Plans</h2>
-
+    <div className="container mx-auto max-w-[1200px] lg:py-[80px] md:py-[60px] py-10">
+      <div className="md:mb-[px] mb-7" id="pricing-plan">
+        <h2 className="new-h2 md:mb-[30px] mb-5 text-center">Pricing Plans</h2>
         <Tabs
           value="monthly"
           id="custom-animation"
           orientation="horizontal"
           className="pricing-plan"
         >
-          <TabsHeader className="!rounded-none border-y border-[#EDEDED] mb-[50px] md:flex-row flex-col md:px-0 md:w-2/3 w-full mx-auto">
+          <TabsHeader className="!rounded-none border-y border-[#EDEDED] mb-[46px] md:flex-row flex-col md:px-0 md:w-2/3 w-full mx-auto">
             {pricingPlans.map(({ title, value }) => (
               <Tab key={value} value={value}>
                 <h3 className="flex items-center gap-2 md:text-[26px] text-[22px] leading-normal font-semibold  text-colorBlack">

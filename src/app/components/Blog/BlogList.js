@@ -25,14 +25,12 @@ async function BlogList({ searchParams }) {
   const totalBlog = blogData?.totalData || 0;
 
   //This function is to statically generate all the link for blogs and paste in constant.js file
-  const staticBlogList = blogDataPerPage.map((data) => {
-    return {
-      loc: `https://www.swiftsupport.ai/blog/${data.slug}/`,
-      lastmod: `${data.published_at}`,
-    };
-  });
-
-  console.log(staticBlogList);
+  // const staticBlogList = blogDataPerPage.map((data) => {
+  //   return {
+  //     loc: `https://www.swiftsupport.ai/blog/${data.slug}/`,
+  //     lastmod: `${data.published_at}`,
+  //   };
+  // });
 
   if (blogDataPerPage.length === 0 && currentPage !== 1) {
     // notFound();

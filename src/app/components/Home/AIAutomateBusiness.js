@@ -60,7 +60,7 @@ const AIAutomateBusiness = () => {
                 </ul>
               </div>
             </div>
-            <div className="lg:w-[10%] flex items-center justify-center text-[62px] leading-[75px]">
+            <div className="lg:w-[10%] flex items-center justify-center lg:text-[62px] md:text-[52px] text-[40px] leading-snug lg:leading-[75px]">
               Vs
             </div>
             <div

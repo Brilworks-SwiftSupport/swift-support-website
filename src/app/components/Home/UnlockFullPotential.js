@@ -131,8 +131,11 @@ const UnlockFullPotential = () => {
   ];
   return (
     <div className="md:py-[60px] py-10 h-full">
-      <div className="container max-w-[1200px] mx-auto w-full h-full">
-        <h2 className="new-h2 w-full mx-auto lg:mb-[50px] md:mb-10 mb-6 px-4">
+      <div
+        className="container max-w-[1200px] mx-auto w-full h-full"
+        id="unlock-full potential"
+      >
+        <h2 className="new-h2 !text-left w-full md:mx-auto lg:mb-[50px] md:mb-10 mb-6 px-4">
           Unlock the full potential of
           <br className="lg:block hidden" /> your Business with an AI Automation
         </h2>
@@ -171,9 +174,9 @@ const UnlockFullPotential = () => {
                 mainImageSrc,
               }) => (
                 <TabPanel key={value} value={value}>
-                  <div className="flex gap-8 lg:flex-row flex-col items-center xl:px-0 px-4">
+                  <div className="flex gap-8 lg:flex-row flex-col items-center px-0">
                     <div className="lg:w-1/2 w-full flex flex-col">
-                      <h3 className="lg:text-[26px] leading-tight text-[20px] w-full text-colorBlack font-bold">
+                      <h3 className="lg:text-[26px] leading-tight text-[22spx] w-full text-colorBlack font-bold">
                         <span>
                           {title}
                           <div className="small-head-underline" />

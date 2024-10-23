@@ -25,6 +25,7 @@ module.exports = {
         xs: "480px",
         slg: "980px",
         sxl: "1200px",
+        "3xl": "1680px",
       },
       fontFamily: {
         Urbanist: ["Urbanist", "sans-serif"],
