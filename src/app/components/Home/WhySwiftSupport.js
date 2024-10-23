@@ -57,7 +57,7 @@ const WhySwiftSupport = () => {
 
   return (
     <div className="lg:py-[90px] md:py-[60px] py-10">
-      <div className="container max-w-[1080px] mx-auto w-full">
+      <div className="container max-w-[1200px] mx-auto w-full">
         <h2 className="new-h2 w-ful mb-[40px] px-4">
           Unlock the Full Potential of
           <br className="md:block hidden" /> Your Support Teams

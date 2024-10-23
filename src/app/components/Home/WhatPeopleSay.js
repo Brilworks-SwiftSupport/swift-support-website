@@ -11,7 +11,7 @@ const WhatPeopleSay = ({ title }) => {
     <div className="bg-[#FFFBFB] py-[80px] md:py-[60px] pt-[30px]">
       <div className="container max-w-[1200px] mx-auto w-full">
         <h2 className="new-h2 mb-[50px]">
-          {title || "AI-Powered Solutions Across Industries"}
+          {title || "What people are saying"}
         </h2>
         <div>
           <Splide

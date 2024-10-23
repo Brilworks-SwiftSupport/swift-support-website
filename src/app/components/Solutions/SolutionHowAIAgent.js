@@ -6,7 +6,7 @@ const SolutionHowAIAgent = ({ title, aiAgentTransformation }) => {
 
   return (
     <div className="solutions xl:py-[90px] lg:py-[60px] md:py-10 py-8">
-      <div className="container max-w-[1080px] mx-auto">
+      <div className="container max-w-[1200px] mx-auto">
         <h2 className="lg:mb-[50px] md:mb-10 mb-8 md:text-center text-left lg:px-0 px-4">
           {title}
         </h2>

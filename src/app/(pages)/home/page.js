@@ -36,9 +36,9 @@ const page = () => {
       <HomepageCTA
         title={
           <>
-            Automate Email Workflows with Lightning-Fast{" "}
-            <br className="lg:block hidden" />
-            AI Responses—Boost Efficiency Instantly! 
+            Automate Email Workflows and Enhance Engagement with Instant,{" "}
+            <br className="lg:block hidden" /> AI-Driven Responses Across All
+            Platforms!
           </>
         }
         buttonLink="https://app.swiftsupport.ai/signup"

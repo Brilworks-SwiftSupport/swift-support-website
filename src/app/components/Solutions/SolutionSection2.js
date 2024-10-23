@@ -5,7 +5,7 @@ const SolutionSection2 = ({ data }) => {
   const { title, description, banner_image } = data;
   return (
     <div className="solutions py-[90px] bg-themeBlueLight">
-      <div className="container max-w-[1080px] mx-auto">
+      <div className="container max-w-[1200px] mx-auto">
         <div>
           <h2 className="mb-5 text-center">{title}</h2>
           <p className="lg:mb-[60px] md:mb-10 mb-6 text-center">

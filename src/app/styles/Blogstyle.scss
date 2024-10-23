@@ -134,10 +134,17 @@
     margin-inline-start: 0;
     margin-inline-end: 0;
     span {
+      color: var(--colorBlack) !important;
       word-wrap: break-word;
       font-size: 18px !important;
       line-height: 32px !important;
       margin-bottom: 15px !important;
+    }
+    a {
+      color: var(--colorDarkBlue) !important;
+      span {
+        color: var(--colorDarkBlue) !important;
+      }
     }
   }
   h2 {

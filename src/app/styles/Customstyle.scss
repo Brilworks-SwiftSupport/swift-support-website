@@ -36,17 +36,17 @@
 .usecase {
   font-family: var(--global-font) !important;
   h1 {
-    font-size: 58px;
+    font-size: 54px;
     font-weight: 600;
-    line-height: 64px;
-
+    line-height: 1.25;
+    color: var(--colorBlack);
     @media screen and ((max-width: 1080px) and (min-width: 768px)) {
-      font-size: 48px;
-      line-height: 54px;
+      font-size: 42px;
+      line-height: 60px;
     }
     @media screen and (max-width: 767px) {
-      font-size: 48px;
-      line-height: 50px;
+      font-size: 36px;
+      line-height: 40px;
     }
   }
   p {
@@ -127,17 +127,17 @@
 
 .solutions {
   h1 {
-    font-size: 68px;
+    font-size: 54px;
     font-weight: 600;
-    line-height: 82px;
+    line-height: 1.25;
     color: var(--colorBlack);
     @media screen and ((max-width: 1080px) and (min-width: 768px)) {
-      font-size: 58px;
-      line-height: 68px;
+      font-size: 42px;
+      line-height: 60px;
     }
     @media screen and (max-width: 767px) {
-      font-size: 48px;
-      line-height: 54px;
+      font-size: 36px;
+      line-height: 40px;
     }
   }
   p {
@@ -150,12 +150,13 @@
     }
   }
   h2 {
-    font-size: 52px;
+    font-size: 42px;
     font-weight: 600;
-    line-height: 72px;
+    line-height: 60px;
+    color: var(--colorBlack);
     @media screen and ((max-width: 1080px) and (min-width: 768px)) {
-      font-size: 44px;
-      line-height: 50px;
+      font-size: 36px;
+      line-height: 42px;
     }
     @media screen and (max-width: 767px) {
       font-size: 32px;
@@ -256,12 +257,18 @@
   gap: 8px;
   border-radius: 80px;
   border: 1px solid var(--colorBlack);
-  transition: border 0.3s ease;
+  transition: 0.3s ease;
   div {
     background: #ffffff;
   }
   &:hover {
-    background: var(--colorWhite);
+    background-image: linear-gradient(0deg, #ffffff, #ffffff),
+      linear-gradient(20.7deg, #fbb8b8 -20.76%, #83defc 17.31%, #f2ed7b 71%);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    border-width: 1px !important;
+    border-style: solid;
+    border-color: transparent;
     color: var(--colorBlack);
     div {
       background: linear-gradient(
@@ -270,14 +277,12 @@
         #83defc 17.31%,
         #f2ed7b 71%
       );
-      img {
-        filter: grayscale(100);
-      }
     }
   }
 }
 
-.full-potential {
+.full-potential,
+.pricing-plan {
   .absolute.inset-0.z-10.h-full.bg-white.rounded-md.shadow {
     background: linear-gradient(
       90.06deg,
@@ -297,6 +302,42 @@
     @media screen and (max-width: 767px) {
       padding: 10px 0 10px 0;
       margin: 4px 0 4px 0;
+    }
+  }
+}
+
+.pricing-grid:first-child {
+  background-image: linear-gradient(0deg, #ffffff, #ffffff),
+    linear-gradient(255.7deg, #ff8585 21.78%, #56d5ff 42.63%, #dcd536 72.03%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  border-radius: 20px;
+  border-width: 1px 4px 4px 1px !important;
+  border-style: solid;
+  border-color: transparent;
+}
+
+.pricing-plan {
+  li[role="tab"] {
+    &:first-child {
+      margin-right: 10px;
+    }
+    &:last-child {
+      margin-left: 10px;
+    }
+    @media screen and (max-width: 1024px) {
+      padding: 16px 0 16px 0;
+    }
+    @media screen and (max-width: 767px) {
+      padding: 10px 0 10px 0;
+      &:first-child {
+        margin-right: 0px;
+        margin-left: 0px;
+      }
+      &:last-child {
+        margin-left: 0px;
+        margin-right: 0px;
+      }
     }
   }
 }

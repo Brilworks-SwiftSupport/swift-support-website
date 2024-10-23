@@ -78,8 +78,8 @@ const HeroSection = () => {
             <div className="lg:w-1/2 w-full h-full">
               <Image
                 className="h-full !w-full"
-                src={"/images/hero-img.webp"}
-                alt={"hero-image"}
+                src="/images/hero-img.svg"
+                alt="hero-image"
                 width="615"
                 height="641"
                 priority
