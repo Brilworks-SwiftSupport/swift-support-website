@@ -29,7 +29,7 @@ const GuideFirstSection = ({ data }) => {
               </div>
             </div>
             <div className="lg:w-2/4 w-full">
-              {pathname === "/how-to-add-live-chat-to-website/" ? (
+              {pathname === "/guide/how-to-add-live-chat-to-website/" ? (
                 <iframe
                   className="w-full"
                   width="320"
