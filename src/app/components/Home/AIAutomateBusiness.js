@@ -1,10 +1,16 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 
 const AIAutomateBusiness = () => {
   const isTablet = useMediaQuery({ maxWidth: 1024 });
+  const [isTabletDevice, setIsTabletDevice] = useState(false);
+
+  useEffect(() => {
+    setIsTabletDevice(isTablet);
+  }, [isTablet]);
+
   return (
     <div className="md:py-[70px] py-10 h-full">
       <div className="container max-w-[1200px] mx-auto w-full h-full">
@@ -17,7 +23,7 @@ const AIAutomateBusiness = () => {
           <div className="flex lg:flex-row flex-col lg:gap-16 md:gap-8 gap-4 w-full h-full lg:px-0 md:px-10 px-4">
             <div
               className={`${
-                isTablet ? "card-with-shadow py-10" : "lg:w-[45%] !py-20"
+                isTabletDevice ? "card-with-shadow py-10" : "lg:w-[45%] !py-20"
               }  md:p-5 p-4 h-full flex flex-col`}
             >
               <div className="flex-1">
@@ -65,7 +71,7 @@ const AIAutomateBusiness = () => {
             </div>
             <div
               className={`${
-                isTablet ? "card-with-shadow py-10" : "lg:w-[45%] !py-20"
+                isTabletDevice ? "card-with-shadow py-10" : "lg:w-[45%] !py-20"
               }  md:p-5 p-4 h-full flex flex-col`}
             >
               <div className="flex-1 w-fit">

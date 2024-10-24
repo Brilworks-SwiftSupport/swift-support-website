@@ -93,7 +93,7 @@ const SolutionContactForm = () => {
   };
 
   return (
-    <div className="bg-[#E8FCFF] form-shadow rounded-[20px] p-8">
+    <div className="bg-[#E8FCFF] form-shadow rounded-[20px] p-4 md:p-8">
       <form id="solution-form" onSubmit={handleSubmit}>
         <p className="text-colorBlack font-semibold md:text-2xl text-xl mb-5">
           Let’s grow your business together.
@@ -214,7 +214,7 @@ const SolutionContactForm = () => {
 
         <button
           type="submit"
-          className={`flex w-full items-center justify-center md:w-fit font-semibold border-colorBlack border bg-colorBlack text-colorWhite rounded-[30px] px-6 py-3 text-sm mt-[30px] disabled:cursor-not-allowed disabled:bg-opacity-60`}
+          className={`common-button black-button md:w-fit border-colorBlack border !py-3 !text-sm mt-[30px] disabled:cursor-not-allowed disabled:bg-opacity-60`}
           disabled={isSubmitting}
         >
           Request a Demo

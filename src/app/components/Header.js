@@ -22,7 +22,6 @@ const Header = () => {
   const [openAccordion, setOpenAccordion] = useState(false);
   const pathname = usePathname();
   const navbarRef = useRef(null);
-  const [hideHeader, setHideHeader] = useState(false);
   const [guideList, setGuideList] = useState([]);
   const [solutionList, setSolutionList] = useState([]);
 
@@ -70,31 +69,10 @@ const Header = () => {
       }
     };
     fetchSlugs();
+    window.addEventListener("scroll", handleScrollProgress);
 
     return () => {
       window.removeEventListener("scroll", handleScrollProgress);
-    };
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window && window.scrollY && document.documentElement) {
-        if (window.scrollY > 30) {
-          setHideHeader(true);
-        } else {
-          setHideHeader(false);
-        }
-      }
-    };
-
-    window.addEventListener(
-      "resize",
-      () => window.innerWidth >= 980 && setOpenNav(false)
-    );
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -104,21 +82,6 @@ const Header = () => {
   const navList = (
     <ul className="w-full mt-2 mb-4 flex flex-col md:gap-1 gap-3 items-start md:mb-0 md:mt-0 md:flex-row md:items-center">
       <div className="flex flex-col md:flex-row gap-3 md:items-center items-start w-full">
-        {/* {pathname === "/" && (
-          <Link
-            href="#features"
-            onClick={(e) => {
-              scrollToSection(e, "features");
-              setOpenNav(false);
-            }}
-            className={`nav-underline flex items-center md:justify-center justify-start font-medium ${
-              openNav ? "mt-4 md:mt-9" : ""
-            }`}
-          >
-            Features
-          </Link>
-        )} */}
-
         <Link
           href="/blog"
           onClick={() => setOpenNav(false)}
@@ -346,11 +309,11 @@ const Header = () => {
           className={`${openNav ? "" : "!hidden"} ${
             pathname.includes("agent-copilot")
               ? "!text-[#000] !bg-white black-button"
-              : "new-button-black  !py-[5px] !pr-[5px]"
+              : "common-button header-btn"
           }`}
         >
           <span className="pl-5 pr-[14px]">Let’s Get Started</span>
-          <div className="w-9 h-9 flex items-center justify-center rounded-full bg-colorWhite">
+          <div className="w-9 h-9 flex items-center justify-center rounded-full">
             <Image
               src="/images/right-arrow-black.svg"
               alt="right-arrow-black"
@@ -360,19 +323,6 @@ const Header = () => {
           </div>
         </Link>
       </div>
-      {/* <Link
-        rel="noopener"
-        target="_blank"
-        href="https://app.swiftsupport.ai/signup"
-        onClick={() => setOpenNav(false)}
-        className={` ${
-          pathname.includes("agent-copilot")
-            ? "!text-[#000] !bg-white black-button"
-            : "button_black !py-3 !px-7"
-        }`}
-      >
-        Sign up for free
-      </Link> */}
     </ul>
   );
 
@@ -387,7 +337,7 @@ const Header = () => {
         >
           <div
             className={`flex items-center md:flex-row justify-between header_padding ${
-              hideHeader || openNav || pathname !== "/" ? "header-bg" : ""
+              openNav || pathname !== "/" ? "header-bg" : ""
             }`}
           >
             <div className="xs:pr-0" onClick={() => setOpenNav(false)}>
@@ -445,11 +395,11 @@ const Header = () => {
                 className={`${
                   pathname.includes("agent-copilot")
                     ? "!text-[#000] !bg-white black-button"
-                    : "new-button-black !py-[5px] !pr-[5px]"
+                    : "common-button header-btn"
                 }`}
               >
                 <span className="pl-5 pr-[14px]">Let’s Get Started</span>
-                <div className="w-9 h-9 flex items-center justify-center rounded-full bg-colorWhite">
+                <div className="w-9 h-9 flex items-center justify-center rounded-full">
                   <Image
                     src="/images/right-arrow-black.svg"
                     alt="right-arrow-black"
@@ -481,7 +431,7 @@ const Header = () => {
             </div>
           </Collapse>
         </Navbar>
-        {pathname.startsWith("/blog/") && (
+        {pathname.startsWith("/blog/") && pathname !== "/blog/" && (
           <div
             id="myBar"
             style={{

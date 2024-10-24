@@ -22,11 +22,11 @@ const UnlockFullPotential = () => {
         label: "Problem :",
         issues: [
           {
-            label: "Slow Response Times:",
+            label: "Slow Response Times: ",
             detail: "Critical issues take 2-4 hours, non-critical 4-8 hours.",
           },
           {
-            label: "Manual Workload:",
+            label: "Manual Workload: ",
             detail: "Support teams handle repetitive tasks.",
           },
         ],
@@ -39,11 +39,11 @@ const UnlockFullPotential = () => {
         label: "Output :",
         details: [
           {
-            label: "Response Time:",
+            label: "Response Time: ",
             detail: "<1 second for automated emails.",
           },
           {
-            label: "Efficiency:",
+            label: "Efficiency: ",
             detail:
               "Reduces workload, allowing teams to focus on complex issues.",
           },
@@ -61,11 +61,11 @@ const UnlockFullPotential = () => {
         label: "Problem :",
         issues: [
           {
-            label: "Slow Searches:",
+            label: "Slow Searches: ",
             detail: "Agents take 15-30 minutes to find information.",
           },
           {
-            label: "Data Silos:",
+            label: "Data Silos: ",
             detail: "Information scattered across systems.",
           },
         ],
@@ -176,7 +176,7 @@ const UnlockFullPotential = () => {
                 <TabPanel key={value} value={value}>
                   <div className="flex gap-8 lg:flex-row flex-col items-center px-0">
                     <div className="lg:w-1/2 w-full flex flex-col">
-                      <h3 className="lg:text-[26px] leading-tight text-[22spx] w-full text-colorBlack font-bold">
+                      <h3 className="lg:text-[26px] leading-tight text-[22px] w-full text-colorBlack font-bold">
                         <span>
                           {title}
                           <div className="small-head-underline" />
