@@ -24,15 +24,15 @@ const Article = ({ blok }) => {
   const [activeLink, setActiveLink] = useState(null);
 
   const blogTableOfContent =
-    blok.Content_1 +
-      blok.Content_2 +
-      blok.Content_3 +
+    blok?.Content_1 +
+      blok?.Content_2 +
+      blok?.Content_3 +
       `${blok?.FAQ?.length && "<h2>FAQ</h2>"}` || "";
 
   async function fetchData() {
     try {
       const blogData = await getblogData(1, isTablet ? 3 : 4);
-      setBlogData(blogData.storyData);
+      setBlogData(blogData?.storyData);
     } catch (error) {
       console.error(error);
     }
@@ -389,7 +389,7 @@ const Article = ({ blok }) => {
                   ?.slice(0, `${isTablet ? 2 : 3}`)
                   ?.map(({ slug, name, content }, index) => (
                     <div
-                      className="blog-card h-full border flex border-lightGray rounded-[10px]"
+                      className="blog-card h-fit border flex border-lightGray rounded-[10px]"
                       key={index}
                     >
                       <Link

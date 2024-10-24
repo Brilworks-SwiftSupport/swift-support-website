@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import SearchButton from "./SearchButton";
 
 const InstantSolution = () => {
   const colors = ["#f2ed7b", "#fbb8b8", "#83defc"];
@@ -43,7 +44,9 @@ const InstantSolution = () => {
             <div className="text-center">Support</div>
           </div>
 
-          <div className="my-10 flex items-center justify-center">
+          <SearchButton />
+
+          {/* <div className="my-10 flex items-center justify-center">
             <Link
               rel="noopener"
               target="_blank"
@@ -52,7 +55,7 @@ const InstantSolution = () => {
             >
               Start a Free Trial
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

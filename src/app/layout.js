@@ -8,6 +8,7 @@ import { Urbanist } from "next/font/google";
 import Header from "./components/Header";
 import LoadScripts from "./ScriptLoader";
 import Script from "next/script";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 storyblokInit({
   accessToken: process.env.NEXT_PUBLIC_ACCESS_TOKEN,

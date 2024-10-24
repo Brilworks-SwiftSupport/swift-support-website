@@ -7,7 +7,7 @@ const SolutionWhyChooseUs = ({ title, description, keyValueData }) => {
 
   return (
     <div className="solutions xl:py-[90px] lg:py-[60px] md:py-10 py-8 md:px-0 !px-4">
-      <div className="container max-w-[1080px] mx-auto">
+      <div className="container max-w-[1200px] mx-auto">
         <div className="w-full">
           <h2 className="mb-5 md:text-center text-start">{title}</h2>
           <p className="lg:!text-2xl !text-xl md:!leading-tight text-colorBlack lg:mb-[50px] md:mb-10 mb-6">

@@ -27,8 +27,9 @@ const IndustriesWeServe = () => {
     },
     {
       title: "Finance",
-      content:"Go beyond resolving issues to build lasting customer loyalty. Embed swiftsupport into your Fintch app and deliver faster resolutions, reduce wait times, augment the customer engagement curve, resolve >60% of the repetitive customer queries end-to-end without human intervention, and save operational costs.",
-        imageSrc: "/images/Finance_img.webp",
+      content:
+        "Go beyond resolving issues to build lasting customer loyalty. Embed swiftsupport into your Fintch app and deliver faster resolutions, reduce wait times, augment the customer engagement curve, resolve >60% of the repetitive customer queries end-to-end without human intervention, and save operational costs.",
+      imageSrc: "/images/Finance_img.webp",
       imageAlt: "Finance Industries",
     },
     {

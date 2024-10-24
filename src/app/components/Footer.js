@@ -41,7 +41,7 @@ const Footer = () => {
   return (
     <div className="footer">
       <div>
-        <div className="flex items-center justify-center md:pt-[30px] py-6 pd:b-[45px]">
+        <div className="flex items-center justify-center md:pt-[30px] py-6 pb-[45px]">
           <Image
             src="/images/footer-logo.svg"
             alt="SwiftSupport footer logo"
@@ -54,7 +54,7 @@ const Footer = () => {
             return (
               <Link
                 key={index}
-                className="bg-[#04333F] rounded-full"
+                className="bg-[#04333F] rounded-full w-[40px] h-[40px] flex items-center justify-center"
                 href={hrefUrl}
                 rel="noopener"
                 target="_blank"
@@ -116,8 +116,8 @@ const Footer = () => {
           </Link>
         </div>
       </div>
-      <div className="bg-[#04333F]">
-        <span className="flex item-center justify-center text-sm py-4">
+      <div className="border-t-[#353535] border-t">
+        <span className="flex item-center justify-center text-[15px] text-[#CACACA] py-6">
           @copyright {new Date().getFullYear()} SwiftSupport. All rights
           reserved.
         </span>

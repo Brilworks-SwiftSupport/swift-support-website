@@ -3,6 +3,7 @@ import React from "react";
 import dynamic from "next/dynamic";
 // import VideoSection from "../../components/Home/VideoSection";
 import HeroSection from "@/app/components/Home/HeroSection";
+import UnlockFullPotential from "@/app/components/Home/UnlockFullPotential";
 
 const AIAutomateBusiness = dynamic(() =>
   import("@/app/components/Home/AIAutomateBusiness")
@@ -30,21 +31,23 @@ const page = () => {
     <>
       {/* New Design */}
       <HeroSection />
-      <AIAutomateBusiness />
-      <ImageWithGridSection sectionName="Unlock Full Potential" />
+      <UnlockFullPotential />
+      {/* <ImageWithGridSection sectionName="Unlock Full Potential" /> */}
       <HomepageCTA
         title={
           <>
-            Automate Email Workflows with Lightning-Fast{" "}
-            <br className="lg:block hidden" />
-            AI Responses—Boost Efficiency Instantly! 
+            Automate Email Workflows and Enhance Engagement with Instant,{" "}
+            <br className="lg:block hidden" /> AI-Driven Responses Across All
+            Platforms!
           </>
         }
         buttonLink="https://app.swiftsupport.ai/signup"
         buttonText="Start Free Trial"
       />
-      <ImageWithGridSection sectionName="AI Copilot" />
-      <HomepageCTA
+      <AppIntegrationSection />
+      <AIAutomateBusiness />
+      {/* <ImageWithGridSection sectionName="AI Copilot" /> */}
+      {/* <HomepageCTA
         title={
           <>
             Empower Service Agents with Instant Access
@@ -54,9 +57,9 @@ const page = () => {
         }
         buttonLink="https://app.swiftsupport.ai/signup"
         buttonText="Start Free Trial"
-      />
-      <ImageWithGridSection sectionName="AI Agent" />
-      <HomepageCTA
+      /> */}
+      {/* <ImageWithGridSection sectionName="AI Agent" /> */}
+      {/* <HomepageCTA
         title={
           <>
             Enhance Customer Engagement with Real-Time,
@@ -66,9 +69,9 @@ const page = () => {
         }
         buttonLink="https://app.swiftsupport.ai/signup"
         buttonText="Start Free Trial"
-      />
+      /> */}
       {/* <WhySwiftSupport /> */}
-      <AppIntegrationSection />
+
       <AIPoweredSolution />
       <WhatPeopleSay />
       <PricingPlan />
