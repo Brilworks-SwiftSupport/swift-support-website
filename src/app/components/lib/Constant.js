@@ -1759,19 +1759,67 @@ export const sitemapData = [
     lastmod: "2024-10-20T08:58:03.856Z",
   },
   {
-    loc: "https://www.swiftsupport.ai/solutions/streamline-your-sales-workflows/",
-    lastmod: "2024-10-21T08:58:03.856Z",
+    loc: "https://www.swiftsupport.ai/solutions/automate-healthcare/",
+    lastmod: "2024-10-24T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/solutions/automate-manufacturing/",
+    lastmod: "2024-10-24T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/solutions/automate-freight/",
+    lastmod: "2024-10-24T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/solutions/automate-ecommerce/",
+    lastmod: "2024-10-24T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/solutions/automate-insurance/",
+    lastmod: "2024-10-24T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/solutions/automate-education/",
+    lastmod: "2024-10-24T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/solutions/automate-finance/",
+    lastmod: "2024-10-24T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/solutions/automate-hr/",
+    lastmod: "2024-10-24T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/solutions/automate-it-operations/",
+    lastmod: "2024-10-24T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/solutions/automate-operations/",
+    lastmod: "2024-10-24T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/solutions/automate-marketing/",
+    lastmod: "2024-10-24T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/solutions/automate-sales/",
+    lastmod: "2024-10-24T08:58:03.856Z",
   },
 ];
 
 export const blogData = [
+  {
+    loc: "https://www.swiftsupport.ai/blog/how-ai-agents-simplify-hr-workflow-automation/",
+    lastmod: "2024-10-23T12:42:00.296Z",
+  },
   {
     loc: "https://www.swiftsupport.ai/blog/chatgpt-vs-gemini-vs-claude:-a-comprehensive-comparison-of-ai-models/",
     lastmod: "2024-10-18T09:50:28.806Z",
   },
   {
     loc: "https://www.swiftsupport.ai/blog/ai-agents-vs-chatbots:-a-comprehensive-overview/",
-    lastmod: "2024-10-21T04:18:55.993Z",
+    lastmod: "2024-10-22T07:39:52.094Z",
   },
   {
     loc: "https://www.swiftsupport.ai/blog/top-8-chatbot-ui-design-examples-you-need-to-see/",
