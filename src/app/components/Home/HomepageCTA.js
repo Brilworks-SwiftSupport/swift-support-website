@@ -10,7 +10,7 @@ const HomepageCTA = ({ title, buttonText, buttonLink, id }) => {
           <div className="flex items-center justify-center">
             <Link
               href={buttonLink || "#"}
-              className="font-semibold border-colorBlack border bg-colorBlack text-colorWhite rounded-[30px] px-6 py-4 text-xl"
+              className="common-button black-button"
             >
               {buttonText}
             </Link>

@@ -1,4 +1,5 @@
-import { Button, MenuItem, MenuList } from "@material-tailwind/react"
+'use client'
+import {  MenuItem, MenuList } from "@material-tailwind/react"
 import Link from "next/link"
 import React from 'react'
 
@@ -11,8 +12,8 @@ const MenuListDynamic = ({menuItems}) => {
       <Link href="#" key={title}>
         <MenuItem className="!flex !items-start py-2 ">
          
-            <Button className=" font-semibold !text-colorGray  hover:underline   nav-underline capitalize  py-0  ">{title}
-        </Button>
+            <span className=" font-semibold !text-colorGray  hover:underline   nav-underline capitalize  py-0  ">{title}
+        </span>
         
         </MenuItem>
       </Link>

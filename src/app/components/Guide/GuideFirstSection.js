@@ -9,20 +9,20 @@ const GuideFirstSection = ({ data }) => {
   const pathname = usePathname();
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto max-w-[1200px]">
       <div className="usecase flex mt-24">
-        <div className="2xl:px-12 2xl:!w-[90%] !w-full mx-auto">
+        <div className="w-full mx-auto">
           <div className="flex gap-6 lg:flex-row flex-col items-center md:py-20 py-8 md:px-0 sxl:px-4 px-4">
             <div className="lg:w-2/4 w-full">
               <h1 className="mb-6">{title}</h1>
-              <p className="lg:!text-2xl !text-xl md:!leading-tight lg:w-[90%] text-colorGray">
+              <p className="lg:!text-2xl !text-xl lg:!leading-tight lg:w-[90%] text-colorBlack">
                 {description}
               </p>
-              <div className="lg:mt-12 mt-5">
+              <div className="lg:mt-8 mt-5">
                 <Link
-                  href="https://cal.com/hiteshr/15min"
+                  href={youtube_link?.url || "https://cal.com/hiteshr/15min"}
                   target="_blank"
-                  className="flex items-center justify-center w-fit gap-2 font-semibold border-colorBlack border bg-colorBlack text-colorWhite rounded-[30px] px-6 py-4 text-xl"
+                  className="common-button black-button w-fit"
                 >
                   {button_text}
                 </Link>

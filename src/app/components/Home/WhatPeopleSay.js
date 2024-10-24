@@ -9,7 +9,7 @@ const WhatPeopleSay = ({ title }) => {
   const isMobile = useMediaQuery({ maxWidth: 1024 });
   return (
     <div className="bg-[#FFFBFB] py-[80px] md:py-[60px] pt-[30px]">
-      <div className="container max-w-[1080px] mx-auto w-full">
+      <div className="container max-w-[1200px] mx-auto w-full">
         <h2 className="new-h2 mb-[50px]">
           {title || "What people are saying"}
         </h2>
@@ -35,7 +35,7 @@ const WhatPeopleSay = ({ title }) => {
                   height="309"
                 /> */}
                 <div className="md:p-[30px] p-3">
-                  <div className="flex gap-[6px] items-center justify-start md:mb-[30px] mb-4">
+                  <div className="flex gap-[6px] items-center justify-center md:mb-[30px] mb-4">
                     <Image
                       src="/images/star-icon.svg"
                       alt="client"
@@ -67,7 +67,7 @@ const WhatPeopleSay = ({ title }) => {
                       height="17"
                     />
                   </div>
-                  <div>
+                  <div className="flex flex-col items-center justify-center">
                     <Image
                       className="md:mb-5 mb-3 w-[15%] md:w-[unset]"
                       src="/images/quote-icon.svg"
@@ -75,7 +75,7 @@ const WhatPeopleSay = ({ title }) => {
                       width="36"
                       height="28"
                     />
-                    <p className="text-colorBlack text-base md:mb-[30px] mb-4">
+                    <p className="text-colorBlack text-center text-base md:mb-[30px] mb-4">
                       SwiftSupport's AI chatbot revolutionized our customer
                       service, delivering prompt responses and enhancing overall
                       satisfaction.
@@ -97,7 +97,7 @@ const WhatPeopleSay = ({ title }) => {
                   height="309"
                 /> */}
                 <div className="md:p-[30px] p-3">
-                  <div className="flex gap-[6px] items-center justify-start md:mb-[30px] mb-4">
+                  <div className="flex gap-[6px] items-center justify-center md:mb-[30px] mb-4">
                     <Image
                       src="/images/star-icon.svg"
                       alt="star-icon"
@@ -129,7 +129,7 @@ const WhatPeopleSay = ({ title }) => {
                       height="17"
                     />
                   </div>
-                  <div>
+                  <div className="flex flex-col items-center justify-center">
                     <Image
                       className="md:mb-5 mb-3 w-[15%] md:w-[unset]"
                       src="/images/quote-icon.svg"
@@ -137,7 +137,7 @@ const WhatPeopleSay = ({ title }) => {
                       width="36"
                       height="28"
                     />
-                    <p className="text-colorBlack text-base md:mb-[30px] mb-4">
+                    <p className="text-colorBlack text-center text-base md:mb-[30px] mb-4">
                       Our customer service reached new heights with
                       SwiftSupport's AI chatbot, ensuring rapid responses and
                       heightened satisfaction

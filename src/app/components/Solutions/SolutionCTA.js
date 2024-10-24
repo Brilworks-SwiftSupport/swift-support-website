@@ -21,7 +21,7 @@ const SolutionCTA = ({ title, desc, buttonText, buttonLink }) => {
           <div className="flex items-center justify-center">
             <Link
               href={buttonLink || "https://app.swiftsupport.ai/signup"}
-              className="font-semibold border-colorBlack border bg-colorBlack text-colorWhite rounded-[30px] px-6 py-4 text-xl"
+              className="common-button black-button border-colorBlack"
             >
               {buttonText}
             </Link>

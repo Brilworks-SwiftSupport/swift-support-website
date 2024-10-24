@@ -212,8 +212,9 @@
   margin-bottom: 0.25rem;
   box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
-  .subscribe-btn {
-    opacity: 0.9;
+  .subscribe-btn:first-child {
+    background-color: var(--colorBlack) !important;
+    color: var(--colorWhite) !important;
   }
   .subscribed-btn {
     box-shadow: 0px 30px 20px 0px rgba(0, 0, 0, 0.1);
@@ -267,5 +268,29 @@
   }
   100% {
     bottom: -80px;
+  }
+}
+
+.loader-md {
+  width: 20px;
+  height: 20px;
+  margin: 4px;
+  border: 2px solid var(--colorWhite);
+}
+
+.loader {
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

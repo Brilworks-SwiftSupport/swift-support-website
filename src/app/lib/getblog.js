@@ -37,7 +37,7 @@ export async function getblogData(
 
   // Make the API call with the constructed parameters
   let stories = await Storyblok.get("cdn/stories", apiParams, {
-    next: { revalidate: 3600 },
+    next: { revalidate: 3600, },
   });
 
   return {

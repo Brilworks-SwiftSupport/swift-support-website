@@ -13,6 +13,7 @@ import {
 } from "@material-tailwind/react";
 import Link from "next/link";
 import Image from "next/image";
+// import { MenuCustomList } from "./Menu";
 import { Icon, scrollToSection } from "./lib/Common";
 import { usePathname } from "next/navigation";
 
@@ -21,7 +22,6 @@ const Header = () => {
   const [openAccordion, setOpenAccordion] = useState(false);
   const pathname = usePathname();
   const navbarRef = useRef(null);
-  const [hideHeader, setHideHeader] = useState(false);
   const [guideList, setGuideList] = useState([]);
   const [solutionList, setSolutionList] = useState([]);
 
@@ -69,31 +69,10 @@ const Header = () => {
       }
     };
     fetchSlugs();
+    window.addEventListener("scroll", handleScrollProgress);
 
     return () => {
       window.removeEventListener("scroll", handleScrollProgress);
-    };
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window && window.scrollY && document.documentElement) {
-        if (window.scrollY > 30) {
-          setHideHeader(true);
-        } else {
-          setHideHeader(false);
-        }
-      }
-    };
-
-    window.addEventListener(
-      "resize",
-      () => window.innerWidth >= 980 && setOpenNav(false)
-    );
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -103,21 +82,6 @@ const Header = () => {
   const navList = (
     <ul className="w-full mt-2 mb-4 flex flex-col md:gap-1 gap-3 items-start md:mb-0 md:mt-0 md:flex-row md:items-center">
       <div className="flex flex-col md:flex-row gap-3 md:items-center items-start w-full">
-        {/* {pathname === "/" && (
-          <Link
-            href="#features"
-            onClick={(e) => {
-              scrollToSection(e, "features");
-              setOpenNav(false);
-            }}
-            className={`nav-underline flex items-center md:justify-center justify-start font-medium ${
-              openNav ? "mt-4 md:mt-9" : ""
-            }`}
-          >
-            Features
-          </Link>
-        )} */}
-
         <Link
           href="/blog"
           onClick={() => setOpenNav(false)}
@@ -151,9 +115,12 @@ const Header = () => {
           Contact
         </Link>
       </div>
+      {/* <div>
+        <MenuCustomList />
+      </div> */}
       <div className="hidden md:block">
         <Menu
-          className="font-Urbanist font-medium"
+          className="font-medium"
           placement="bottom"
           dismiss={{ itemPress: true, ancestorScroll: true }}
           animate={{
@@ -201,10 +168,7 @@ const Header = () => {
                   key={index}
                   className="flex items-center gap-4 py-2 px-3 hover:bg-[#EAFAFF] hover:rounded-lg"
                 >
-                  <Link
-                    className="font-Urbanist font-medium"
-                    href={guide?.path}
-                  >
+                  <Link className="font-medium" href={guide?.path}>
                     {guide?.name}
                   </Link>
                 </MenuItem>
@@ -214,7 +178,7 @@ const Header = () => {
       </div>
       <div className="hidden md:block">
         <Menu
-          className="font-Urbanist font-medium"
+          className="font-medium"
           placement="bottom"
           dismiss={{ itemPress: true, ancestorScroll: true }}
           animate={{
@@ -262,10 +226,7 @@ const Header = () => {
                   key={index}
                   className="flex items-center gap-4 py-2 px-3 hover:bg-[#EAFAFF] hover:rounded-lg"
                 >
-                  <Link
-                    className="font-Urbanist font-medium"
-                    href={solution.path}
-                  >
+                  <Link className="font-medium" href={solution.path}>
                     {solution.name}
                   </Link>
                 </MenuItem>
@@ -288,15 +249,15 @@ const Header = () => {
         >
           <AccordionHeader
             onClick={() => handleOpen(1)}
-            className={`flex justify-between items-center border-none w-full py-[5px] font-Urbanist text-colorBlack text-base !font-medium select-none transition-colors`}
+            className={`flex justify-between items-center border-none w-full py-[5px] text-colorBlack text-base !font-medium select-none transition-colors font-Urbanist`}
           >
             Guide
           </AccordionHeader>
           {guideList.length &&
             guideList.map((guide, index) => (
-              <AccordionBody key={index}>
+              <AccordionBody key={index} className="py-[10px]">
                 <Link
-                  className="font-Urbanist !font-medium ml-4"
+                  className="!font-medium ml-4"
                   href={guide?.path}
                   onClick={() => setOpenNav(false)}
                 >
@@ -306,33 +267,62 @@ const Header = () => {
             ))}
         </Accordion>
       </div>
-
-      <Link
-        rel="noopener"
-        target="_blank"
-        href="https://app.swiftsupport.ai/login"
-        onClick={() => setOpenNav(false)}
-        className={`${openNav ? "" : "!hidden"} ${
-          pathname.includes("agent-copilot")
-            ? "!text-[#000] !bg-white black-button"
-            : "new-button-black !text-colorWhite ml-3"
-        }`}
-      >
-        Log In
-      </Link>
-      {/* <Link
-        rel="noopener"
-        target="_blank"
-        href="https://app.swiftsupport.ai/signup"
-        onClick={() => setOpenNav(false)}
-        className={` ${
-          pathname.includes("agent-copilot")
-            ? "!text-[#000] !bg-white black-button"
-            : "button_black !py-3 !px-7"
-        }`}
-      >
-        Sign up for free
-      </Link> */}
+      <div className="md:hidden block w-full">
+        <Accordion
+          open={openAccordion === 2}
+          icon={
+            <Icon
+              openClass="rotate-180"
+              closeClass={"rotate-0"}
+              id={2}
+              open={openAccordion}
+            />
+          }
+          className="border-b border-[#e5e7eb] !px-3"
+        >
+          <AccordionHeader
+            onClick={() => handleOpen(2)}
+            className={`flex justify-between items-center border-none w-full py-[5px] text-colorBlack text-base !font-medium select-none transition-colors font-Urbanist`}
+          >
+            Solutions
+          </AccordionHeader>
+          {solutionList.length &&
+            solutionList.map((solution, index) => (
+              <AccordionBody key={index} className="py-[10px]">
+                <Link
+                  className="!font-medium ml-4"
+                  href={solution?.path}
+                  onClick={() => setOpenNav(false)}
+                >
+                  {solution?.name}
+                </Link>
+              </AccordionBody>
+            ))}
+        </Accordion>
+      </div>
+      <div className="w-full flex items-center justify-center">
+        <Link
+          rel="noopener"
+          target="_blank"
+          href="https://app.swiftsupport.ai/login"
+          onClick={() => setOpenNav(false)}
+          className={`${openNav ? "" : "!hidden"} ${
+            pathname.includes("agent-copilot")
+              ? "!text-[#000] !bg-white black-button"
+              : "common-button header-btn"
+          }`}
+        >
+          <span className="pl-5 pr-[14px]">Let’s Get Started</span>
+          <div className="w-9 h-9 flex items-center justify-center rounded-full">
+            <Image
+              src="/images/right-arrow-black.svg"
+              alt="right-arrow-black"
+              width="15"
+              height="12"
+            />
+          </div>
+        </Link>
+      </div>
     </ul>
   );
 
@@ -347,7 +337,7 @@ const Header = () => {
         >
           <div
             className={`flex items-center md:flex-row justify-between header_padding ${
-              hideHeader || openNav || pathname !== "/" ? "header-bg" : ""
+              openNav || pathname !== "/" ? "header-bg" : ""
             }`}
           >
             <div className="xs:pr-0" onClick={() => setOpenNav(false)}>
@@ -402,13 +392,21 @@ const Header = () => {
                 target="_blank"
                 href="https://app.swiftsupport.ai/login"
                 onClick={() => setOpenNav(false)}
-                className={` ${
+                className={`${
                   pathname.includes("agent-copilot")
                     ? "!text-[#000] !bg-white black-button"
-                    : "new-button-black"
+                    : "common-button header-btn"
                 }`}
               >
-                Log in
+                <span className="pl-5 pr-[14px]">Let’s Get Started</span>
+                <div className="w-9 h-9 flex items-center justify-center rounded-full">
+                  <Image
+                    src="/images/right-arrow-black.svg"
+                    alt="right-arrow-black"
+                    width="15"
+                    height="12"
+                  />
+                </div>
               </Link>
             </div>
           </div>
@@ -419,7 +417,7 @@ const Header = () => {
             <div
               className={
                 openNav
-                  ? "w-full mx-auto md:pt-8 py-4 border-t border-[#e5e7eb]"
+                  ? "w-full mx-auto md:pt-8 py-4 pt-0 border-t border-[#e5e7eb]"
                   : "hidden"
               }
             >
@@ -433,7 +431,7 @@ const Header = () => {
             </div>
           </Collapse>
         </Navbar>
-        {pathname.startsWith("/blog/") && (
+        {pathname.startsWith("/blog/") && pathname !== "/blog/" && (
           <div
             id="myBar"
             style={{

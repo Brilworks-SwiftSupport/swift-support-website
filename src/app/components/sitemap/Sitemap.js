@@ -9,7 +9,7 @@ async function getBlogData() {
   );
   url.searchParams.append("page", "1");
   url.searchParams.append("per_page", "100");
-  url.searchParams.append("starts_with", "swiftsupport-blog/");
+  url.searchParams.append("starts_with", "blog/");
   url.searchParams.append("token", process.env.NEXT_PUBLIC_ACCESS_TOKEN);
   url.searchParams.append("version", process.env.NEXT_PUBLIC_STORYBLOK_VERSION);
 

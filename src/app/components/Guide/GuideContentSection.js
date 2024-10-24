@@ -144,7 +144,7 @@ const GuideContentSection = ({ content, FAQData }) => {
   }, [headings]);
 
   return (
-    <div className="container max-w-[1280px] mx-auto my-0 px-4">
+    <div className="container max-w-[1200px] mx-auto my-0 px-4">
       <div className="flex flex-wrap -mx-4 !mb-16">
         <div className="slg:basis-1/5 slg:flex-shrink-0 slg:flex-grow-0 slg:max-w-[20%] !pr-4 min-h-[1px] w-full slg:block hidden">
           <div className="sticky top-[110px] !pb-5">

@@ -5,8 +5,8 @@ import Link from "next/link";
 
 const SolutionHeroSection = ({ title, description, image, buttontext }) => {
   return (
-    <div className="solutions flex mt-24 h-full">
-      <div className="container max-w-[1080px] mx-auto">
+    <div className="solutions flex mt-24 h-full solution-hero-bg">
+      <div className="container max-w-[1200px] mx-auto">
         <div className="w-full h-full flex flex-col">
           <div className="flex gap-6 lg:flex-row flex-col items-start h-full md:py-20 py-8 xl:px-0 px-4">
             <div className="lg:w-1/2 w-full flex flex-col h-full">
@@ -16,11 +16,11 @@ const SolutionHeroSection = ({ title, description, image, buttontext }) => {
                   {description}
                 </p>
               </div>
-              <div className="lg:mt-auto mt-6">
+              <div className="lg:mt-auto mt-6 lg:pt-8">
                 <Link
                   href="https://cal.com/swiftsupport/demo"
                   target="_blank"
-                  className="flex items-center justify-center w-fit font-semibold border-colorBlack border bg-colorBlack text-colorWhite rounded-[30px] px-6 py-4 text-xl"
+                  className="common-button black-button w-fit border-colorBlack border"
                 >
                   {buttontext}
                 </Link>
