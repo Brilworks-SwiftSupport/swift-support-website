@@ -20,9 +20,9 @@ const GuideFirstSection = ({ data }) => {
               </p>
               <div className="lg:mt-8 mt-5">
                 <Link
-                  href="https://cal.com/hiteshr/15min"
+                  href={youtube_link?.url || "https://cal.com/hiteshr/15min"}
                   target="_blank"
-                  className="flex items-center justify-center w-fit gap-2 font-semibold border-colorBlack border bg-colorBlack text-colorWhite rounded-[30px] px-6 py-4 text-xl"
+                  className="common-button black-button w-fit"
                 >
                   {button_text}
                 </Link>

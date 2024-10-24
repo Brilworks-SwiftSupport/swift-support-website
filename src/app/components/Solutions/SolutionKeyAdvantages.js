@@ -8,7 +8,7 @@ const SolutionKeyAdvantages = ({ title, rightSideImage, leftSideData }) => {
       <div className="container max-w-[1200px] mx-auto">
         <h2 className="lg:mb-[50px] md:mb-10 mb-6 text-center">{title}</h2>
         <div className="flex items-center lg:flex-row flex-col-reverse lg:gap-16 md:gap-10">
-          <div className="">
+          <div className="px-4 lg:px-0">
             {leftSideData?.slice(2, 6).map((data, index) => (
               <div key={index} className="">
                 <div className="lg:max-h-[140px]">

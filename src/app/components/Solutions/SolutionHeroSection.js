@@ -16,11 +16,11 @@ const SolutionHeroSection = ({ title, description, image, buttontext }) => {
                   {description}
                 </p>
               </div>
-              <div className="lg:mt-auto mt-6">
+              <div className="lg:mt-auto mt-6 lg:pt-8">
                 <Link
                   href="https://cal.com/swiftsupport/demo"
                   target="_blank"
-                  className="flex items-center justify-center w-fit font-semibold border-colorBlack border bg-colorBlack text-colorWhite rounded-[30px] px-6 py-4 text-xl"
+                  className="common-button black-button w-fit border-colorBlack border"
                 >
                   {buttontext}
                 </Link>

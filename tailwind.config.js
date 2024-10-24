@@ -36,6 +36,8 @@ module.exports = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         "text-theme-gradient":
           "linear-gradient(255.7deg, #FF8585 21.78%, #56D5FF 42.63%, #DCD536 72.03%)",
+        "btn-hover-bg":
+          "linear-gradient(20.7deg,#fbb8b8 -20.76%, #83defc 17.31%,#f2ed7b 71%)",
       },
     },
   },

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -28,11 +29,22 @@ const HowToAddAIAgent = ({ howToAddAIAgentData }) => {
             <Link
               href={youtube_link?.url}
               target="_blank"
-              className="flex items-center justify-center w-fit font-semibold border-colorWhite border bg-colorWhite text-colorBlack rounded-[30px] px-6 py-4 text-xl cursor-pointer"
+              className="common-button w-fit white-button cursor-pointer !mb-8"
             >
               {button_text}
             </Link>
           </div>
+          <iframe
+            className="w-full max-w-2xl"
+            width="320"
+            height="360"
+            src="https://www.youtube.com/embed/WFA536oxEn4"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          ></iframe>
           {/* <Image
             className="h-full"
             src={banner_image?.filename}
