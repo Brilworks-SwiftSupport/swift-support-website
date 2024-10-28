@@ -47,7 +47,10 @@ export default async function Sitemap() {
             </div>
             <div>
               <li>
-                <Link href={`${baseUrl}contact-us`} className="font-medium">
+                <Link
+                  href="https://cal.com/swiftsupport/demo"
+                  className="font-medium"
+                >
                   Contact
                 </Link>
               </li>
@@ -56,6 +59,161 @@ export default async function Sitemap() {
               <li>
                 <Link href={`${baseUrl}blog/`} className="font-medium">
                   Blog
+                </Link>
+              </li>
+            </div>
+          </div>
+        </div>
+        <div className="mb-4">
+          <h3 className="text-2xl border-b border-b-[#c5ccd0] font-bold pb-2 mb-3">
+            Solutions
+          </h3>
+          <div className="grid gap-2 md:grid-cols-3 grid-cols-2">
+            <div>
+              <li>
+                <Link
+                  href="https://www.swiftsupport.ai/solutions/automate-healthcare/"
+                  className="font-medium"
+                >
+                  Automate Healthcare
+                </Link>
+              </li>
+            </div>
+            <div>
+              <li>
+                <Link
+                  href="https://www.swiftsupport.ai/solutions/automate-manufacturing/"
+                  className="font-medium"
+                >
+                  Automate Manufacturing
+                </Link>
+              </li>
+            </div>
+            <div>
+              <li>
+                <Link
+                  href="https://www.swiftsupport.ai/solutions/automate-freight/"
+                  className="font-medium"
+                >
+                  Automate Freight
+                </Link>
+              </li>
+            </div>
+            <div>
+              <li>
+                <Link
+                  href="https://www.swiftsupport.ai/solutions/automate-ecommerce/"
+                  className="font-medium"
+                >
+                  Automate Ecommerce
+                </Link>
+              </li>
+            </div>
+            <div>
+              <li>
+                <Link
+                  href="https://www.swiftsupport.ai/solutions/automate-insurance/"
+                  className="font-medium"
+                >
+                  Automate Insurance
+                </Link>
+              </li>
+            </div>
+            <div>
+              <li>
+                <Link
+                  href="https://www.swiftsupport.ai/solutions/automate-education/"
+                  className="font-medium"
+                >
+                  Automate Education
+                </Link>
+              </li>
+            </div>
+            <div>
+              <li>
+                <Link
+                  href="https://www.swiftsupport.ai/solutions/automate-finance/"
+                  className="font-medium"
+                >
+                  Automate Finance
+                </Link>
+              </li>
+            </div>
+            <div>
+              <li>
+                <Link
+                  href="https://www.swiftsupport.ai/solutions/automate-hr/"
+                  className="font-medium"
+                >
+                  Automate HR Workflow
+                </Link>
+              </li>
+            </div>
+            <div>
+              <li>
+                <Link
+                  href="https://www.swiftsupport.ai/solutions/automate-it-operations/"
+                  className="font-medium"
+                >
+                  Automate IT
+                </Link>
+              </li>
+            </div>
+            <div>
+              <li>
+                <Link
+                  href="https://www.swiftsupport.ai/solutions/automate-operations/"
+                  className="font-medium"
+                >
+                  Automate Operations
+                </Link>
+              </li>
+            </div>
+
+            <div>
+              <li>
+                <Link
+                  href="https://www.swiftsupport.ai/solutions/automate-marketing/"
+                  className="font-medium"
+                >
+                  Automate Marketing
+                </Link>
+              </li>
+            </div>
+            <div>
+              <li>
+                <Link
+                  href="https://www.swiftsupport.ai/solutions/automate-sales/"
+                  className="font-medium"
+                >
+                  Automate Sales
+                </Link>
+              </li>
+            </div>
+          </div>
+        </div>
+        <div className="mb-4">
+          <h3 className="text-2xl border-b border-b-[#c5ccd0] font-bold pb-2 mb-3">
+            Guide
+          </h3>
+          <div className="grid gap-2 md:grid-cols-3 grid-cols-2">
+            <div>
+              <li>
+                <Link
+                  href="https://www.swiftsupport.ai/guide/how-to-build-an-ai-agent/"
+                  className="font-medium"
+                >
+                  How to Build an AI Agent?
+                </Link>
+              </li>
+            </div>
+            <div>
+              <li>
+                <Link
+                  href="https://www.swiftsupport.ai/guide/how-to-add-live-chat-to-website/"
+                  className="font-medium"
+                >
+                  How to add Live Chat ?
                 </Link>
               </li>
             </div>

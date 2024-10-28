@@ -43,7 +43,7 @@ const HeroSection = () => {
                 <Link
                   href="https://app.swiftsupport.ai/signup"
                   target="_blank"
-                  className="common-button hover:!bg-btn-hover-bg !border-colorBlack border rounded-[80px] !bg-colorWhite px-[30px] py-[18px]"
+                  className="common-button try-now-btn rounded-[80px] px-[30px] py-[18px]"
                 >
                   Try Now
                 </Link>

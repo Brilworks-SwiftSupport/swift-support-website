@@ -5,8 +5,8 @@ import dynamic from "next/dynamic";
 import HeroSection from "@/app/components/Home/HeroSection";
 import UnlockFullPotential from "@/app/components/Home/UnlockFullPotential";
 
-const AIAutomateBusiness = dynamic(() =>
-  import("@/app/components/Home/AIAutomateBusiness")
+const BeforeAndAfterSection = dynamic(() =>
+  import("@/app/components/Home/BeforeAndAfterSection")
 );
 const AppIntegrationSection = dynamic(() =>
   import("@/app/components/Home/AppIntegrationSection")
@@ -45,7 +45,7 @@ const page = () => {
         buttonText="Start Free Trial"
       />
       <AppIntegrationSection />
-      <AIAutomateBusiness />
+      <BeforeAndAfterSection />
       {/* <ImageWithGridSection sectionName="AI Copilot" /> */}
       {/* <HomepageCTA
         title={
