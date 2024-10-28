@@ -1810,6 +1810,14 @@ export const sitemapData = [
 
 export const blogData = [
   {
+    loc: "https://www.swiftsupport.ai/blog/the-role-of-ai-agents-in-logistics-supply-chain-automation/",
+    lastmod: "2024-10-25T10:01:56.161Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/top-use-cases-of-ai-agents-to-automate-business-processes/",
+    lastmod: "2024-10-25T07:23:53.515Z",
+  },
+  {
     loc: "https://www.swiftsupport.ai/blog/how-ai-agents-simplify-hr-workflow-automation/",
     lastmod: "2024-10-23T12:42:00.296Z",
   },
