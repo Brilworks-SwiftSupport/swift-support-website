@@ -135,7 +135,7 @@ const UnlockFullPotential = () => {
         className="container max-w-[1200px] mx-auto w-full h-full"
         id="unlock-full potential"
       >
-        <h2 className="new-h2 !text-left w-full md:mx-auto lg:mb-[50px] md:mb-10 mb-6 px-4">
+        <h2 className="new-h2 text-left md:text-center w-full md:mx-auto lg:mb-[50px] md:mb-10 mb-6 px-4">
           Unlock the full potential of
           <br className="lg:block hidden" /> your Business with an AI Automation
         </h2>

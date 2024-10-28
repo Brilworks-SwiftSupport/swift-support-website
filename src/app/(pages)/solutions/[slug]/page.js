@@ -9,6 +9,7 @@ import SolutionWhyChooseUs from "@/app/components/Solutions/SolutionWhyChooseUs"
 import SolutionCTA from "@/app/components/Solutions/SolutionCTA";
 import WhatPeopleSay from "@/app/components/Home/WhatPeopleSay";
 import HowToAddAIAgent from "@/app/components/Solutions/HowToAddAIAgent";
+import BeforeAndAfterSection from "@/app/components/Home/BeforeAndAfterSection";
 async function fetchWithErrorHandling(url, options) {
   try {
     const res = await fetch(url, options);
@@ -97,6 +98,7 @@ export default async function Page({ params }) {
     buttontext,
     section2,
     keyAdvantage,
+    beforVsAfter,
     HowAIAgent,
     whyChooseUs,
     CTA1,
@@ -119,10 +121,23 @@ export default async function Page({ params }) {
         rightSideImage={keyAdvantage?.[1]?.image}
         leftSideData={keyAdvantage}
       />
-      <SolutionHowAIAgent
-        title={HowAIAgent?.[0]?.title}
-        aiAgentTransformation={HowAIAgent}
-      />
+      {beforVsAfter?.[0]?.title &&
+        beforVsAfter?.[0]?.subTitleBefore &&
+        beforVsAfter?.[0]?.subTitleAfter && (
+          <BeforeAndAfterSection
+            title={beforVsAfter?.[0]?.title}
+            subTitleBefore={beforVsAfter?.[0]?.subTitleBefore}
+            listItemBefore={beforVsAfter?.[0]?.listItemBefore}
+            subTitleAfter={beforVsAfter?.[0]?.subTitleAfter}
+            listItemAfter={beforVsAfter?.[0]?.listItemAfter}
+          />
+        )}
+      {HowAIAgent?.[0]?.title && HowAIAgent?.length && (
+        <SolutionHowAIAgent
+          title={HowAIAgent?.[0]?.title}
+          aiAgentTransformation={HowAIAgent}
+        />
+      )}
       <SolutionWhyChooseUs
         title={whyChooseUs?.[0]?.title}
         description={whyChooseUs?.[1]?.Display_text}

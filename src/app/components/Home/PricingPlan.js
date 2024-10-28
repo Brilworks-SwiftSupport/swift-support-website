@@ -221,11 +221,7 @@ const PricingPlan = () => {
 
                       <button
                         onClick={() => window.open(plan.buttonLink, "_blank")}
-                        className={`${
-                          indx === 0
-                            ? "text-colorWhite !bg-colorBlack hover:text-colorBlack"
-                            : "text-colorBlack bg-colorWhite"
-                        } subscribe-btn rounded-[80px] border-colorBlack border  px-[22px] py-[14px] text-[21px] font-medium w-full mt-5 hover:!bg-btn-hover-bg`}
+                        className={`subscribe-btn rounded-[80px] px-[22px] py-[14px] text-[21px] font-medium w-full mt-5`}
                       >
                         {plan.buttonText}
                       </button>
