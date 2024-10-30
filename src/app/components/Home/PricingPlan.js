@@ -152,7 +152,7 @@ const PricingPlan = () => {
           orientation="horizontal"
           className="pricing-plan"
         >
-          <TabsHeader className="!rounded-none border-y border-[#EDEDED] mb-[46px] md:flex-row flex-col md:px-0 md:w-2/3 w-full mx-auto">
+          <TabsHeader className="!rounded-none border-y border-borderGray mb-[46px] md:flex-row flex-col md:px-0 md:w-2/3 w-full mx-auto">
             {pricingPlans.map(({ title, value }) => (
               <Tab key={value} value={value}>
                 <h3 className="flex items-center gap-2 md:text-[26px] text-[22px] leading-normal font-semibold  text-colorBlack">
