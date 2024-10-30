@@ -1810,6 +1810,10 @@ export const sitemapData = [
 
 export const blogData = [
   {
+    loc: "https://www.swiftsupport.ai/blog/10-must-know-benefits-of-business-process-automation/",
+    lastmod: "2024-10-30T05:58:45.449Z",
+  },
+  {
     loc: "https://www.swiftsupport.ai/blog/the-role-of-ai-agents-in-logistics-supply-chain-automation/",
     lastmod: "2024-10-25T10:01:56.161Z",
   },
