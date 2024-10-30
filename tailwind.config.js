@@ -20,6 +20,7 @@ module.exports = {
         themeBlueLight: "#F6FDFF",
         colorOrange: "#ffae50",
         colorWhite: "#fff",
+        borderGray: "#ededed",
       },
       screens: {
         xs: "480px",

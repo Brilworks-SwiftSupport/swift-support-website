@@ -1737,6 +1737,139 @@ export const COUNTRIES = [
   },
 ];
 
+export const solutionsMenuItems = [
+  {
+    name: "Automate your Business",
+    subSections: [
+      {
+        name: "Sales",
+        path: "/solutions/automate-sales/",
+        icon: "/images/h-sales.svg",
+      },
+      {
+        name: "Automate Operations",
+        path: "/solutions/automate-operations/",
+        icon: "/images/h-operations.svg",
+      },
+      {
+        name: "Marketing",
+        path: "/solutions/automate-marketing/",
+        icon: "/images/h-manufacturing.svg",
+      },
+      {
+        name: "Healthcare",
+        path: "/solutions/automate-healthcare/",
+        icon: "/images/h-healthcare.svg",
+      },
+      {
+        name: "Insurance",
+        path: "/solutions/automate-insurance/",
+        icon: "/images/h-insurance.svg",
+      },
+      {
+        name: "Information Technology",
+        path: "/solutions/automate-it-operations/",
+        icon: "/images/h-it.svg",
+      },
+      {
+        name: "Manufacturing",
+        path: "/solutions/automate-manufacturing/",
+        icon: "/images/h-manufacturing.svg",
+      },
+      {
+        name: "Education",
+        path: "/solutions/automate-education/",
+        icon: "/images/h-education.svg",
+      },
+      {
+        name: "E-commerce",
+        path: "/solutions/automate-ecommerce/",
+        icon: "/images/h-e-commerce.svg",
+      },
+      {
+        name: "Feight",
+        path: "/solutions/automate-freight/",
+        icon: "/images/h-feight.svg",
+      },
+      {
+        name: "Human Resouces",
+        path: "/solutions/automate-hr/",
+        icon: "/images/h-hr.svg",
+      },
+      {
+        name: "Finance",
+        path: "/solutions/automate-finance/",
+        icon: "/images/h-finance.svg",
+      },
+    ],
+  },
+  {
+    name: "Use Cases Across Industries",
+    subSections: [
+      {
+        name: "Field Service",
+        path: "#",
+        icon: "/images/h-u-field-service.svg",
+      },
+      {
+        name: "Manufacturies",
+        path: "#",
+        icon: "/images/h-u-manufacturing.svg",
+      },
+      {
+        name: "Healthcare",
+        path: "#",
+        icon: "/images/h-healthcare.svg",
+      },
+      {
+        name: "Travel Industries",
+        path: "#",
+        icon: "/images/h-u-travel.svg",
+      },
+      {
+        name: "E-commerce",
+        path: "#",
+        icon: "/images/h-e-commerce.svg",
+      },
+      {
+        name: "Human Resource",
+        path: "#",
+        icon: "/images/h-hr.svg",
+      },
+    ],
+  },
+];
+// export const guideMenuItems = [
+//   {
+//     name: "",
+//     subSections: [
+//       {
+//         name: "How to Build an AI Agent?",
+//         path: "/guide/how-to-build-an-ai-agent/",
+//       },
+//       {
+//         name: "How to add Live Chat?",
+//         path: "/guide/how-to-add-live-chat-to-website/",
+//       },
+//     ],
+//   },
+// ];
+
+export const menuItems = [
+  {
+    name: "Solutions",
+    path: "",
+    menuItems: solutionsMenuItems,
+    isMegaMenu: true,
+  },
+  // {
+  //   name: "Guide",
+  //   path: "",
+  //   menuItems: guideMenuItems,
+  //   isMegaMenu: false,
+  // },
+];
+
 export const sitemapData = [
   {
     loc: "https://swiftsupport.ai/blog/",

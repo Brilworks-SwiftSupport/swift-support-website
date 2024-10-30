@@ -59,7 +59,7 @@ async function BlogList({ searchParams }) {
         </p>
       </div>
       <SearchDiv />
-      <div className="grid xl:grid-cols-3 min-h-[80vh] md:grid-cols-2 grid-cols-1 !gap-8">
+      <div className="grid xl:grid-cols-3 min-h-[38vh] md:grid-cols-2 grid-cols-1 !gap-8">
         {blogDataPerPage.length ? (
           blogDataPerPage.map(({ slug, name, content }, index) => (
             <div
