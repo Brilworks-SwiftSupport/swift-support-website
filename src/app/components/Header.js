@@ -10,8 +10,6 @@ import {
   Accordion,
   AccordionHeader,
   AccordionBody,
-  Typography,
-  ListItem,
 } from "@material-tailwind/react";
 import Link from "next/link";
 import Image from "next/image";
@@ -20,6 +18,8 @@ import { Icon, scrollToSection } from "./lib/Common";
 import { usePathname } from "next/navigation";
 import MegaMenu from "./MegaMenu";
 import { menuItems, solutionsMenuItems } from "./lib/Constant";
+import { IoMdAddCircleOutline } from "react-icons/io";
+import { IoBuildOutline } from "react-icons/io5";
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
@@ -86,14 +86,16 @@ const Header = () => {
   const navList = (
     <ul className="w-full mt-2 mb-4 flex flex-col md:gap-1 gap-3 items-start md:mb-0 md:mt-0 md:flex-row md:items-center">
       <div className="hidden md:block">
-        {menuItems?.map((menu) => (
-          <MegaMenu
-            key={menu?.name}
-            name={menu?.name}
-            setOpenNav={setOpenNav}
-            menuItems={menu?.menuItems}
-          />
-        ))}
+        <div className="flex">
+          {menuItems?.map((menu) => (
+            <MegaMenu
+              key={menu?.name}
+              name={menu?.name}
+              setOpenNav={setOpenNav}
+              menuItems={menu?.menuItems}
+            />
+          ))}
+        </div>
       </div>
 
       <div className="hidden md:block">
@@ -101,12 +103,7 @@ const Header = () => {
           className="font-medium"
           placement="bottom"
           dismiss={{ itemPress: true, ancestorScroll: true }}
-          animate={{
-            mount: { y: 0 },
-            unmount: { y: 25 },
-          }}
           allowHover
-          offset={12}
         >
           <MenuHandler>
             <MaterialMenuItem className="flex items-center pt-2 my-1 px-0">
@@ -138,15 +135,26 @@ const Header = () => {
           </MenuHandler>
           <MenuList
             dismissible
-            className="flex flex-col !z-[100] rounded-b-lg border min-w-[180px] mt-2 p-1"
+            className="flex flex-col !z-[10] rounded-b-[20px] menu-shadow border min-w-[180px] mt-2 pt-5"
           >
             {guideList.length &&
               guideList.map((guide, index) => (
                 <MaterialMenuItem
                   key={index}
-                  className="flex items-center gap-4 py-2 px-3 hover:bg-[#EAFAFF] hover:rounded-lg"
+                  className="flex items-center gap-4 py-3 px-3 hover:bg-[#EAFAFF] hover:rounded-lg"
                 >
-                  <Link className="font-medium" href={guide?.path}>
+                  <Link
+                    className={`font-normal flex gap-2 items-center text-base ${
+                      pathname === guide?.path ? "font-semibold" : ""
+                    }`}
+                    href={guide?.path}
+                  >
+                    {guide?.name.includes("Build") ? (
+                      <IoBuildOutline size={20} />
+                    ) : (
+                      <IoMdAddCircleOutline size={20} />
+                    )}
+
                     {guide?.name}
                   </Link>
                 </MaterialMenuItem>
@@ -175,7 +183,7 @@ const Header = () => {
             Solutions
           </AccordionHeader>
           {openAccordion === 1 && (
-            <p className="text-lg font-semibold mt-2">
+            <p className="text-lg text-colorBlack font-semibold mt-2">
               {solutionsMenuItems?.[0]?.name}
             </p>
           )}
@@ -224,10 +232,15 @@ const Header = () => {
             guideList.map((guide, index) => (
               <AccordionBody key={index} className="py-[10px]">
                 <Link
-                  className="!font-medium ml-4"
+                  className="!font-medium flex items-center gap-2 ml-4"
                   href={guide?.path}
                   onClick={() => setOpenNav(false)}
                 >
+                  {guide?.name.includes("Build") ? (
+                    <IoBuildOutline size={20} />
+                  ) : (
+                    <IoMdAddCircleOutline size={20} />
+                  )}
                   {guide?.name}
                 </Link>
               </AccordionBody>

@@ -21,9 +21,9 @@ const MegaMenu = ({ setOpenNav, name, menuItems }) => {
               e.preventDefault();
               setOpenNav(false);
             }}
-            className="!flex items-center font-Urbanist hover:text-themeColor nav-underline"
+            className="!flex items-center text-colorBlack font-Urbanist nav-underline"
           >
-            <p className="!mb-0 text-colorBlack font-medium">{name}</p>
+            <p className="!mb-0 font-medium">{name}</p>
             <svg
               className="w-4 h-[6px] ms-2"
               aria-hidden="true"
@@ -44,7 +44,7 @@ const MegaMenu = ({ setOpenNav, name, menuItems }) => {
       </MenuHandler>
       <MenuList
         dismissible
-        className="flex items-start z-10 w-full rounded-[20px] menu-shadow overflow-y-auto megamenu-arrow max-w-3xl"
+        className="flex items-start z-10 w-full rounded-[20px] menu-shadow overflow-y-auto max-w-4xl"
       >
         <div className="!w-full flex p-[18px] outline-none">
           <div className="w-full">
