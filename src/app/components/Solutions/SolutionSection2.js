@@ -7,8 +7,8 @@ const SolutionSection2 = ({ data }) => {
     <div className="solutions py-[90px] bg-themeBlueLight">
       <div className="container max-w-[1200px] mx-auto">
         <div>
-          <h2 className="mb-5 text-center">{title}</h2>
-          <p className="lg:mb-[60px] md:mb-10 mb-6 text-center !text-base">
+          <h2 className="mb-5 md:text-center text-left px-4">{title}</h2>
+          <p className="lg:mb-[60px] md:mb-10 mb-6 md:text-center text-left !text-base px-4">
             {description}
           </p>
           <Image
