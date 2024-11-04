@@ -3,7 +3,7 @@
   .nav-underline {
     cursor: pointer !important;
     display: inline-block;
-    padding: 5px 20px;
+    padding: 5px 16px;
     position: relative;
 
     @media screen and ((max-width: 1080px) and (min-width: 768px)) {
@@ -47,6 +47,10 @@
     width: 100%;
     left: 0;
   }
+}
+
+.menu-shadow {
+  box-shadow: 0px 8px 24px 0px #00000059;
 }
 
 @keyframes typing {
@@ -212,12 +216,27 @@
   margin-bottom: 0.25rem;
   box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
-  .subscribe-btn:first-child {
+}
+
+.pricing-grid:first-child {
+  .subscribe-btn {
     background-color: var(--colorBlack) !important;
     color: var(--colorWhite) !important;
+    &:hover {
+      color: var(--colorBlack) !important;
+    }
   }
-  .subscribed-btn {
-    box-shadow: 0px 30px 20px 0px rgba(0, 0, 0, 0.1);
+}
+.subscribe-btn {
+  background-color: var(--colorWhite);
+  color: var(--colorBlack);
+  border: 1px solid var(--colorBlack);
+  &:hover {
+    border-color: transparent;
+    background-image: linear-gradient(0deg, #ffffff, #ffffff),
+      linear-gradient(20.7deg, #fbb8b8 -20.76%, #83defc 17.31%, #f2ed7b 71%);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
   }
 }
 

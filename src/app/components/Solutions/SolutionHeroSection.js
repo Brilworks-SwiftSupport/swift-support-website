@@ -5,13 +5,16 @@ import Link from "next/link";
 
 const SolutionHeroSection = ({ title, description, image, buttontext }) => {
   return (
-    <div className="solutions flex mt-24 h-full solution-hero-bg">
+    <div className="solutions flex mt-20 3xl:mt-22 h-full solution-hero-bg">
       <div className="container max-w-[1200px] mx-auto">
         <div className="w-full h-full flex flex-col">
-          <div className="flex gap-6 lg:flex-row flex-col items-start h-full md:py-20 py-8 xl:px-0 px-4">
+          <div className="flex gap-6 lg:flex-row flex-col items-start h-full md:pb-20 3xl:py-20 py-8 xl:px-0 px-4">
             <div className="lg:w-1/2 w-full flex flex-col h-full">
-              <div className="flex-grow">
-                <h1 className="mb-6">{title}</h1>
+              <div className=" flex-grow">
+                <h1
+                  className="mb-8"
+                  dangerouslySetInnerHTML={{ __html: title }}
+                />
                 <p className="lg:!text-2xl !text-xl md:!leading-tight text-colorBlack">
                   {description}
                 </p>
@@ -26,13 +29,14 @@ const SolutionHeroSection = ({ title, description, image, buttontext }) => {
                 </Link>
               </div>
             </div>
-            <div className="lg:w-1/2 w-full h-full">
+            <div className="lg:w-1/2 w-full">
               <Image
-                className="h-full !w-full"
+                className="!w-full"
                 src={image?.filename}
                 alt={image?.alt || "guide-banner-image"}
                 width="525"
                 height="550"
+                unoptimized
                 priority
               />
             </div>

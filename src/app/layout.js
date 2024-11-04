@@ -8,7 +8,6 @@ import { Urbanist } from "next/font/google";
 import Header from "./components/Header";
 import LoadScripts from "./ScriptLoader";
 import Script from "next/script";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 
 storyblokInit({
   accessToken: process.env.NEXT_PUBLIC_ACCESS_TOKEN,
@@ -140,11 +139,9 @@ export default function RootLayout({ children }) {
               ></iframe>
             </noscript>
           )}
-          <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_APP_ID}>
-            <Header />
-            {children}
-            <Footer />
-          </GoogleOAuthProvider>
+          <Header />
+          {children}
+          <Footer />
           <LoadScripts />
         </body>
       </html>

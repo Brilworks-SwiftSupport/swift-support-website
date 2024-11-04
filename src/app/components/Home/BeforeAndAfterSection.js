@@ -3,7 +3,13 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 
-const AIAutomateBusiness = () => {
+const BeforeAndAfterSection = ({
+  title,
+  subTitleBefore,
+  listItemBefore,
+  subTitleAfter,
+  listItemAfter,
+}) => {
   const isTablet = useMediaQuery({ maxWidth: 1024 });
   const [isTabletDevice, setIsTabletDevice] = useState(false);
 
@@ -11,20 +17,64 @@ const AIAutomateBusiness = () => {
     setIsTabletDevice(isTablet);
   }, [isTablet]);
 
+  const mainTitle = title || (
+    <>
+      Ever imagined having AI automate <br className="hidden md:block" /> your
+      business seamlessly?"
+    </>
+  );
+  const beforeTitle = subTitleBefore || "Manual, Time-Consuming Processes";
+  const beforeList = listItemBefore || [
+    {
+      Display_text: "Tedious manual tasks for support and email management",
+    },
+    {
+      Display_text: "Long hours spent reading and training staff",
+    },
+    {
+      Display_text: "Delayed expertise and slow response to inquiries",
+    },
+    {
+      Display_text: "Customers expect instant replies, driving up costs",
+    },
+    {
+      Display_text:
+        "Maintaining 24/7 support becomes expensive and inefficient",
+    },
+  ];
+
+  const afterTitle = subTitleAfter || "AI-Driven Efficiency and Automation";
+  const afterList = listItemAfter || [
+    {
+      Display_text:
+        "AI automates email, quotes, and task categorization effortlessly",
+    },
+    {
+      Display_text:
+        "Instant AI assistance for field agents and troubleshooting",
+    },
+    {
+      Display_text: "24/7 AI support reduces costs and improves response time",
+    },
+    {
+      Display_text: "Boost team productivity by 2.5x with AI automation",
+    },
+  ];
+
   return (
     <div className="md:py-[70px] py-10 h-full">
       <div className="container max-w-[1200px] mx-auto w-full h-full">
-        <h2 className="new-h2 lg:w-[60%] w-full mx-auto lg:mb-[50px] md:mb-10 mb-6 px-4">
-          Ever imagined having AI automate your business seamlessly?
+        <h2 className="new-h2 w-full mx-auto lg:mb-[50px] md:mb-10 mb-6 px-4">
+          {mainTitle}
         </h2>
       </div>
       <div className="before-after-bg">
         <div className="container max-w-[1200px] mx-auto w-full h-full">
-          <div className="flex lg:flex-row flex-col lg:gap-16 md:gap-8 gap-4 w-full h-full lg:px-0 md:px-10 px-4">
+          <div className="flex lg:flex-row flex-col lg:gap-14 md:gap-8 gap-4 w-full h-full lg:px-0 md:px-10 px-4">
             <div
               className={`${
                 isTabletDevice ? "card-with-shadow py-10" : "lg:w-[45%] !py-20"
-              }  md:p-5 p-4 h-full flex flex-col`}
+              }  p-4 xl:!pl-0 h-full flex flex-col`}
             >
               <div className="flex-1">
                 <div className="relative flex gap-1 mb-4 text-[#FF5454] text-2xl w-fit pr-10">
@@ -45,24 +95,14 @@ const AIAutomateBusiness = () => {
                   </div>
                 </div>
                 <h3 className="text-colorBlack md:text-2xl text-xl font-semibold mb-4">
-                  Manual, Time-Consuming Processes
+                  {beforeTitle}
                 </h3>
                 <ul className="ai-automate">
-                  <li className="rewind">
-                    Tedious manual tasks for support and email management
-                  </li>
-                  <li className="rewind">
-                    Long hours spent reading and training staff
-                  </li>
-                  <li className="rewind">
-                    Delayed expertise and slow response to inquiries
-                  </li>
-                  <li className="rewind">
-                    Customers expect instant replies, driving up costs
-                  </li>
-                  <li className="rewind">
-                    Maintaining 24/7 support becomes expensive and inefficient
-                  </li>
+                  {beforeList.map(({ Display_text }, index) => (
+                    <li className="rewind" key={index}>
+                      {Display_text}
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -72,7 +112,7 @@ const AIAutomateBusiness = () => {
             <div
               className={`${
                 isTabletDevice ? "card-with-shadow py-10" : "lg:w-[45%] !py-20"
-              }  md:p-5 p-4 h-full flex flex-col`}
+              }  p-4 xl:pr-0 h-full flex flex-col`}
             >
               <div className="flex-1 w-fit">
                 <div className="relative flex gap-1 mb-4 text-2xl text-[#00AE65] w-fit pr-10">
@@ -93,20 +133,12 @@ const AIAutomateBusiness = () => {
                   </div>
                 </div>
                 <h3 className="text-colorBlack md:text-2xl text-xl font-semibold mb-4">
-                  AI-Driven Efficiency and Automation
+                  {afterTitle}
                 </h3>
                 <ul className="ai-automate">
-                  <li>
-                    AI automates email, quotes, and task categorization
-                    effortlessly
-                  </li>
-                  <li>
-                    Instant AI assistance for field agents and troubleshooting
-                  </li>
-                  <li>
-                    24/7 AI support reduces costs and improves response time
-                  </li>
-                  <li>Boost team productivity by 2.5x with AI automation</li>
+                  {afterList.map(({ Display_text }, index) => (
+                    <li key={index}>{Display_text}</li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -117,4 +149,4 @@ const AIAutomateBusiness = () => {
   );
 };
 
-export default AIAutomateBusiness;
+export default BeforeAndAfterSection;

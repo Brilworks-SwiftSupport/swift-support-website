@@ -1,4 +1,3 @@
-import { calculateReadingTime } from "@/app/components/lib/Common";
 import StoryblokStory from "@storyblok/react/story";
 import { notFound } from "next/navigation";
 export const dynamic = "force-static";

@@ -1737,6 +1737,139 @@ export const COUNTRIES = [
   },
 ];
 
+export const solutionsMenuItems = [
+  {
+    name: "Automate your Business",
+    subSections: [
+      {
+        name: "Sales",
+        path: "/solutions/automate-sales/",
+        icon: "/images/h-sales.svg",
+      },
+      {
+        name: "Automate Operations",
+        path: "/solutions/automate-operations/",
+        icon: "/images/h-operations.svg",
+      },
+      {
+        name: "Marketing",
+        path: "/solutions/automate-marketing/",
+        icon: "/images/h-manufacturing.svg",
+      },
+      {
+        name: "Healthcare",
+        path: "/solutions/automate-healthcare/",
+        icon: "/images/h-healthcare.svg",
+      },
+      {
+        name: "Insurance",
+        path: "/solutions/automate-insurance/",
+        icon: "/images/h-insurance.svg",
+      },
+      {
+        name: "Information Technology",
+        path: "/solutions/automate-it-operations/",
+        icon: "/images/h-it.svg",
+      },
+      {
+        name: "Manufacturing",
+        path: "/solutions/automate-manufacturing/",
+        icon: "/images/h-manufacturing.svg",
+      },
+      {
+        name: "Education",
+        path: "/solutions/automate-education/",
+        icon: "/images/h-education.svg",
+      },
+      {
+        name: "E-commerce",
+        path: "/solutions/automate-ecommerce/",
+        icon: "/images/h-e-commerce.svg",
+      },
+      {
+        name: "Feight",
+        path: "/solutions/automate-freight/",
+        icon: "/images/h-feight.svg",
+      },
+      {
+        name: "Human Resouces",
+        path: "/solutions/automate-hr/",
+        icon: "/images/h-hr.svg",
+      },
+      {
+        name: "Finance",
+        path: "/solutions/automate-finance/",
+        icon: "/images/h-finance.svg",
+      },
+    ],
+  },
+  {
+    name: "Use Cases Across Industries",
+    subSections: [
+      {
+        name: "Field Service",
+        path: "#",
+        icon: "/images/h-u-field-service.svg",
+      },
+      {
+        name: "Manufacturies",
+        path: "#",
+        icon: "/images/h-u-manufacturing.svg",
+      },
+      {
+        name: "Healthcare",
+        path: "#",
+        icon: "/images/h-healthcare.svg",
+      },
+      {
+        name: "Travel Industries",
+        path: "#",
+        icon: "/images/h-u-travel.svg",
+      },
+      {
+        name: "E-commerce",
+        path: "#",
+        icon: "/images/h-e-commerce.svg",
+      },
+      {
+        name: "Human Resource",
+        path: "#",
+        icon: "/images/h-hr.svg",
+      },
+    ],
+  },
+];
+// export const guideMenuItems = [
+//   {
+//     name: "",
+//     subSections: [
+//       {
+//         name: "How to Build an AI Agent?",
+//         path: "/guide/how-to-build-an-ai-agent/",
+//       },
+//       {
+//         name: "How to add Live Chat?",
+//         path: "/guide/how-to-add-live-chat-to-website/",
+//       },
+//     ],
+//   },
+// ];
+
+export const menuItems = [
+  {
+    name: "Solutions",
+    path: "",
+    menuItems: solutionsMenuItems,
+    isMegaMenu: true,
+  },
+  // {
+  //   name: "Guide",
+  //   path: "",
+  //   menuItems: guideMenuItems,
+  //   isMegaMenu: false,
+  // },
+];
+
 export const sitemapData = [
   {
     loc: "https://swiftsupport.ai/blog/",
@@ -1754,16 +1887,84 @@ export const sitemapData = [
     loc: "https://www.swiftsupport.ai/guide/how-to-add-live-chat-to-website/",
     lastmod: "2024-10-09T08:58:03.856Z",
   },
+  {
+    loc: "https://www.swiftsupport.ai/guide/how-to-build-an-ai-agent/",
+    lastmod: "2024-10-20T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/solutions/automate-healthcare/",
+    lastmod: "2024-10-24T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/solutions/automate-manufacturing/",
+    lastmod: "2024-10-24T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/solutions/automate-freight/",
+    lastmod: "2024-10-24T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/solutions/automate-ecommerce/",
+    lastmod: "2024-10-24T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/solutions/automate-insurance/",
+    lastmod: "2024-10-24T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/solutions/automate-education/",
+    lastmod: "2024-10-24T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/solutions/automate-finance/",
+    lastmod: "2024-10-24T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/solutions/automate-hr/",
+    lastmod: "2024-10-24T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/solutions/automate-it-operations/",
+    lastmod: "2024-10-24T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/solutions/automate-operations/",
+    lastmod: "2024-10-24T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/solutions/automate-marketing/",
+    lastmod: "2024-10-24T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/solutions/automate-sales/",
+    lastmod: "2024-10-24T08:58:03.856Z",
+  },
 ];
 
 export const blogData = [
+  {
+    loc: "https://www.swiftsupport.ai/blog/10-must-know-benefits-of-business-process-automation/",
+    lastmod: "2024-10-30T05:58:45.449Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/the-role-of-ai-agents-in-logistics-supply-chain-automation/",
+    lastmod: "2024-10-25T10:01:56.161Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/top-use-cases-of-ai-agents-to-automate-business-processes/",
+    lastmod: "2024-10-25T07:23:53.515Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/how-ai-agents-simplify-hr-workflow-automation/",
+    lastmod: "2024-10-23T12:42:00.296Z",
+  },
   {
     loc: "https://www.swiftsupport.ai/blog/chatgpt-vs-gemini-vs-claude:-a-comprehensive-comparison-of-ai-models/",
     lastmod: "2024-10-18T09:50:28.806Z",
   },
   {
     loc: "https://www.swiftsupport.ai/blog/ai-agents-vs-chatbots:-a-comprehensive-overview/",
-    lastmod: "2024-10-21T04:18:55.993Z",
+    lastmod: "2024-10-22T07:39:52.094Z",
   },
   {
     loc: "https://www.swiftsupport.ai/blog/top-8-chatbot-ui-design-examples-you-need-to-see/",

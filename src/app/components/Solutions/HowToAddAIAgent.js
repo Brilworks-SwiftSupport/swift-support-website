@@ -29,13 +29,13 @@ const HowToAddAIAgent = ({ howToAddAIAgentData }) => {
             <Link
               href={youtube_link?.url}
               target="_blank"
-              className="common-button w-fit white-button cursor-pointer !mb-8"
+              className="common-button w-fit white-button-new cursor-pointer !mb-8"
             >
               {button_text}
             </Link>
           </div>
           <iframe
-            className="w-full max-w-2xl"
+            className="w-full sm:max-w-2xl md:h-[360px] h-52"
             width="320"
             height="360"
             src="https://www.youtube.com/embed/WFA536oxEn4"

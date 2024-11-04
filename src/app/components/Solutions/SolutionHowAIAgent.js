@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 
 const SolutionHowAIAgent = ({ title, aiAgentTransformation }) => {
-  const aiAgentTransformationLength = aiAgentTransformation.length;
+  const aiAgentTransformationLength = aiAgentTransformation?.length;
 
   return (
     <div className="solutions xl:py-[90px] lg:py-[60px] md:py-10 py-8">

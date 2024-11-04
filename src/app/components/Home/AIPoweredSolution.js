@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const AIPoweredSolution = () => {
@@ -7,49 +8,51 @@ const AIPoweredSolution = () => {
       title: "Manufacturing",
       description:
         "Fine-tuned AI agents to meet the demands of your manufacturing and application requirements precisely, our AI solution stands out by effectively identifying anomalies in processes, equipment, and assets, ultimately optimizing workflows to minimize risk through the utilization of advanced pattern recognition and machine learning capabilities.",
-      buttonURL: "#",
+      buttonURL: "/blog/ai-chatbot-in-manufacturing-top-use-cases-benefits/",
       imageSrc: "/images/manufaturing.webp",
     },
     {
       title: "Shipping & Logistics",
       description:
         "By seamlessly integrating advanced algorithms, our AI agent optimizes route planning, inventory management, and resource allocation, enabling logistics companies to enhance overall operational productivity, empowering businesses to make data-driven decisions, minimizing costs, and streamlining supply chain processes.",
-      buttonURL: "#",
+      buttonURL: "/solutions/automate-freight/",
       imageSrc: "/images/shipping.webp",
     },
     {
       title: "Healthcare",
       description:
         "When patients seek assistance, they prefer not to wait on hold. We recognize the significance of healthcare service providers being consistently available. SwiftSupport offers instant and round-the-clock support, streamlining communication and delivering quick assistance that keeps your healthcare operations running smoothly.",
-      buttonURL: "#",
+      buttonURL: "/blog/top-use-cases-of-chatbots-in-healthcare/",
       imageSrc: "/images/healthcare.webp",
     },
     {
       title: "Financial Services",
       description:
         "Go beyond resolving issues to build lasting customer loyalty. Embed swiftsupport into your Fintch app and deliver faster resolutions, reduce wait times, augment the customer engagement curve, resolve >60% of the repetitive customer queries end-to-end without human intervention, and save operational costs.",
-      buttonURL: "#",
+      buttonURL:
+        "/blog/how-chatbots-enhance-support-efficiency-in-financial-services/",
       imageSrc: "/images/finance.webp",
     },
     {
       title: "E-commerce & Retail",
       description:
         "Struggling with overwhelming customer inquiries and the need for instant responses? Our chatbot offers real-time engagement, efficiently handling routine queries. Reduce customer wait times, automate routine inquiries, assist customers in order tracking, product inquiries, and much more with one agent.",
-      buttonURL: "#",
+      buttonURL: "/blog/ai-chatbots-for-ecommerce-use-cases-benefits/",
       imageSrc: "/images/e-commerce-retail.webp",
     },
     {
       title: "Insurance",
       description:
         "Swiftsupport is designed to revolutionize the insurance industry by seamlessly automating complex tasks, optimizing risk assessment, and enhancing decision-making processes. Leveraging advanced machine learning algorithms, it empowers insurance professionals to streamline underwriting, claims processing, and fraud detection.",
-      buttonURL: "#",
+      buttonURL: "/solutions/automate-insurance/",
       imageSrc: "/images/insurance.webp",
     },
     {
       title: "Education",
       description:
         "Provide 24/7 support with your AI service buddy — Swiftsupport. Empower students with personalized learning and streamline academic processes like instructions, assessments, data retrieval, updates, AI-driven surveys, and much more. Enjoy unparalleled efficiency at a fraction of the cost, scaling your impact without breaking the bank.",
-      buttonURL: "#",
+      buttonURL:
+        "/blog/how-chatbots-for-education-are-shaping-the-future-of-learning/",
       imageSrc: "/images/education.webp",
     },
   ];
@@ -94,12 +97,12 @@ const AIPoweredSolution = () => {
                 <p className="text-colorBlack text-base lg:text-lg md:mb-[30px]">
                   {description}
                 </p>
-                {/* <div className="w-fit">
+                <div className="w-fit">
                   <Link
                     href={buttonURL || "#"}
-                    className="border-colorBlack border text-colorBlack rounded-[30px] px-6 py-4 text-xl flex gap-2"
+                    className="common-btn white-button-new rounded-[30px] px-6 py-4 text-xl flex gap-2"
                   >
-                    View Case Study{" "}
+                    Know More{" "}
                     <Image
                       src="/images/arrow-up-right.svg"
                       alt="arriow-upward-right"
@@ -107,7 +110,7 @@ const AIPoweredSolution = () => {
                       height="24"
                     />{" "}
                   </Link>
-                </div> */}
+                </div>
               </div>
             </div>
           )

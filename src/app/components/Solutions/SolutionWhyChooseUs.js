@@ -10,7 +10,7 @@ const SolutionWhyChooseUs = ({ title, description, keyValueData }) => {
       <div className="container max-w-[1200px] mx-auto">
         <div className="w-full">
           <h2 className="mb-5 md:text-center text-start">{title}</h2>
-          <p className="lg:!text-2xl !text-xl md:!leading-tight text-colorBlack lg:mb-[50px] md:mb-10 mb-6">
+          <p className="!text-base text-colorBlack md:text-center text-left lg:mb-[50px] md:mb-10 mb-6">
             {description}
           </p>
         </div>
@@ -23,7 +23,7 @@ const SolutionWhyChooseUs = ({ title, description, keyValueData }) => {
               <span className="font-bold lg:text-[62px] md:text-[52px] text-[42px] text-colorBlack">
                 {data?.Key}
               </span>
-              <p className="md:text-2xl text-xl md:leading-[58px] leading-[38px] text-colorBlack">
+              <p className="md:text-2xl text-xl md:leading-[58px] font-medium leading-[38px] bg-clip-text text-transparent bg-text-theme-gradient">
                 {data?.Value}
               </p>
             </div>

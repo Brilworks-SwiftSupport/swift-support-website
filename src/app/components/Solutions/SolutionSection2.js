@@ -7,12 +7,12 @@ const SolutionSection2 = ({ data }) => {
     <div className="solutions py-[90px] bg-themeBlueLight">
       <div className="container max-w-[1200px] mx-auto">
         <div>
-          <h2 className="mb-5 text-center">{title}</h2>
-          <p className="lg:mb-[60px] md:mb-10 mb-6 text-center">
+          <h2 className="mb-5 md:text-center text-left px-4">{title}</h2>
+          <p className="lg:mb-[60px] md:mb-10 mb-6 md:text-center text-left !text-base px-4">
             {description}
           </p>
           <Image
-            className="h-full w-full mx-auto px-5"
+            className="h-full lg:w-[80%] w-full mx-auto px-5"
             src={banner_image?.filename}
             alt={banner_image?.alt || "Lead-captured"}
             width="995"
