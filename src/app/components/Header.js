@@ -28,7 +28,6 @@ const Header = () => {
   const navbarRef = useRef(null);
   const [guideList, setGuideList] = useState([]);
   const [solutionList, setSolutionList] = useState([]);
-  const [menuItemSampleCopy, setMenuItemSampleCopy] = useState(menuItems);
 
   const [scrollProgress, setScrollProgress] = useState(0);
 

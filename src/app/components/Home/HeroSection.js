@@ -1,8 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { useGoogleOneTapLogin } from "@react-oauth/google";
 
 const HeroSection = () => {
+  useGoogleOneTapLogin({
+    onSuccess: (credentialResponse) => {
+      console.log("Google One Tap");
+    },
+    onError: () => {
+      console.log("Login Failed");
+    },
+  });
+
   return (
     <div className="hero-section xl:pb-[60px] xl:pt-[5px] 3xl:!py-[60px] py-[60px] lg:mt-[6%] md:mt-[10%] mt-[14%]">
       <div className="container max-w-[1200px] mx-auto">
