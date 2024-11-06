@@ -14,11 +14,15 @@ const SolutionWhyChooseUs = ({ title, description, keyValueData }) => {
             {description}
           </p>
         </div>
-        <div className="grid md:grid-cols-3 grid-cols-1 lg:mb-[60px] md:mb-12 mb-9">
+        <div
+          className={`grid md:grid-cols-3 grid-cols-1 ${
+            keyValueData?.[0]?.Key ? "lg:mb-10 mb-6" : ""
+          }`}
+        >
           {keyValueData?.slice(2, keyValueLength)?.map((data, index) => (
             <div
               key={index}
-              className="flex flex-col items-center justify-center md:border-r border-b md:border-b-0 border-[#BDBDBD] last:border-r-0 last:border-b-0"
+              className="flex flex-col items-center justify-center md:border-r border-b md:border-b-0 border-[#BDBDBD] last:border-r-0 last:border-b-0 "
             >
               <span className="font-bold lg:text-[62px] md:text-[52px] text-[42px] text-colorBlack">
                 {data?.Key}
