@@ -8,26 +8,24 @@ const SolutionHeroSection = ({ title, description, image, buttontext }) => {
     <div className="solutions flex mt-20 3xl:mt-22 h-full solution-hero-bg">
       <div className="container max-w-[1200px] mx-auto">
         <div className="w-full h-full flex flex-col">
-          <div className="flex gap-6 lg:flex-row flex-col items-start h-full md:pb-20 3xl:py-20 py-8 xl:px-0 px-4">
-            <div className="lg:w-1/2 w-full flex flex-col h-full">
-              <div className=" flex-grow">
-                <h1
-                  className="mb-8"
-                  dangerouslySetInnerHTML={{ __html: title }}
-                />
-                <p className="lg:!text-2xl !text-xl md:!leading-tight text-colorBlack">
-                  {description}
-                </p>
-              </div>
-              <div className="lg:mt-auto mt-6 lg:pt-8">
-                <Link
-                  href="https://cal.com/swiftsupport/demo"
-                  target="_blank"
-                  className="common-button black-button w-fit border-colorBlack border"
-                >
-                  {buttontext}
-                </Link>
-              </div>
+          <div className="flex gap-6 lg:flex-row flex-col items-center h-full md:pb-20 3xl:py-20 py-8 xl:px-0 px-4">
+            <div className="lg:w-1/2 w-full flex flex-col">
+              <h1
+                className="mb-8"
+                dangerouslySetInnerHTML={{ __html: title }}
+              />
+              <p className="lg:!text-2xl !text-xl md:!leading-tight text-colorBlack lg:mb-10 mb-6">
+                {description}
+              </p>
+
+              {/* <div className=""> */}
+              <Link
+                href="https://cal.com/swiftsupport/demo"
+                target="_blank"
+                className="common-button black-button w-fit border-colorBlack border"
+              >
+                {buttontext}
+              </Link>
             </div>
             <div className="lg:w-1/2 w-full">
               <Image

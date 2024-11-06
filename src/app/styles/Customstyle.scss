@@ -379,7 +379,7 @@
   li[role="tab"] {
     background: #f9f9f9;
     padding: 27px 0 27px 0;
-    margin: 0 4px 0 4px;
+    margin: 4px;
     border-radius: 10px;
     @media screen and (max-width: 1024px) {
       padding: 16px 0 16px 0;
@@ -404,12 +404,6 @@
 
 .pricing-plan {
   li[role="tab"] {
-    &:first-child {
-      margin-right: 10px;
-    }
-    &:last-child {
-      margin-left: 10px;
-    }
     @media screen and (max-width: 1024px) {
       padding: 16px 0 16px 0;
     }

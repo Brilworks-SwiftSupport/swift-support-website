@@ -44,7 +44,7 @@ const MegaMenu = ({ setOpenNav, name, menuItems }) => {
       </MenuHandler>
       <MenuList
         dismissible
-        className="flex items-start z-10 w-full rounded-[20px] menu-shadow overflow-y-auto max-w-4xl"
+        className="flex items-start z-30 w-full rounded-[20px] menu-shadow overflow-y-auto max-w-4xl"
       >
         <div className="!w-full flex p-[18px] outline-none">
           <div className="w-full">

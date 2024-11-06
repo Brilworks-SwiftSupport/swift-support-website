@@ -146,7 +146,9 @@ export default function RootLayout({ children }) {
               />
             </noscript>
           )}
-          <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_APP_ID}>
+          <GoogleOAuthProvider
+            clientId={`${process.env.NEXT_PUBLIC_GOOGLE_APP_ID}`}
+          >
             <Header />
             {children}
             <Footer />

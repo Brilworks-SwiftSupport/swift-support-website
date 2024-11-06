@@ -134,7 +134,7 @@ const Header = () => {
           </MenuHandler>
           <MenuList
             dismissible
-            className="flex flex-col !z-[10] rounded-b-[20px] menu-shadow border min-w-[180px] mt-2 pt-5"
+            className="flex flex-col !z-30 rounded-b-[20px] menu-shadow border min-w-[180px] mt-2 pt-5"
           >
             {guideList.length &&
               guideList.map((guide, index) => (

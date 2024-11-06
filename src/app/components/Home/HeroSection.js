@@ -1,12 +1,44 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { useRouter } from "next/navigation";
 import { useGoogleOneTapLogin } from "@react-oauth/google";
+import axios from "axios";
 
 const HeroSection = () => {
+  const router = useRouter();
+
+  const ANALYTICS_ENDPOINT = "https://api.swiftsupport.ai/dashboard";
+  const ONBOARDING_ENDPOINT = "https://api.swiftsupport.ai/onboarding";
+
+  const doLogin = async (credentialResponse) => {
+    await axios
+      .post(`https://api.swiftsupport.ai/api/register`, {
+        google_token: credentialResponse?.credential,
+      })
+      .then((response) => {
+        console.log("Responsedata", response);
+        if (response.status === 200) {
+          router.replace(
+            response?.data?.onboarding
+              ? ANALYTICS_ENDPOINT
+              : ONBOARDING_ENDPOINT
+          );
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log(
+          error.response?.data?.message || error.response?.data?.error
+        );
+      });
+  };
+
   useGoogleOneTapLogin({
     onSuccess: (credentialResponse) => {
-      console.log("Google One Tap");
+      console.log("Google One Tap Success");
+      doLogin(credentialResponse);
     },
     onError: () => {
       console.log("Login Failed");
