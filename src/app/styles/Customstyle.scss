@@ -378,15 +378,12 @@
   }
   li[role="tab"] {
     background: #f9f9f9;
-    padding: 27px 0 27px 0;
+    padding: 14px 0;
     margin: 4px;
     border-radius: 10px;
-    @media screen and (max-width: 1024px) {
-      padding: 16px 0 16px 0;
-    }
     @media screen and (max-width: 767px) {
-      padding: 10px 0 10px 0;
-      margin: 4px 0 4px 0;
+      padding: 10px 0;
+      margin: 4px 0;
     }
   }
 }
