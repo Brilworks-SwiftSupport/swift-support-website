@@ -1943,6 +1943,26 @@ export const sitemapData = [
 
 export const blogData = [
   {
+    loc: "https://www.swiftsupport.ai/blog/what-is-ai-copilot-understanding-its-function-benefits-and-applications/",
+    lastmod: "2024-11-12T05:34:44.249Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/top-6-sales-automation-software-to-boost-your-sales-efficiency/",
+    lastmod: "2024-11-08T06:58:38.769Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/deep-learning-vs-machine-learning:-understanding-the-key-differences/",
+    lastmod: "2024-11-07T08:33:51.215Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/the-impact-of-ai-agents-on-sales-automation-strategies/",
+    lastmod: "2024-11-06T06:32:30.216Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/enhancing-marketing-automation-with-ai-agents/",
+    lastmod: "2024-10-31T04:28:56.249Z",
+  },
+  {
     loc: "https://www.swiftsupport.ai/blog/10-must-know-benefits-of-business-process-automation/",
     lastmod: "2024-10-30T05:58:45.449Z",
   },
