@@ -1,3 +1,4 @@
+import { getblog } from "@/app/lib/getblog";
 import Link from "next/link";
 
 async function getBlogData() {
@@ -24,7 +25,7 @@ async function getBlogData() {
 }
 
 export default async function Sitemap() {
-  const blogData = await getBlogData();
+  const blogData = await getblog();
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
   return (
@@ -226,11 +227,11 @@ export default async function Sitemap() {
           </h3>
           <div className="grid gap-[10px] grid-cols-1">
             {blogData.length ? (
-              blogData.map(({ full_slug, content }, index) => (
+              blogData.map(({ slug, content }, index) => (
                 <div key={index}>
                   <li>
                     <Link
-                      href={`${baseUrl}${full_slug}`}
+                      href={`${baseUrl}blog/${slug}/`}
                       className="font-medium"
                     >
                       {content.title}
