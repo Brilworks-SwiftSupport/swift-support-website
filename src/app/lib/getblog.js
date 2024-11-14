@@ -37,11 +37,40 @@ export async function getblogData(
 
   // Make the API call with the constructed parameters
   let stories = await Storyblok.get("cdn/stories", apiParams, {
-    next: { revalidate: 3600, },
+    next: { revalidate: 3600 },
   });
 
   return {
     storyData: stories.data.stories,
     totalData: stories.total,
   };
+}
+
+export async function getblog() {
+  let allStories = [];
+  let page = 1;
+  let hasMoreData = true;
+
+  while (hasMoreData) {
+    const response = await Storyblok.get("cdn/stories", {
+      starts_with: "swiftsupport-blog/",
+      per_page: 100,
+      page,
+      version: process.env.NEXT_PUBLIC_STORYBLOK_VERSION,
+      filter_query: {
+        component: {
+          in: "swiftsupport_article",
+        },
+      },
+    });
+
+    const storyData = response.data.stories;
+    allStories = [...allStories, ...storyData];
+
+    // Stop if there are fewer than 100 items in the response (last page)
+    hasMoreData = storyData.length === 100;
+    page += 1;
+  }
+
+  return allStories;
 }
