@@ -27,6 +27,7 @@ const Header = () => {
   const pathname = usePathname();
   const navbarRef = useRef(null);
   const [guideList, setGuideList] = useState([]);
+  
   const [solutionList, setSolutionList] = useState([]);
 
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -208,6 +209,7 @@ const Header = () => {
             ))}
         </Accordion>
       </div>
+     
       <div className="md:hidden block w-full">
         <Accordion
           open={openAccordion === 2}
@@ -267,6 +269,16 @@ const Header = () => {
           }`}
         >
           Blog
+        </Link>
+
+        <Link
+          href="/tools"
+          onClick={() => setOpenNav(false)}
+          className={` w-full nav-underline md:border-b-0 border-b border-[#e5e7eb] flex items-center md:justify-center justify-start font-medium !px-3 ${
+            openNav ? "md:mt-9" : ""
+          }`}
+        >
+          Tools
         </Link>
 
         <Link
