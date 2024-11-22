@@ -92,7 +92,7 @@ const HeroSection = () => {
                   target="_blank"
                   className="common-button try-now-btn rounded-[80px] px-[30px] py-[18px]"
                 >
-                  Try Now
+                  Try For Free
                 </Link>
               </div>
               <div className="flex items-center justify-start">
