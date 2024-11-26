@@ -269,6 +269,15 @@ const Header = () => {
         >
           Blog
         </Link>
+        <Link
+          href="/tools"
+          onClick={() => setOpenNav(false)}
+          className={` w-full nav-underline md:border-b-0 border-b border-[#e5e7eb] flex items-center md:justify-center justify-start font-medium !px-3 ${
+            openNav ? "md:mt-9" : ""
+          }`}
+        >
+          Tools
+        </Link>
 
         <Link
           // href="https://cal.com/hiteshr/15min"
