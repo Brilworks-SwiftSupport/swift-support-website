@@ -9,6 +9,8 @@ import para from "@/app/images/para.svg"
 import doc from "@/app/images/doc.svg"
 import search from "@/app/images/search.svg"
 
+const NEXT_PUBLIC_BE_URL= process.env.NEXT_PUBLIC_BE_URL
+
 const Paraphrase = () => {
   const [inputText, setInputText] = useState(""); // Text input state
   const [text, setText] = useState(""); // State to store paraphrased text
@@ -31,7 +33,7 @@ const Paraphrase = () => {
 
   const fetchPlagiarismCheck = async (input_text, type) => {
     try {
-      const response = await fetch("https//devapi.swiftsupport.ai/api/rephrase_text", {
+      const response = await fetch(`${NEXT_PUBLIC_BE_URL}/rephrase_text`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
