@@ -31,7 +31,7 @@ const Paraphrase = () => {
 
   const fetchPlagiarismCheck = async (input_text, type) => {
     try {
-      const response = await fetch("http://localhost:5001/api/rephrase_text", {
+      const response = await fetch("https//devapi.swiftsupport.ai/api/rephrase_text", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
