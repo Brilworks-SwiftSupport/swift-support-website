@@ -24,7 +24,7 @@ const Plagiarism = () => {
 
     const fetchPlagiarismCheck = async (text) => {
         try {
-          const response = await fetch("http://localhost:5001/api/check_plagiarism", {
+          const response = await fetch("https://devapi.swiftsupport.ai/api/check_plagiarism", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
