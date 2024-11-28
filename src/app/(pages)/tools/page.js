@@ -11,6 +11,27 @@ const page = () => {
       link: "/tools/youtube-summary",
       button_title:'Generate Summary'
     },
+    {
+      imageUrl: "/images/ai_plag_banner.png",
+      title: "Plagiarism Checker",
+      description: "Quickly scan your content for plagiarism and ensure its originality with AI accuracy.",
+      link: "/tools/plagiarism-checker",
+      button_title: "Check Plagiarism",
+    },
+    {
+      imageUrl: "/images/ai_content.png", // Update this with the correct image path
+      title: "AI Content Detector",
+      description: "Identify whether your content is AI-generated or human-crafted with advanced detection.",
+      link: "/tools/ai-content-detector",
+      button_title: "Detect AI Content",
+    },
+    {
+      imageUrl: "/images/ai_para_banner.png", // Update this with the correct image path
+      title: "AI Paraphraser",
+      description: "Effortlessly rephrase text to make it unique and clearer with AI-powered paraphrasing.",
+      link: "/tools/ai-paraphraser",
+      button_title: "Detect AI Content",
+    },
     
    
   ];
