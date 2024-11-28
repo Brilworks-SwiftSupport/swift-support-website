@@ -7,6 +7,8 @@ import para from "@/app/images/para.svg"
 import doc from "@/app/images/doc.svg"
 import search from "@/app/images/search.svg"
 
+const NEXT_PUBLIC_BE_URL= process.env.NEXT_PUBLIC_BE_URL
+
 
 const Plagiarism = () => {
     const [inputText, setInputText] = useState(""); // Text input state
@@ -24,7 +26,7 @@ const Plagiarism = () => {
 
     const fetchPlagiarismCheck = async (text) => {
         try {
-          const response = await fetch("https://devapi.swiftsupport.ai/api/check_plagiarism", {
+          const response = await fetch(`${NEXT_PUBLIC_BE_URL}/check_plagiarism`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
