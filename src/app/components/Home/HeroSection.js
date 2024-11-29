@@ -64,7 +64,7 @@ const HeroSection = () => {
                 for Your Business
               </h1>
               <p className="lg:!text-2xl !text-xl md:!leading-tight text-colorBlack lg:mb-[50px] md:mb-10 mb-8">
-                Swift Support's mission is to streamline customer interactions
+                SwiftSupport's mission is to streamline customer interactions
                 and reduce wait times by providing businesses with&nbsp;
                 <span className="bg-clip-text text-transparent bg-text-theme-gradient">
                   AI Automation, AI Co-pilots, & AI Agents.
