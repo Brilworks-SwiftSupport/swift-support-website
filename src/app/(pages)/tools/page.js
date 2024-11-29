@@ -7,7 +7,7 @@ const page = () => {
     {
       imageUrl: "/images/youtube-1.png",
       title: "YouTube Video Summarizer",
-      description: "Summarize YouTube videos and identify the important ideas and facts of videos",
+      description: "Get concise summaries of YouTube videos on seconds - save time and learn faster.",
       link: "/tools/youtube-summary",
       button_title:'Generate Summary'
     },
@@ -32,15 +32,22 @@ const page = () => {
       link: "/tools/ai-paraphraser",
       button_title: "Detect AI Content",
     },
+    {
+      imageUrl: "/images/voice-to-text.png",
+      title: "Voice to Text",
+      description: "Convert spoken words into accurate, editable text instantly",
+      link: "/tools/voice-to-text",
+      button_title:'Transcribe Now'
+    }
     
-   
   ];
+
 
   return (
     <main className="min-h-[500px]">
      
       <div className="mt-20"> 
-        <div className="container mx-auto py-8 px-4">
+        <div className="container mx-auto py-8 px-4 max-w-[1200px]">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {tools.map((tool, index) => (
               <Tools
