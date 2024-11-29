@@ -1,34 +1,57 @@
-
 import { Tools } from "@/app/components/Tools/Tools";
 import React from "react";
 
 const page = () => {
   const tools = [
     {
-      imageUrl: "/images/youtube-1.png",
+      imageUrl: "/images/youtube_summary.svg",
       title: "YouTube Video Summarizer",
       description: "Get concise summaries of YouTube videos on seconds - save time and learn faster.",
       link: "/tools/youtube-summary",
-      button_title:'Generate Summary'
+      button_title: "Generate Summary",
     },
+
+    {
+      imageUrl: "/images/chatpdf.svg",
+      title: "Talk with Document",
+      description:
+        "Ask questions and get answers from your document instantly.",
+      link: "/tools/chat-pdf",
+      button_title: "Ask Now",
+    },
+
+    {
+      imageUrl: "/images/image_generator.svg",
+      title: "AI Image Generator",
+      description:
+        "Create stunning visuals from your ideas with AI-driven precision..",
+      link: "/tools/image-generator",
+      button_title: "Generate Image",
+    },
+
     {
       imageUrl: "/images/ai_plag_banner.png",
       title: "Plagiarism Checker",
-      description: "Quickly scan your content for plagiarism and ensure its originality with AI accuracy.",
+      description:
+        "Quickly scan your content for plagiarism and ensure its originality with AI accuracy.",
       link: "/tools/plagiarism-checker",
       button_title: "Check Plagiarism",
     },
+
     {
       imageUrl: "/images/ai_content.png", // Update this with the correct image path
       title: "AI Content Detector",
-      description: "Identify whether your content is AI-generated or human-crafted with advanced detection.",
+      description:
+        "Identify whether your content is AI-generated or human-crafted with advanced detection.",
       link: "/tools/ai-content-detector",
       button_title: "Detect AI Content",
     },
+
     {
       imageUrl: "/images/ai_para_banner.png", // Update this with the correct image path
       title: "AI Paraphraser",
-      description: "Effortlessly rephrase text to make it unique and clearer with AI-powered paraphrasing.",
+      description:
+        "Effortlessly rephrase text to make it unique and clearer with AI-powered paraphrasing.",
       link: "/tools/ai-paraphraser",
       button_title: "Detect AI Content",
     },
@@ -45,10 +68,17 @@ const page = () => {
 
   return (
     <main className="min-h-[500px]">
-     
-      <div className="mt-20"> 
-        <div className="container mx-auto py-8 px-4 max-w-[1200px]">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="mt-20">
+        <div className="container mx-auto py-8 px-4">
+          {/* Title Section */}
+          <h1 className="text-center text-[54px] font-urbanist font-bold leading-[72px] mt-20 mb-10">
+            <span>Explore our</span>
+            <span className="relative inline-block mb-2">
+              AI Tools
+              <div className="absolute left-0 -bottom-1 banner-underline !max-w-none"></div>
+            </span>
+          </h1>
+          <div className="flex items-center justify-center gap-16 flex-wrap mx-auto">
             {tools.map((tool, index) => (
               <Tools
                 key={index}
@@ -57,7 +87,6 @@ const page = () => {
                 description={tool.description}
                 link={tool.link}
                 button_title={tool.button_title}
-
               />
             ))}
           </div>

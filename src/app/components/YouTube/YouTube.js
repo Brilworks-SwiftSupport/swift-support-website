@@ -3,10 +3,9 @@ import React, { useState, useEffect } from "react";
 import YouTube from "react-youtube";
 import axios from "axios";
 import { YoutubeTranscript } from "youtube-transcript";
-import freeForever from "@/app/images/freeForever.svg"
+import freeForever from "@/app/images/freeForever.svg";
 import Image from "next/image";
 import BannerLine from "../Tools/BannerLine";
-
 
 const YouTubeSummarizer = () => {
   const [youtubeUrl, setYoutubeUrl] = useState("");
@@ -20,7 +19,6 @@ const YouTubeSummarizer = () => {
   const [activeTab, setActiveTab] = useState("summary"); // Default to "summary"
   const [tools, setTools] = useState([]);
 
-
   const videoUrls = {
     "Automating Emails": "https://www.youtube.com/watch?v=fclfUlRC9MU",
     "Swiftsupport Overview": "https://www.youtube.com/watch?v=jIYZddc4f0A",
@@ -31,26 +29,24 @@ const YouTubeSummarizer = () => {
     setYoutubeUrl(videoUrls[item]);
   };
   const extractVideoId = (youtubeUrl) => {
-    const regex = /(?:https?:\/\/(?:www\.)?youtube\.com\/(?:[^\/\n\s]+\/\S+\/|\S*?v=|(?:[A-Za-z0-9-]+&)*))([\w-]{11})/;
+    const regex =
+      /(?:https?:\/\/(?:www\.)?youtube\.com\/(?:[^\/\n\s]+\/\S+\/|\S*?v=|(?:[A-Za-z0-9-]+&)*))([\w-]{11})/;
     const match = youtubeUrl.match(regex);
     return match && match[1] ? match[1] : null;
   };
 
   const handleSummaryClick = () => {
-
     setActiveTab("summary");
-
-
   };
-
-
 
   useEffect(() => {
     // Fetch data from the API
     const fetchData = async () => {
       try {
-        const response = await fetch("https://devapi.swiftsupport.ai/api/youtube_summary"
-          , { method: "GET" }); // Adjust the URL if necessary
+        const response = await fetch(
+          "https://devapi.swiftsupport.ai/api/youtube_summary",
+          { method: "GET" }
+        ); // Adjust the URL if necessary
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -58,11 +54,13 @@ const YouTubeSummarizer = () => {
 
         // Map API response to match Tools component props
         const formattedTools = data.youtube_summary_list.map((item) => ({
-          imageUrl: `https://img.youtube.com/vi/${extractVideoId(item.youtube_url)}/0.jpg`,
+          imageUrl: `https://img.youtube.com/vi/${extractVideoId(
+            item.youtube_url
+          )}/0.jpg`,
           title: "Summary",
           description: item.summary,
           link: item.youtube_url,
-          showFullDescription: false
+          showFullDescription: false,
         }));
 
         setTools(formattedTools); // Update tools state
@@ -100,7 +98,6 @@ const YouTubeSummarizer = () => {
           headers: {
             "Content-Type": "application/json",
           },
-
         }
       );
 
@@ -120,13 +117,13 @@ const YouTubeSummarizer = () => {
     },
   };
   const handleSubmit = async (e) => {
-    e.preventDefault()
-  
+    e.preventDefault();
+
     if (!youtubeUrl.trim()) {
       alert("Please provide a valid YouTube URL!");
       return;
     }
-   
+
     const videoId = extractVideoId(youtubeUrl);
     setVideoId(videoId);
     const transcriptData = await YoutubeTranscript.fetchTranscript(videoId);
@@ -137,32 +134,34 @@ const YouTubeSummarizer = () => {
 
   return (
     <main className="flex mt-32 justify-center w-full max-w-[90%] mx-auto">
-
       <div className="container bg-transparent w-full max-w-[90%] mx-auto">
-        <Image className="mx-auto" src={freeForever} alt="free-forever" width={"auto"} />
+        <Image
+          className="mx-auto"
+          src={freeForever}
+          alt="free-forever"
+          width={"auto"}
+        />
         <br></br>
         {/* Title Section */}
         <h1 className="text-center text-4xl md:text-5xl font-extrabold mb-4 w-full max-w-[90%] mx-auto">
-          <span>
-            Cut the clutter, capture the core;
-          </span>
+          <span>Cut the clutter, capture the core;</span>
         </h1>
         <h2 className="text-center text-4xl md:text-5xl font-extrabold mb-4 w-full max-w-[90%] mx-auto">
-          <span>
-            Video summaries at your fingertips
-          </span>
-
+          <span>Video summaries at your fingertips</span>
         </h2>
-        <BannerLine mLeft={"auto"} mRight={"auto"}/>
-      
+        <BannerLine mLeft={"auto"} mRight={"auto"} />
+
         {/* Subtitle */}
-        <p className="text-center text-gray-600 font-bold b-8 mt-5 mb-4">
-          Simply paste your <span className="bg-clip-text text-transparent bg-text-theme-gradient">YouTube link</span>  below and let the magic happen in seconds.
+        <p className="text-center text-gray-600 font-bold b-8 mt-5">
+          Simply paste your{" "}
+          <span className="bg-clip-text text-transparent bg-text-theme-gradient">
+            YouTube link
+          </span>{" "}
+          below and let the magic happen in seconds.
         </p>
    
 
         <form onSubmit={handleSubmit}>
-
           <div className="relative flex items-center w-full mb-6">
             <input
               type="url"
@@ -177,7 +176,6 @@ const YouTubeSummarizer = () => {
               type="submit"
               className="absolute right-0 !px-4 mr-2 py-5 common-button header-btn"
               disabled={loading}
-
             >
               {loading ? "Summarizing..." : "Get Summary"}
             </button>
@@ -217,22 +215,21 @@ const YouTubeSummarizer = () => {
           </div>
         </div>
 
-
         {/* Tabs for Summary and Full Transcript */}
         <div className="flex justify-center gap-4 mt-6">
           <button
-            className={`!px-4 mr-2 py-5 common-button header-btn ${activeTab === "summary"
-              }`}
+            className={`!px-4 mr-2 py-5 common-button header-btn ${
+              activeTab === "summary"
+            }`}
             onClick={handleSummaryClick}
           >
-
-
             Summary
           </button>
 
           <button
-            className={`!px-4 mr-2 py-5 common-button header-btn ${activeTab === "transcript"
-              }`}
+            className={`!px-4 mr-2 py-5 common-button header-btn ${
+              activeTab === "transcript"
+            }`}
             onClick={() => setActiveTab("transcript")}
           >
             Full Transcript
@@ -243,16 +240,15 @@ const YouTubeSummarizer = () => {
         <div className="mt-5 p-4 rounded">
           {activeTab === "summary" && summary && (
             <div className="flex mt-4">
-
               <div className="w-1/2">
                 <h3 className="text-[#3B82F6] font-bold">Summary:</h3>
                 <p>{summary}</p>
               </div>
               <div className="w-full sm:w-1/2 p-4">
-
                 {videoId ? (
                   <YouTube videoId={videoId} opts={opts} className="h-full" />
-                ) : (<></>
+                ) : (
+                  <></>
                 )}
               </div>
             </div>
@@ -265,7 +261,6 @@ const YouTubeSummarizer = () => {
           )}
         </div>
 
-
         <h2 className="text-center text-4xl md:text-5xl font-extrabold mb-4 w-full max-w-[90%] mx-auto">
           Just In - The Latest Summaries for You!
         </h2>
@@ -273,7 +268,10 @@ const YouTubeSummarizer = () => {
           <div className="container mx-auto py-8 px-4">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {tools.map((tool, index) => (
-                <div key={index} className="p-4 bg-gray-100 rounded shadow flex flex-col items-center">
+                <div
+                  key={index}
+                  className="p-4 bg-gray-100 rounded shadow flex flex-col items-center"
+                >
                   <img
                     src={tool.imageUrl}
                     alt={tool.title}
@@ -305,20 +303,12 @@ const YouTubeSummarizer = () => {
           </div>
         </div>
 
-
-
         {error && (
           <div className="mt-5 p-4 bg-red-100 text-red-800 rounded">
             <p>Error: {error}</p>
           </div>
         )}
-
-
-
-
       </div>
-
-
     </main>
   );
 };
