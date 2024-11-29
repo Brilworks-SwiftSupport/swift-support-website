@@ -11,7 +11,7 @@ const Tools = ({
   
 }) => {
   return (
-    <div className="max-w-sm border border-gray-200 rounded-lg shadow hover:shadow-lg transition-shadow duration-300 bg-[#FFFEEE]">
+    <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow hover:shadow-lg transition-shadow duration-300 bg-[#FFFEEE]">
       <a href={link}>
         <img 
           className="rounded-t-lg w-full h-48 object-cover" 
