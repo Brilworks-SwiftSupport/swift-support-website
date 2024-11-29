@@ -54,7 +54,6 @@ const Plagiarism = () => {
           }
       
           const data = await response.json();
-          console.log(data); // Debug log to check API response
           return data; // Ensure this matches the field returned by your API
         } catch (err) {
           console.error("Fetch error:", err); // Log the error for debugging
@@ -82,8 +81,6 @@ const Plagiarism = () => {
           const plagiarismPercentage = data.plagiarism_percentage
           const plagiarismSources = data.matches.map(each=>(each.link));
           const originalText = data.original_text
-          console.log(plagiarismSources)
-          console.log(plagiarismPercentage , plagiarismSources)
           setPercentage(plagiarismPercentage);
           setOriginalText(originalText)
           setSources(plagiarismSources);  // Update percentage state with the result

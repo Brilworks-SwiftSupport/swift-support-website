@@ -85,14 +85,20 @@ const VoiceToTextConverter = () => {
       
     };
 
-    const TextAnalyzer = () => {
+    const TextAnalyzer = (text) => {
 
-      // Calculate word count
-      const wordCount = textData.trim().split(/\s+/).length;
+
+      const wordCount = text
+        .replace(/[^\S\r\n]+/g, ' ') 
+        .trim() 
+        .split(' ') 
+        .filter(word => word.length > 0).length; 
+      
       setwordCount(wordCount)
 
+
       // Calculate sentence count
-      const sentenceCount = textData
+      const sentenceCount = text
         .split(/[.!?]+/)
         .filter((sentence) => sentence.trim().length > 0).length;
       sentenceCount(sentenceCount)
@@ -126,7 +132,6 @@ const VoiceToTextConverter = () => {
         if (uploadResponse.ok) {
           const uploadData = await uploadResponse.json();
           const doc_url_list = uploadData.s3_url;
-          console.log(doc_url_list)
   
           // Check if doc_url_list is empty
           if (!doc_url_list || doc_url_list.length === 0) {
@@ -150,10 +155,9 @@ const VoiceToTextConverter = () => {
 
           const voiceData = await voiceResponse.json();
           setTextData(voiceData.text_data); 
-          console.log("Text generated:", voiceData.text_data);
         
           setIsSuccess(true);
-          TextAnalyzer();
+          TextAnalyzer(voiceData.text_data);
      
 
           } else {
@@ -191,8 +195,10 @@ const VoiceToTextConverter = () => {
               <div className="flex items-center gap-2 mt-6">
                     <p className="text-[#3B82F6]  items-center mb-2 gap-4 font-bold font-Urbanist text-[24px]">Other Tools:</p>
                     <div className="flex flex-wrap gap-2">
-                      {/* <NavigationButton img={google_voice} href={"/tools/text-to-voice/"} name={"AI Text To Voice"} bgColor={'#FFFFFF'}/> */}
+                      <NavigationButton img={google_voice} href={"/tools/text-to-voice/"} name={"AI Text To Voice"} bgColor={'#FFFFFF'}/>
                       <NavigationButton img={voice_text} href={""} name={"AI Voice To Text"} bgColor={'#FFFEEE'}/>
+                      <NavigationButton img={voice_text} href={"/tools/image-generator/"} name={"AI Image Generator"} bgColor={'#FFFFFF'} />
+                    
                     </div>
                     
               </div>
@@ -219,7 +225,7 @@ const VoiceToTextConverter = () => {
               Upload Your Audio File
             </h3>
             <h6 className="text-center font-Urbanist font-medium leading-[24px] mt-3 text-[16px] text-[#212121]">
-              Drag or Upload Audio Files  (Max. 5MB)
+              Drag or Upload Audio Files <br/> MP3 or WAV , Maximum 5MB each
             </h6>
             
           </div>
@@ -272,13 +278,11 @@ const VoiceToTextConverter = () => {
                   alt="copy" 
                   className="absolute bottom-2 right-2 w-6 h-6"
                 />
-               
-
                 </button>
 
                 <div className="absolute rounded-md bg-[#FAFAFA] border border-gray-300 bottom-2 left-2 px-2 py-1 whitespace-nowrap text-sm">
-  {sentenceCount} Sentences | {wordCount} Words
-</div>
+                  {sentenceCount} Sentences | {wordCount} Words
+                </div>
                 
                 
               </div>
