@@ -123,7 +123,7 @@ const Paraphrase = () => {
           </p>
         </div>
 
-        <div className="flex items-center gap-4 mt-11">
+        <div className="flex items-center gap-2 mt-11">
           <p className="text-[#3B82F6] font-bold whitespace-nowrap font-Urbanist text-[24px]">
             Other Tools:
           </p>
