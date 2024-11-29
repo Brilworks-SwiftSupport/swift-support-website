@@ -7,7 +7,7 @@ const NavigationButton = ({ img, href, name, bgColor }) => {
       href={href}
       className="w-[181px] h-[40px] rounded-full flex items-center justify-center ml-1 mb-2"
       style={{
-        background: 'linear-gradient(90deg, #D8EA9A 0%, #AFE5CA 25.5%, #FBB8B8 62.5%, #9B9B9B 100%)',
+        background: 'linear-gradient(255.7deg, #FF8585 21.78%, #56D5FF 42.63%, #DCD536 72.03%)',
         padding: '1px', // Creates spacing for the gradient border
         textDecoration: 'none', // Ensures the text doesn't inherit underlines
       }}
