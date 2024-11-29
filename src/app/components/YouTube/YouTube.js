@@ -153,7 +153,7 @@ const YouTubeSummarizer = () => {
         <BannerLine mLeft={"auto"} mRight={"auto"} />
 
         {/* Subtitle */}
-        <p className="text-center text-gray-600 font-bold b-8 mt-5">
+        <p className="text-center text-gray-600 font-bold b-8 mt-5 mb-3">
           Simply paste your{" "}
           <span className="bg-clip-text text-transparent bg-text-theme-gradient">
             YouTube link
@@ -182,10 +182,10 @@ const YouTubeSummarizer = () => {
           </div>
         </form>
 
-        <div className="flex justify-center items-center gap-4 mb-4">
+        <div className="flex  gap-4 mb-4">
           <p className="text-sm text-red-500 font-bold">
             Note: To use this tool please install this chrome extension{" "}
-            <button className="inline-flex items-center px-3 py-1 text-sm font-medium bg-red-100 text-black-500 rounded-full shadow-sm cursor-pointer hover:bg-red-200">
+            <button className="inline-flex px-3 py-1 text-sm font-medium bg-red-100 text-black-500 rounded-full shadow-sm cursor-pointer hover:bg-red-200">
               <a
                 href="https://chromewebstore.google.com/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf"
                 target="_blank"

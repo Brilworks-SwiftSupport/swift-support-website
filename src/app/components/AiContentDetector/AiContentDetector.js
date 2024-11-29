@@ -36,7 +36,6 @@ const Plagiarism = () => {
           }
       
           const data = await response.json();
-          console.log(data); // Debug log to check API response
           return data; // Ensure this matches the field returned by your API
         } catch (err) {
           console.error("Fetch error:", err); // Log the error for debugging
@@ -63,7 +62,6 @@ const Plagiarism = () => {
           const data = await fetchPlagiarismCheck(inputText);
           const aiPercentage = data.ai_percentage
           const humanPercentage = data.human_percentage
-          console.log(aiPercentage)
           setPercentage(aiPercentage);
           setHumanPercentage(humanPercentage)
         } catch (err) {
