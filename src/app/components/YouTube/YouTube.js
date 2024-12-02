@@ -91,7 +91,7 @@ const YouTubeSummarizer = () => {
 
     try {
       const response = await axios.post(
-        "https://devapi.swiftsupport.ai/api/youtube_summary",
+        `${NEXT_PUBLIC_BE_URL}/youtube_summary`,
         {
           youtube_url: youtubeUrl,
           video_transcript: transcriptText,

@@ -8,6 +8,7 @@ import google_voice from "@/app/images/google_voice.svg"
 import voice_text from "@/app/images/voice_text.svg"
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import imgGenerator from "@/app/images/imgGenerator.svg";
 
 
 const NEXT_PUBLIC_BE_URL= process.env.NEXT_PUBLIC_BE_URL
@@ -197,7 +198,7 @@ const VoiceToTextConverter = () => {
                     <div className="flex flex-wrap gap-2">
                       <NavigationButton img={google_voice} href={"/tools/text-to-voice/"} name={"AI Text To Voice"} bgColor={'#FFFFFF'}/>
                       <NavigationButton img={voice_text} href={""} name={"AI Voice To Text"} bgColor={'#FFFEEE'}/>
-                      <NavigationButton img={voice_text} href={"/tools/image-generator/"} name={"AI Image Generator"} bgColor={'#FFFFFF'} />
+                      <NavigationButton img={imgGenerator} href={"/tools/image-generator/"} name={"AI Image Generator"} bgColor={'#FFFFFF'} />
                     
                     </div>
                     
