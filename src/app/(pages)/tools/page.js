@@ -62,6 +62,13 @@ const page = () => {
       description: "Convert spoken words into accurate, editable text instantly",
       link: "/tools/voice-to-text",
       button_title:'Transcribe Now'
+    },
+    {
+      imageUrl: "/images/text-to-voice.svg",
+      title: "Text to Voice",
+      description: "Transform your text into lifelike, natural-sounding audio with ease.",
+      link: "/tools/text-to-voice",
+      button_title:'Generate Voice'
     }
     
   ];
