@@ -19,9 +19,11 @@ const Plagiarism = () => {
     const [error, setError] = useState("");
     const [activeTab, setActiveTab] = useState("summary"); // Default to "summary"
     const [sources, setSources] = useState([]);
+    const [sourcesPercentage, setSourcesPercentage] = useState([]);
     const [showAll, setShowAll] = useState(false);
     const [text, setOriginalText] = useState(""); // State to store plagiarism percentage
     const [paraphrasingLoading, setParaphrasingLoading] = useState(false); // For paraphrasing
+    const [highlightedText, setHighlightedText] = useState("");
 
     const wordLimit = 2000; // Set the word limit
     const wordCount = inputText.trim().split(/\s+/).filter(Boolean).length; // Count words
@@ -80,17 +82,23 @@ const Plagiarism = () => {
           const data = await fetchPlagiarismCheck(inputText);
           const plagiarismPercentage = data.plagiarism_percentage
           const plagiarismSources = data.matches.map(each=>(each.link));
+          const plagiarismSourcePercentage = data.matches.map(each=>(each.similarity_percentage));
+          const highlightedText = data.highlighted_text
           const originalText = data.original_text
+          console.log (data.highlighted_text)
           setPercentage(plagiarismPercentage);
           setOriginalText(originalText)
-          setSources(plagiarismSources);  // Update percentage state with the result
-          setActiveTab("Check Plagiarism"); // Switch to summary tab on success
+          setSources(plagiarismSources); 
+          setSourcesPercentage(plagiarismSourcePercentage)
+          setHighlightedText(highlightedText);
+          setActiveTab("Check Plagiarism"); // Switch to summary tab on success 
         } catch (err) {
           setError(err.message); // Display error if API call fails
         } finally {
           setLoading(false); // Ensure loading is stopped
         }
       };
+      
 
       const fetchParaphrase = async (input_text, type) => {
         try {
@@ -251,7 +259,19 @@ const Plagiarism = () => {
             {percentage !== "0" && !loading && (
             <div className="plagiarism-result">
               {sources.length > 0 && (
-                <div className="w-full max-w-[90%] font-Urbanist font-normal text-[16px]">
+                <div className="w-full max-w-[100%] font-Urbanist font-normal text-[16px]">
+                  <div className="plagiarism-result mt-6">
+                    <p className="text-[#3B82F6] font-bold whitespace-nowrap text-[24px]">
+                      Plagiarised Content:
+                    </p>
+                    {highlightedText && (
+                      <div
+                        className="mt-4 p-4 border border-gray-300 rounded-lg"
+                        style={{ whiteSpace: "pre-wrap", backgroundColor: "#f9f9f9" }}
+                        dangerouslySetInnerHTML={{ __html: highlightedText }}
+                      />
+                    )}
+                  </div>
                   {/* Title for Source Links */}
                   <p className="text-[#3B82F6] font-bold whitespace-nowrap text-[24px] mt-1">
                     Source Links:
@@ -276,6 +296,10 @@ const Plagiarism = () => {
                         >
                           {source}
                         </a>
+                        {/* Percentage Display */}
+                        <span className="text-gray-900 text-[14px] ml-2">
+                          ({sourcesPercentage[index]}%)
+                        </span>
                       </li>
                     ))}
                   </ul>
@@ -293,7 +317,7 @@ const Plagiarism = () => {
               )}
 
               {/* Response Display */}
-              <div className="w-[1199px] h-[240px] bg-white flex flex-col text-left rounded-[20px] border border-[#E4E4E4] p-4 relative mt-6">
+              <div className="w-full h-[240px] bg-white flex flex-col text-left rounded-[20px] border border-[#E4E4E4] p-4 relative mt-6">
                   {text && (
                       <>
                           <p className="text-gray-800 font-normal overflow-y-auto pr-10">
