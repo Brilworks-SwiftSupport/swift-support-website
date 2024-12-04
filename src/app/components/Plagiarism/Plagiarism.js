@@ -1,5 +1,5 @@
 "use client"
-import React,{ useState } from "react";
+import React, { useState } from "react";
 import freeForever from "@/app/images/freeForever.svg"
 import Image from "next/image";
 import { toast, ToastContainer } from "react-toastify";
@@ -11,22 +11,21 @@ import search from "@/app/images/search.svg"
 
 const NEXT_PUBLIC_BE_URL= process.env.NEXT_PUBLIC_BE_URL
 
-
 const Plagiarism = () => {
-    const [inputText, setInputText] = useState(""); // Text input state
-    const [percentage, setPercentage] = useState("0"); // State to store plagiarism percentage
+    const [inputText, setInputText] = useState(""); 
+    const [percentage, setPercentage] = useState("0"); 
     const [loading, setLoading] = useState(false); 
     const [error, setError] = useState("");
-    const [activeTab, setActiveTab] = useState("summary"); // Default to "summary"
+    const [activeTab, setActiveTab] = useState("summary"); 
     const [sources, setSources] = useState([]);
     const [sourcesPercentage, setSourcesPercentage] = useState([]);
     const [showAll, setShowAll] = useState(false);
-    const [text, setOriginalText] = useState(""); // State to store plagiarism percentage
-    const [paraphrasingLoading, setParaphrasingLoading] = useState(false); // For paraphrasing
+    const [text, setOriginalText] = useState(""); 
+    const [paraphrasingLoading, setParaphrasingLoading] = useState(false); 
     const [highlightedText, setHighlightedText] = useState("");
 
-    const wordLimit = 2000; // Set the word limit
-    const wordCount = inputText.trim().split(/\s+/).filter(Boolean).length; // Count words
+    const wordLimit = 2000; 
+    const wordCount = inputText.trim().split(/\s+/).filter(Boolean).length; 
 
     const handleCopy = () => {
       navigator.clipboard.writeText(text);  
@@ -155,139 +154,150 @@ const Plagiarism = () => {
         }
 
     };
-    
-      
 
-  return (
-    <main className="flex mt-32 justify-center">
-      
-      <div className="container mx-auto max-w-6xl px-4">
-        <Image className="mx-auto" src={freeForever} alt="free-forever" width={"auto"} />
-        <br></br>
-        {/* Title Section */}
-        <div>
-              
-                <p className="text-4xl md:text-5xl font-bold mb-2 w-full max-w-[90%] mx-auto font-Urbanist text-[54px]">Verify Content for Plagiarism with just a Click.</p>
-                <div
-                    className="mx-auto"
-                    style={{
-                        width: "257px",
-                        height: "10px",
-                        background:
-                            "linear-gradient(90deg, #D8EA9A 0%, #AFE5CA 25.5%, #FBB8B8 62.5%, #FFFFFF 87.5%)",
-                        marginLeft: "auto", // To push it towards the right
-                        marginRight: "410px", 
-                    }}
-                ></div>
-                    <p className="text-center text-gray-600 b-8  w-full max-w-[90%] mx-auto mt-2 font-Urbanist font-normal text-[24px]">
-                        Scan your <span className="bg-clip-text text-transparent bg-text-theme-gradient">Text for Plagiarism</span> and safegaurd the originality of your work in seconds.
-                    </p>
-                </div>
+  
+    return (
+      <main className="flex mt-32 justify-center">
+        <div className="container mx-auto max-w-6xl">
+          <Image 
+            className="mx-auto w-auto h-auto mb-3" 
+            src={freeForever} 
+            alt="free-forever" 
+            width={300} 
+            height={100}
+          />
+          
+          {/* Title Section */}
+          <div className="text-center">
+            <p className="text-2xl md:text-4xl lg:text-5xl font-bold mb-5 w-full max-w-[90%] mx-auto font-Urbanist">
+              Verify Content for Plagiarism with just a Click.
+            </p>
+            
+            <div
+              className="mx-auto hidden md:block"
+              style={{
+                width: "257px",
+                height: "10px",
+                background:
+                  "linear-gradient(90deg, #D8EA9A 0%, #AFE5CA 25.5%, #FBB8B8 62.5%, #FFFFFF 87.5%)",
+                marginLeft: "auto",
+                marginRight: "410px", 
+              }}
+            ></div>
+            
+            <p className="text-center text-gray-600 b-8  w-full max-w-[90%] mx-auto mt-2 font-Urbanist font-normal text-[24px] flex-grow">
+              Scan your <span className="bg-clip-text text-transparent bg-text-theme-gradient">Text for Plagiarism</span> and safeguard the originality of your work in seconds.
+            </p>
+          </div>
 
-        <div className="flex items-center gap-2 mt-11">
-                    <p className="text-[#3B82F6] font-bold whitespace-nowrap font-Urbanist text-[24px]">Other Tools:</p>
-                    <div className="flex flex-wrap gap-0">
-                    <NavigationButton img={para} href={"/tools/ai-paraphraser/"} name={"Paraphrasing Tool"} bgColor={'#FFFFFF'}/>
-                    <NavigationButton img={doc} href={""} name={"Plagiarism Checker"} bgColor={'#FFFEEE'}/>
-                    <NavigationButton img={search} href={"/tools/ai-content-detector/"} name={"AI Content Detector"} bgColor={'#FFFFFF'}/>
-                    </div>
-                    <div className="flex flex-wrap gap-4">
-                    <p className="text-[#3B82F6] font-bold whitespace-nowrap ml-20 font-Urbanist text-[24px]">Plagiarism Content</p>
-                    </div>
-                </div>
+          {/* Navigation Buttons */}
+          <div className="flex flex-col md:flex-row items-center gap-2 mt-6 md:mt-11 overflow-x-auto">
+            <p className="text-[#3B82F6] font-bold whitespace-nowrap font-Urbanist text-base md:text-2xl">Other Tools:</p>
+            <div className="flex flex-col md:flex-row flex-wrap gap-0">
+              <NavigationButton img={para} href={"/tools/ai-paraphraser/"} name={"Paraphrasing Tool"} bgColor={'#FFFFFF'}/>
+              <NavigationButton img={doc} href={""} name={"Plagiarism Checker"} bgColor={'#FFFEEE'}/>
+              <NavigationButton img={search} href={"/tools/ai-content-detector/"} name={"AI Content Detector"} bgColor={'#FFFFFF'}/>
+            </div>
+            <div className="hidden md:flex flex-wrap gap-4">
+              <p className="text-[#3B82F6] font-bold whitespace-nowrap ml-20 font-Urbanist text-2xl">Plagiarism Content</p>
+            </div>
+          </div>
         
-        <div className="flex flex-col md:flex-row gap-3 mb-8 mt-2 font-Urbanist text-[18px]">
-        <div className="relative flex-grow" style={{ height: '396px' , width: "789px"}}> {/* Parent div with relative positioning */}
-            <textarea
+          {/* Main Content Area */}
+          <div className="flex flex-col md:flex-row gap-3 mb-8 mt-2 font-Urbanist text-base">
+            <div className="relative flex-grow w-full md:w-[789px] h-[300px] md:h-[396px]">
+              <textarea
                 name="content"
                 id="content"
                 placeholder="Paste your content here to check for plagiarism..."
                 className="w-full h-full py-3 px-4 text-gray-800 bg-white shadow-sm outline-none rounded-[20px] text-left leading-tight border border-[#E4E4E4] resize-none"
                 value={inputText}
-                onChange={handleInputChange}  // Use the state for the textarea value
+                onChange={handleInputChange}
                 required
-            />
-            {/* Word count displayed in the bottom-right corner */}
-            <span
+              />
+              <span
                 className="absolute text-gray-600 text-sm bg-[#F1F5F9] px-2 py-1 rounded-lg shadow"
                 style={{ bottom: '10px', right: '10px' }}
-            >
+              >
                 {wordCount} of {wordLimit} words used
-            </span>
-        </div>
+              </span>
+            </div>
 
-         {/* Box beside the Textarea */}
-         <div className="w-[380px] h-[396px] bg-white flex items-center justify-center rounded-[20px] border border-[#E4E4E4]">
-        <svg className="w-100 h-4/5" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="40" stroke="#E4E4E4" strokeWidth="10" fill="transparent" />
-            <circle
-                cx="50"
-                cy="50"
-                r="40"
-                stroke="#6C63FF"
-                strokeWidth="10"
-                fill="transparent"
-                strokeDasharray="251.2"
-                strokeDashoffset={251.2 - (Math.min(percentage, 100) / 100) * 251.2}  // Progress based on plagiarism percentage
-                style={{
+            {/* Percentage Circular Progress */}
+            <div className="w-full md:w-[380px] h-[300px] md:h-[396px] bg-white flex items-center justify-center rounded-[20px] border border-[#E4E4E4]">
+              <svg className="w-100 h-4/5" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="40" stroke="#E4E4E4" strokeWidth="10" fill="transparent" />
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="40"
+                  stroke="#6C63FF"
+                  strokeWidth="10"
+                  fill="transparent"
+                  strokeDasharray="251.2"
+                  strokeDashoffset={251.2 - (Math.min(percentage, 100) / 100) * 251.2}
+                  style={{
                     transition: 'stroke-dashoffset 0.5s ease-in-out',
                     strokeLinecap: 'round'
-                }}
-                className="progress-circle"
-            />
-            <text x="50" y="55" className="text-center text-lg font-bold" textAnchor="middle">
-                {percentage}% {/* Display the calculated plagiarism percentage */}
-            </text>
-        </svg>
-    </div>
-
-    </div>
-          {/* Tabs for Summary and Full Transcript */}
-        <div className="flex justify-center gap-4 mt-6">
-        <button
-          onClick={handleSubmit} // Use the plagiarism checking handler
-          disabled={loading || !inputText.trim()}
-          className={`!px-4 py-5 common-button header-btn ${
-            loading || !inputText.trim() ? "opacity-50 cursor-not-allowed" : ""
-          }`}
-        >
-          {loading ? "Checking..." : "Check Plagiarism"}
-        </button>
-
+                  }}
+                  className="progress-circle"
+                />
+                <text x="50" y="55" className="text-center text-lg font-bold" textAnchor="middle">
+                  {percentage}% 
+                </text>
+              </svg>
             </div>
-            
-            {percentage !== "0" && !loading && (
+          </div>
+
+          {/* Check Plagiarism Button */}
+          <div className="flex justify-center gap-4 mt-6">
+            <button
+              onClick={handleSubmit}
+              disabled={loading || !inputText.trim()}
+              className={`!px-4 py-5 common-button header-btn ${
+                loading || !inputText.trim() ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+            >
+              {loading ? "Checking..." : "Check Plagiarism"}
+            </button>
+          </div>
+          
+          {/* Plagiarism Results */}
+          {percentage !== "0" && !loading && (
             <div className="plagiarism-result">
               {sources.length > 0 && (
-                <div className="w-full max-w-[100%] font-Urbanist font-normal text-[16px]">
-                  <div className="plagiarism-result mt-6">
-                    <p className="text-[#3B82F6] font-bold whitespace-nowrap text-[24px]">
+                <div className="w-full max-w-[100%] font-Urbanist font-normal text-base">
+                  {/* Plagiarised Content Title with Same Design */}
+                  <div className="flex items-center gap-2 mt-6">
+                    <p className="text-[#3B82F6] font-bold whitespace-nowrap text-xl md:text-2xl">
                       Plagiarised Content:
                     </p>
-                    {highlightedText && (
-                      <div
-                        className="mt-4 p-4 border border-gray-300 rounded-lg"
-                        style={{ whiteSpace: "pre-wrap", backgroundColor: "#f9f9f9" }}
-                        dangerouslySetInnerHTML={{ __html: highlightedText }}
-                      />
-                    )}
                   </div>
-                  {/* Title for Source Links */}
-                  <p className="text-[#3B82F6] font-bold whitespace-nowrap text-[24px] mt-1">
-                    Source Links:
-                  </p>
 
-                  {/* List of Source Links */}
+                  {highlightedText && (
+                    <div
+                      className="mt-4 p-4 border border-gray-300 rounded-lg"
+                      style={{ whiteSpace: "pre-wrap", backgroundColor: "#f9f9f9" }}
+                      dangerouslySetInnerHTML={{ __html: highlightedText }}
+                    />
+                  )}
+
+                  {/* Source Links Section */}
+                  <div className="flex items-center gap-2 mt-6">
+                    <p className="text-[#3B82F6] font-bold whitespace-nowrap text-xl md:text-2xl">
+                      Source Links:
+                    </p>
+                  </div>
+
+                  {/* Rest of the sources list remains the same */}
                   <ul className="mt-2">
                     {(showAll ? sources : sources.slice(0, 2)).map((source, index) => (
                       <li key={index} className="flex items-center space-x-2">
-                        {/* Icon for Links */}
                         <img
                           src="/images/link-2.svg"
                           alt="Link Icon"
                           className="h-5 w-5"
                         />
-                        {/* Link */}
                         <a
                           href={source}
                           target="_blank"
@@ -296,7 +306,6 @@ const Plagiarism = () => {
                         >
                           {source}
                         </a>
-                        {/* Percentage Display */}
                         <span className="text-gray-900 text-[14px] ml-2">
                           ({sourcesPercentage[index]}%)
                         </span>
@@ -304,7 +313,6 @@ const Plagiarism = () => {
                     ))}
                   </ul>
 
-                  {/* Toggle Button to View More/Less Links */}
                   {sources.length > 2 && (
                     <button
                       onClick={() => setShowAll(!showAll)}
@@ -318,54 +326,49 @@ const Plagiarism = () => {
 
               {/* Response Display */}
               <div className="w-full h-[240px] bg-white flex flex-col text-left rounded-[20px] border border-[#E4E4E4] p-4 relative mt-6">
-                  {text && (
-                      <>
-                          <p className="text-gray-800 font-normal overflow-y-auto pr-10">
-                              {text}
-                          </p>
+                {text && (
+                  <>
+                    <p className="text-gray-800 font-normal overflow-y-auto pr-10">
+                      {text}
+                    </p>
 
-                          {/* Copy Button */}
-                          <button
-                              className="absolute top-4 right-4 bg-transparent p-2"
-                              onClick={handleCopy}
-                              aria-label="Copy text"
-                          >
-                              <img
-                                  src="/images/Copy.png"
-                                  alt="Copy"
-                                  className="w-6 h-6"
-                              />
-                          </button>
-                      </>
-                  )}
+                    <button
+                      className="absolute top-4 right-4 bg-transparent p-2"
+                      onClick={handleCopy}
+                      aria-label="Copy text"
+                    >
+                      <img
+                        src="/images/Copy.png"
+                        alt="Copy"
+                        className="w-6 h-6"
+                      />
+                    </button>
+                  </>
+                )}
 
-                  {error && <p className="text-red-500 mt-4">{error}</p>}
+                {error && <p className="text-red-500 mt-4">{error}</p>}
               </div>
-
 
               {/* Paraphrase Button */}
               <div className="relative justify-end gap-3 mt-5 w-full">
-              <button
-                onClick={(e) => handleSubmitParaphrase(e, "common")}
-                disabled={paraphrasingLoading || !text.trim()}
-                className={`!px-4 py-5 common-button header-btn ${
-                  paraphrasingLoading || !text.trim() ? "opacity-50 cursor-not-allowed" : ""
-                }`}
-              >
-                {paraphrasingLoading ? "Paraphrasing..." : "Rephrase"}
-              </button>
-
+                <button
+                  onClick={(e) => handleSubmitParaphrase(e, "common")}
+                  disabled={paraphrasingLoading || !text.trim()}
+                  className={`!px-4 py-5 common-button header-btn ${
+                    paraphrasingLoading || !text.trim() ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
+                >
+                  {paraphrasingLoading ? "Paraphrasing..." : "Rephrase"}
+                </button>
               </div>
-
             </div>
           )}
 
           {/* Global Error Display */}
           {error && <p className="text-red-500">{error}</p>}
-  
-      </div>
-    </main>
-  );
+        </div>
+      </main>
+    );
 };
 
 export default Plagiarism;
