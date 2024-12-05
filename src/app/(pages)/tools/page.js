@@ -6,7 +6,8 @@ const page = () => {
     {
       imageUrl: "/images/youtube_summary.svg",
       title: "YouTube Video Summarizer",
-      description: "Get concise summaries of YouTube videos on seconds - save time and learn faster.",
+      description:
+        "Get concise summaries of YouTube videos on seconds - save time and learn faster.",
       link: "/tools/youtube-summary",
       button_title: "Generate Summary",
     },
@@ -55,24 +56,25 @@ const page = () => {
       link: "/tools/ai-paraphraser",
       button_title: "Detect AI Content",
     },
-    
+
     {
       imageUrl: "/images/voice-to-text.png",
       title: "Voice to Text",
-      description: "Convert spoken words into accurate, editable text instantly",
+      description:
+        "Convert spoken words into accurate, editable text instantly",
       link: "/tools/voice-to-text",
-      button_title:'Transcribe Now'
+      button_title: "Transcribe Now",
     },
+
     {
       imageUrl: "/images/text-to-voice.svg",
       title: "Text to Voice",
-      description: "Transform your text into lifelike, natural-sounding audio with ease.",
+      description:
+        "Transform your text into lifelike, natural-sounding audio with ease.",
       link: "/tools/text-to-voice",
-      button_title:'Generate Voice'
-    }
-    
+      button_title: "Generate Voice",
+    },
   ];
-
 
   return (
     <main className="min-h-[500px]">
@@ -80,7 +82,7 @@ const page = () => {
         <div className="container mx-auto py-8 px-4">
           {/* Title Section */}
           <h1 className="text-center text-[54px] font-urbanist font-bold leading-[72px] mt-20 mb-10">
-            <span>Explore our</span>
+            <span>Explore our</span>{" "}
             <span className="relative inline-block mb-2">
               AI Tools
               <div className="absolute left-0 -bottom-1 banner-underline !max-w-none"></div>

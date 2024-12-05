@@ -380,28 +380,172 @@ const ChatPDF = () => {
     }
   };
 
-  const pdfPrev = () => (
-    <>
-      {showPdfPreview && (
-        <div className="h-[500px] overflow-hidden rounded-3xl border w-1/2 max-h-[500px]">
-          <DocumentsViewer doc={pdfPreviewUrl} />
+  const renderUploadSection = () => (
+    <div className="w-full px-4 md:w-[1200px] md:px-0 mx-auto">
+      <div
+        onDrop={onDrop}
+        onDragOver={onDragOver}
+        onDragLeave={onDragLeave}
+        onClick={() => document.querySelector('input[type="file"]').click()}
+        className={`
+          w-full bg-[#FAFAFA] border-2 border-dashed rounded-xl cursor-pointer pb-4
+          transition-all duration-200 ease-in-out 
+          ${isDragActive ? "border-[#E4E4E4]" : "hover:border-[#1D4ED8]"}
+        `}
+      >
+        <input type="file" className="hidden" accept=".pdf" onChange={onDrop} />
+        {isProcessing ? (
+          <div className="flex flex-col items-center justify-center mt-6 px-4">
+            <div className="text-[#212121] font-urbanist font-medium text-[16px] mt-[14px] text-center">
+              Sit back and relax, we're working on it!
+            </div>
+            <div className="w-[50%] md:w-[20%] mx-auto h-4 bg-transparent rounded-full overflow-hidden mt-[10px]">
+              <div
+                className="h-full bg-gradient-to-r from-[#D8EA9A] via-[#AFE5CA] to-[#FBB8B8] rounded-[12px] transition-all duration-300"
+                style={{ width: `${processingProgress}%` }}
+              ></div>
+            </div>
+            <div className="text-[#1D4ED8] font-urbanist font-medium text-[24px] mt-2 text-center">
+              {processingProgress}%
+            </div>
+          </div>
+        ) : fileName ? (
+          <div className="flex items-center justify-center mt-[48px] mb-[28px] px-4">
+            <div className="flex items-center bg-blue-100 rounded-lg p-2 max-w-[600px]">
+              <span className="mr-4 truncate">{fileName}</span>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  clearFile();
+                }}
+                className="text-red-500 hover:text-red-700"
+              >
+                <X size={20} />
+              </button>
+            </div>
+          </div>
+        ) : (
+          <>
+            <h3 className="w-8 h-8 mx-auto mt-4 text-[#1D4ED8] font-rehular">
+              <Upload size={32} />
+            </h3>
+            <h3 className="text-center font-Urbanist font-semibold leading-[24px] mt-2 text-[24px] text-[#1D4ED8]">
+              Upload Files
+            </h3>
+            <h6 className="text-center font-Urbanist font-medium leading-[24px] mt-3 text-[16px] text-[#212121]">
+              Drag or Upload PDF Files
+            </h6>
+          </>
+        )}
+
+        <button
+          onClick={(e) => {
+            uploadFile();
+            e.stopPropagation();
+          }}
+          className={`w-[106px] h-[46px] rounded-[100px] font-medium text-center font-Urbanist text-[16px] transition-colors duration-200 float-right mt-7 ${
+            file && !isProcessing
+              ? "bg-[#212121] text-white hover:opacity-90"
+              : "bg-gray-300 text-white cursor-not-allowed"
+          } ${
+            isProcessing
+              ? "border border-black w-[126px] h-[46px] bg-white"
+              : ""
+          }`}
+          disabled={!file || isProcessing}
+        >
+          {isProcessing ? (
+            <div className="flex items-center justify-center w-full h-full">
+              <span className="bg-clip-text text-transparent bg-text-theme-gradient">
+                {loadingText}
+              </span>
+            </div>
+          ) : (
+            "Proceed"
+          )}
+        </button>
+      </div>
+    </div>
+  );
+
+  const renderChatbotSection = () => (
+    <div className="w-full px-4 md:w-[1200px] md:px-0 mx-auto">
+      {isChatbotReady && (
+        <div className="flex flex-col md:flex-row items-center justify-center p-4 gap-4">
+          {/* PDF Preview (Mobile: Full width, Desktop: Half width) */}
+          <div className="w-full md:w-1/2 h-[300px] md:h-[500px] overflow-hidden rounded-3xl border">
+            <DocumentsViewer doc={pdfPreviewUrl} />
+          </div>
+
+          {/* Chatbot Interface */}
+          <div className="w-full md:w-1/2 h-[500px] flex flex-col">
+            {/* Messages Container */}
+            <div className="flex-grow overflow-y-auto mb-1 p-4 bg-gray-100 rounded-3xl">
+              {messages.map((msg, index) => (
+                <div
+                  key={index}
+                  className={`mb-[2px] p-3 rounded-lg ${
+                    msg.role === "user"
+                      ? "bg-blue-100 text-right self-end"
+                      : "bg-gray-200 text-left self-start"
+                  }`}
+                >
+                  {msg.content}
+                </div>
+              ))}
+              {streamingResponse && (
+                <div className="mb-4 p-3 rounded-lg bg-gray-200 text-left self-start">
+                  {streamingResponse}
+                </div>
+              )}
+              {isLoading && !streamingResponse && (
+                <div className="text-center text-gray-500">
+                  Generating response...
+                </div>
+              )}
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* Message Input */}
+            <div className="relative flex items-center justify-center w-full mt-2">
+              <div className="flex items-center bg-white border border-gray-300 rounded-3xl py-3 w-full md:w-[568px] h-[56px]">
+                <input
+                  type="text"
+                  value={currentMessage}
+                  onChange={(e) => setCurrentMessage(e.target.value)}
+                  onKeyPress={(e) => e.key === "Enter" && sendMessage()}
+                  placeholder="Type your question here..."
+                  className="flex-grow w-full ml-4 focus:outline-none"
+                />
+                <button
+                  onClick={sendMessage}
+                  disabled={!currentMessage.trim() || isLoading}
+                  className="flex items-center justify-center text-white font-urbanist font-semibold text-[16px] 
+                    bg-black leading-[24px] rounded-full mr-1 py-3 w-[85px] h-[46px]"
+                >
+                  Send
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       )}
-    </>
+    </div>
   );
 
   return (
-    <main className="flex mt-32 justify-center">
-      <div className="container mx-auto max-w-auto bg-transparent mt-12">
+    <main className="mt-12 md:mt-32 px-4 md:px-0">
+      <div className="container mx-auto max-w-full bg-transparent">
         <Image
-          className="mx-auto"
+          className="mx-auto w-auto h-auto"
           src={freeForever}
           alt="free-forever"
-          width={"auto"}
+          width={300}
+          height={100}
         />
 
         {/* Title Section */}
-        <h1 className="text-center text-[54px] font-urbanist font-bold leading-[72px] mb-4 mt-6">
+        <h1 className="text-center text-3xl md:text-[54px] font-urbanist font-bold leading-[1.2] mb-4 mt-6">
           <span className="relative inline-block">
             Upload.
             <div className="absolute left-0 banner-underline !max-w-none"></div>
@@ -410,163 +554,18 @@ const ChatPDF = () => {
         </h1>
 
         {/* Subtitle */}
-        <p className="relative text-center text-#212121 font-urbanist font-medium text-[24px] mt-6">
+        <p className="relative text-center text-#212121 font-urbanist font-medium text-base md:text-[24px] mt-6 px-4">
           Simply{" "}
           <span className="bg-clip-text text-transparent bg-text-theme-gradient">
             Upload a Document
           </span>{" "}
           and get accurate answers to your questions in seconds.
-          <div className="absolute w-[1200px] h-[35px] left-1/2 transform "></div>
         </p>
 
         {/* Upload Box */}
-        <div className="rounded-xl mt-16 mb-10 w-[100%] flex flex-col items-center justify-center">
-          <div
-            onDrop={onDrop}
-            onDragOver={onDragOver}
-            onDragLeave={onDragLeave}
-            onClick={() => document.querySelector('input[type="file"]').click()}
-            className={`
-              w-[1200px] bg-[#FAFAFA] border-2 border-dashed rounded-xl cursor-pointer pb-4
-              transition-all duration-200 ease-in-out 
-              ${isDragActive ? "border-[#E4E4E4]" : "hover:border-[#1D4ED8]"}
-            `}
-          >
-            <input
-              type="file"
-              className="hidden"
-              accept=".pdf"
-              onChange={onDrop}
-            />
-            {isProcessing ? (
-              <div className="flex flex-col items-center justify-center mt-6 px-4">
-                {/* Progress Bar */}
-                <div className="text-[#212121] font-urbanist font-medium text-[16px] mt-[14px]">
-                  Sit back and relax, we're working on it!
-                </div>
-                <div className="w-[20%] mx-auto h-4 bg-transparent rounded-full overflow-hidden mt-[10px]">
-                  <div
-                    className="h-full bg-gradient-to-r from-[#D8EA9A] via-[#AFE5CA] to-[#FBB8B8] rounded-[12px] transition-all duration-300"
-                    style={{ width: `${processingProgress}%` }}
-                  ></div>
-                </div>
-                <div className="text-[#1D4ED8] font-urbanist font-medium text-[24px] mt-2 text-center">
-                  {processingProgress}%
-                </div>
-              </div>
-            ) : fileName ? (
-              <div className="flex items-center justify-center mt-[66px] mb-[26px] px-4">
-                <div className="flex items-center bg-blue-100 rounded-lg p-2 max-w-[600px]">
-                  <span className="mr-4 truncate">{fileName}</span>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      clearFile();
-                    }}
-                    className="text-red-500 hover:text-red-700"
-                  >
-                    <X size={20} />
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <>
-                <h3 className="w-8 h-8 mx-auto mt-8 text-[#1D4ED8] font-rehular">
-                  <Upload size={32} />
-                </h3>
-                <h3 className="text-center font-Urbanist font-semibold leading-[24px] mt-2 text-[24px] text-[#1D4ED8]">
-                  Upload Files
-                </h3>
-                <h6 className="text-center font-Urbanist font-medium leading-[24px] mt-3 text-[16px] text-[#212121]">
-                  Drag or Upload PDF Files
-                </h6>
-              </>
-            )}
-
-            <button
-              onClick={(e) => {
-                uploadFile();
-                e.stopPropagation();
-              }}
-              className={`w-[106px] h-[46px] rounded-[100px] font-medium text-center font-Urbanist text-[16px] transition-colors duration-200 float-right mt-4 mr-4 ${
-                file && !isProcessing
-                  ? "bg-[#212121] text-white hover:opacity-90"
-                  : "bg-gray-300 text-white cursor-not-allowed"
-              } ${
-                isProcessing
-                  ? "border border-black w-[126px] h-[46px] bg-white"
-                  : ""
-              }`}
-              disabled={!file || isProcessing}
-            >
-              {isProcessing ? (
-                <div className="flex items-center justify-center w-full h-full">
-                  <span className="bg-clip-text text-transparent bg-text-theme-gradient">
-                    {loadingText}
-                  </span>
-                </div>
-              ) : (
-                "Proceed"
-              )}
-            </button>
-          </div>
-
-          {/* Chatbot Section */}
-          {isChatbotReady && (
-            <div className="w-[1200px] h-[fit] flex flex-row items-center justify-center p-4 gap-4">
-              {pdfPrev()}
-              <div className="flex flex-col h-[500px] w-1/2 ">
-                <div className="flex-grow overflow-y-auto mb-1 p-4 bg-gray-100 rounded-3xl">
-                  {messages.map((msg, index) => (
-                    <div
-                      key={index}
-                      className={`mb-[2px] p-3 rounded-lg ${
-                        msg.role === "user"
-                          ? "bg-blue-100 text-right self-end"
-                          : "bg-gray-200 text-left self-start"
-                      }`}
-                    >
-                      {msg.content}
-                    </div>
-                  ))}
-                  {/* Streaming response */}
-                  {streamingResponse && (
-                    <div className="mb-4 p-3 rounded-lg bg-gray-200 text-left self-start">
-                      {streamingResponse}
-                    </div>
-                  )}
-                  {isLoading && !streamingResponse && (
-                    <div className="text-center text-gray-500">
-                      Generating response...
-                    </div>
-                  )}
-                  {/* Ref to scroll to bottom */}
-                  <div ref={messagesEndRef} />
-                </div>
-
-                <div className="relative flex items-center justify-center w-full">
-                  <div className="flex items-center bg-white border border-gray-300 rounded-3xl py-3 w-[568px] h-[56px]">
-                    <input
-                      type="text"
-                      value={currentMessage}
-                      onChange={(e) => setCurrentMessage(e.target.value)}
-                      onKeyPress={(e) => e.key === "Enter" && sendMessage()}
-                      placeholder="Type your question here..."
-                      className="flex-grow w-[446px] h-[20px] ml-4"
-                    />
-                    <button
-                      onClick={sendMessage}
-                      disabled={!currentMessage.trim() || isLoading}
-                      className="flex items-center justify-center text-white font-urbanist font-semibold text-[16px] 
-                              bg-black leading-[24px] rounded-full mr-1 py-3 w-[85px] h-[46px]"
-                    >
-                      Send
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
+        <div className="rounded-xl mt-8 md:mt-16 mb-10 flex flex-col items-center justify-center">
+          {renderUploadSection()}
+          {renderChatbotSection()}
         </div>
       </div>
     </main>
