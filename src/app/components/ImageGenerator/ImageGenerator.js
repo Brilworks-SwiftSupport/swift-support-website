@@ -21,8 +21,8 @@ const ImageGenerator = () => {
   const imageSizeOptions = [
     { value: "", label: "Select Size" },
     { value: "1024x1024", label: "1024x1024" },
-    { value: "1792x1024", label: "1792x1024" },
-    { value: "1024x1792", label: "1024x1792" },
+    // { value: "1792x1024", label: "1792x1024" },
+    // { value: "1024x1792", label: "1024x1792" },
   ];
 
   // Quick try options
@@ -111,27 +111,28 @@ const ImageGenerator = () => {
   };
 
   return (
-    <main className="flex mt-32 justify-center">
-      <div className="container mx-auto max-w-[1200px] bg-transparent mt-12">
+    <main className="mt-12 md:mt-32 px-4 md:px-0">
+      <div className="container mx-auto max-w-[100%] md:max-w-[80%] bg-transparent">
         <Image
-          className="mx-auto"
+          className="mx-auto w-auto h-auto"
           src={freeForever}
           alt="free-forever"
-          width={"auto"}
+          width={300}
+          height={100}
         />
 
         {/* Title Section */}
-        <h1 className="text-center text-[54px] font-urbanist font-bold leading-[72px] mb-4 mt-6">
+        <h1 className="text-center text-2xl sm:text-3xl md:text-[54px] font-urbanist font-bold leading-[1.2] mb-4 mt-6">
           <span>Create Stunning </span>
           <span className="relative inline-block">
             Visuals from Your
-            <div className="absolute left-0 banner-underline !w-[740px] !max-w-none"></div>
+            <div className="absolute left-0 banner-underline md:!mt-2 !w-[200px] md:!w-[740px] !max-w-none"></div>
           </span>
           <span> Imagination.</span>
         </h1>
 
         {/* Subtitle */}
-        <p className="relative text-center text-#212121 font-urbanist font-medium text-[24px] mt-6">
+        <p className="relative text-center text-[#212121] font-urbanist font-medium text-sm sm:text-base md:text-[24px] mt-6 px-4">
           Generate beautiful{" "}
           <span className="bg-clip-text text-transparent bg-text-theme-gradient">
             AI-crafted images
@@ -140,8 +141,8 @@ const ImageGenerator = () => {
         </p>
 
         {/* Tools List */}
-        <div className="flex gap-4 mt-[56px] ml-6">
-          <p className="text-[#3B82F6] font-semibold whitespace-nowrap font-Urbanist text-[24px]">
+        <div className="flex flex-wrap gap-4 mt-[30px] md:mt-[56px] md:ml-12 px-4 md:px-0">
+          <p className="text-[#3B82F6] font-semibold whitespace-nowrap font-Urbanist text-sm sm:text-lg md:text-[24px]">
             Other Tools:
           </p>
           <div className="flex items-center flex-wrap gap-2">
@@ -166,9 +167,9 @@ const ImageGenerator = () => {
         </div>
 
         {/* Prompt Box */}
-        <form onSubmit={handleSubmit}>
-          <div className="relative flex items-center justify-center w-full my-2">
-            <div className="flex items-center bg-white border border-gray-300 rounded-[30px] py-3 w-[1200px] h-[56px]">
+        <form onSubmit={handleSubmit} className="px-2">
+          <div className="relative flex flex-col md:flex-row items-center justify-center w-full my-4">
+            <div className="flex flex-col md:flex-row items-center bg-white border border-gray-300 rounded-[30px] py-3 w-full h-auto md:h-[56px] px-4">
               <input
                 type="text"
                 name="prompt"
@@ -176,7 +177,7 @@ const ImageGenerator = () => {
                 onKeyDown={(e) => e.key === "Enter" && handleSubmit(e)}
                 onChange={(e) => setPrompt(e.target.value)}
                 placeholder="Describe what you want to see..."
-                className="flex-grow text-gray-500 font-urbanist font-semibold text-[16px] leading-[24px] outline-none placeholder-gray-350 mx-6"
+                className="flex-grow text-gray-500 font-urbanist font-semibold text-sm md:text-[16px] leading-[24px] outline-none placeholder-gray-350 mb-2 md:mb-0 md:mx-6"
                 required
               />
 
@@ -185,7 +186,7 @@ const ImageGenerator = () => {
                 value={selectedSize}
                 disabled={isLoading}
                 onChange={(e) => setSelectedSize(e.target.value)}
-                className="mr-4 px-2 py-1 border rounded text-gray-700 focus:outline-none focus:border-blue-500"
+                className="w-full md:w-auto px-2 py-1 border rounded text-gray-700 focus:outline-none focus:border-blue-500 mb-2 md:mb-0 md:mr-4"
               >
                 {imageSizeOptions.map((option) => (
                   <option key={option.value} value={option.value}>
@@ -198,13 +199,13 @@ const ImageGenerator = () => {
                 type="submit"
                 disabled={isLoading || !selectedSize}
                 className={`flex items-center justify-center 
-                  ${
-                    isLoading || !selectedSize
-                      ? "bg-gray-400 cursor-not-allowed"
-                      : "bg-black"
-                  } 
-                  text-white font-urbanist font-semibold text-[16px] 
-                  leading-[24px] rounded-full mr-1 py-3 w-[166px] h-[46px]`}
+              ${
+                isLoading || !selectedSize
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-black"
+              } 
+              text-white font-urbanist font-semibold text-sm md:text-[16px] 
+              leading-[24px] rounded-full py-2 md:py-3 px-6 w-full md:w-auto`}
               >
                 {isLoading ? "Generating..." : "Generate Image"}
               </button>
@@ -213,9 +214,9 @@ const ImageGenerator = () => {
         </form>
 
         {/* Quick Try Options */}
-        <div className="flex gap-4 mb-4">
-          <div className="flex text-sm font-semibold ml-6 mt-2">Quick Try:</div>
-          <div className="flex w-[80%] flex-wrap gap-2">
+        <div className="flex flex-col md:flex-row gap-4 mb-4 px-2">
+          <div className="text-sm font-semibold mt-1 md:ml-10">Quick Try:</div>
+          <div className="flex flex-wrap gap-2 overflow-x-auto">
             {quickTryOptions.map((option, index) => (
               <button
                 key={index}
@@ -223,7 +224,7 @@ const ImageGenerator = () => {
                 disabled={isLoading}
                 onClick={() => handleQuickTryClick(option)}
                 className="px-3 py-1 text-[#3B82F6] bg-blue-50 hover:bg-blue-100 rounded-full 
-                  font-urbanist font-semibold text--[14px] transition-colors duration-200 max-w-max truncate"
+              font-urbanist font-semibold text-sm md:text-[14px] transition-colors duration-200 max-w-max truncate"
               >
                 {option}
               </button>
@@ -239,30 +240,28 @@ const ImageGenerator = () => {
         )}
 
         {generatedImage && (
-          <div className="mt-16 w-full h-[507px] border border-[#E4E4E4] rounded-3xl">
-            <div className="flex justify-center py-4">
-              <p className="relative text-center text-#212121 font-urbanist font-medium text-[36px]">
+          <div className="mt-16 w-full px-2 border border-[#E4E4E4] rounded-3xl">
+            <div className="flex flex-col items-center p-4">
+              <p className="text-center text-[#212121] font-urbanist font-medium text-lg sm:text-xl md:text-[36px]">
                 Your{" "}
                 <span className="bg-clip-text text-transparent bg-text-theme-gradient">
                   Image
                 </span>{" "}
                 is Ready.
               </p>
-            </div>
-            <div className="flex justify-center">
               <img
                 src={generatedImage}
                 onClick={handleImagePreview}
-                className="h-[400px] rounded-lg shadow-lg cursor-pointer hover:opacity-80 transition-opacity"
+                className="mt-4 w-full max-w-[400px] md:max-w-[600px] rounded-lg shadow-lg cursor-pointer hover:opacity-80 transition-opacity"
               />
             </div>
           </div>
         )}
         {generatedImage && (
-          <div className="mt-6 mr-2 flex justify-end">
+          <div className="mt-6 flex justify-center">
             <button
               onClick={handleDownload}
-              className="w-[171px] h-[46px] bg-black text-white text-6 font-bold py-2 px-4 rounded-full"
+              className="w-[171px] h-[46px] bg-black text-white text-sm md:text-base font-bold py-2 px-4 rounded-full"
             >
               Download Image
             </button>

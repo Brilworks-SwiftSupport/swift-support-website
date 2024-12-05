@@ -5,9 +5,6 @@ import axios from "axios";
 import { YoutubeTranscript } from "youtube-transcript";
 import freeForever from "@/app/images/freeForever.svg";
 import Image from "next/image";
-import BannerLine from "../Tools/BannerLine";
-
-const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
 const YouTubeSummarizer = () => {
   const [youtubeUrl, setYoutubeUrl] = useState("");
@@ -20,6 +17,8 @@ const YouTubeSummarizer = () => {
   const [error, setError] = useState("");
   const [activeTab, setActiveTab] = useState("summary"); // Default to "summary"
   const [tools, setTools] = useState([]);
+
+  const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
   const videoUrls = {
     "Automating Emails": "https://www.youtube.com/watch?v=fclfUlRC9MU",
@@ -134,26 +133,28 @@ const YouTubeSummarizer = () => {
   };
 
   return (
-    <main className="flex mt-32 justify-center w-full max-w-[90%] mx-auto">
-      <div className="container bg-transparent w-full max-w-[90%] mx-auto">
+    <main className="mt-12 md:mt-32 px-4 md:px-0">
+      <div className="container mx-auto max-w-[100%] md:max-w-[80%] bg-transparent">
         <Image
-          className="mx-auto"
+          className="mx-auto w-auto h-auto"
           src={freeForever}
           alt="free-forever"
-          width={"auto"}
+          width={300}
+          height={100}
         />
-        <br></br>
+
         {/* Title Section */}
-        <h1 className="text-center text-4xl md:text-5xl font-extrabold mb-4 w-full max-w-[90%] mx-auto">
-          <span>Cut the clutter, capture the core;</span>
+        <h1 className="text-center text-3xl md:text-[54px] font-urbanist font-bold leading-[1.2] mb-4 mt-6">
+          <span>Cut the clutter, capture the core;</span>{" "}
+          <span className="relative inline-block">
+            Video summaries
+            <div className="absolute left-0 banner-underline !max-w-md"></div>{" "}
+            at your fingertips
+          </span>
         </h1>
-        <h2 className="text-center text-4xl md:text-5xl font-extrabold mb-4 w-full max-w-[90%] mx-auto">
-          <span>Video summaries at your fingertips</span>
-        </h2>
-        <BannerLine mLeft={"auto"} mRight={"auto"} />
 
         {/* Subtitle */}
-        <p className="text-center text-gray-600 font-bold b-8 mt-5 mb-3">
+        <p className="relative text-center text-#212121 font-urbanist font-medium text-base md:text-[24px] mt-6 px-4">
           Simply paste your{" "}
           <span className="bg-clip-text text-transparent bg-text-theme-gradient">
             YouTube link
@@ -162,12 +163,12 @@ const YouTubeSummarizer = () => {
         </p>
 
         <form onSubmit={handleSubmit}>
-          <div className="relative flex items-center w-full mb-6">
+          <div className="relative flex items-center w-full my-3 mt-16">
             <input
               type="url"
               name="youtubeUrl"
               placeholder="Paste your link here..."
-              className="w-full py-3 px-4 text-gray-800 bg-gray-100 shadow-sm outline-none rounded-[50px] "
+              className="w-full py-3 px-4 text-gray-800 bg-gray-100 shadow-sm outline-none rounded-[50px]"
               onChange={(e) => setYoutubeUrl(e.target.value)}
               value={youtubeUrl}
               required
@@ -181,34 +182,28 @@ const YouTubeSummarizer = () => {
             </button>
           </div>
         </form>
-
-        <div className="flex  gap-4 mb-4">
-          <p className="text-sm text-red-500 font-bold">
+        <div className="flex flex-wrap gap-4 mb-4 items-center">
+          <p className="text-xs sm:text-sm text-red-500 font-bold">
             Note: To use this tool please install this chrome extension{" "}
-            <button className="inline-flex px-3 py-1 text-sm font-medium bg-red-100 text-black-500 rounded-full shadow-sm cursor-pointer hover:bg-red-200">
+            <button className="inline-flex px-3 py-1 text-xs sm:text-sm font-medium bg-red-100 text-black-500 rounded-full shadow-sm cursor-pointer hover:bg-red-200">
               <a
                 href="https://chromewebstore.google.com/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf"
                 target="_blank"
               >
-                {" "}
-                Allow CORS{" "}
+                Allow CORS
               </a>
             </button>{" "}
             and enable the extension
           </p>
         </div>
-
-        <div className="flex items-center gap-4 mb-4">
-          {/* Quick Try Label */}
-          <p className="text-sm">Quick Try:</p>
-
-          {/* List of Items */}
+        <div className="flex flex-wrap gap-4 mb-4">
+          <p className="text-xs sm:text-sm">Quick Try:</p>
           <div className="flex flex-wrap gap-2">
             {Object.keys(videoUrls).map((item, index) => (
               <button
                 key={index}
-                className="inline-flex items-center px-3 py-1 text-sm font-medium bg-red-100 text-red-500 rounded-full shadow-sm cursor-pointer hover:bg-red-200"
-                onClick={() => handleClick(item)} // Handle button click
+                className="inline-flex items-center px-3 py-1 text-xs sm:text-sm font-medium bg-red-100 text-red-500 rounded-full shadow-sm cursor-pointer hover:bg-red-200"
+                onClick={() => handleClick(item)}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -223,11 +218,10 @@ const YouTubeSummarizer = () => {
             ))}
           </div>
         </div>
-
         {/* Tabs for Summary and Full Transcript */}
         <div className="flex justify-center gap-4 mt-6">
           <button
-            className={`!px-4 mr-2 py-5 common-button header-btn ${
+            className={`!px-4 mr-2 py-2 sm:py-5 text-sm sm:text-base common-button header-btn ${
               activeTab === "summary"
             }`}
             onClick={handleSummaryClick}
@@ -236,7 +230,7 @@ const YouTubeSummarizer = () => {
           </button>
 
           <button
-            className={`!px-4 mr-2 py-5 common-button header-btn ${
+            className={`!px-4 mr-2 py-2 sm:py-5 text-sm sm:text-base common-button header-btn ${
               activeTab === "transcript"
             }`}
             onClick={() => setActiveTab("transcript")}
@@ -244,21 +238,18 @@ const YouTubeSummarizer = () => {
             Full Transcript
           </button>
         </div>
-
         {/* Display Summary or Full Transcript */}
         <div className="mt-5 p-4 rounded">
           {activeTab === "summary" && summary && (
-            <div className="flex mt-4">
-              <div className="w-1/2">
+            <div className="flex flex-col sm:flex-row mt-4">
+              <div className="w-full sm:w-1/2">
                 <h3 className="text-[#3B82F6] font-bold">Summary:</h3>
                 <p>{summary}</p>
               </div>
               <div className="w-full sm:w-1/2 p-4">
                 {videoId ? (
-                  <YouTube videoId={videoId} opts={opts} className="h-full" />
-                ) : (
-                  <></>
-                )}
+                  <YouTube videoId={videoId} opts={opts} className="w-full" />
+                ) : null}
               </div>
             </div>
           )}
@@ -269,13 +260,13 @@ const YouTubeSummarizer = () => {
             </>
           )}
         </div>
-
-        <h2 className="text-center text-4xl md:text-5xl font-extrabold mb-4 w-full max-w-[90%] mx-auto">
+        {/* Tools Section */}
+        <h2 className="text-center text-2xl sm:text-4xl md:text-5xl font-extrabold mb-4">
           Just In - The Latest Summaries for You!
         </h2>
         <div className="mt-20">
           <div className="container mx-auto py-8 px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {tools.map((tool, index) => (
                 <div
                   key={index}
@@ -311,7 +302,6 @@ const YouTubeSummarizer = () => {
             </div>
           </div>
         </div>
-
         {error && (
           <div className="mt-5 p-4 bg-red-100 text-red-800 rounded">
             <p>Error: {error}</p>
