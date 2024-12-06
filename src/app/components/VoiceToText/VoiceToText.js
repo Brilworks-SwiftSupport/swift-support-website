@@ -1,304 +1,355 @@
-"use client"
-import freeForever from "@/app/images/freeForever.svg"
+"use client";
 import Image from "next/image";
-import BannerLine from "../Tools/BannerLine";
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
+import { X } from "lucide-react";
 import NavigationButton from "@/app/(pages)/tools/NavigationButton/NavigationButton";
-import google_voice from "@/app/images/google_voice.svg"
-import voice_text from "@/app/images/voice_text.svg"
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import freeForever from "@/app/images/freeForever.svg";
+import textToVoice from "@/app/images/textToVoice.svg";
+import voiceToText from "@/app/images/voiceToText.svg";
 import imgGenerator from "@/app/images/imgGenerator.svg";
 
-
-const NEXT_PUBLIC_BE_URL= process.env.NEXT_PUBLIC_BE_URL
+const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
 const VoiceToTextConverter = () => {
-    const [isDragActive, setIsDragActive] = useState(false);
-    const [file, setFile] = useState(null);
-    const MAX_FILE_SIZE = 5 * 1024 * 1024;
-    const [uploadStatus, setUploadStatus] = useState("");
-    const [dragError, setDragError] = useState(false);
-    const [isDisabled, setIsDisabled] = useState(false); 
-    const [isUploading, setIsUploading] = useState(false);
-    const [isSuccess, setIsSuccess] = useState(false); 
-    const [textData, setTextData] = useState(""); 
-    const [wordCount, setwordCount] = useState(0); 
-    const [sentenceCount, setsentenceCount] = useState(0); 
+  const [isDragActive, setIsDragActive] = useState(false);
+  const [file, setFile] = useState(null);
+  const MAX_FILE_SIZE = 5 * 1024 * 1024;
+  const [uploadStatus, setUploadStatus] = useState("");
+  const [dragError, setDragError] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
+  const [loadingText, setLoadingText] = useState("Processing.");
+  const [isUploading, setIsUploading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [textData, setTextData] = useState("");
+  const [wordCount, setwordCount] = useState(0);
+  const [sentenceCount, setsentenceCount] = useState(0);
 
+  const onDrop = useCallback((e) => {
+    e.preventDefault();
+    setIsDragActive(false);
 
-
-
-
-
-    
-    const onDrop = useCallback((e) => {
-      e.preventDefault();
-      setIsDragActive(false);
-  
-      const files = e.dataTransfer?.files || e.target.files;
-      if (files?.[0]) {
-        const selectedFile = files[0];
-        if (selectedFile.size > MAX_FILE_SIZE) {
-          setUploadStatus(
-            "File size exceeds 5 MB. Please upload a smaller file."
-          );
-          setDragError(true);
-          alert("Error: File size exceeds 5 MB. Please upload a smaller file.");
-        } else {
-          setFile(selectedFile);
-          setDragError(false);
-          setIsDisabled(false);
-        }
-      }
-    }, []);
-
-    const onDragOver = useCallback((e) => {
-      e.preventDefault();
-      setIsDragActive(true);
-  
-      const files = e.dataTransfer?.files;
-      if (files?.[0] && files[0].size > MAX_FILE_SIZE) {
+    const files = e.dataTransfer?.files || e.target.files;
+    if (files?.[0]) {
+      const selectedFile = files[0];
+      if (selectedFile.size > MAX_FILE_SIZE) {
+        setUploadStatus(
+          "File size exceeds 5 MB. Please upload a smaller file."
+        );
         setDragError(true);
+        alert("Error: File size exceeds 5 MB. Please upload a smaller file.");
       } else {
+        setFile(selectedFile);
         setDragError(false);
         setIsDisabled(false);
-
       }
-    }, []);
-  
-    const onDragLeave = useCallback((e) => {
-      e.preventDefault();
-      setIsDragActive(false);
+    }
+  }, []);
+
+  const onDragOver = useCallback((e) => {
+    e.preventDefault();
+    setIsDragActive(true);
+
+    const files = e.dataTransfer?.files;
+    if (files?.[0] && files[0].size > MAX_FILE_SIZE) {
+      setDragError(true);
+    } else {
       setDragError(false);
-    }, []);
+      setIsDisabled(false);
+    }
+  }, []);
 
-    const handleCopy = () => {
-      navigator.clipboard.writeText(textData);
-      toast.success("Text copied to clipboard!", {
-        position: "bottom-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
-      
-    };
+  const onDragLeave = useCallback((e) => {
+    e.preventDefault();
+    setIsDragActive(false);
+    setDragError(false);
+  }, []);
 
-    const TextAnalyzer = (text) => {
+  useEffect(() => {
+    if (isUploading) {
+      const intervalId = setInterval(() => {
+        setLoadingText((prevText) => {
+          if (prevText === "Processing") {
+            return "Processing .";
+          } else if (prevText === "Processing .") {
+            return "Processing . .";
+          } else if (prevText === "Processing . .") {
+            return "Processing . . .";
+          } else {
+            return "Processing";
+          }
+        });
+      }, 500);
 
+      return () => clearInterval(intervalId);
+    }
+  }, [isUploading]);
 
-      const wordCount = text
-        .replace(/[^\S\r\n]+/g, ' ') 
-        .trim() 
-        .split(' ') 
-        .filter(word => word.length > 0).length; 
-      
-      setwordCount(wordCount)
+  const handleCopy = () => {
+    navigator.clipboard.writeText(textData);
+    toast.success("Text copied to clipboard!", {
+      position: "bottom-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+  };
 
+  const TextAnalyzer = (text) => {
+    const wordCount = text
+      .replace(/[^\S\r\n]+/g, " ")
+      .trim()
+      .split(" ")
+      .filter((word) => word.length > 0).length;
 
-      // Calculate sentence count
-      const sentenceCount = text
-        .split(/[.!?]+/)
-        .filter((sentence) => sentence.trim().length > 0).length;
-      sentenceCount(sentenceCount)
-      
-      
-    };
+    setwordCount(wordCount);
 
-    const uploadFile = async () => {
-      
-      if (!file) {
-        setUploadStatus("No file selected.");
-        return;
-      }
-  
-      const formData = new FormData();
-      formData.append("pdf_files", file);
-  
-      try {
-        setUploadStatus("Uploading...");
-        setIsDisabled(true); 
-        setIsUploading(true); 
+    // Calculate sentence count
+    const sentenceCount = text
+      .split(/[.!?]+/)
+      .filter((sentence) => sentence.trim().length > 0).length;
+    sentenceCount(sentenceCount);
+  };
 
-        const uploadResponse = await fetch(
-          `${NEXT_PUBLIC_BE_URL}/upload_document`,
+  const uploadFile = async () => {
+    if (!file) {
+      setUploadStatus("No file selected.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("pdf_files", file);
+
+    try {
+      setUploadStatus("Uploading...");
+      setIsDisabled(true);
+      setIsUploading(true);
+
+      const uploadResponse = await fetch(
+        `${NEXT_PUBLIC_BE_URL}/upload_document`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      if (uploadResponse.ok) {
+        const uploadData = await uploadResponse.json();
+        const doc_url_list = uploadData.s3_url;
+
+        if (!doc_url_list || doc_url_list.length === 0) {
+          setUploadStatus("Upload failed: doc_url_list is empty.");
+          return;
+        }
+
+        setUploadStatus("Upload successful!");
+        const voiceResponse = await fetch(
+          `${NEXT_PUBLIC_BE_URL}/voice_to_text`,
           {
-            method: "POST",
-            body: formData,
-          }
-        );
-  
-        if (uploadResponse.ok) {
-          const uploadData = await uploadResponse.json();
-          const doc_url_list = uploadData.s3_url;
-  
-          // Check if doc_url_list is empty
-          if (!doc_url_list || doc_url_list.length === 0) {
-            setUploadStatus("Upload failed: doc_url_list is empty.");
-            return;
-          }
-  
-          setUploadStatus("Upload successful!");
-          // Call voice_to_text API
-          const voiceResponse = await fetch(`${NEXT_PUBLIC_BE_URL}/voice_to_text`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ audio_url: doc_url_list[0] }), // Pass audio URL
-          });
-
-          if (!voiceResponse.ok) {
-            throw new Error("Voice-to-text conversion failed");
+            body: JSON.stringify({ audio_url: doc_url_list[0] }),
           }
+        );
 
-          const voiceData = await voiceResponse.json();
-          setTextData(voiceData.text_data); 
-        
-          setIsSuccess(true);
-          TextAnalyzer(voiceData.text_data);
-     
+        if (!voiceResponse.ok) {
+          throw new Error("Voice-to-text conversion failed");
+        }
 
-          } else {
-            setUploadStatus("Upload failed...");
-            alert("Error: Upload failed.");
-          }
-      } catch (error) {
-        setUploadStatus("Error: An unexpected error occurred during upload.");
-        setIsDisabled(false); 
+        const voiceData = await voiceResponse.json();
+        setTextData(voiceData.text_data);
+
+        setIsSuccess(true);
+        TextAnalyzer(voiceData.text_data);
+      } else {
+        setUploadStatus("Upload failed...");
+        alert("Error: Upload failed.");
       }
-      finally {
-        setIsUploading(false); 
-        setIsDisabled(false); 
-        setFile(null)
-
-      }
-    };
+    } catch (error) {
+      setUploadStatus("Error: An unexpected error occurred during upload.");
+    } finally {
+      setIsUploading(false);
+      setIsDisabled(false);
+    }
+  };
 
   return (
-    <main className="flex mt-32 justify-center">
-      
-      <div className="container mx-auto max-w-6xl px-4">
-        <Image className="mx-auto mb-5 mt-5" src={freeForever} alt="free-forever" width={"auto"} />
-        
-          <div>
-              
-                <p className="text-4xl md:text-5xl font-bold mb-5 w-full max-w-[80%] mx-auto font-Urbanist text-[54px]">Convert Your Voice into Words with Ease.</p>
-                <BannerLine mLeft={"auto"} mRight={"410px"}/>
+    <main className="mt-12 md:mt-32">
+      <div className="container mx-auto max-w-[100%] md:max-w-[80%] bg-transparent">
+        <Image
+          className="mx-auto w-auto h-auto"
+          src={freeForever}
+          alt="free-forever"
+          width={300}
+          height={100}
+        />
 
-                    <p className="text-center b-8  w-full max-w-[90%] mx-auto mt-2 font-Urbanist font-normal text-[24px]">
-                        Effortlessly transcribe spoken words into <span className="bg-clip-text text-transparent bg-text-theme-gradient">Accurate Text</span> with AI.
-                    </p>
+        {/* Title Section */}
+        <h1 className="text-center text-2xl sm:text-3xl md:text-[54px] font-urbanist font-bold leading-[1.2] mb-4 mt-6 md:mt-12">
+          <span className="inline-block md:mb-6">Create Your</span>{" "}
+          <span className="relative inline-block mb-2 md:mb-6">
+            Voice into Words
+            <div className="absolute left-0 banner-underline md:!mt-2 !w-[210px] md:!w-[675px] !max-w-none"></div>{" "}
+          </span>{" "}
+          <span className="inline-block md:mb-4"> with Ease.</span>
+        </h1>
+
+        {/* Subtitle */}
+        <p className="relative text-center text-[#212121] font-urbanist font-medium text-sm sm:text-base md:text-[24px] mt-6 md:mt-10 px-4">
+          Effortlessly transcribe spoken words into{" "}
+          <span className="bg-clip-text text-transparent bg-text-theme-gradient">
+            Accurate Text
+          </span>{" "}
+          with AI.
+        </p>
+
+        {/* Tools List */}
+        <div className="flex flex-wrap gap-4 mt-[30px] md:mt-[56px] md:ml-12 px-4 md:px-0">
+          <p className="text-[#3B82F6] font-semibold whitespace-nowrap font-Urbanist text-sm sm:text-lg md:text-[24px] mt-1">
+            Other Tools:
+          </p>
+          <div className="flex items-center flex-wrap gap-2 ml-[62px] md:ml-0">
+            <NavigationButton
+              img={textToVoice}
+              href={"/tools/text-to-voice/"}
+              name={"AI Text to Voice"}
+              bgColor={"#FFFFFF"}
+            />
+            <NavigationButton
+              img={voiceToText}
+              name={"AI Voice to Text"}
+              bgColor={"#FFFEEE"}
+            />
+            <NavigationButton
+              img={imgGenerator}
+              href={"/tools/image-generator/"}
+              name={"AI Image Generator"}
+              bgColor={"#FFFFFF"}
+            />
           </div>
+        </div>
 
-              <div className="flex items-center gap-2 mt-6">
-                    <p className="text-[#3B82F6]  items-center mb-2 gap-4 font-bold font-Urbanist text-[24px]">Other Tools:</p>
-                    <div className="flex flex-wrap gap-2">
-                      <NavigationButton img={google_voice} href={"/tools/text-to-voice/"} name={"AI Text To Voice"} bgColor={'#FFFFFF'}/>
-                      <NavigationButton img={voice_text} href={""} name={"AI Voice To Text"} bgColor={'#FFFEEE'}/>
-                      <NavigationButton img={imgGenerator} href={"/tools/image-generator/"} name={"AI Image Generator"} bgColor={'#FFFFFF'} />
-                    
-                    </div>
-                    
-              </div>
-        <div className="border border-gray-300 rounded-md mt-5 h-[300px] p-4 max-w-[100%] mx-auto mb-2">
-          <div onDrop={onDrop} onDragOver={onDragOver}
-                      onDragLeave={onDragLeave}
-                      onClick={() => document.querySelector('input[type="file"]').click()}
-                      className={`
-                        w-[100%] bg-[#FAFAFA] border-2 border-dashed rounded-xl cursor-pointer mb-1 h-[200px]
-                        transition-all duration-200 ease-in-out 
-                        ${isDragActive ? "border-[#E4E4E4]" : "hover:border-[#1D4ED8]"}
-                      `}
-                    >
+        <div className="border border-gray-300 rounded-md mt-5 h-[245px] p-4 max-w-[100%] mx-auto mb-2">
+          <div
+            onDrop={onDrop}
+            onDragOver={onDragOver}
+            onDragLeave={onDragLeave}
+            onClick={() => document.querySelector('input[type="file"]').click()}
+            className={`
+      w-[100%] bg-[#FAFAFA] border-2 border-dashed rounded-xl cursor-pointer mb-1 h-[165px]
+      transition-all duration-200 ease-in-out 
+      ${isDragActive ? "border-[#E4E4E4]" : "hover:border-[#1D4ED8]"}
+    `}
+          >
             <input
               type="file"
               className="hidden"
               accept=".wav, .mp3"
               onChange={onDrop}
             />
-            <h3 className="flex mx-auto mt-8 justify-center">
-              <img src="/images/audio-icon.png" alt="voice to text" className="h-12" />
-            </h3>
-            <h3 className="text-center font-Urbanist font-semibold leading-[24px] mt-2 text-[24px] text-[#1D4ED8]">
-              Upload Your Audio File
-            </h3>
-            <h6 className="text-center font-Urbanist font-medium leading-[24px] mt-3 text-[16px] text-[#212121]">
-              Drag or Upload Audio Files <br/> MP3 or WAV , Maximum 5MB each
-            </h6>
-            
+            {file ? (
+              <div className="flex items-center justify-center mt-[60px] mb-[28px] px-4">
+                <div className="flex items-center bg-blue-100 rounded-lg p-2 max-w-[600px]">
+                  <span className="mr-4 truncate">{file.name}</span>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      window.location.reload(); // Refresh the page
+                    }}
+                    className="text-red-500 hover:text-red-700"
+                  >
+                    <X size={20} />
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <>
+                <h3 className="w-8 h-8 mx-auto mt-4 text-[#1D4ED8] font-rehular">
+                  <img src="/images/audio-icon.png" alt="upload icon" />
+                </h3>
+                <h3 className="text-center font-Urbanist font-semibold leading-[24px] mt-2 text-[24px] text-[#1D4ED8]">
+                  Upload Your Audio File
+                </h3>
+                <h6 className="text-center font-Urbanist font-medium leading-[24px] mt-3 text-[16px] text-[#212121]">
+                  Drag or Upload Audio Files <br /> MP3 or WAV , Maximum 5MB
+                  each
+                </h6>
+              </>
+            )}
           </div>
           <div>
-          <button
+            <button
               onClick={(e) => {
                 uploadFile();
                 e.stopPropagation();
               }}
-              className={`
-                w-[120px] h-[44px] rounded-[100px] font-medium text-center font-Urbanist text-[16px] text-white
-                transition-colors duration-200 float-right mt-4 mr-4
-                ${
-                  file && !isDisabled
-                    ? "bg-[#212121] hover:opacity-90"
-                    : "bg-gray-300 cursor-not-allowed"
-                }
-              `}
-              disabled={!file || isDisabled || isUploading} 
+              className={`w-[106px] h-[46px] rounded-[100px] font-medium text-center font-Urbanist text-[16px] transition-colors duration-200 float-right mt-1 ${
+                file && !isUploading
+                  ? "bg-[#212121] text-white hover:opacity-90"
+                  : "bg-gray-300 text-white cursor-not-allowed"
+              } ${
+                isUploading
+                  ? "border border-black w-[126px] h-[46px] bg-white"
+                  : ""
+              }`}
+              disabled={!file || isUploading}
             >
               {isUploading ? (
-                <div className="flex justify-center items-center">
-                
-                <img src="/images/processing.png" alt="voice to text processing" className="h-12 mx-auto" />
+                <div className="flex items-center justify-center w-full h-full">
+                  <span className="bg-clip-text text-transparent bg-text-theme-gradient">
+                    {loadingText}
+                  </span>
                 </div>
-              ) : "Proceed"}
+              ) : (
+                "Proceed"
+              )}
             </button>
-
           </div>
-          
-          
         </div>
-         
-       
 
-        {isSuccess && ( 
-            <div className="mx-auto max-w-[100%] text-center mt-2 ">
-              <p className="text-xl mt-2 mb-5 max-w-[90%] mx-auto font-Urbanist text-[32px]">
+        {isSuccess && (
+          <div className="mt-16 w-full px-2 border border-[#E4E4E4] rounded-3xl">
+            <div className="flex flex-col items-center">
+              <p className="text-center text-[#212121] font-urbanist font-medium text-lg sm:text-xl md:text-[36px] mt-2 md:my-5">
                 Your{" "}
                 <span className="bg-clip-text text-transparent bg-text-theme-gradient">
                   Text
                 </span>{" "}
                 is Ready.
               </p>
-              <div className="relative border border-gray-300 rounded-md mt-2 h-[250px] p-4 max-w-[100%] mx-auto mb-2">
-                <p className="text-lg">{textData}</p>
+
+              {/* Text Display Section */}
+              <div className="relative border border-gray-300 rounded-3xl mt-2 md:mt-0 h-[250px] p-4 w-[100%] mx-auto mb-2 overflow-auto">
+                {/* Text Content */}
+                <p className="text-lg break-words whitespace-pre-wrap">
+                  {textData}
+                </p>
+
+                {/* Copy Button */}
                 <button onClick={handleCopy}>
-                <img 
-                  src="/images/copy.svg" 
-                  alt="copy" 
-                  className="absolute bottom-2 right-2 w-6 h-6"
-                />
+                  <img
+                    src="/images/copy.svg"
+                    alt="copy"
+                    className="absolute bottom-2 right-2 w-6 h-6"
+                  />
                 </button>
 
+                {/* Sentence and Word Count */}
                 <div className="absolute rounded-md bg-[#FAFAFA] border border-gray-300 bottom-2 left-2 px-2 py-1 whitespace-nowrap text-sm">
                   {sentenceCount} Sentences | {wordCount} Words
                 </div>
-                
-                
               </div>
-             
-
-             
             </div>
-          )}
-    
-  
-      
+          </div>
+        )}
       </div>
       <ToastContainer />
     </main>
-
   );
 };
 

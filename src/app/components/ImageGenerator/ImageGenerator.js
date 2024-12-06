@@ -16,7 +16,6 @@ const ImageGenerator = () => {
   const [generatedImage, setGeneratedImage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [selectedSize, setSelectedSize] = useState("");
-  const [isDownloading, setIsDownloading] = useState(false);
 
   // Image size options
   const imageSizeOptions = [
@@ -73,38 +72,33 @@ const ImageGenerator = () => {
 
   const handleDownload = () => {
     if (generatedImage) {
-      setIsDownloading(true);
-      setTimeout(() => {
-        try {
-          // Convert data URL to a Blob
-          fetch(generatedImage)
-            .then((response) => response.blob())
-            .then((blob) => {
-              const link = document.createElement("a");
-              const url = URL.createObjectURL(blob);
+      try {
+        // Convert data URL to a Blob
+        fetch(generatedImage)
+          .then((response) => response.blob())
+          .then((blob) => {
+            const link = document.createElement("a");
+            const url = URL.createObjectURL(blob);
 
-              // Set the href and download attributes
-              link.href = url;
-              const extension = blob.type.includes("jpeg") ? "jpg" : "png";
-              link.setAttribute("download", `generated-image.${extension}`);
+            // Set the href and download attributes
+            link.href = url;
+            const extension = blob.type.includes("jpeg") ? "jpg" : "png";
+            link.setAttribute("download", `generated-image.${extension}`);
 
-              // Trigger download
-              document.body.appendChild(link);
-              link.click();
-              document.body.removeChild(link);
+            // Trigger download
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
 
-              // Release the object URL
-              URL.revokeObjectURL(url);
-              setIsDownloading(false);
-            });
-        } catch (error) {
-          console.error("Error downloading image:", error);
-          alert(
-            "An error occurred while downloading the image. Please try again."
-          );
-          setIsDownloading(false);
-        }
-      }, 2000);
+            // Release the object URL
+            URL.revokeObjectURL(url);
+          });
+      } catch (error) {
+        console.error("Error downloading image:", error);
+        alert(
+          "An error occurred while downloading the image. Please try again."
+        );
+      }
     } else {
       alert("No image generated yet.");
     }
@@ -129,7 +123,7 @@ const ImageGenerator = () => {
 
         {/* Title Section */}
         <h1 className="text-center text-2xl sm:text-3xl md:text-[54px] font-urbanist font-bold leading-[1.2] mb-4 mt-6 md:mt-12">
-          <span className="inline-block md:mb-4">Create Stunning </span>
+          <span>Create Stunning </span>
           <span className="relative inline-block mb-2 md:mb-6">
             Visuals from Your
             <div className="absolute left-0 banner-underline md:!mt-2 !w-[200px] md:!w-[740px] !max-w-none"></div>
@@ -175,7 +169,7 @@ const ImageGenerator = () => {
         {/* Prompt Box */}
         <form onSubmit={handleSubmit} className="px-2">
           <div className="relative flex flex-col md:flex-row items-center justify-center w-full my-4">
-            <div className="flex flex-col md:flex-row items-center bg-white border border-gray-300 rounded-[30px] py-3 w-full h-auto md:h-[56px] px-3 md:px-1">
+            <div className="flex flex-col md:flex-row items-center bg-white border border-gray-300 rounded-[30px] py-3 w-full h-auto md:h-[56px] px-4">
               <input
                 type="text"
                 name="prompt"
@@ -183,8 +177,7 @@ const ImageGenerator = () => {
                 onKeyDown={(e) => e.key === "Enter" && handleSubmit(e)}
                 onChange={(e) => setPrompt(e.target.value)}
                 placeholder="Describe what you want to see..."
-                className="flex-grow text-gray-500 font-urbanist font-semibold text-sm md:text-[16px] leading-[24px] 
-                outline-none placeholder-gray-350 mb-2 md:mb-0 md:mx-6 mx-4 w-full md:w-auto"
+                className="flex-grow text-gray-500 font-urbanist font-semibold text-sm md:text-[16px] leading-[24px] outline-none placeholder-gray-350 mb-2 md:mb-0 md:mx-6"
                 required
               />
 
@@ -193,7 +186,7 @@ const ImageGenerator = () => {
                 value={selectedSize}
                 disabled={isLoading}
                 onChange={(e) => setSelectedSize(e.target.value)}
-                className="w-full md:w-auto px-2 py-1 border rounded text-gray-700 focus:outline-none focus:border-blue-500 mb-2 md:mb-0 md:mr-4"
+                className="w-full md:w-auto px-2 py-1 border rounded text-gray-700 focus:outline-none focus:border-blue-500 mb-2 md:mb-0 md:mr-2"
               >
                 {imageSizeOptions.map((option) => (
                   <option key={option.value} value={option.value}>
@@ -205,14 +198,14 @@ const ImageGenerator = () => {
               <button
                 type="submit"
                 disabled={isLoading || !selectedSize}
-                className={`flex items-center justify-center 
+                className={`flex items-center justify-center
               ${
                 isLoading || !selectedSize
                   ? "bg-gray-400 cursor-not-allowed"
                   : "bg-black"
               } 
               text-white font-urbanist font-semibold text-sm md:text-[16px] 
-              leading-[24px] rounded-full py-2 md:py-3 px-6 w-full md:w-auto`}
+              leading-[24px] rounded-full py-2 md:py-3 md:-mr-3 px-6 w-full md:w-auto`}
               >
                 {isLoading ? "Generating..." : "Generate Image"}
               </button>
@@ -269,9 +262,8 @@ const ImageGenerator = () => {
             <button
               onClick={handleDownload}
               className="w-[171px] h-[46px] bg-black text-white text-sm md:text-base font-bold py-2 px-4 rounded-full"
-              disabled={isDownloading}
             >
-              {isDownloading ? "Downloading..." : "Download Image"}
+              Download Image
             </button>
           </div>
         )}
