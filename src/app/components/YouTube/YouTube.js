@@ -133,7 +133,7 @@ const YouTubeSummarizer = () => {
   };
 
   return (
-    <main className="mt-12 md:mt-32 px-4 md:px-0">
+    <main className="mt-12 md:mt-32">
       <div className="container mx-auto max-w-[100%] md:max-w-[80%] bg-transparent">
         <Image
           className="mx-auto w-auto h-auto"
@@ -144,12 +144,16 @@ const YouTubeSummarizer = () => {
         />
 
         {/* Title Section */}
-        <h1 className="text-center text-3xl md:text-[54px] font-urbanist font-bold leading-[1.2] mb-4 mt-6">
-          <span>Cut the clutter, capture the core;</span>{" "}
-          <span className="relative inline-block">
-            Video summaries
-            <div className="absolute left-0 banner-underline !max-w-md"></div>{" "}
-            at your fingertips
+        <h1 className="text-center text-2xl sm:text-3xl md:text-[54px] font-urbanist font-bold leading-[1.2] mb-4 mt-6 md:mt-12">
+          <span className="inline-block md:mb-6">
+            Cut the clutter, capture the core;
+          </span>{" "}
+          <span className="inline-block md:mb-6">
+            <span className="relative inline-block mb-2 md:mb-6">
+              Video summaries
+              <div className="absolute left-0 banner-underline md:!mt-2 !w-[275px] md:!w-[720px] !max-w-none"></div>{" "}
+            </span>{" "}
+            <span className="inline-block md:mb-6"> at your fingertips</span>
           </span>
         </h1>
 
@@ -264,44 +268,44 @@ const YouTubeSummarizer = () => {
         <h2 className="text-center text-2xl sm:text-4xl md:text-5xl font-extrabold mb-4">
           Just In - The Latest Summaries for You!
         </h2>
-        <div className="mt-20">
-          <div className="container mx-auto py-8 px-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {tools.map((tool, index) => (
-                <div
-                  key={index}
-                  className="p-4 bg-gray-100 rounded shadow flex flex-col items-center"
+
+        <div className="container mx-auto py-8 px-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {tools.map((tool, index) => (
+              <div
+                key={index}
+                className="p-4 bg-gray-100 rounded shadow flex flex-col items-center"
+              >
+                <img
+                  src={tool.imageUrl}
+                  alt={tool.title}
+                  className="w-full h-40 object-cover rounded"
+                />
+                <h3 className="font-bold text-lg mt-4">...</h3>
+                <p className="mt-2">
+                  {tool.showFullDescription
+                    ? tool.description
+                    : `${tool.description.slice(0, 100)}...`}
+                </p>
+                <button
+                  onClick={() => toggleDescription(index)}
+                  className="text-blue-500 mt-4"
                 >
-                  <img
-                    src={tool.imageUrl}
-                    alt={tool.title}
-                    className="w-full h-40 object-cover rounded"
-                  />
-                  <h3 className="font-bold text-lg mt-4">...</h3>
-                  <p className="mt-2">
-                    {tool.showFullDescription
-                      ? tool.description
-                      : `${tool.description.slice(0, 100)}...`}
-                  </p>
-                  <button
-                    onClick={() => toggleDescription(index)}
-                    className="text-blue-500 mt-4"
-                  >
-                    {tool.showFullDescription ? "Read Less" : "Read More"}
-                  </button>
-                  <a
-                    href={tool.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block mt-4 text-blue-600"
-                  >
-                    Watch Video
-                  </a>
-                </div>
-              ))}
-            </div>
+                  {tool.showFullDescription ? "Read Less" : "Read More"}
+                </button>
+                <a
+                  href={tool.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block mt-4 text-blue-600"
+                >
+                  Watch Video
+                </a>
+              </div>
+            ))}
           </div>
         </div>
+
         {error && (
           <div className="mt-5 p-4 bg-red-100 text-red-800 rounded">
             <p>Error: {error}</p>

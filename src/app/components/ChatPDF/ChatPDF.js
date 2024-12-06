@@ -381,7 +381,7 @@ const ChatPDF = () => {
   };
 
   const renderUploadSection = () => (
-    <div className="w-full px-4 md:w-[1200px] md:px-0 mx-auto">
+    <div className="w-full px-4 md:px-0 mx-auto">
       <div
         onDrop={onDrop}
         onDragOver={onDragOver}
@@ -534,8 +534,8 @@ const ChatPDF = () => {
   );
 
   return (
-    <main className="mt-12 md:mt-32 px-4 md:px-0">
-      <div className="container mx-auto max-w-full bg-transparent">
+    <main className="mt-12 md:mt-32">
+      <div className="container mx-auto max-w-[100%] md:max-w-[80%] bg-transparent">
         <Image
           className="mx-auto w-auto h-auto"
           src={freeForever}
@@ -545,10 +545,10 @@ const ChatPDF = () => {
         />
 
         {/* Title Section */}
-        <h1 className="text-center text-3xl md:text-[54px] font-urbanist font-bold leading-[1.2] mb-4 mt-6">
-          <span className="relative inline-block">
+        <h1 className="text-center text-2xl sm:text-3xl md:text-[54px] font-urbanist font-bold leading-[1.2] mb-4 mt-6 md:mt-12">
+          <span className="relative inline-block mb-2 md:mb-6">
             Upload.
-            <div className="absolute left-0 banner-underline !max-w-none"></div>
+            <div className="absolute left-0 banner-underline md:!mt-2 !max-w-none"></div>
           </span>
           <span> Ask. Understand.</span>
         </h1>

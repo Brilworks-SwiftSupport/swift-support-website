@@ -16,6 +16,7 @@ const ImageGenerator = () => {
   const [generatedImage, setGeneratedImage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [selectedSize, setSelectedSize] = useState("");
+  const [isDownloading, setIsDownloading] = useState(false);
 
   // Image size options
   const imageSizeOptions = [
@@ -72,33 +73,38 @@ const ImageGenerator = () => {
 
   const handleDownload = () => {
     if (generatedImage) {
-      try {
-        // Convert data URL to a Blob
-        fetch(generatedImage)
-          .then((response) => response.blob())
-          .then((blob) => {
-            const link = document.createElement("a");
-            const url = URL.createObjectURL(blob);
+      setIsDownloading(true);
+      setTimeout(() => {
+        try {
+          // Convert data URL to a Blob
+          fetch(generatedImage)
+            .then((response) => response.blob())
+            .then((blob) => {
+              const link = document.createElement("a");
+              const url = URL.createObjectURL(blob);
 
-            // Set the href and download attributes
-            link.href = url;
-            const extension = blob.type.includes("jpeg") ? "jpg" : "png";
-            link.setAttribute("download", `generated-image.${extension}`);
+              // Set the href and download attributes
+              link.href = url;
+              const extension = blob.type.includes("jpeg") ? "jpg" : "png";
+              link.setAttribute("download", `generated-image.${extension}`);
 
-            // Trigger download
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+              // Trigger download
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
 
-            // Release the object URL
-            URL.revokeObjectURL(url);
-          });
-      } catch (error) {
-        console.error("Error downloading image:", error);
-        alert(
-          "An error occurred while downloading the image. Please try again."
-        );
-      }
+              // Release the object URL
+              URL.revokeObjectURL(url);
+              setIsDownloading(false);
+            });
+        } catch (error) {
+          console.error("Error downloading image:", error);
+          alert(
+            "An error occurred while downloading the image. Please try again."
+          );
+          setIsDownloading(false);
+        }
+      }, 2000);
     } else {
       alert("No image generated yet.");
     }
@@ -111,7 +117,7 @@ const ImageGenerator = () => {
   };
 
   return (
-    <main className="mt-12 md:mt-32 px-4 md:px-0">
+    <main className="mt-12 md:mt-32">
       <div className="container mx-auto max-w-[100%] md:max-w-[80%] bg-transparent">
         <Image
           className="mx-auto w-auto h-auto"
@@ -122,9 +128,9 @@ const ImageGenerator = () => {
         />
 
         {/* Title Section */}
-        <h1 className="text-center text-2xl sm:text-3xl md:text-[54px] font-urbanist font-bold leading-[1.2] mb-4 mt-6">
-          <span>Create Stunning </span>
-          <span className="relative inline-block">
+        <h1 className="text-center text-2xl sm:text-3xl md:text-[54px] font-urbanist font-bold leading-[1.2] mb-4 mt-6 md:mt-12">
+          <span className="inline-block md:mb-4">Create Stunning </span>
+          <span className="relative inline-block mb-2 md:mb-6">
             Visuals from Your
             <div className="absolute left-0 banner-underline md:!mt-2 !w-[200px] md:!w-[740px] !max-w-none"></div>
           </span>
@@ -132,7 +138,7 @@ const ImageGenerator = () => {
         </h1>
 
         {/* Subtitle */}
-        <p className="relative text-center text-[#212121] font-urbanist font-medium text-sm sm:text-base md:text-[24px] mt-6 px-4">
+        <p className="relative text-center text-[#212121] font-urbanist font-medium text-sm sm:text-base md:text-[24px] mt-6 md:mt-10 px-4">
           Generate beautiful{" "}
           <span className="bg-clip-text text-transparent bg-text-theme-gradient">
             AI-crafted images
@@ -142,10 +148,10 @@ const ImageGenerator = () => {
 
         {/* Tools List */}
         <div className="flex flex-wrap gap-4 mt-[30px] md:mt-[56px] md:ml-12 px-4 md:px-0">
-          <p className="text-[#3B82F6] font-semibold whitespace-nowrap font-Urbanist text-sm sm:text-lg md:text-[24px]">
+          <p className="text-[#3B82F6] font-semibold whitespace-nowrap font-Urbanist text-sm sm:text-lg md:text-[24px] mt-1">
             Other Tools:
           </p>
-          <div className="flex items-center flex-wrap gap-2">
+          <div className="flex items-center flex-wrap gap-2 ml-[62px] md:ml-0">
             <NavigationButton
               img={textToVoice}
               href={"/tools/text-to-voice/"}
@@ -169,7 +175,7 @@ const ImageGenerator = () => {
         {/* Prompt Box */}
         <form onSubmit={handleSubmit} className="px-2">
           <div className="relative flex flex-col md:flex-row items-center justify-center w-full my-4">
-            <div className="flex flex-col md:flex-row items-center bg-white border border-gray-300 rounded-[30px] py-3 w-full h-auto md:h-[56px] px-4">
+            <div className="flex flex-col md:flex-row items-center bg-white border border-gray-300 rounded-[30px] py-3 w-full h-auto md:h-[56px] px-3 md:px-1">
               <input
                 type="text"
                 name="prompt"
@@ -177,7 +183,8 @@ const ImageGenerator = () => {
                 onKeyDown={(e) => e.key === "Enter" && handleSubmit(e)}
                 onChange={(e) => setPrompt(e.target.value)}
                 placeholder="Describe what you want to see..."
-                className="flex-grow text-gray-500 font-urbanist font-semibold text-sm md:text-[16px] leading-[24px] outline-none placeholder-gray-350 mb-2 md:mb-0 md:mx-6"
+                className="flex-grow text-gray-500 font-urbanist font-semibold text-sm md:text-[16px] leading-[24px] 
+                outline-none placeholder-gray-350 mb-2 md:mb-0 md:mx-6 mx-4 w-full md:w-auto"
                 required
               />
 
@@ -262,8 +269,9 @@ const ImageGenerator = () => {
             <button
               onClick={handleDownload}
               className="w-[171px] h-[46px] bg-black text-white text-sm md:text-base font-bold py-2 px-4 rounded-full"
+              disabled={isDownloading}
             >
-              Download Image
+              {isDownloading ? "Downloading..." : "Download Image"}
             </button>
           </div>
         )}
