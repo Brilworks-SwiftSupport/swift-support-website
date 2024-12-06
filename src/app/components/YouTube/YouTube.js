@@ -83,18 +83,19 @@ const YouTubeSummarizer = () => {
       )
     );
   };
-
   const fetchSummary = async (transcriptText) => {
     setLoading(true);
     setError("");
 
+    await new Promise((resolve) => setTimeout(resolve, 3000));
     try {
       const response = await axios.post(
         `${NEXT_PUBLIC_BE_URL}/youtube_summary`,
         {
           youtube_url: youtubeUrl,
           video_transcript: transcriptText,
-
+        },
+        {
           headers: {
             "Content-Type": "application/json",
           },
@@ -109,6 +110,7 @@ const YouTubeSummarizer = () => {
       setLoading(false);
     }
   };
+
   const opts = {
     height: "315",
     width: "100%",
