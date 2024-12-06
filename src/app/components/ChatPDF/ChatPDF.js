@@ -67,10 +67,10 @@ const ChatPDF = () => {
       const selectedFile = files[0];
       if (selectedFile.size > MAX_FILE_SIZE) {
         setUploadStatus(
-          "File size exceeds 12 MB. Please upload a smaller file."
+          "File size exceeds 5 MB. Please upload a smaller file."
         );
         setDragError(true);
-        alert("Error: File size exceeds 12 MB. Please upload a smaller file.");
+        alert("Error: File size exceeds 5 MB. Please upload a smaller file.");
       } else {
         setFile(selectedFile);
         setFileName(selectedFile.name);
@@ -79,12 +79,6 @@ const ChatPDF = () => {
       }
     }
   }, []);
-
-  // Clear file selection
-  const clearFile = () => {
-    setFile(null);
-    setFileName("");
-  };
 
   const onDragOver = useCallback((e) => {
     e.preventDefault();
@@ -416,7 +410,7 @@ const ChatPDF = () => {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  clearFile();
+                  window.location.reload(); // Refresh the page
                 }}
                 className="text-red-500 hover:text-red-700"
               >
