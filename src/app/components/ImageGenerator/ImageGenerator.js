@@ -8,6 +8,7 @@ import freeForever from "@/app/images/freeForever.svg";
 import textToVoice from "@/app/images/textToVoice.svg";
 import voiceToText from "@/app/images/voiceToText.svg";
 import imgGenerator from "@/app/images/imgGenerator.svg";
+import tools from "@/app/images/tools.svg"
 
 const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
@@ -142,27 +143,28 @@ const ImageGenerator = () => {
 
         {/* Tools List */}
         <div className="flex flex-wrap gap-4 mt-[30px] md:mt-[56px] md:ml-12 px-4 md:px-0">
-          <p className="text-[#3B82F6] font-semibold whitespace-nowrap font-Urbanist text-sm sm:text-lg md:text-[24px] mt-1">
-            Other Tools:
-          </p>
           <div className="flex items-center flex-wrap gap-2 ml-[62px] md:ml-0">
             <NavigationButton
+              width={"w-[181px]"}
               img={textToVoice}
               href={"/tools/text-to-voice/"}
               name={"AI Text to Voice"}
               bgColor={"#FFFFFF"}
             />
             <NavigationButton
+              width={"w-[181px]"}
               img={voiceToText}
               href={"/tools/voice-to-text/"}
               name={"AI Voice to Text"}
               bgColor={"#FFFFFF"}
             />
             <NavigationButton
+              width={"w-[181px]"}
               img={imgGenerator}
               name={"AI Image Generator"}
               bgColor={"#FFFEEE"}
             />
+            <NavigationButton width={"w-[181px] md:w-[135px]"} img={tools} href={"/tools/"} name={"Other Tools"} bgColor={'#FFFFFF'}/>
           </div>
         </div>
 

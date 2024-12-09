@@ -1,11 +1,11 @@
 import React from "react";
 import Image from "next/image";
 
-const NavigationButton = ({ img, href, name, bgColor }) => {
+const NavigationButton = ({ width, img, href, name, bgColor }) => {
   return (
     <a
       href={href}
-      className="w-[181px] h-[40px] rounded-full flex items-center justify-center ml-1 mb-2"
+      className={`${width} h-[40px] rounded-full flex items-center justify-center ml-1 mb-2`}
       style={{
         background:
           "linear-gradient(45deg, #FF8585 0%, #56D5FF 50%, #DCD536 100%)",

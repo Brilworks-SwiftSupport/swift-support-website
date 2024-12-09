@@ -8,6 +8,7 @@ import NavigationButton from "@/app/(pages)/tools/NavigationButton/NavigationBut
 import para from "@/app/images/para.svg"
 import doc from "@/app/images/doc.svg"
 import search from "@/app/images/search.svg"
+import tools from "@/app/images/tools.svg"
 
 const NEXT_PUBLIC_BE_URL= process.env.NEXT_PUBLIC_BE_URL
 
@@ -198,11 +199,11 @@ const Plagiarism = () => {
 
           {/* Navigation Buttons */}
           <div className="flex flex-col md:flex-row items-center gap-2 mt-6 md:mt-11 overflow-x-auto">
-            <p className="text-[#3B82F6] font-bold whitespace-nowrap font-Urbanist text-base md:text-2xl">Other Tools:</p>
             <div className="flex flex-col md:flex-row flex-wrap gap-0">
-              <NavigationButton img={para} href={"/tools/ai-paraphraser/"} name={"Paraphrasing Tool"} bgColor={'#FFFFFF'}/>
-              <NavigationButton img={doc} href={""} name={"Plagiarism Checker"} bgColor={'#FFFEEE'}/>
-              <NavigationButton img={search} href={"/tools/ai-content-detector/"} name={"AI Content Detector"} bgColor={'#FFFFFF'}/>
+              <NavigationButton width={"w-[181px]"} img={para} href={"/tools/ai-paraphraser/"} name={"Paraphrasing Tool"} bgColor={'#FFFFFF'}/>
+              <NavigationButton width={"w-[181px]"} img={doc} href={""} name={"Plagiarism Checker"} bgColor={'#FFFEEE'}/>
+              <NavigationButton width={"w-[181px]"} img={search} href={"/tools/ai-content-detector/"} name={"AI Content Detector"} bgColor={'#FFFFFF'}/>
+              <NavigationButton width={"w-[181px] md:w-[135px]"} img={tools} href={"/tools/"} name={"Other Tools"} bgColor={'#FFFFFF'}/>
             </div>
             <div className="hidden md:flex flex-wrap gap-4">
               <p className="text-[#3B82F6] font-bold whitespace-nowrap ml-20 font-Urbanist text-2xl">Plagiarism Content</p>
