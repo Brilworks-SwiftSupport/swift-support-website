@@ -16,6 +16,7 @@ const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 const VoiceToTextConverter = () => {
   const [isDragActive, setIsDragActive] = useState(false);
   const [file, setFile] = useState(null);
+  const [fileUrl, setFileUrl] = useState("");
   const MAX_FILE_SIZE = 5 * 1024 * 1024;
   const [uploadStatus, setUploadStatus] = useState("");
   const [dragError, setDragError] = useState(false);
@@ -42,6 +43,7 @@ const VoiceToTextConverter = () => {
         alert("Error: File size exceeds 5 MB. Please upload a smaller file.");
       } else {
         setFile(selectedFile);
+        setFileUrl(URL.createObjectURL(selectedFile));
         setDragError(false);
         setIsDisabled(false);
       }
@@ -255,19 +257,21 @@ const VoiceToTextConverter = () => {
               onChange={onDrop}
             />
             {file ? (
-              <div className="flex items-center justify-center mt-[60px] mb-[28px] px-4">
-                <div className="flex items-center bg-blue-100 rounded-lg p-2 max-w-[600px]">
-                  <span className="mr-4 truncate">{file.name}</span>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      window.location.reload(); // Refresh the page
-                    }}
-                    className="text-red-500 hover:text-red-700"
-                  >
-                    <X size={20} />
-                  </button>
-                </div>
+              <div className="flex items-center justify-center mt-[55px] mb-[28px] px-4">
+                <audio
+                  controls
+                  src={fileUrl}
+                  className="w-full md:w-[75%]"
+                ></audio>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    window.location.reload(); // Refresh the page
+                  }}
+                  className="w-[32px] h-[32px] ml-1 flex items-center justify-center border-2 border-red-300 rounded-[7px] text-red-500 hover:text-red-700 hover:border-red-500"
+                >
+                  <X size={27} />
+                </button>
               </div>
             ) : (
               <>
