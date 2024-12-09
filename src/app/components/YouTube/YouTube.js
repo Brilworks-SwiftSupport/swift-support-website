@@ -143,10 +143,10 @@ const YouTubeSummarizer = () => {
 
     const videoId = extractVideoId(youtubeUrl);
     setVideoId(videoId);
-    const textData=await fetchTranscriptAPI(videoId)
+    const dataText=await fetchTranscriptAPI(videoId)
    
-    setFullTranscript(textData);
-    await fetchSummary(textData); // Call the API fetch function
+    setFullTranscript(dataText);
+    await fetchSummary(dataText); // Call the API fetch function
   };
 
   return (
