@@ -98,11 +98,6 @@ const ChatPDF = () => {
     setDragError(false);
   }, []);
 
-  // Scroll to bottom when messages change
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, streamingResponse]);
-
   useEffect(() => {
     if (isProcessing) {
       const intervalId = setInterval(() => {
