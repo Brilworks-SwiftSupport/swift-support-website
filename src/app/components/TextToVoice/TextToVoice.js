@@ -92,12 +92,17 @@ const TextToVoiceConverter = () => {
   };
 
   const handleDownload = (audioUrl) => {
-    if (typeof window !== "undefined") {
-      const link = document.createElement("a");
-      link.href = audioUrl;
-      link.download = audioUrl;
-      link.click();
-    }
+    fetch(audioUrl)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "downloaded-file.mp3"; // Set a default file name
+        link.click();
+        window.URL.revokeObjectURL(url); // Clean up the object URL
+      })
+      .catch((error) => console.error("Download failed:", error));
   };
 
   const handleInputChange = (e) => {
