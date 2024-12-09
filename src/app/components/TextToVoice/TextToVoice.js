@@ -238,7 +238,7 @@ const TextToVoiceConverter = () => {
               name={"AI Image Generator"}
               bgColor={"#FFFFFF"}
             />
-            <NavigationButton width={"w-[181px] md:w-[135px]"} img={tools} href={"/tools/"} name={"Other Tools"} bgColor={'#FFFFFF'}/>
+            <NavigationButton width={"w-[181px] md:w-[135px]"} img={tools} href={"/tools/"} name={"Other AI Tools"} bgColor={'#FFFFFF'}/>
           </div>
         </div>
 
