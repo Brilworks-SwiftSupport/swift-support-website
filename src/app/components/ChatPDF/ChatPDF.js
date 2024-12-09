@@ -57,7 +57,6 @@ const ChatPDF = () => {
   function timeout(seconds) {
     return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
   }
-
   const onDrop = useCallback((e) => {
     e.preventDefault();
     setIsDragActive(false);
@@ -65,6 +64,16 @@ const ChatPDF = () => {
     const files = e.dataTransfer?.files || e.target.files;
     if (files?.[0]) {
       const selectedFile = files[0];
+
+      // Check if the file is a PDF
+      if (selectedFile.type !== "application/pdf") {
+        setUploadStatus("Only PDF files are allowed.");
+        setDragError(true);
+        alert("Error: Only PDF files are allowed.");
+        return;
+      }
+
+      // Check file size
       if (selectedFile.size > MAX_FILE_SIZE) {
         setUploadStatus(
           "File size exceeds 5 MB. Please upload a smaller file."
@@ -85,10 +94,16 @@ const ChatPDF = () => {
     setIsDragActive(true);
 
     const files = e.dataTransfer?.files;
-    if (files?.[0] && files[0].size > MAX_FILE_SIZE) {
-      setDragError(true);
-    } else {
-      setDragError(false);
+    if (files?.[0]) {
+      // Check if the file is a PDF
+      if (
+        files[0].type !== "application/pdf" ||
+        files[0].size > MAX_FILE_SIZE
+      ) {
+        setDragError(true);
+      } else {
+        setDragError(false);
+      }
     }
   }, []);
 
