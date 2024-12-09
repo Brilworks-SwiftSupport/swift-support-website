@@ -19,8 +19,11 @@ const Paraphrase = () => {
   const wordLimit = 2000; // Set the word limit
   const wordCount = inputText.trim().split(/\s+/).filter(Boolean).length; // Count words
 
+  const [isCopied, setIsCopied] = useState(false);
+
   const handleCopy = () => {
     navigator.clipboard.writeText(text);  
+    setIsCopied(true); // Change icon to right mark
     toast.success("Text copied to clipboard!", {
       position: "bottom-center",
       autoClose: 2000,
@@ -29,6 +32,8 @@ const Paraphrase = () => {
       pauseOnHover: true,
       draggable: true,
     });
+     // Optional: Reset the icon after some time
+     setTimeout(() => setIsCopied(false), 3000);
   };
 
   const fetchPlagiarismCheck = async (input_text, type) => {
@@ -163,8 +168,8 @@ const Paraphrase = () => {
                   aria-label="Copy text"
                 >
                   <img
-                    src="/images/Copy.png"
-                    alt="Copy"
+                    src={isCopied ? "/images/check.png" : "/images/Copy.png"}
+                    alt={isCopied ? "Copied" : "Copy"}
                     className="w-6 h-6"
                   />
                 </button>
@@ -182,7 +187,6 @@ const Paraphrase = () => {
               </>
             )}
             {error && <p className="text-red-500 mt-4">{error}</p>}
-            <ToastContainer />
           </div>
         </div>
 
