@@ -2,9 +2,9 @@
 import React, { useState, useEffect } from "react";
 import YouTube from "react-youtube";
 import axios from "axios";
-import { YoutubeTranscript } from "youtube-transcript";
 import freeForever from "@/app/images/freeForever.svg";
 import Image from "next/image";
+import youTubeIcon from "@/app/images/youtube-icon.svg";
 
 const YouTubeSummarizer = () => {
   const [youtubeUrl, setYoutubeUrl] = useState("");
@@ -83,6 +83,22 @@ const YouTubeSummarizer = () => {
       )
     );
   };
+  const fetchTranscriptAPI = async (videoId, lang = "en") => {
+    try {
+      const response = await fetch(`/api/youtube-api/?videoId=${videoId}&lang=${lang}`);
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error);
+      }
+  
+      const transcript = await response.json();
+
+      return transcript.data;
+    } catch (error) {
+      console.error("Error fetching transcript:", error.message);
+    }
+  };
+
   const fetchSummary = async (transcriptText) => {
     setLoading(true);
     setError("");
@@ -120,7 +136,6 @@ const YouTubeSummarizer = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!youtubeUrl.trim()) {
       alert("Please provide a valid YouTube URL!");
       return;
@@ -128,8 +143,8 @@ const YouTubeSummarizer = () => {
 
     const videoId = extractVideoId(youtubeUrl);
     setVideoId(videoId);
-    const transcriptData = await YoutubeTranscript.fetchTranscript(videoId);
-    const textData = transcriptData.map((item) => item.text).join(" ");
+    const textData=await fetchTranscriptAPI(videoId)
+   
     setFullTranscript(textData);
     await fetchSummary(textData); // Call the API fetch function
   };
@@ -168,8 +183,29 @@ const YouTubeSummarizer = () => {
           below and let the magic happen in seconds.
         </p>
 
+        <div className="flex flex-wrap gap-4 mb-2 mt-5">
+          <div className="flex flex-wrap gap-2 items-center justify mx-auto">
+          <p className="text-xs sm:text-sm mt-1 font-bold ">Quick Try:</p>
+
+            {Object.keys(videoUrls).map((item, index) => (
+              <button
+                key={index}
+                className="inline-flex items-center px-3 border py-1 text-xs sm:text-sm font-medium bg-white text-red-500 rounded-full shadow-sm cursor-pointer hover:bg-red-200"
+                onClick={() => handleClick(item)}
+              >
+
+            
+                <Image src={youTubeIcon} className="mr-2"/>
+
+                
+                {item}
+              </button>
+            ))}
+          </div>
+        </div>
+
         <form onSubmit={handleSubmit}>
-          <div className="relative flex items-center w-full my-3 mt-16">
+          <div className="relative flex items-center w-full my-3 mt-5">
             <input
               type="url"
               name="youtubeUrl"
@@ -188,42 +224,9 @@ const YouTubeSummarizer = () => {
             </button>
           </div>
         </form>
-        <div className="flex flex-wrap gap-4 mb-4 items-center">
-          <p className="text-xs sm:text-sm text-red-500 font-bold">
-            Note: To use this tool please install this chrome extension{" "}
-            <button className="inline-flex px-3 py-1 text-xs sm:text-sm font-medium bg-red-100 text-black-500 rounded-full shadow-sm cursor-pointer hover:bg-red-200">
-              <a
-                href="https://chromewebstore.google.com/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf"
-                target="_blank"
-              >
-                Allow CORS
-              </a>
-            </button>{" "}
-            and enable the extension
-          </p>
-        </div>
-        <div className="flex flex-wrap gap-4 mb-4">
-          <p className="text-xs sm:text-sm">Quick Try:</p>
-          <div className="flex flex-wrap gap-2">
-            {Object.keys(videoUrls).map((item, index) => (
-              <button
-                key={index}
-                className="inline-flex items-center px-3 py-1 text-xs sm:text-sm font-medium bg-red-100 text-red-500 rounded-full shadow-sm cursor-pointer hover:bg-red-200"
-                onClick={() => handleClick(item)}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 mr-1"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M10 15l5-3-5-3v6z" />
-                </svg>
-                {item}
-              </button>
-            ))}
-          </div>
-        </div>
+        
+
+       
         {/* Tabs for Summary and Full Transcript */}
         <div className="flex justify-center gap-4 mt-6">
           <button
