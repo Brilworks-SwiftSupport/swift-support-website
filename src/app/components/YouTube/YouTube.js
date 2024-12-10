@@ -210,6 +210,21 @@ const YouTubeSummarizer = () => {
             </button>
           </div>
         </form>
+
+        <div className="flex flex-wrap gap-4 mb-4 items-center">
+          <p className="text-xs sm:text-sm text-red-500 font-bold">
+            Note: To use this tool please install this chrome extension{" "}
+            <button className="inline-flex px-3 py-1 text-xs sm:text-sm font-medium bg-red-100 text-black-500 rounded-full shadow-sm cursor-pointer hover:bg-red-200">
+              <a
+                href="https://chromewebstore.google.com/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf"
+                target="_blank"
+              >
+                Allow CORS
+              </a>
+            </button>{" "}
+            and enable the extension
+          </p>
+        </div>
         
 
        
