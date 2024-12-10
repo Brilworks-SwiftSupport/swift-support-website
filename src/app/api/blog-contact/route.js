@@ -40,7 +40,7 @@ export async function POST(req, res) {
           );
         })
         .catch((error) => {
-          console.log("Email sent Failed-2");
+       
           console.error(error);
           return NextResponse.json(
             { message: "Error sending email" },
