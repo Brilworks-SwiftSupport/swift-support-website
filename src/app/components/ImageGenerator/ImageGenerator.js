@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Download } from "lucide-react";
 import Image from "next/image";
 import NavigationButton from "@/app/(pages)/tools/NavigationButton/NavigationButton";
 
@@ -8,7 +9,7 @@ import freeForever from "@/app/images/freeForever.svg";
 import textToVoice from "@/app/images/textToVoice.svg";
 import voiceToText from "@/app/images/voiceToText.svg";
 import imgGenerator from "@/app/images/imgGenerator.svg";
-import tools from "@/app/images/tools.svg"
+import tools from "@/app/images/tools.svg";
 
 const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
@@ -17,13 +18,12 @@ const ImageGenerator = () => {
   const [generatedImage, setGeneratedImage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [selectedSize, setSelectedSize] = useState("");
+  const [allGeneratedImages, setAllGeneratedImages] = useState([]);
 
   // Image size options
   const imageSizeOptions = [
     { value: "", label: "Select Size" },
     { value: "1024x1024", label: "1024x1024" },
-    // { value: "1792x1024", label: "1792x1024" },
-    // { value: "1024x1792", label: "1024x1792" },
   ];
 
   // Quick try options
@@ -32,6 +32,29 @@ const ImageGenerator = () => {
     "Cute robot playing chess",
     "Magical forest with glowing mushrooms",
   ];
+
+  useEffect(() => {
+    const fetchAllGeneratedImages = async () => {
+      try {
+        const response = await fetch(`${NEXT_PUBLIC_BE_URL}/generated_image`);
+        if (!response.ok) throw new Error("Failed to fetch images");
+
+        const data = await response.json();
+        if (data && Array.isArray(data.generated_image_list)) {
+          setAllGeneratedImages(data.generated_image_list);
+        } else {
+          console.error(
+            "API response does not contain 'generated_image_list':",
+            data
+          );
+        }
+      } catch (error) {
+        console.error("Error fetching all generated images:", error);
+      }
+    };
+
+    fetchAllGeneratedImages();
+  }, []);
 
   // Handler to set prompt when a quick try option is clicked
   const handleQuickTryClick = (option) => {
@@ -57,9 +80,8 @@ const ImageGenerator = () => {
       });
 
       if (!response.ok) {
-        // Show simple error alert
-        alert("Error: Upload failed.");
-        throw new Error("Upload failed");
+        alert("Error: Image generation failed");
+        throw new Error("Image generation failed");
       }
 
       const data = await response.json();
@@ -71,11 +93,12 @@ const ImageGenerator = () => {
     }
   };
 
-  const handleDownload = () => {
-    if (generatedImage) {
+  const handleDownload = (imageUrl) => {
+    const urlToDownload = imageUrl || generatedImage;
+
+    if (urlToDownload) {
       try {
-        // Convert data URL to a Blob
-        fetch(generatedImage)
+        fetch(urlToDownload)
           .then((response) => response.blob())
           .then((blob) => {
             const link = document.createElement("a");
@@ -101,7 +124,7 @@ const ImageGenerator = () => {
         );
       }
     } else {
-      alert("No image generated yet.");
+      alert("No image available to download.");
     }
   };
 
@@ -164,7 +187,13 @@ const ImageGenerator = () => {
               name={"AI Image Generator"}
               bgColor={"#FFFEEE"}
             />
-            <NavigationButton width={"w-[181px] md:w-[135px]"} img={tools} href={"/tools/"} name={"Other AI Tools"} bgColor={'#FFFFFF'}/>
+            <NavigationButton
+              width={"w-[181px]"}
+              img={tools}
+              href={"/tools/"}
+              name={"Other AI Tools"}
+              bgColor={"#FFFFFF"}
+            />
           </div>
         </div>
 
@@ -269,6 +298,40 @@ const ImageGenerator = () => {
             </button>
           </div>
         )}
+
+        {/* Previously Generated Images Section */}
+        <h2 className="text-center text-2xl sm:text-4xl md:text-5xl font-extrabold mt-16">
+          Previously Generated Images
+        </h2>
+        <div className="container mx-auto py-6 px-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {allGeneratedImages.map((image, index) => (
+              <div
+                key={index}
+                className="relative p-3 bg-gray-100 rounded shadow flex flex-col items-center"
+              >
+                <div className="w-full text-black text-base px-2 py-1 rounded-t mb-2">
+                  <span className="font-bold">Prompt : </span>
+                  <span>{image.prompt}</span>
+                </div>
+
+                <div className="relative w-full h-full">
+                  <img
+                    src={image.summary}
+                    alt={`Prompt: ${image.prompt}`}
+                    className="w-full h-full object-cover rounded shadow"
+                  />
+                  <button
+                    className="absolute bottom-2 right-2 bg-white p-2 rounded-full shadow hover:bg-gray-200"
+                    onClick={() => handleDownload(image.summary)}
+                  >
+                    <Download className="w-6 h-6 text-black" />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </main>
   );
