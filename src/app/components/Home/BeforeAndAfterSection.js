@@ -20,7 +20,7 @@ const BeforeAndAfterSection = ({
   const mainTitle = title || (
     <>
       Ever imagined having AI automate <br className="hidden md:block" /> your
-      business seamlessly?"
+      business seamlessly?
     </>
   );
   const beforeTitle = subTitleBefore || "Manual, Time-Consuming Processes";
