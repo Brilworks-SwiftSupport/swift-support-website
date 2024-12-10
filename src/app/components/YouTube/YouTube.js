@@ -83,23 +83,9 @@ const YouTubeSummarizer = () => {
       )
     );
   };
-  const fetchTranscriptAPI = async (videoId, lang = "en") => {
-    try {
-      const response = await fetch(`/api/youtube-api/?videoId=${videoId}&lang=${lang}`);
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error);
-      }
-  
-      const transcript = await response.json();
 
-      return transcript.data;
-    } catch (error) {
-      console.error("Error fetching transcript:", error.message);
-    }
-  };
 
-  const fetchSummary = async (transcriptText) => {
+  const fetchSummary = async (youtubeUrl) => {
     setLoading(true);
     setError("");
 
@@ -109,17 +95,19 @@ const YouTubeSummarizer = () => {
         `${NEXT_PUBLIC_BE_URL}/youtube_summary`,
         {
           youtube_url: youtubeUrl,
-          video_transcript: transcriptText,
         },
         {
           headers: {
             "Content-Type": "application/json",
           },
         }
-      );
+      );     
 
       setSummary(response.data.summarized_text);
-      handleSummaryClick();
+      setFullTranscript(response.data.video_transcript);
+
+      setActiveTab('summary')
+
     } catch (err) {
       setError(err.message);
     } finally {
@@ -139,14 +127,10 @@ const YouTubeSummarizer = () => {
     if (!youtubeUrl.trim()) {
       alert("Please provide a valid YouTube URL!");
       return;
-    }
-
+    }   
     const videoId = extractVideoId(youtubeUrl);
     setVideoId(videoId);
-    const dataText=await fetchTranscriptAPI(videoId)
-   
-    setFullTranscript(dataText);
-    await fetchSummary(dataText); // Call the API fetch function
+    await fetchSummary(youtubeUrl); // Call the API fetch function
   };
 
   return (
