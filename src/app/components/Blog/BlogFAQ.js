@@ -3,17 +3,14 @@ import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import { Icon } from "../lib/Common";
 
-const Accordion = dynamic(
-  () => import("@material-tailwind/react").then((mod) => mod.Accordion),
-  { ssr: false }
+const Accordion = dynamic(() =>
+  import("@material-tailwind/react").then((mod) => mod.Accordion)
 );
-const AccordionHeader = dynamic(
-  () => import("@material-tailwind/react").then((mod) => mod.AccordionHeader),
-  { ssr: false }
+const AccordionHeader = dynamic(() =>
+  import("@material-tailwind/react").then((mod) => mod.AccordionHeader)
 );
-const AccordionBody = dynamic(
-  () => import("@material-tailwind/react").then((mod) => mod.AccordionBody),
-  { ssr: false }
+const AccordionBody = dynamic(() =>
+  import("@material-tailwind/react").then((mod) => mod.AccordionBody)
 );
 
 const BlogFAQ = ({ FAQData }) => {
@@ -29,7 +26,7 @@ const BlogFAQ = ({ FAQData }) => {
       </div>
 
       <div>
-        <div itemScope={true} itemType="https://schema.org/FAQPage">
+        <div itemScope="true" itemType="https://schema.org/FAQPage">
           {FAQData?.length &&
             FAQData?.map(({ Question, Answer }, index) => (
               <Accordion
@@ -46,7 +43,7 @@ const BlogFAQ = ({ FAQData }) => {
                 className={`accordion-item ${
                   open === index + 1 ? "bg-colorLightBlue" : "bg-colorWhite"
                 }`}
-                itemScope="true"
+                itemScope
                 itemProp="mainEntity"
                 itemType="https://schema.org/Question"
               >

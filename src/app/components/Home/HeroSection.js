@@ -1,8 +1,55 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { useRouter } from "next/navigation";
+import { useGoogleLogin, useGoogleOneTapLogin } from "@react-oauth/google";
+import axios from "axios";
 
 const HeroSection = () => {
+  const router = useRouter();
+
+  const ANALYTICS_ENDPOINT = "https://app.swiftsupport.ai/dashboard";
+  const ONBOARDING_ENDPOINT = "https://app.swiftsupport.ai/onboarding";
+
+  const doLogin = async (access_token) => {
+    await axios
+      .post(`https://api.swiftsupport.ai/api/register`, {
+        google_token: access_token,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          router.replace(
+            response?.data?.onboarding
+              ? ANALYTICS_ENDPOINT
+              : ONBOARDING_ENDPOINT
+          );
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log(
+          error.response?.data?.message || error.response?.data?.error
+        );
+      });
+  };
+
+  const login = useGoogleLogin({
+    onSuccess: (tokenResponse) => {
+      // Call the async function without returning it
+      doLogin(tokenResponse?.access_token).catch((error) => {
+        console.error("Error during login:", error);
+      });
+    },
+  });
+
+  useGoogleOneTapLogin({
+    onSuccess: login,
+    onError: () => {
+      console.log("Login Failed");
+    },
+  });
+
   return (
     <div className="hero-section xl:pb-[60px] xl:pt-[5px] 3xl:!py-[60px] py-[60px] lg:mt-[6%] md:mt-[10%] mt-[14%]">
       <div className="container max-w-[1200px] mx-auto">
@@ -17,7 +64,7 @@ const HeroSection = () => {
                 for Your Business
               </h1>
               <p className="lg:!text-2xl !text-xl md:!leading-tight text-colorBlack lg:mb-[50px] md:mb-10 mb-8">
-                Swift Support's mission is to streamline customer interactions
+                SwiftSupport's mission is to streamline customer interactions
                 and reduce wait times by providing businesses with&nbsp;
                 <span className="bg-clip-text text-transparent bg-text-theme-gradient">
                   AI Automation, AI Co-pilots, & AI Agents.
@@ -45,7 +92,7 @@ const HeroSection = () => {
                   target="_blank"
                   className="common-button try-now-btn rounded-[80px] px-[30px] py-[18px]"
                 >
-                  Try Now
+                  Try For Free
                 </Link>
               </div>
               <div className="flex items-center justify-start">

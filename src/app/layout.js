@@ -8,6 +8,7 @@ import { Urbanist } from "next/font/google";
 import Header from "./components/Header";
 import LoadScripts from "./ScriptLoader";
 import Script from "next/script";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 storyblokInit({
   accessToken: process.env.NEXT_PUBLIC_ACCESS_TOKEN,
@@ -102,6 +103,10 @@ export default function RootLayout({ children }) {
                 id="chatbot-widget-script"
                 src="https://app.swiftsupport.ai/ChatbotScripts/chatbotBubble.js"
               />
+              <Script
+                src="https://accounts.google.com/gsi/client"
+                strategy="beforeInteractive"
+              />
             </>
           )}
         </head>
@@ -110,6 +115,7 @@ export default function RootLayout({ children }) {
             <>
               <noscript>
                 <iframe
+                  title="GTM"
                   src={`https://www.googletagmanager.com/ns.html?id=${process.env.GTM_ID}`}
                   height="0"
                   width="0"
@@ -117,7 +123,7 @@ export default function RootLayout({ children }) {
                     display: "none",
                     visibility: "hidden",
                   }}
-                ></iframe>
+                />
               </noscript>
               <noscript>
                 <img
@@ -132,16 +138,21 @@ export default function RootLayout({ children }) {
           ) : (
             <noscript>
               <iframe
+                title="Dev-GTM"
                 src="https://www.googletagmanager.com/ns.html?id=GTM-PZQ9LFDT"
                 height="0"
                 width="0"
                 style={{ display: "none", visibility: "hidden" }}
-              ></iframe>
+              />
             </noscript>
           )}
-          <Header />
-          {children}
-          <Footer />
+          <GoogleOAuthProvider
+            clientId={`${process.env.NEXT_PUBLIC_GOOGLE_APP_ID}`}
+          >
+            <Header />
+            {children}
+            <Footer />
+          </GoogleOAuthProvider>
           <LoadScripts />
         </body>
       </html>

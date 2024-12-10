@@ -94,7 +94,7 @@ const AIPoweredSolution = () => {
                 <h3 className="text-colorBlack font-semibold text-2xl mb-4">
                   {title}
                 </h3>
-                <p className="text-colorBlack text-base lg:text-lg md:mb-[30px]">
+                <p className="text-colorBlack text-base lg:text-lg md:mb-[30px] mb-5">
                   {description}
                 </p>
                 <div className="w-fit">

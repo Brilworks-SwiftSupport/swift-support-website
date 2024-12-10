@@ -1,5 +1,5 @@
-import { sitemapData, blogData } from "./components/lib/Constant";
-// import { getblogData } from "./lib/getblog";
+import { sitemapData } from "./components/lib/Constant";
+import { getblog } from "./lib/getblog";
 
 export default async function sitemap() {
   const staticPagesData = sitemapData.map((data) => ({
@@ -7,11 +7,11 @@ export default async function sitemap() {
     lastModified: data.lastmod,
   }));
 
-  // const blogData = await getblogData(0, 100);
+  const blogData = await getblog();
 
   const blog = blogData.map((data) => ({
-    url: `${data?.loc}`,
-    lastModified: data?.lastmod || new Date(),
+    url: `${process.env.NEXT_PUBLIC_BASE_URL}blog/${data?.slug}/`,
+    lastModified: data?.published_at || new Date(),
   }));
 
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://swiftsupport.ai";
