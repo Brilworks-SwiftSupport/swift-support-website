@@ -5,7 +5,7 @@ import axios from "axios";
 import freeForever from "@/app/images/freeForever.svg";
 import Image from "next/image";
 import youTubeIcon from "@/app/images/youtube-icon.svg";
-
+import { YoutubeTranscript } from "youtube-transcript";
 const YouTubeSummarizer = () => {
   const [youtubeUrl, setYoutubeUrl] = useState("");
   const [videoId, setVideoId] = useState("");
@@ -85,7 +85,7 @@ const YouTubeSummarizer = () => {
   };
 
 
-  const fetchSummary = async (youtubeUrl) => {
+  const fetchSummary = async (textData,youtubeUrl) => {
     setLoading(true);
     setError("");
 
@@ -95,6 +95,7 @@ const YouTubeSummarizer = () => {
         `${NEXT_PUBLIC_BE_URL}/youtube_summary`,
         {
           youtube_url: youtubeUrl,
+          transcript_text:textData
         },
         {
           headers: {
@@ -104,8 +105,7 @@ const YouTubeSummarizer = () => {
       );     
 
       setSummary(response.data.summarized_text);
-      setFullTranscript(response.data.video_transcript);
-
+    
       setActiveTab('summary')
 
     } catch (err) {
@@ -129,8 +129,10 @@ const YouTubeSummarizer = () => {
       return;
     }   
     const videoId = extractVideoId(youtubeUrl);
-    setVideoId(videoId);
-    await fetchSummary(youtubeUrl); // Call the API fetch function
+    setVideoId(videoId);const transcriptData = await YoutubeTranscript.fetchTranscript(videoId);
+    const textData = transcriptData.map((item) => item.text).join(" ");
+    setFullTranscript(textData);
+    await fetchSummary(textData,youtubeUrl); // Call the API fetch function
   };
 
   return (
