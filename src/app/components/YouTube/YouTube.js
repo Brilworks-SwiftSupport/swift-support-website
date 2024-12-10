@@ -5,6 +5,7 @@ import axios from "axios";
 import freeForever from "@/app/images/freeForever.svg";
 import Image from "next/image";
 import youTubeIcon from "@/app/images/youtube-icon.svg";
+import { YoutubeTranscript } from "youtube-transcript";
 
 const YouTubeSummarizer = () => {
   const [youtubeUrl, setYoutubeUrl] = useState("");
@@ -85,7 +86,7 @@ const YouTubeSummarizer = () => {
   };
 
 
-  const fetchSummary = async (youtubeUrl) => {
+  const fetchSummary = async (textData,youtubeUrl) => {
     setLoading(true);
     setError("");
 
@@ -95,6 +96,7 @@ const YouTubeSummarizer = () => {
         `${NEXT_PUBLIC_BE_URL}/youtube_summary`,
         {
           youtube_url: youtubeUrl,
+          transcriptText:textData
         },
         {
           headers: {
@@ -104,8 +106,6 @@ const YouTubeSummarizer = () => {
       );     
 
       setSummary(response.data.summarized_text);
-      setFullTranscript(response.data.video_transcript);
-
       setActiveTab('summary')
 
     } catch (err) {
@@ -130,7 +130,10 @@ const YouTubeSummarizer = () => {
     }   
     const videoId = extractVideoId(youtubeUrl);
     setVideoId(videoId);
-    await fetchSummary(youtubeUrl); // Call the API fetch function
+    const transcriptData = await YoutubeTranscript.fetchTranscript(videoId);
+    const textData = transcriptData.map((item) => item.text).join(" ");
+    setFullTranscript(textData);
+    await fetchSummary(textData,youtubeUrl); // Call the API fetch function
   };
 
   return (
@@ -208,6 +211,20 @@ const YouTubeSummarizer = () => {
             </button>
           </div>
         </form>
+        <div className="flex flex-wrap gap-4 mb-4 items-center">
+          <p className="text-xs sm:text-sm text-red-500 font-bold">
+            Note: To use this tool please install this chrome extension{" "}
+            <button className="inline-flex px-3 py-1 text-xs sm:text-sm font-medium bg-red-100 text-black-500 rounded-full shadow-sm cursor-pointer hover:bg-red-200">
+              <a
+                href="https://chromewebstore.google.com/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf"
+                target="_blank"
+              >
+                Allow CORS
+              </a>
+            </button>{" "}
+            and enable the extension
+          </p>
+        </div>
         
 
        
