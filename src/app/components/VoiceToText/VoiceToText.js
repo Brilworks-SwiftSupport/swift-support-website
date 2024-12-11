@@ -27,6 +27,13 @@ const VoiceToTextConverter = () => {
   const [textData, setTextData] = useState("");
   const [wordCount, setwordCount] = useState(0);
   const [sentenceCount, setsentenceCount] = useState(0);
+  const [STTrecords, setSSTRecords] = useState([]);
+  const [visibleCount, setVisibleCount] = useState(6); // Initial 6 items for a 3x2 grid
+
+  const handleLoadMore = () => {
+    setVisibleCount((prevCount) => prevCount + 6); // Load 6 more items
+  };
+
 
   const onDrop = useCallback((e) => {
     e.preventDefault();
@@ -87,6 +94,32 @@ const VoiceToTextConverter = () => {
 
       return () => clearInterval(intervalId);
     }
+
+    const fetchData = async () => {
+      try {
+        const queryParam = 'stt'; 
+
+        const response = await fetch(`${NEXT_PUBLIC_BE_URL}/stt_tts_data?type=${encodeURIComponent(queryParam)}`, {
+          method: "GET",
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+
+        // Map API response to match Tools component props
+        const formattedTools = data.data_list.map((item) => ({
+          tts_url: item.audio_url,
+          tts_text: item.text,
+      
+        }));
+
+        setSSTRecords(formattedTools); // Update tools state
+      } catch (err) {
+        setError(err.message); // Handle errors
+      } 
+    };
+    fetchData()
   }, [isUploading]);
 
   const handleCopy = () => {
@@ -353,6 +386,51 @@ const VoiceToTextConverter = () => {
             </div>
           </div>
         )}
+
+        <h2 className="text-center text-2xl sm:text-2xl md:text-3xl font-extrabold mb-4 mt-4">
+          Some Voice To Text for You!
+        </h2>
+
+        <div className="container mx-auto py-8 px-4">
+          {/* Grid Container */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {STTrecords.slice(0, visibleCount).map((tool, index) => (
+              <div
+                key={index}
+                className="p-4 bg-gray-100 rounded shadow mb-6 flex flex-col"
+              >
+                {/* Input Audio */}
+                <div className="flex flex-col items-start">
+                  <span className="font-bold mb-2">Input Audio:</span>
+                  <audio controls className="w-full">
+                    <source src={tool.tts_url} type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                  </audio>
+                </div>
+
+                {/* Output Text */}
+                <div className="flex justify-between items-start mt-4">
+                  <div className="w-full">
+                    <span className="font-bold">Output Text:</span>
+                    <p className="mt-2">{tool.tts_text}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Load More Button */}
+          {visibleCount < STTrecords.length && (
+            <div className="text-center mt-8">
+              <button
+                onClick={handleLoadMore}
+                className="px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
+              >
+                Load More
+              </button>
+            </div>
+          )}
+        </div>
       </div>
       <ToastContainer />
     </main>

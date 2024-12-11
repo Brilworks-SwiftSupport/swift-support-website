@@ -11,10 +11,10 @@ const Tools = ({
   
 }) => {
   return (
-    <div className="max-w-sm bg-[#FFFEEE] border border-gray-200 rounded-lg shadow hover:shadow-lg transition-shadow duration-300 ">
-      <a href={link}>
+    <div className="max-w-sm bg-[#FFFEEE] border border-gray-200 rounded-3xl shadow hover:shadow-lg transition-shadow duration-300">
+      <a href={link} >
         <img 
-          className="rounded-t-lg w-full h-48 object-cover" 
+          className="w-full h-50 object-cover" 
           src={imageUrl} 
           alt={imageAlt}
         />
@@ -53,7 +53,7 @@ const Tools = ({
 // Grid Container Component
 const ToolsGrid = ({ tools }) => {
   return (
-    <div className="container mx-auto py-8 px-4  ">
+    <div className="container mx-auto py-8 px-4 rounded-lg">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
         {tools.map((tool, index) => (
           <Tools
@@ -64,6 +64,7 @@ const ToolsGrid = ({ tools }) => {
             link={tool.link}
             imageAlt={tool.imageAlt}
             button_title={tool.button_title}
+        
           />
         ))}
       </div>
