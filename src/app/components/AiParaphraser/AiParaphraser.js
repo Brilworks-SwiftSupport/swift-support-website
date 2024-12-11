@@ -186,7 +186,7 @@ const Paraphrase = () => {
               <NavigationButton width={"w-[181px]"} img={para} href={""} name={"Paraphrasing Tool"} bgColor={'#FFFEEE'}/>
               <NavigationButton width={"w-[181px]"} img={doc} href={"/tools/plagiarism-checker/"} name={"Plagiarism Checker"} bgColor={'#FFFFFF'}/>
               <NavigationButton width={"w-[181px]"} img={search} href={"/tools/ai-content-detector/"} name={"AI Content Detector"} bgColor={'#FFFFFF'}/>
-              <NavigationButton width={"w-[181px] md:w-[135px]"} img={tools} href={"/tools/"} name={"Other AI Tools"} bgColor={'#FFFFFF'}/>
+              <NavigationButton width={"w-[181px] md:w-auto"} img={tools} href={"/tools/"} name={"Other AI Tools"} bgColor={'#FFFFFF'}/>
             </div>
             <div className="hidden md:flex flex-wrap gap-4">
               <p className="text-[#3B82F6] font-bold whitespace-nowrap ml-20 font-Urbanist text-2xl">Paraphrased Content</p>
@@ -282,14 +282,15 @@ const Paraphrase = () => {
           ))}
         </div>
 
-        {/* Show More / Show Less Button */}
-        <div className="ml-auto mr-auto text-center mt-4 common-button header-btn w-[200px] h-[40px]">
-          <button
-            onClick={() => setShowAll(!showAll)}
-          >
-            {showAll ? "Show Less" : "Show More"}
-          </button>
-        </div>
+        
+        {allParaphraseInfo.length > 3 && (
+          <div className="ml-auto mr-auto text-center mt-4 common-button header-btn w-[200px] h-[40px]">
+            <button onClick={() => setShowAll(!showAll)}>
+              {showAll ? "Show Less" : "Show More"}
+            </button>
+          </div>
+        )}
+   
       </div>
 
       {/* Modal */}

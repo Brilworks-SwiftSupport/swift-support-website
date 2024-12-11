@@ -27,7 +27,7 @@ const VoiceToTextConverter = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [textData, setTextData] = useState("");
   const [wordCount, setwordCount] = useState(0);
-  const [sentenceCount, setsentenceCount] = useState(0);
+  const [sentenceCount, setsentenceCount] = useState(1);
   const [STTrecords, setSSTRecords] = useState([]);
   const [visibleCount, setVisibleCount] = useState(6); // Initial 6 items for a 3x2 grid
 
@@ -380,16 +380,20 @@ const VoiceToTextConverter = () => {
                 </p>
 
                 {/* Copy Button */}
-                <button onClick={handleCopy}>
+               
+
+                {/* Sentence and Word Count */}
+                
+              </div>
+              <div className="relative mt-2 md:mt-0 p-4 w-[100%] mx-auto mb-2 mt-2 overflow-auto">
+              <button onClick={handleCopy}>
                   <img
                     src="/images/copy.svg"
                     alt="copy"
                     className="absolute bottom-2 right-2 w-6 h-6"
                   />
                 </button>
-
-                {/* Sentence and Word Count */}
-                <div className="absolute rounded-md bg-[#FAFAFA] border border-gray-300 bottom-2 left-2 px-2 py-1 whitespace-nowrap text-sm">
+              <div className="absolute rounded-md bg-[#FAFAFA] border border-gray-300 bottom-2 left-2 px-2 py-1 whitespace-nowrap text-sm">
                   {sentenceCount} Sentences | {wordCount} Words
                 </div>
               </div>

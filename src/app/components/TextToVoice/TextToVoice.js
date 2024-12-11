@@ -35,6 +35,7 @@ const TextToVoiceConverter = () => {
   ]);
   const [TTSrecords, setTTSRecords] = useState([]);
   const audioRef = useRef(null);
+  const [loading, setLoading] = useState(false);
 
   const [inputText, setInputText] = useState(""); // Text input state
   const wordLimit = 500; // Set the word limit
@@ -42,34 +43,56 @@ const TextToVoiceConverter = () => {
   const [selectedVoiceFormat, setVoiceFormat] = useState("");
   const [playedVoice, setPlayedVoice] = useState();
   const [visibleCount, setVisibleCount] = useState(6); // Initial 6 items for a 3x2 grid
+  const [canClick, setCanClick] = useState(true);  // State to manage click permission
 
   const handleLoadMore = () => {
     setVisibleCount((prevCount) => prevCount + 6); // Load 6 more items
   };
 
   const handleButtonClick = async () => {
-    if (!inputText.trim()) {
-      toast.error("Please enter the text before creating audio!", {
-        position: "bottom-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-    } else {
-      const response = await axios.post(`${NEXT_PUBLIC_BE_URL}/text_to_voice`, {
-        text: inputText,
-        voice: voiceId,
+    if (!canClick || !inputText.trim()) return;
+    setLoading(true);  
+    setCanClick(false);
 
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      if (!response.status == 200) {
-        toast.error("Not able to generate audio file", {
+    try {
+      if (!inputText.trim()) {
+        toast.error("Please enter the text before creating audio!", {
+          position: "bottom-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      } else {
+        const response = await axios.post(`${NEXT_PUBLIC_BE_URL}/text_to_voice`, {
+          text: inputText,
+          voice: voiceId,
+  
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (!response.status == 200) {
+          toast.error("Not able to generate audio file", {
+            position: "bottom-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
+        const audio_url = response.data.audio_url;
+        setAudioUrl(audio_url);
+  
+        setIsSuccess(true);
+  
+        toast.success("Audio is being created!", {
           position: "bottom-center",
           autoClose: 3000,
           hideProgressBar: false,
@@ -80,22 +103,19 @@ const TextToVoiceConverter = () => {
           theme: "colored",
         });
       }
-      const audio_url = response.data.audio_url;
-      setAudioUrl(audio_url);
 
-      setIsSuccess(true);
-
-      toast.success("Audio is being created!", {
-        position: "bottom-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      // Handle success logic here, if any
+    } catch (error) {
+      // Handle error here
+      console.error(error);
+    } finally {
+      setTimeout(() => {
+        setCanClick(true);  // Re-enable button after 5 seconds
+        setLoading(false);  // Reset loading state
+      }, 5000);
     }
+   
+    
   };
 
   const handleDownload = (audioUrl) => {
@@ -334,9 +354,9 @@ const TextToVoiceConverter = () => {
                   ? "bg-black cursor-pointer text-white"
                   : "bg-gray-300 cursor-not-allowed"
               }`}
-              disabled={!inputText.trim()} // Button is disabled if inputText is empty
+              disabled={loading || !inputText.trim() || !canClick}
             >
-              Create Audio
+              {loading ? "Creating Audio..." : "Create Audio"}
             </button>
           </div>
         </div>
@@ -414,7 +434,7 @@ const TextToVoiceConverter = () => {
             <div className="text-center mt-8">
               <button
                 onClick={handleLoadMore}
-                className="px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
+                className="px-6 py-3 bg-black text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
               >
                 Load More
               </button>
