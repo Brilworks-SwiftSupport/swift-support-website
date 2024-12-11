@@ -6,6 +6,7 @@ import freeForever from "@/app/images/freeForever.svg";
 import Image from "next/image";
 import youTubeIcon from "@/app/images/youtube-icon.svg";
 import { YoutubeTranscript } from "youtube-transcript";
+
 const YouTubeSummarizer = () => {
   const [youtubeUrl, setYoutubeUrl] = useState("");
   const [videoId, setVideoId] = useState("");
@@ -26,9 +27,11 @@ const YouTubeSummarizer = () => {
     "Deploy AI Agent": "https://www.youtube.com/watch?v=WFA536oxEn4",
     "How to Automate Emails": "https://www.youtube.com/watch?v=fclfUlRC9MU",
   };
+
   const handleClick = (item) => {
     setYoutubeUrl(videoUrls[item]);
   };
+
   const extractVideoId = (youtubeUrl) => {
     const regex =
       /(?:https?:\/\/(?:www\.)?youtube\.com\/(?:[^\/\n\s]+\/\S+\/|\S*?v=|(?:[A-Za-z0-9-]+&)*))([\w-]{11})/;
@@ -41,12 +44,11 @@ const YouTubeSummarizer = () => {
   };
 
   useEffect(() => {
-    // Fetch data from the API
     const fetchData = async () => {
       try {
         const response = await fetch(`${NEXT_PUBLIC_BE_URL}/youtube_summary`, {
           method: "GET",
-        }); // Adjust the URL if necessary
+        });
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -84,8 +86,7 @@ const YouTubeSummarizer = () => {
     );
   };
 
-
-  const fetchSummary = async (textData,youtubeUrl) => {
+  const fetchSummary = async (textData, youtubeUrl) => {
     setLoading(true);
     setError("");
 
@@ -95,19 +96,18 @@ const YouTubeSummarizer = () => {
         `${NEXT_PUBLIC_BE_URL}/youtube_summary`,
         {
           youtube_url: youtubeUrl,
-          transcript_text:textData
+          transcript_text: textData,
         },
         {
           headers: {
             "Content-Type": "application/json",
           },
         }
-      );     
+      );
 
       setSummary(response.data.summarized_text);
-    
-      setActiveTab('summary')
 
+      setActiveTab("summary");
     } catch (err) {
       setError(err.message);
     } finally {
@@ -127,12 +127,13 @@ const YouTubeSummarizer = () => {
     if (!youtubeUrl.trim()) {
       alert("Please provide a valid YouTube URL!");
       return;
-    }   
+    }
     const videoId = extractVideoId(youtubeUrl);
-    setVideoId(videoId);const transcriptData = await YoutubeTranscript.fetchTranscript(videoId);
+    setVideoId(videoId);
+    const transcriptData = await YoutubeTranscript.fetchTranscript(videoId);
     const textData = transcriptData.map((item) => item.text).join(" ");
     setFullTranscript(textData);
-    await fetchSummary(textData,youtubeUrl); // Call the API fetch function
+    await fetchSummary(textData, youtubeUrl); // Call the API fetch function
   };
 
   return (
@@ -171,19 +172,14 @@ const YouTubeSummarizer = () => {
 
         <div className="flex flex-wrap gap-4 mb-2 mt-5">
           <div className="flex flex-wrap gap-2 items-center justify mx-auto">
-          <p className="text-xs sm:text-sm mt-1 font-bold ">Quick Try:</p>
-
+            <p className="text-xs sm:text-sm mt-1 font-bold ">Quick Try:</p>
             {Object.keys(videoUrls).map((item, index) => (
               <button
                 key={index}
                 className="inline-flex items-center px-3 border py-1 text-xs sm:text-sm font-medium bg-white text-red-500 rounded-full shadow-sm cursor-pointer hover:bg-red-200"
                 onClick={() => handleClick(item)}
               >
-
-            
-                <Image src={youTubeIcon} className="mr-2"/>
-
-                
+                <Image src={youTubeIcon} className="mr-2" />
                 {item}
               </button>
             ))}
@@ -225,9 +221,7 @@ const YouTubeSummarizer = () => {
             and enable the extension
           </p>
         </div>
-        
 
-       
         {/* Tabs for Summary and Full Transcript */}
         <div className="flex justify-center gap-4 mt-6">
           <button
@@ -248,6 +242,7 @@ const YouTubeSummarizer = () => {
             Full Transcript
           </button>
         </div>
+
         {/* Display Summary or Full Transcript */}
         <div className="mt-5 p-4 rounded">
           {activeTab === "summary" && summary && (
@@ -270,6 +265,7 @@ const YouTubeSummarizer = () => {
             </>
           )}
         </div>
+
         {/* Tools Section */}
         <h2 className="text-center text-2xl sm:text-4xl md:text-5xl font-extrabold mb-4">
           Just In - The Latest Summaries for You!
