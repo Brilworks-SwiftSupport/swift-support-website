@@ -400,7 +400,7 @@ const VoiceToTextConverter = () => {
         <h2 className="text-center text-2xl sm:text-2xl md:text-3xl font-Urbanist mb-4 mt-4">
           Some{" "}
           <span className="bg-clip-text text-transparent bg-text-theme-gradient">
-            Text To Voice
+            Voice To Text
           </span>{" "}
           for You!
         </h2>

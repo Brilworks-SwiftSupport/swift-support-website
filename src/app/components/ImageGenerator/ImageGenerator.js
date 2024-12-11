@@ -16,14 +16,7 @@ const ImageGenerator = () => {
   const [prompt, setPrompt] = useState("");
   const [generatedImage, setGeneratedImage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedSize, setSelectedSize] = useState("");
   const [allGeneratedImages, setAllGeneratedImages] = useState([]);
-
-  // Image size options
-  const imageSizeOptions = [
-    { value: "", label: "Select Size" },
-    { value: "1024x1024", label: "1024x1024" },
-  ];
 
   // Quick try options
   const quickTryOptions = [
@@ -73,7 +66,7 @@ const ImageGenerator = () => {
         },
         body: JSON.stringify({
           prompt: prompt,
-          size: selectedSize,
+          size: "1024x1024",
         }),
       });
 
@@ -209,32 +202,16 @@ const ImageGenerator = () => {
                 className="flex-grow text-gray-500 font-urbanist font-semibold text-sm md:text-[16px] leading-[24px] outline-none placeholder-gray-350 mb-2 md:mb-0 md:mx-6"
                 required
               />
-
-              {/* Size Dropdown */}
-              <select
-                value={selectedSize}
-                disabled={isLoading}
-                onChange={(e) => setSelectedSize(e.target.value)}
-                className="w-full md:w-auto px-2 py-1 border rounded text-gray-700 focus:outline-none focus:border-blue-500 mb-2 md:mb-0 md:mr-2"
-              >
-                {imageSizeOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-
               <button
                 type="submit"
-                disabled={isLoading || !selectedSize}
+                disabled={isLoading}
                 className={`flex items-center justify-center
-              ${
-                isLoading || !selectedSize
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-black"
-              } 
-              text-white font-urbanist font-semibold text-sm md:text-[16px] 
-              leading-[24px] rounded-full py-2 md:py-3 md:-mr-3 px-6 w-full md:w-auto`}
+                          ${
+                            isLoading
+                              ? "bg-gray-400 cursor-not-allowed"
+                              : "bg-black"
+                          }
+                          text-white font-urbanist font-semibold text-sm md:text-[16px] leading-[24px] rounded-full py-2 md:py-3 md:-mr-3 px-6 w-full md:w-auto`}
               >
                 {isLoading ? "Generating..." : "Generate Image"}
               </button>
