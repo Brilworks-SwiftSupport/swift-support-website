@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import BannerLine from "../Tools/BannerLine";
+import HandleText from "../Tools/HandleText";
 import NavigationButton from "@/app/(pages)/tools/NavigationButton/NavigationButton";
 import axios from "axios";
 
@@ -44,6 +44,10 @@ const TextToVoiceConverter = () => {
   const [selectedVoiceFormat, setVoiceFormat] = useState("");
   const [playedVoice, setPlayedVoice] = useState();
   const [visibleCount, setVisibleCount] = useState(6); // Initial 6 items for a 3x2 grid
+
+ 
+  
+
 
   const handleLoadMore = () => {
     setVisibleCount((prevCount) => prevCount + 6); // Load 6 more items
@@ -361,39 +365,46 @@ const TextToVoiceConverter = () => {
           </div>
         )}
 
-        <h2 className="text-center text-2xl sm:text-2xl md:text-3xl font-extrabold mb-4 mt-4">
-          Some Text To Voice for You!
+        <h2 className="text-center text-2xl sm:text-2xl md:text-3xl font-Urbanist mb-4 mt-4">
+          Some <span className="bg-clip-text text-transparent bg-text-theme-gradient" >Text To Voice</span> for You!
         </h2>
 
         <div className="container mx-auto py-8 px-4">
-          {/* Grid Container */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {TTSrecords.slice(0, visibleCount).map((tool, index) => (
-              <div
-                key={index}
-                className="p-4 bg-gray-100 rounded shadow mb-6 flex flex-col"
-              >
+            {/* Grid Container */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {TTSrecords.slice(0, visibleCount).map((tool, index) => (
+                <div
+                  key={index}
+                  className="p-4 bg-white border border-[#E4E4E4] rounded shadow flex flex-col justify-between ]"
+                >
+                  {/* Input Text */}
+                  <HandleText text={tool.tts_text} type="Input" />
 
-                {/* Input Text */}
-                <div className="flex justify-between items-start mt-4">
-                  <div className="w-full">
-                    <span className="font-bold">Input Text:</span>
-                    <p className="mt-2">{tool.tts_text}</p>
+
+                  {/* Output Audio */}
+                  <div className="flex flex-col mt-auto space-y-4">
+                    {/* Output Audio Section */}
+                    <div className="mt-4">
+                      <span className="font-bold">Output Audio:</span>
+                      <audio controls className="w-full bg-[#FFFEEE] mt-2">
+                        <source src={tool.tts_url} type="audio/mpeg" />
+                        Your browser does not support the audio element.
+                      </audio>
+                    </div>
+
+                    {/* Download Button */}
+                    <button
+                      onClick={() => handleDownload(tool.tts_url)}
+                      className="w-full py-3 bg-black text-white rounded-xl hover:bg-gray-800 transition duration-300"
+                    >
+                      Download Audio
+                    </button>
                   </div>
                 </div>
-                {/* Output Audio */}
-                <div className="flex flex-col items-start">
-                  <span className="font-bold mb-2 mt-2">Output Audio:</span>
-                  <audio controls className="w-full">
-                    <source src={tool.tts_url} type="audio/mpeg" />
-                    Your browser does not support the audio element.
-                  </audio>
-                </div>
+              ))}
+            </div>
 
-                
-              </div>
-            ))}
-          </div>
+
 
           {/* Load More Button */}
           {visibleCount < TTSrecords.length && (

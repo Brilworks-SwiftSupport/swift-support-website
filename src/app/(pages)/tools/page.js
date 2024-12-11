@@ -77,9 +77,9 @@ const page = () => {
   ];
 
   return (
-    <main className="min-h-[500px]">
-      <div className="mt-20">
-        <div className="container mx-auto py-8 px-4">
+    <main className="min-h-screen">
+      <div className="mt-10">
+        <div className="container mx-auto py-8 px-4 ">
           <h1 className="text-center text-[54px] font-urbanist font-bold leading-[72px] mt-20 mb-10">
             <span>Explore our</span>{" "}
             <span className="relative inline-block mb-2">
@@ -87,7 +87,7 @@ const page = () => {
               <div className="absolute left-0 -bottom-1 banner-underline !max-w-none"></div>
             </span>
           </h1>
-          <div className="flex items-center justify-center gap-16 flex-wrap mx-auto">
+          <div className="flex items-center justify-center gap-16 flex-wrap mx-auto mb-20">
             {tools.map((tool, index) => (
               <Tools
                 key={index}

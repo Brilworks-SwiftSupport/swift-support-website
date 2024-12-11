@@ -10,7 +10,8 @@ import textToVoice from "@/app/images/textToVoice.svg";
 import voiceToText from "@/app/images/voiceToText.svg";
 import imgGenerator from "@/app/images/imgGenerator.svg";
 import tools from "@/app/images/tools.svg"
-
+import HandleText from "../Tools/HandleText";
+import CopyableText from "../Tools/TextCopy";
 const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
 const VoiceToTextConverter = () => {
@@ -387,37 +388,46 @@ const VoiceToTextConverter = () => {
           </div>
         )}
 
-        <h2 className="text-center text-2xl sm:text-2xl md:text-3xl font-extrabold mb-4 mt-4">
-          Some Voice To Text for You!
+        <h2 className="text-center text-2xl sm:text-2xl md:text-3xl font-Urbanist mb-4 mt-4">
+          Some <span className="bg-clip-text text-transparent bg-text-theme-gradient" >Text To Voice</span> for You!
         </h2>
 
         <div className="container mx-auto py-8 px-4">
-          {/* Grid Container */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {STTrecords.slice(0, visibleCount).map((tool, index) => (
-              <div
-                key={index}
-                className="p-4 bg-gray-100 rounded shadow mb-6 flex flex-col"
-              >
-                {/* Input Audio */}
-                <div className="flex flex-col items-start">
-                  <span className="font-bold mb-2">Input Audio:</span>
-                  <audio controls className="w-full">
-                    <source src={tool.tts_url} type="audio/mpeg" />
-                    Your browser does not support the audio element.
-                  </audio>
-                </div>
+            {/* Grid Container */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {STTrecords.slice(0, visibleCount).map((tool, index) => (
+                <div
+                  key={index}
+                  className="p-4 bg-white border border-[#E4E4E4] rounded shadow flex flex-col justify-between ]"
+                >
+                  {/* Input Text */}
+                  <div>
 
-                {/* Output Text */}
-                <div className="flex justify-between items-start mt-4">
-                  <div className="w-full">
-                    <span className="font-bold">Output Text:</span>
-                    <p className="mt-2">{tool.tts_text}</p>
+                  <span className="font-bold">Input Audio:</span>
+                      <audio controls className="w-full bg-[#FFFEEE] mt-2">
+                        <source src={tool.tts_url} type="audio/mpeg" />
+                        Your browser does not support the audio element.
+                      </audio>
+                  </div>
+
+
+                  {/* Output Audio */}
+                  <div className="flex flex-col mt-auto space-y-4">
+                    {/* Output Audio Section */}
+                    <div className="mt-4">
+                      <HandleText text={tool.tts_text} type="Output" />
+
+                    </div>
+
+                  
+                    <CopyableText text={tool.tts_text}/>
+
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+
+
 
           {/* Load More Button */}
           {visibleCount < STTrecords.length && (
