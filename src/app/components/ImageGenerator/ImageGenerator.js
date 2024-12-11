@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Download } from "lucide-react";
 import Image from "next/image";
 import NavigationButton from "@/app/(pages)/tools/NavigationButton/NavigationButton";
 
@@ -135,7 +134,7 @@ const ImageGenerator = () => {
 
   return (
     <main className="mt-12 md:mt-32">
-      <div className="container mx-auto max-w-[100%] md:max-w-[80%] bg-transparent">
+      <div className="container mx-auto max-w-[100%] md:max-w-[80%] bg-transparent mb-32">
         <Image
           className="mx-auto w-auto h-auto"
           src={freeForever}
@@ -167,27 +166,27 @@ const ImageGenerator = () => {
         <div className="flex flex-wrap gap-4 mt-[30px] md:mt-[56px] md:ml-12 px-4 md:px-0">
           <div className="flex items-center flex-wrap gap-2 ml-[62px] md:ml-0">
             <NavigationButton
-              width={"w-[181px]"}
+              width={"w-auto"}
               img={textToVoice}
               href={"/tools/text-to-voice/"}
               name={"AI Text to Voice"}
               bgColor={"#FFFFFF"}
             />
             <NavigationButton
-              width={"w-[181px]"}
+              width={"w-auto"}
               img={voiceToText}
               href={"/tools/voice-to-text/"}
               name={"AI Voice to Text"}
               bgColor={"#FFFFFF"}
             />
             <NavigationButton
-              width={"w-[181px]"}
+              width={"w-auto"}
               img={imgGenerator}
               name={"AI Image Generator"}
               bgColor={"#FFFEEE"}
             />
             <NavigationButton
-              width={"w-[181px]"}
+              width={"w-auto"}
               img={tools}
               href={"/tools/"}
               name={"Other AI Tools"}
@@ -299,38 +298,63 @@ const ImageGenerator = () => {
         )}
 
         {/* Previously Generated Images Section */}
-        <h2 className="text-center text-2xl sm:text-4xl md:text-5xl font-extrabold mt-16">
+        <h2 className="text-center text-2xl sm:text-4xl md:text-[42px] font-semibold mt-[120px] mb-11">
           Previously Generated Images
         </h2>
-        <div className="container mx-auto py-6 px-4">
+        <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {allGeneratedImages.map((image, index) => (
               <div
                 key={index}
-                className="relative p-3 bg-gray-100 rounded shadow flex flex-col items-center"
+                className="relative shadow flex flex-col items-center bg-[#FFFBFB] border border-[#E4E4E4] rounded-2xl"
               >
-                <div className="w-full text-black text-base px-2 py-1 rounded-t mb-2">
-                  <span className="font-bold">Prompt : </span>
-                  <span>{image.prompt}</span>
-                </div>
-
-                <div className="relative w-full h-full">
+                {/* Image Section */}
+                <div className="relative w-full h-[200px] sm:h-[280px] md:h-[300px]">
                   <img
                     src={image.summary}
                     alt={`Prompt: ${image.prompt}`}
-                    className="w-full h-full object-cover rounded shadow"
+                    className="w-full h-full object-cover rounded-tl-2xl rounded-tr-2xl"
                   />
+                </div>
+
+                {/* Text Section */}
+                <div className="w-full text-black text-sm sm:text-base md:text-xl font-Urbanist px-4 py-4">
+                  <span className="font-bold">Prompt: </span>
+                  <span>{image.prompt}</span>
+                </div>
+
+                {/* Spacer Section */}
+                <div className="w-full h-[40px] md:h-[60px] relative mt-4"></div>
+
+                {/* Button Section */}
+                <div className="mt-4 flex justify-center absolute bottom-3 md:bottom-4">
                   <button
-                    className="absolute bottom-2 right-2 bg-white p-2 rounded-full shadow hover:bg-gray-200"
                     onClick={() => handleDownload(image.summary)}
+                    className="w-full max-w-[280px] sm:max-w-[300px] md:max-w-[340px] h-[40px] sm:h-[50px] md:h-[60px] bg-black text-white text-[10px] sm:text-[12px] md:text-[16px] font-semibold md:py-5 px-12 rounded-full"
                   >
-                    <Download className="w-6 h-6 text-black" />
+                    Download Image
                   </button>
                 </div>
               </div>
             ))}
           </div>
         </div>
+
+        {/* New Section
+        <div className="bg-[#F6FDFF] px-4 sm:px-8 lg:px-32 py-12 flex flex-col gap-4 w-full mt-10">
+          <div className="flex flex-col items-center gap-5 w-full mx-auto">
+            <h1 className="text-[#212121] font-urbanist font-semibold text-3xl sm:text-4xl lg:text-[42px] leading-tight text-center">
+              Create Stunning Visuals with AI Image Generator
+            </h1>
+            <p className="text-[#212121] font-urbanist font-normal text-base sm:text-lg lg:text-xl leading-[1.6] text-center">
+              Bring your ideas to life with our powerful AI Image Generator.
+              Whether you're designing marketing materials, crafting unique
+              artwork, or enhancing your digital content, this tool simplifies
+              the creative process by transforming your imagination into
+              high-quality visuals in seconds.
+            </p>
+          </div>
+        </div> */}
       </div>
     </main>
   );

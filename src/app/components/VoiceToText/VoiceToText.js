@@ -9,7 +9,7 @@ import freeForever from "@/app/images/freeForever.svg";
 import textToVoice from "@/app/images/textToVoice.svg";
 import voiceToText from "@/app/images/voiceToText.svg";
 import imgGenerator from "@/app/images/imgGenerator.svg";
-import tools from "@/app/images/tools.svg"
+import tools from "@/app/images/tools.svg";
 import HandleText from "../Tools/HandleText";
 import CopyableText from "../Tools/TextCopy";
 const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
@@ -34,7 +34,6 @@ const VoiceToTextConverter = () => {
   const handleLoadMore = () => {
     setVisibleCount((prevCount) => prevCount + 6); // Load 6 more items
   };
-
 
   const onDrop = useCallback((e) => {
     e.preventDefault();
@@ -98,11 +97,16 @@ const VoiceToTextConverter = () => {
 
     const fetchData = async () => {
       try {
-        const queryParam = 'stt'; 
+        const queryParam = "stt";
 
-        const response = await fetch(`${NEXT_PUBLIC_BE_URL}/stt_tts_data?type=${encodeURIComponent(queryParam)}`, {
-          method: "GET",
-        });
+        const response = await fetch(
+          `${NEXT_PUBLIC_BE_URL}/stt_tts_data?type=${encodeURIComponent(
+            queryParam
+          )}`,
+          {
+            method: "GET",
+          }
+        );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -112,15 +116,14 @@ const VoiceToTextConverter = () => {
         const formattedTools = data.data_list.map((item) => ({
           tts_url: item.audio_url,
           tts_text: item.text,
-      
         }));
 
         setSSTRecords(formattedTools); // Update tools state
       } catch (err) {
         setError(err.message); // Handle errors
-      } 
+      }
     };
-    fetchData()
+    fetchData();
   }, [isUploading]);
 
   const handleCopy = () => {
@@ -249,26 +252,32 @@ const VoiceToTextConverter = () => {
         <div className="flex flex-wrap gap-4 mt-[30px] md:mt-[56px] md:ml-12 px-4 md:px-0">
           <div className="flex items-center flex-wrap gap-2 ml-[62px] md:ml-0">
             <NavigationButton
-              width={"w-[181px]"}
+              width={"w-auto"}
               img={textToVoice}
               href={"/tools/text-to-voice/"}
               name={"AI Text to Voice"}
               bgColor={"#FFFFFF"}
             />
             <NavigationButton
-              width={"w-[181px]"}
+              width={"w-auto"}
               img={voiceToText}
               name={"AI Voice to Text"}
               bgColor={"#FFFEEE"}
             />
             <NavigationButton
-              width={"w-[181px]"}
+              width={"w-auto"}
               img={imgGenerator}
               href={"/tools/image-generator/"}
               name={"AI Image Generator"}
               bgColor={"#FFFFFF"}
             />
-            <NavigationButton width={"w-[181px] md:w-[135px]"} img={tools} href={"/tools/"} name={"Other AI Tools"} bgColor={'#FFFFFF'}/>
+            <NavigationButton
+              width={"w-auto"}
+              img={tools}
+              href={"/tools/"}
+              name={"Other AI Tools"}
+              bgColor={"#FFFFFF"}
+            />
           </div>
         </div>
 
@@ -389,45 +398,42 @@ const VoiceToTextConverter = () => {
         )}
 
         <h2 className="text-center text-2xl sm:text-2xl md:text-3xl font-Urbanist mb-4 mt-4">
-          Some <span className="bg-clip-text text-transparent bg-text-theme-gradient" >Text To Voice</span> for You!
+          Some{" "}
+          <span className="bg-clip-text text-transparent bg-text-theme-gradient">
+            Text To Voice
+          </span>{" "}
+          for You!
         </h2>
 
         <div className="container mx-auto py-8 px-4">
-            {/* Grid Container */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {STTrecords.slice(0, visibleCount).map((tool, index) => (
-                <div
-                  key={index}
-                  className="p-4 bg-white border border-[#E4E4E4] rounded shadow flex flex-col justify-between ]"
-                >
-                  {/* Input Text */}
-                  <div>
-
+          {/* Grid Container */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {STTrecords.slice(0, visibleCount).map((tool, index) => (
+              <div
+                key={index}
+                className="p-4 bg-white border border-[#E4E4E4] rounded shadow flex flex-col justify-between ]"
+              >
+                {/* Input Text */}
+                <div>
                   <span className="font-bold">Input Audio:</span>
-                      <audio controls className="w-full bg-[#FFFEEE] mt-2">
-                        <source src={tool.tts_url} type="audio/mpeg" />
-                        Your browser does not support the audio element.
-                      </audio>
-                  </div>
-
-
-                  {/* Output Audio */}
-                  <div className="flex flex-col mt-auto space-y-4">
-                    {/* Output Audio Section */}
-                    <div className="mt-4">
-                      <HandleText text={tool.tts_text} type="Output" />
-
-                    </div>
-
-                  
-                    <CopyableText text={tool.tts_text}/>
-
-                  </div>
+                  <audio controls className="w-full bg-[#FFFEEE] mt-2">
+                    <source src={tool.tts_url} type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                  </audio>
                 </div>
-              ))}
-            </div>
 
+                {/* Output Audio */}
+                <div className="flex flex-col mt-auto space-y-4">
+                  {/* Output Audio Section */}
+                  <div className="mt-4">
+                    <HandleText text={tool.tts_text} type="Output" />
+                  </div>
 
+                  <CopyableText text={tool.tts_text} />
+                </div>
+              </div>
+            ))}
+          </div>
 
           {/* Load More Button */}
           {visibleCount < STTrecords.length && (

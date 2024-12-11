@@ -14,7 +14,7 @@ const NavigationButton = ({ width, img, href, name, bgColor }) => {
       }}
     >
       <div
-        className="w-full h-full rounded-full bg-[#FFFFFF] flex items-center justify-center"
+        className="w-full h-full rounded-full bg-[#FFFFFF] flex items-center justify-center px-3"
         style={{
           background: bgColor,
         }}
@@ -26,7 +26,9 @@ const NavigationButton = ({ width, img, href, name, bgColor }) => {
             alt="free-forever"
             width={"auto"}
           />
-          <p className="text-sm font-Urbanist text-4 font-semibold text-gray-950">{name}</p>
+          <p className="text-sm font-Urbanist text-4 font-semibold text-gray-950">
+            {name}
+          </p>
         </div>
       </div>
     </a>

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useCallback, useEffect, useRef } from "react";
-import { Upload, X, Download } from "lucide-react";
+import { Upload, X } from "lucide-react";
 import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 import freeForever from "@/app/images/freeForever.svg";
 import Image from "next/image";
@@ -640,28 +640,35 @@ const ChatPDF = () => {
         </div>
 
         {/* Previously Uploaded Document Section */}
-        <h2 className="text-center text-2xl sm:text-4xl md:text-5xl font-extrabold mt-16">
+        <h2 className="text-center text-2xl sm:text-4xl md:text-[42px] font-semibold mt-[120px] mb-11">
           Previously Uploaded Document
         </h2>
-        <div className="container mx-auto py-6 px-4">
+        <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {uploadedDocs.map((doc, index) => (
               <div
                 key={index}
-                className="relative p-3 bg-gray-100 rounded shadow flex flex-col items-center"
+                className="relative shadow flex flex-col items-center bg-[#FFFBFB] border border-[#E4E4E4] rounded-2xl"
               >
                 {/* PDF Preview */}
-                <div className="relative w-full h-80 bg-gray-200">
+                <div className="relative w-full h-[270px] sm:h-[300px] md:h-[344px]">
                   <iframe
                     src={`${doc.doc_url}#toolbar=0&navpanes=0&scrollbar=0`}
                     title={`Document: ${doc.doc_name}`}
-                    className="w-full h-full rounded shadow"
+                    className="w-full h-full object-cover rounded-tl-2xl rounded-tr-2xl"
                   />
+                </div>
+
+                {/* Spacer Section */}
+                <div className="w-full h-[40px] md:h-[60px] relative mt-8"></div>
+
+                {/* Button Section */}
+                <div className="flex justify-center absolute bottom-3 md:bottom-4">
                   <button
-                    className="absolute bottom-2 right-2 bg-white p-2 mr-4 rounded-full shadow hover:bg-gray-200"
                     onClick={() => handleDownload(doc.doc_url)}
+                    className="w-full max-w-[280px] sm:max-w-[300px] md:max-w-[340px] h-[40px] sm:h-[50px] md:h-[60px] bg-black text-white text-[10px] sm:text-[12px] md:text-[16px] font-semibold md:py-5 px-12 rounded-full"
                   >
-                    <Download className="w-6 h-6 text-black" />
+                    Download PDF
                   </button>
                 </div>
               </div>

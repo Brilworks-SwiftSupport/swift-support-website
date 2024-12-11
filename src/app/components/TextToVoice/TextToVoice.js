@@ -12,7 +12,7 @@ import imgGenerator from "@/app/images/imgGenerator.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Select from "react-select";
-import tools from "@/app/images/tools.svg"
+import tools from "@/app/images/tools.svg";
 
 const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
@@ -34,8 +34,6 @@ const TextToVoiceConverter = () => {
     { value: "mp3", label: "MP3" },
   ]);
   const [TTSrecords, setTTSRecords] = useState([]);
-
-
   const audioRef = useRef(null);
 
   const [inputText, setInputText] = useState(""); // Text input state
@@ -45,14 +43,9 @@ const TextToVoiceConverter = () => {
   const [playedVoice, setPlayedVoice] = useState();
   const [visibleCount, setVisibleCount] = useState(6); // Initial 6 items for a 3x2 grid
 
- 
-  
-
-
   const handleLoadMore = () => {
     setVisibleCount((prevCount) => prevCount + 6); // Load 6 more items
   };
-
 
   const handleButtonClick = async () => {
     if (!inputText.trim()) {
@@ -195,14 +188,18 @@ const TextToVoiceConverter = () => {
   };
 
   useEffect(() => {
-
     const fetchData = async () => {
       try {
-        const queryParam = 'tts'; 
+        const queryParam = "tts";
 
-        const response = await fetch(`${NEXT_PUBLIC_BE_URL}/stt_tts_data?type=${encodeURIComponent(queryParam)}`, {
-          method: "GET",
-        });
+        const response = await fetch(
+          `${NEXT_PUBLIC_BE_URL}/stt_tts_data?type=${encodeURIComponent(
+            queryParam
+          )}`,
+          {
+            method: "GET",
+          }
+        );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -212,15 +209,14 @@ const TextToVoiceConverter = () => {
         const formattedTools = data.data_list.map((item) => ({
           tts_url: item.audio_url,
           tts_text: item.text,
-      
         }));
 
         setTTSRecords(formattedTools); // Update tools state
       } catch (err) {
         setError(err.message); // Handle errors
-      } 
+      }
     };
-    fetchData()
+    fetchData();
     getVoiceList();
   }, []);
 
@@ -258,26 +254,32 @@ const TextToVoiceConverter = () => {
         <div className="flex flex-wrap gap-4 mt-[30px] md:mt-[56px] md:ml-12 px-4 md:px-0">
           <div className="flex items-center flex-wrap gap-2 ml-[62px] md:ml-0">
             <NavigationButton
-              width={"w-[181px]"}
+              width={"w-auto"}
               img={textToVoice}
               name={"AI Text to Voice"}
               bgColor={"#FFFEEE"}
             />
             <NavigationButton
-              width={"w-[181px]"}
+              width={"w-auto"}
               img={voiceToText}
               href={"/tools/voice-to-text/"}
               name={"AI Voice to Text"}
               bgColor={"#FFFFFF"}
             />
             <NavigationButton
-              width={"w-[181px]"}
+              width={"w-auto"}
               img={imgGenerator}
               href={"/tools/image-generator/"}
               name={"AI Image Generator"}
               bgColor={"#FFFFFF"}
             />
-            <NavigationButton width={"w-[181px] md:w-[135px]"} img={tools} href={"/tools/"} name={"Other AI Tools"} bgColor={'#FFFFFF'}/>
+            <NavigationButton
+              width={"w-auto"}
+              img={tools}
+              href={"/tools/"}
+              name={"Other AI Tools"}
+              bgColor={"#FFFFFF"}
+            />
           </div>
         </div>
 
@@ -366,45 +368,46 @@ const TextToVoiceConverter = () => {
         )}
 
         <h2 className="text-center text-2xl sm:text-2xl md:text-3xl font-Urbanist mb-4 mt-4">
-          Some <span className="bg-clip-text text-transparent bg-text-theme-gradient" >Text To Voice</span> for You!
+          Some{" "}
+          <span className="bg-clip-text text-transparent bg-text-theme-gradient">
+            Text To Voice
+          </span>{" "}
+          for You!
         </h2>
 
         <div className="container mx-auto py-8 px-4">
-            {/* Grid Container */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {TTSrecords.slice(0, visibleCount).map((tool, index) => (
-                <div
-                  key={index}
-                  className="p-4 bg-white border border-[#E4E4E4] rounded shadow flex flex-col justify-between ]"
-                >
-                  {/* Input Text */}
-                  <HandleText text={tool.tts_text} type="Input" />
+          {/* Grid Container */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {TTSrecords.slice(0, visibleCount).map((tool, index) => (
+              <div
+                key={index}
+                className="p-4 bg-white border border-[#E4E4E4] rounded shadow flex flex-col justify-between ]"
+              >
+                {/* Input Text */}
+                <HandleText text={tool.tts_text} type="Input" />
 
-
-                  {/* Output Audio */}
-                  <div className="flex flex-col mt-auto space-y-4">
-                    {/* Output Audio Section */}
-                    <div className="mt-4">
-                      <span className="font-bold">Output Audio:</span>
-                      <audio controls className="w-full bg-[#FFFEEE] mt-2">
-                        <source src={tool.tts_url} type="audio/mpeg" />
-                        Your browser does not support the audio element.
-                      </audio>
-                    </div>
-
-                    {/* Download Button */}
-                    <button
-                      onClick={() => handleDownload(tool.tts_url)}
-                      className="w-full py-3 bg-black text-white rounded-xl hover:bg-gray-800 transition duration-300"
-                    >
-                      Download Audio
-                    </button>
+                {/* Output Audio */}
+                <div className="flex flex-col mt-auto space-y-4">
+                  {/* Output Audio Section */}
+                  <div className="mt-4">
+                    <span className="font-bold">Output Audio:</span>
+                    <audio controls className="w-full bg-[#FFFEEE] mt-2">
+                      <source src={tool.tts_url} type="audio/mpeg" />
+                      Your browser does not support the audio element.
+                    </audio>
                   </div>
+
+                  {/* Download Button */}
+                  <button
+                    onClick={() => handleDownload(tool.tts_url)}
+                    className="w-full py-3 bg-black text-white rounded-xl hover:bg-gray-800 transition duration-300"
+                  >
+                    Download Audio
+                  </button>
                 </div>
-              ))}
-            </div>
-
-
+              </div>
+            ))}
+          </div>
 
           {/* Load More Button */}
           {visibleCount < TTSrecords.length && (
