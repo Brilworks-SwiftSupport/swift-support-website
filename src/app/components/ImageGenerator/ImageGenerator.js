@@ -52,7 +52,6 @@ const ImageGenerator = () => {
         console.error("Error fetching all generated images:", error);
       }
     };
-
     fetchAllGeneratedImages();
   }, []);
 
