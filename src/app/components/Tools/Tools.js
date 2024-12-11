@@ -11,15 +11,15 @@ const Tools = ({
   
 }) => {
   return (
-    <div className="max-w-sm bg-[#FFFEEE] border border-gray-200 rounded-lg shadow hover:shadow-lg transition-shadow duration-300 ">
-      <a href={link}>
+    <div className="max-w-sm bg-[#FFFEEE] border border-gray-200 rounded-3xl shadow hover:shadow-lg transition-shadow duration-300 mb-5">
+      <a href={link} >
         <img 
-          className="rounded-t-lg w-full h-48 object-cover" 
+          className="w-full h-50 object-cover" 
           src={imageUrl} 
           alt={imageAlt}
         />
       </a>
-      <div className="p-5">
+      <div className="p-4">
         <h2 className="text-colorBlack md:text-2xl text-xl font-semibold mb-4">
           {title}
         </h2>
@@ -28,11 +28,11 @@ const Tools = ({
         </p>
         <a 
           href={link}
-          className="common-button header-btn"
+          className="common-button header-btn w-[340px] h-[60px]"
         >
           {button_title}
           <svg 
-            className="w-4 h-4 ml-2" 
+            className="w-6 h-6 ml-2" 
             fill="none" 
             stroke="currentColor" 
             viewBox="0 0 24 24"
@@ -53,8 +53,8 @@ const Tools = ({
 // Grid Container Component
 const ToolsGrid = ({ tools }) => {
   return (
-    <div className="container mx-auto py-8 px-4  ">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
+    <div className="container mx-auto py-8 px-4 rounded-lg mb-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-5">
         {tools.map((tool, index) => (
           <Tools
             key={index}
@@ -64,6 +64,7 @@ const ToolsGrid = ({ tools }) => {
             link={tool.link}
             imageAlt={tool.imageAlt}
             button_title={tool.button_title}
+        
           />
         ))}
       </div>

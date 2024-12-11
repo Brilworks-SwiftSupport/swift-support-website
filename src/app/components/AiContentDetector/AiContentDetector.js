@@ -115,7 +115,7 @@ const Plagiarism = () => {
             <NavigationButton width={"w-[181px]"} img={para} href={"/tools/ai-paraphraser/"} name={"Paraphrasing Tool"} bgColor={'#FFFFFF'}/>
             <NavigationButton width={"w-[181px]"} img={doc} href={"/tools/plagiarism-checker/"} name={"Plagiarism Checker"} bgColor={'#FFFFFF'}/>
             <NavigationButton width={"w-[181px]"} img={search} href={""} name={"AI Content Detector"} bgColor={'#FFFEEE'}/>
-            <NavigationButton width={"w-[181px] md:w-[135px]"} img={tools} href={"/tools/"} name={"Other AI Tools"} bgColor={'#FFFFFF'}/>
+            <NavigationButton width={"w-[181px] md:w-auto"} img={tools} href={"/tools/"} name={"Other AI Tools"} bgColor={'#FFFFFF'}/>
             </div>
             <div className="hidden md:flex flex-wrap gap-4">
               <p className="text-[#3B82F6] font-bold whitespace-nowrap ml-20 font-Urbanist text-2xl">Human Content Score</p>

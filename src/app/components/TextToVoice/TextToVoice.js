@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import BannerLine from "../Tools/BannerLine";
+import HandleText from "../Tools/HandleText";
 import NavigationButton from "@/app/(pages)/tools/NavigationButton/NavigationButton";
 import axios from "axios";
 
@@ -12,7 +12,7 @@ import imgGenerator from "@/app/images/imgGenerator.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Select from "react-select";
-import tools from "@/app/images/tools.svg"
+import tools from "@/app/images/tools.svg";
 
 const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
@@ -26,44 +26,73 @@ const TextToVoiceConverter = () => {
   const [updateData, setUpdateData] = useState(null);
   const [voiceName, setVoiceName] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState("");
 
   const [voiceId, setVoiceId] = useState("");
   const [audioUrl, setAudioUrl] = useState("");
   const [voiceFormat, setVoiceFormatOptions] = useState([
     { value: "mp3", label: "MP3" },
   ]);
-
+  const [TTSrecords, setTTSRecords] = useState([]);
   const audioRef = useRef(null);
+  const [loading, setLoading] = useState(false);
 
   const [inputText, setInputText] = useState(""); // Text input state
   const wordLimit = 500; // Set the word limit
   const wordCount = inputText.trim().split(/\s+/).filter(Boolean).length; // Count words
   const [selectedVoiceFormat, setVoiceFormat] = useState("");
   const [playedVoice, setPlayedVoice] = useState();
+  const [visibleCount, setVisibleCount] = useState(6); // Initial 6 items for a 3x2 grid
+  const [canClick, setCanClick] = useState(true);  // State to manage click permission
+
+  const handleLoadMore = () => {
+    setVisibleCount((prevCount) => prevCount + 6); // Load 6 more items
+  };
 
   const handleButtonClick = async () => {
-    if (!inputText.trim()) {
-      toast.error("Please enter the text before creating audio!", {
-        position: "bottom-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-    } else {
-      const response = await axios.post(`${NEXT_PUBLIC_BE_URL}/text_to_voice`, {
-        text: inputText,
-        voice: voiceId,
+    if (!canClick || !inputText.trim()) return;
+    setLoading(true);  
+    setCanClick(false);
 
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      if (!response.status == 200) {
-        toast.error("Not able to generate audio file", {
+    try {
+      if (!inputText.trim()) {
+        toast.error("Please enter the text before creating audio!", {
+          position: "bottom-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      } else {
+        const response = await axios.post(`${NEXT_PUBLIC_BE_URL}/text_to_voice`, {
+          text: inputText,
+          voice: voiceId,
+  
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (!response.status == 200) {
+          toast.error("Not able to generate audio file", {
+            position: "bottom-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
+        const audio_url = response.data.audio_url;
+        setAudioUrl(audio_url);
+  
+        setIsSuccess(true);
+  
+        toast.success("Audio is being created!", {
           position: "bottom-center",
           autoClose: 3000,
           hideProgressBar: false,
@@ -74,22 +103,19 @@ const TextToVoiceConverter = () => {
           theme: "colored",
         });
       }
-      const audio_url = response.data.audio_url;
-      setAudioUrl(audio_url);
 
-      setIsSuccess(true);
-
-      toast.success("Audio is being created!", {
-        position: "bottom-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      // Handle success logic here, if any
+    } catch (error) {
+      // Handle error here
+      console.error(error);
+    } finally {
+      setTimeout(() => {
+        setCanClick(true);  // Re-enable button after 5 seconds
+        setLoading(false);  // Reset loading state
+      }, 5000);
     }
+   
+    
   };
 
   const handleDownload = (audioUrl) => {
@@ -182,6 +208,35 @@ const TextToVoiceConverter = () => {
   };
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const queryParam = "tts";
+
+        const response = await fetch(
+          `${NEXT_PUBLIC_BE_URL}/stt_tts_data?type=${encodeURIComponent(
+            queryParam
+          )}`,
+          {
+            method: "GET",
+          }
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+
+        // Map API response to match Tools component props
+        const formattedTools = data.data_list.map((item) => ({
+          tts_url: item.audio_url,
+          tts_text: item.text,
+        }));
+
+        setTTSRecords(formattedTools); // Update tools state
+      } catch (err) {
+        setError(err.message); // Handle errors
+      }
+    };
+    fetchData();
     getVoiceList();
   }, []);
 
@@ -219,30 +274,36 @@ const TextToVoiceConverter = () => {
         <div className="flex flex-wrap gap-4 mt-[30px] md:mt-[56px] md:ml-12 px-4 md:px-0">
           <div className="flex items-center flex-wrap gap-2 ml-[62px] md:ml-0">
             <NavigationButton
-              width={"w-[181px]"}
+              width={"w-auto"}
               img={textToVoice}
               name={"AI Text to Voice"}
               bgColor={"#FFFEEE"}
             />
             <NavigationButton
-              width={"w-[181px]"}
+              width={"w-auto"}
               img={voiceToText}
               href={"/tools/voice-to-text/"}
               name={"AI Voice to Text"}
               bgColor={"#FFFFFF"}
             />
             <NavigationButton
-              width={"w-[181px]"}
+              width={"w-auto"}
               img={imgGenerator}
               href={"/tools/image-generator/"}
               name={"AI Image Generator"}
               bgColor={"#FFFFFF"}
             />
-            <NavigationButton width={"w-[181px] md:w-[135px]"} img={tools} href={"/tools/"} name={"Other AI Tools"} bgColor={'#FFFFFF'}/>
+            <NavigationButton
+              width={"w-auto"}
+              img={tools}
+              href={"/tools/"}
+              name={"Other AI Tools"}
+              bgColor={"#FFFFFF"}
+            />
           </div>
         </div>
 
-        <div className="border border-gray-300 rounded-md mt-5 h-[400px] p-4 max-w-[100%] mx-auto mb-2">
+        <div className="border border-gray-300 rounded-md mt-5 h-[400px] p-4 max-w-[100%] mx-auto mb-4">
           <p className="mb-2 mt-2">Voice Assistant</p>
           <Select
             placeholder="Select Voice Assistant"
@@ -293,15 +354,15 @@ const TextToVoiceConverter = () => {
                   ? "bg-black cursor-pointer text-white"
                   : "bg-gray-300 cursor-not-allowed"
               }`}
-              disabled={!inputText.trim()} // Button is disabled if inputText is empty
+              disabled={loading || !inputText.trim() || !canClick}
             >
-              Create Audio
+              {loading ? "Creating Audio..." : "Create Audio"}
             </button>
           </div>
         </div>
 
         {isSuccess && (
-          <div className="text-center border border-gray-300 rounded-md mt-5 h-[200px] p-4 max-w-[100%] mx-auto mb-2">
+          <div className="text-center border border-gray-300 rounded-md mt-5 h-[200px] p-4 max-w-[100%] mx-auto mb-4">
             <p className="text-xl mt-2 mb-5 max-w-[90%] mx-auto font-Urbanist text-[32px]">
               Your{" "}
               <span className="bg-clip-text text-transparent bg-text-theme-gradient">
@@ -325,6 +386,61 @@ const TextToVoiceConverter = () => {
             </div>
           </div>
         )}
+
+        <h2 className="text-center text-2xl sm:text-2xl md:text-3xl font-Urbanist mb-4 mt-4">
+          Some{" "}
+          <span className="bg-clip-text text-transparent bg-text-theme-gradient">
+            Text To Voice
+          </span>{" "}
+          for You!
+        </h2>
+
+        <div className="container mx-auto py-8 px-4">
+          {/* Grid Container */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {TTSrecords.slice(0, visibleCount).map((tool, index) => (
+              <div
+                key={index}
+                className="p-4 bg-white border border-[#E4E4E4] rounded shadow flex flex-col justify-between ]"
+              >
+                {/* Input Text */}
+                <HandleText text={tool.tts_text} type="Input" />
+
+                {/* Output Audio */}
+                <div className="flex flex-col mt-auto space-y-4">
+                  {/* Output Audio Section */}
+                  <div className="mt-4">
+                    <span className="font-bold">Output Audio:</span>
+                    <audio controls className="w-full bg-[#FFFEEE] mt-2">
+                      <source src={tool.tts_url} type="audio/mpeg" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </div>
+
+                  {/* Download Button */}
+                  <button
+                    onClick={() => handleDownload(tool.tts_url)}
+                    className="w-full py-3 bg-black text-white rounded-xl hover:bg-gray-800 transition duration-300"
+                  >
+                    Download Audio
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Load More Button */}
+          {visibleCount < TTSrecords.length && (
+            <div className="text-center mt-8">
+              <button
+                onClick={handleLoadMore}
+                className="px-6 py-3 bg-black text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
+              >
+                Load More
+              </button>
+            </div>
+          )}
+        </div>
       </div>
       <ToastContainer />
     </main>

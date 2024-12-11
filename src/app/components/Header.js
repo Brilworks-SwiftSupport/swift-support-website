@@ -323,7 +323,7 @@ const Header = () => {
       <div className="header border-b border-[#e5e7eb]">
         <Navbar
           ref={navbarRef}
-          className={`rounded-none border-none z-10 max-w-[1200px] mx-auto lg:py-4 md:py-4 py-2 px-0 ${
+          className={`shadow-none rounded-none border-none z-10 max-w-[1200px] mx-auto lg:py-4 md:py-4 py-2 px-0 ${
             openNav ? "h-[100vh]" : ""
           }`}
         >
