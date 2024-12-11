@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useCallback, useEffect, useRef } from "react";
-import { Upload, X } from "lucide-react";
+import { Upload, X, Download } from "lucide-react";
 import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 import freeForever from "@/app/images/freeForever.svg";
 import Image from "next/image";
@@ -50,6 +50,7 @@ const ChatPDF = () => {
 
   const [pdfPreviewUrl, setPdfPreviewUrl] = useState(null);
   const [showPdfPreview, setShowPdfPreview] = useState(false);
+  const [uploadedDocs, setUploadedDocs] = useState([]);
 
   const messagesEndRef = useRef(null);
   const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB in bytes
@@ -57,6 +58,7 @@ const ChatPDF = () => {
   function timeout(seconds) {
     return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
   }
+
   const onDrop = useCallback((e) => {
     e.preventDefault();
     setIsDragActive(false);
@@ -114,6 +116,28 @@ const ChatPDF = () => {
   }, []);
 
   useEffect(() => {
+    const fetchUploadedDocs = async () => {
+      try {
+        const response = await fetch(`${NEXT_PUBLIC_BE_URL}/uploaded_doc`);
+        if (!response.ok) throw new Error("Failed to fetch uploaded documents");
+
+        const data = await response.json();
+        if (data && Array.isArray(data.uploaded_doc_list)) {
+          setUploadedDocs(data.uploaded_doc_list);
+        } else {
+          console.error(
+            "API response does not contain 'uploaded_doc_list':",
+            data
+          );
+        }
+      } catch (error) {
+        console.error("Error fetching uploaded documents:", error);
+      }
+    };
+    fetchUploadedDocs();
+  }, []);
+
+  useEffect(() => {
     if (isProcessing) {
       const intervalId = setInterval(() => {
         setLoadingText((prevText) => {
@@ -132,6 +156,49 @@ const ChatPDF = () => {
       return () => clearInterval(intervalId);
     }
   }, [isProcessing]);
+
+  const handleDownload = (docUrl) => {
+    if (docUrl) {
+      try {
+        fetch(docUrl)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.blob();
+          })
+          .then((blob) => {
+            const link = document.createElement("a");
+            const url = URL.createObjectURL(blob);
+
+            // Set the href and download attributes for a PDF file
+            link.href = url;
+            link.setAttribute("download", "downloaded-document.pdf");
+
+            // Trigger download
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            // Release the object URL
+            URL.revokeObjectURL(url);
+          })
+          .catch((error) => {
+            console.error("Error downloading PDF:", error);
+            alert(
+              "An error occurred while downloading the PDF. Please try again."
+            );
+          });
+      } catch (error) {
+        console.error("Unexpected error during PDF download:", error);
+        alert(
+          "An unexpected error occurred while downloading the PDF. Please try again."
+        );
+      }
+    } else {
+      alert("No document URL available to download.");
+    }
+  };
 
   const sendMessage = async () => {
     if (!currentMessage.trim() || isLoading) return;
@@ -570,6 +637,36 @@ const ChatPDF = () => {
         <div className="rounded-xl mt-8 md:mt-16 mb-10 flex flex-col items-center justify-center">
           {renderUploadSection()}
           {renderChatbotSection()}
+        </div>
+
+        {/* Previously Uploaded Document Section */}
+        <h2 className="text-center text-2xl sm:text-4xl md:text-5xl font-extrabold mt-16">
+          Previously Uploaded Document
+        </h2>
+        <div className="container mx-auto py-6 px-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {uploadedDocs.map((doc, index) => (
+              <div
+                key={index}
+                className="relative p-3 bg-gray-100 rounded shadow flex flex-col items-center"
+              >
+                {/* PDF Preview */}
+                <div className="relative w-full h-80 bg-gray-200">
+                  <iframe
+                    src={`${doc.doc_url}#toolbar=0&navpanes=0&scrollbar=0`}
+                    title={`Document: ${doc.doc_name}`}
+                    className="w-full h-full rounded shadow"
+                  />
+                  <button
+                    className="absolute bottom-2 right-2 bg-white p-2 mr-4 rounded-full shadow hover:bg-gray-200"
+                    onClick={() => handleDownload(doc.doc_url)}
+                  >
+                    <Download className="w-6 h-6 text-black" />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </main>
