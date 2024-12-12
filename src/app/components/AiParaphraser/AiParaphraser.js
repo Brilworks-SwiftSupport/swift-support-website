@@ -10,6 +10,14 @@ import doc from "@/app/images/doc.svg"
 import search from "@/app/images/search.svg"
 import tools from "@/app/images/tools.svg"
 
+import DetailSection from "../Tools/Content/DetailSection";
+import FeatureSection from "../Tools/Content/FeatureSection";
+import UsageExplanationSection from "../Tools/Content/UsageExplanationSection";
+import FAQSection from "../Tools/Content/FAQSection";
+import rewrite from "@/app/images/rewrites.svg";
+import file from "@/app/images/file.svg";
+import pencil from "@/app/images/pencil.svg"
+
 const NEXT_PUBLIC_BE_URL= process.env.NEXT_PUBLIC_BE_URL
 
 const Paraphrase = () => {
@@ -23,8 +31,63 @@ const Paraphrase = () => {
   const [showAll, setShowAll] = useState(false); // State to control showing all cards
   const wordLimit = 2000; // Set the word limit
   const wordCount = inputText.trim().split(/\s+/).filter(Boolean).length; // Count words
+  const [activeFAQ, setActiveFAQ] = useState(null);
+
 
   const [isCopied, setIsCopied] = useState(false);
+
+  const features = [
+    {
+      icon: pencil,
+      title: "Enhance Your Writing",
+      description:
+        "Improve clarity, tone, and readability by rephrasing your content without changing its original meaning.",
+    },
+    {
+      icon: file,
+      title: "Preserve Original Context",
+      description:
+        "Rewrites content while maintaining its original message and intent, ensuring consistency across various types of text.",
+    },
+    {
+      icon: rewrite,
+      title: "Instant Rewrites",
+      description:
+        "Save time with fast, AI-driven rephrasing that delivers results in seconds, perfect for tight deadlines or multiple drafts.",
+    },
+  ];
+
+  const faqItems = [
+    {
+      question: "How do I use the AI Paraphraser?​",
+      answer:
+        "Simply input your text into the tool, and let the AI generate a rephrased version within seconds.",
+    },
+    {
+      question: "Does the AI Paraphraser maintain the original meaning?​ ",
+      answer:
+        "Absolutely! The tool rephrases your content while preserving the original intent and context, ensuring clarity and accuracy.",
+    },
+    {
+      question: "Can I use the tool for professional documents?​​",
+      answer:
+        "Yes, the AI Paraphraser is suitable for professional documents, articles, and even academic content, providing polished and well-structured outputs.",
+    },
+    {
+      question: "Is there any payment required?​",
+      answer:
+        "No, you don’t need to provide any credit card details or make payments. The AI Paraphraser is completely free to use.",
+    },
+    {
+      question: "Do I need to create an account to use the tool?​",
+      answer:
+        "No, there’s no need to create an account or log in. You can start paraphrasing your text instantly without any registration process.",
+    },
+  ];
+
+  const toggleFAQ = (index) => {
+    setActiveFAQ((prev) => (prev === index ? null : index));
+  };
 
   const handleCopy = () => {
     navigator.clipboard.writeText(text);  
@@ -158,7 +221,7 @@ const Paraphrase = () => {
   };
 
   return (
-    <main className="flex mt-32 justify-center px-4">
+    <main className="flex mt-32 justify-center px-4 mb-32">
       <div className="container mx-auto max-w-6xl">
           <Image 
             className="mx-auto w-auto h-auto mb-3" 
@@ -344,6 +407,23 @@ const Paraphrase = () => {
     )}
 
     </div>
+    <DetailSection
+          title="Perfect Your Content with AI Paraphraser"
+          description="Refine your writing effortlessly with our AI Paraphraser. Whether you're polishing professional documents, simplifying complex sentences, or enhancing your content's readability, this tool transforms your text into clear, concise, and engaging language—quickly and accurately."
+        />
+        <FeatureSection features={features} />
+        <UsageExplanationSection
+          title="How Does the AI Paraphraser Work?"
+          explanation={[
+            "The AI Paraphraser leverages advanced Natural Language Processing (NLP) algorithms to rewrite text effectively while maintaining its original context. When you input text, the tool analyzes the structure, vocabulary, and tone, then generates a rephrased version tailored to your needs.",
+            "Using deep learning techniques, the AI ensures that the rephrased content is fluent, grammatically correct, and natural-sounding. Whether you’re refining an article, rewriting sentences, or enhancing academic content, the tool offers high-quality paraphrasing in real time, saving you hours of manual effort.",
+          ]}
+        />
+        <FAQSection
+          faqItems={faqItems}
+          activeFAQ={activeFAQ}
+          toggleFAQ={toggleFAQ}
+        />
 
     <ToastContainer />
 

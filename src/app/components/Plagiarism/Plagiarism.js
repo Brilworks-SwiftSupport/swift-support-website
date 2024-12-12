@@ -10,6 +10,15 @@ import doc from "@/app/images/doc.svg"
 import search from "@/app/images/search.svg"
 import tools from "@/app/images/tools.svg"
 
+import DetailSection from "../Tools/Content/DetailSection";
+import FeatureSection from "../Tools/Content/FeatureSection";
+import UsageExplanationSection from "../Tools/Content/UsageExplanationSection";
+import FAQSection from "../Tools/Content/FAQSection";
+import result from "@/app/images/result.svg";
+import report from "@/app/images/file.svg";
+import scan from "@/app/images/scan.svg"
+
+
 const NEXT_PUBLIC_BE_URL= process.env.NEXT_PUBLIC_BE_URL
 
 const Plagiarism = () => {
@@ -27,11 +36,66 @@ const Plagiarism = () => {
     const [allPlagiarismInfo, setPlagiarismInfo] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalContent, setModalContent] = useState({ text: "", plagiarised_content: "" ,plagiarism_percentage :"",source_links:""});
+    const [activeFAQ, setActiveFAQ] = useState(null);
+
 
     const wordLimit = 2000; 
     const wordCount = inputText.trim().split(/\s+/).filter(Boolean).length; 
 
     const [isCopied, setIsCopied] = useState(false);
+
+    const features = [
+      {
+        icon: scan,
+        title: "Comprehensive Scanning​",
+        description:
+          "Check your content against a vast database of online sources to detect any instances of duplicate text or unintentional plagiarism.",
+      },
+      {
+        icon: report,
+        title: "Detailed Reports​",
+        description:
+          "Receive clear and actionable reports highlighting potential matches, along with percentage-based originality scores.",
+      },
+      {
+        icon: result,
+        title: "Instant Results​",
+        description:
+          "Get quick, accurate plagiarism checks without delays, making it easy to verify content on tight deadlines.",
+      },
+    ];
+
+    const faqItems = [
+      {
+        question: "How do I check my content for plagiarism?​​",
+        answer:
+          "Simply paste your text into the tool, and it will scan for matches across a vast online database to ensure originality.",
+      },
+      {
+        question: "What kind of documents can I check for plagiarism?​",
+        answer:
+          "You can check any type of text, including academic papers, blog posts, articles, and professional documents.",
+      },
+      {
+        question: "Does the Plagiarism Checker provide detailed reports?​​​",
+        answer:
+          "Yes, the tool generates comprehensive reports that include highlighted matches and originality percentages for easy review.",
+      },
+      {
+        question: "Is there any payment required?​",
+        answer:
+          "No, you don’t need to provide any credit card details or make payments. The Plagiarism Checker is completely free to use.",
+      },
+      {
+        question: "Do I need to create an account to use the tool?​",
+        answer:
+          "No, there’s no need to create an account or log in. You can start checking your content instantly without any registration process.",
+      },
+    ];
+  
+    const toggleFAQ = (index) => {
+      setActiveFAQ((prev) => (prev === index ? null : index));
+    };
     
     const handleCopy = () => {
       navigator.clipboard.writeText(text);  
@@ -228,7 +292,7 @@ const Plagiarism = () => {
   
 
     return (
-      <main className="flex mt-32 justify-center">
+      <main className="flex mt-32 justify-center mb-32">
         <div className="container mx-auto max-w-6xl">
           <Image 
             className="mx-auto w-auto h-auto mb-3" 
@@ -620,6 +684,27 @@ const Plagiarism = () => {
           </div>
 
             )}
+
+        <DetailSection
+          title="Ensure Originality with the Plagiarism Checker"
+          description="Maintain the integrity of your work with our Plagiarism Checker. Whether you're verifying
+          academic papers, blog posts, or professional documents, this tool scans your text against
+          extensive databases to ensure originality and authenticity in seconds."
+        />
+        <FeatureSection features={features} />
+        <UsageExplanationSection
+          title="How Does the Plagiarism Checker Work?"
+          explanation={[
+            "The Plagiarism Checker uses cutting-edge AI algorithms to analyze your text for similarities across a broad database of online content, academic papers, and other sources. Once you submit your text, the tool breaks it into smaller sections, searches for matches, and evaluates the originality of your content.",
+            "The tool provides a detailed report, highlighting matched phrases and linking them to their sources. With its real-time results and user-friendly interface, the Plagiarism Checker ensures that your content remains authentic and credible, all without requiring manual cross-referencing.",
+          ]}
+        />
+        <FAQSection
+          faqItems={faqItems}
+          activeFAQ={activeFAQ}
+          toggleFAQ={toggleFAQ}
+        />
+
 
 
         <ToastContainer/>

@@ -335,7 +335,7 @@ const TextToVoiceConverter = () => {
 
         {/* Tools List */}
         <div className="flex flex-wrap gap-4 mt-[30px] md:mt-[56px] md:ml-12 px-4 md:px-0">
-          <div className="flex items-center flex-wrap gap-2 ml-[62px] md:ml-0">
+          <div className="flex items-center justify-center flex-wrap gap-2 md:-ml-8">
             <NavigationButton
               width={"w-auto"}
               img={textToVoice}
