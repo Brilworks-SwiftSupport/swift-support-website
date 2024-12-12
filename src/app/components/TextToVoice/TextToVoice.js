@@ -366,7 +366,7 @@ const TextToVoiceConverter = () => {
           </div>
         </div>
 
-        <div className="border border-gray-300 rounded-md mt-5 h-[400px] p-4 max-w-[100%] mx-auto mb-4">
+        <div className="border border-gray-300 rounded-md mt-5 p-4 max-w-[100%] mx-auto mb-4">
           <p className="mb-2 mt-2">Voice Assistant</p>
           <Select
             placeholder="Select Voice Assistant"
@@ -402,21 +402,20 @@ const TextToVoiceConverter = () => {
             />
             {/* Word count displayed in the bottom-right corner */}
             <span
-              className="text-gray text-sm bg-[#F1F5F9] ml-7 px-2 py-1 rounded-lg shadow"
+              className="text-gray text-sm bg-[#F1F5F9] px-2 py-1 rounded-lg shadow"
               style={{ bottom: "10px", right: "10px" }}
             >
               {wordCount} of {wordLimit} words used
             </span>
           </div>
 
-          <div className="relative items-center p-4  max-w-[100%] mx-auto">
+          <div className="md:relative flex items-center justify-center p-4  md:mt-0 max-w-[100%] mx-auto">
             <button
               onClick={handleButtonClick}
-              className={`absolute rounded-full w-[260px] h-[46px] bottom-2 right-2 font-urbanist font-semibold text-sm md:text-[14px] transition-colors ${
-                inputText.trim()
-                  ? "common-button header-btn  cursor-pointer "
-                  : "bg-gray-300 cursor-not-allowed"
-              }`}
+              className={`md:absolute  rounded-full w-[260px] h-[46px] mx-auto md:bottom-2 md:right-2  font-urbanist font-semibold text-sm md:text-[14px] transition-colors ${inputText.trim()
+                ? "common-button header-btn  cursor-pointer "
+                : "bg-gray-300 cursor-not-allowed"
+                }`}
               disabled={loading || !inputText.trim() || !canClick}
             >
               {loading ? "Creating Audio..." : "Create Audio"}
