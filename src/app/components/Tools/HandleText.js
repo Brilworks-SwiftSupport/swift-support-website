@@ -7,7 +7,6 @@ const HandleText = ({ text,type }) => {
     // Function to toggle between showing more or less
     const toggleReadMore = () => setIsExpanded(!isExpanded);
   
-    // Split text into words and display only 50 if not expanded
     const words = text.split(" ");
     const displayedText = isExpanded ? text : words.slice(0, 10).join(" ");
   

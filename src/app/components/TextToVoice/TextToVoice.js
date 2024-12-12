@@ -349,9 +349,9 @@ const TextToVoiceConverter = () => {
           <div className="relative items-center p-4  max-w-[100%] mx-auto">
             <button
               onClick={handleButtonClick}
-              className={`absolute rounded-md w-[120px] h-[30px] bottom-2 right-2 ${
+              className={`absolute rounded-full w-[260px] h-[46px] bottom-2 right-2 font-urbanist font-semibold text-sm md:text-[14px] transition-colors ${
                 inputText.trim()
-                  ? "bg-black cursor-pointer text-white"
+                  ? "common-button header-btn  cursor-pointer "
                   : "bg-gray-300 cursor-not-allowed"
               }`}
               disabled={loading || !inputText.trim() || !canClick}
@@ -387,7 +387,7 @@ const TextToVoiceConverter = () => {
           </div>
         )}
 
-        <h2 className="text-center text-2xl sm:text-2xl md:text-3xl font-Urbanist mb-4 mt-4">
+        <h2 className="text-center text-2xl sm:text-2xl md:text-3xl font-Urbanist mb-4 mt-8">
           Some{" "}
           <span className="bg-clip-text text-transparent bg-text-theme-gradient">
             Text To Voice
@@ -436,7 +436,7 @@ const TextToVoiceConverter = () => {
                   {/* Download Button */}
                   <button
                     onClick={() => handleDownload(tool.tts_url)}
-                    className="w-full py-3 bg-black text-white rounded-xl hover:bg-gray-800 transition duration-300"
+                    className="w-full py-3 bg-black text-white rounded-full hover:bg-gray-800 transition duration-300 w-[340px] h-[60px]"
                   >
                     Download Audio
                   </button>
@@ -450,7 +450,8 @@ const TextToVoiceConverter = () => {
             <div className="text-center mt-8">
               <button
                 onClick={handleLoadMore}
-                className="px-6 py-3 bg-black text-white font-semibold rounded-lg shadow-md hover:bg-gray-800 border-gray transition duration-300"
+                className="px-6 py-3 bg-black text-white font-semibold rounded-full hover:bg-gray-600 transition duration-300"
+
               >
                 Load More
               </button>
