@@ -16,7 +16,7 @@ const page = () => {
       imageUrl: "/images/voice-to-text.png",
       title: "Voice to Text",
       description:
-        "Convert spoken words into accurate, editable text instantly",
+        "Convert spoken words into accurate, editable text instantly.",
       link: "/tools/voice-to-text",
       button_title: "Transcribe Now",
     },
@@ -25,7 +25,7 @@ const page = () => {
       imageUrl: "/images/image_generator.svg",
       title: "AI Image Generator",
       description:
-        "Create stunning visuals from your ideas with AI-driven precision..",
+        "Create stunning visuals from your ideas with AI-driven precision.",
       link: "/tools/image-generator",
       button_title: "Generate Image",
     },
@@ -61,7 +61,7 @@ const page = () => {
       imageUrl: "/images/youtube_summary.svg",
       title: "YouTube Video Summarizer",
       description:
-        "Get concise summaries of YouTube videos on seconds - save time and learn faster.",
+        "Get concise summaries of YouTube videos in seconds - save time and learn faster.",
       link: "/tools/youtube-summary",
       button_title: "Generate Summary",
     },
