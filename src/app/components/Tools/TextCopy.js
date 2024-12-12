@@ -17,7 +17,8 @@ const CopyableText = ({ text }) => {
     <div className="p-4 bg-white-100 rounded flex flex-col">
       <button
         onClick={handleCopy}
-        className="mt-4 py-2 px-4 bg-black text-white rounded hover:bg-gray-800 transition duration-300"
+        className="w-full py-3 bg-black text-white rounded-full hover:bg-gray-800 transition duration-300 w-[340px] h-[60px]"
+
       >
         Copy Output Text
       </button>

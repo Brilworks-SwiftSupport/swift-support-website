@@ -402,7 +402,7 @@ const VoiceToTextConverter = () => {
           </div>
         )}
 
-        <h2 className="text-center text-2xl sm:text-2xl md:text-3xl font-Urbanist mb-4 mt-4">
+        <h2 className="text-center text-2xl sm:text-2xl md:text-3xl font-Urbanist mb-4 mt-8">
           Some{" "}
           <span className="bg-clip-text text-transparent bg-text-theme-gradient">
             Voice To Text
@@ -416,7 +416,7 @@ const VoiceToTextConverter = () => {
             {STTrecords.slice(0, visibleCount).map((tool, index) => (
               <div
                 key={index}
-                className="p-4 bg-white border border-[#E4E4E4] rounded shadow flex flex-col justify-between ]"
+                className="p-4 bg-white border border-[#E4E4E4] rounded shadow flex flex-col justify-between"
               >
                 {/* Input Text */}
                 <div>
@@ -463,7 +463,7 @@ const VoiceToTextConverter = () => {
             <div className="text-center mt-8">
               <button
                 onClick={handleLoadMore}
-                className="px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-gray-800 transition duration-300"
+                className="px-6 py-3 bg-black text-white font-semibold rounded-full hover:bg-gray-600 transition duration-300"
               >
                 Load More
               </button>
