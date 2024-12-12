@@ -49,6 +49,13 @@ const Paraphrase = () => {
         if (!response.ok) throw new Error("Failed to fetch images");
 
         const data = await response.json();
+        if (isModalOpen) {
+          // Prevent background scrolling
+          document.body.style.overflow = "hidden";
+        } else {
+          // Restore background scrolling
+          document.body.style.overflow = "auto";
+        }
         if (data && Array.isArray(data.content_tools)) {
           setParaphraseInfo(data.content_tools);
         } else {
@@ -60,10 +67,14 @@ const Paraphrase = () => {
       } catch (error) {
         console.error("Error fetching all content_tools:", error);
       }
+      return () => {
+        document.body.style.overflow = "auto";
+      };
     };
 
     fetchAllParaphrase();
-  }, []);
+  }, [isModalOpen]);
+
 
   const fetchPlagiarismCheck = async (input_text, type) => {
     try {
@@ -262,24 +273,31 @@ const Paraphrase = () => {
       </h2>
       <div className="container mx-auto py-6 px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {allParaphraseInfo.slice(0, showAll ? allParaphraseInfo.length : 3).map((data, index) => (
-            <div
-              key={index}
-              className="w-[360px] h-[243px] bg-white flex-col rounded-[20px] border border-[#E4E4E4] p-4 flex-wrap md:ml-4"
-            >
-              <div className="w-auto h-40 text-black text-base px-3 py-1 rounded-t mb-2 md:justify-center">
-                <span className="font-semibold font-Urbanist text-[24px]">Text: </span>
-              <div></div>
-                <span className="font-Urbanist text-[16px]">{data.text.split(/\s+/).slice(0, 20).join(" ")}{data.text.split(/\s+/).length > 20 ? "..." : ""}</span>
-              </div>
-              <button
-                className="mb-6 common-button header-btn w-[320px] h-[40px] flex-wrap"
-                onClick={() => handleKnowMore(data)}
+          {allParaphraseInfo
+            .slice(0, showAll ? allParaphraseInfo.length : 3)
+            .map((data, index) => (
+              <div
+                key={index}
+                className="w-[360px] h-[243px] bg-white flex-col rounded-[20px] border border-[#E4E4E4] p-4 flex-wrap md:ml-4"
               >
-                Know More
-              </button>
-            </div>
-          ))}
+                <div className="w-auto h-40 text-black text-base px-3 py-1 rounded-t mb-2 md:justify-center">
+                  <span className="font-semibold font-Urbanist text-[24px]">
+                    Text:{" "}
+                  </span>
+                  <div></div>
+                  <span className="font-Urbanist text-[16px]">
+                    {data.text.split(/\s+/).slice(0, 15).join(" ")}
+                    {data.text.split(/\s+/).length > 15 ? "..." : ""}
+                  </span>
+                </div>
+                <button
+                  className="mb-6 common-button header-btn w-[320px] h-[40px] flex-wrap"
+                  onClick={() => handleKnowMore(data)}
+                >
+                  Know More
+                </button>
+              </div>
+            ))}
         </div>
 
         
@@ -295,9 +313,21 @@ const Paraphrase = () => {
 
       {/* Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-[#00000024] backdrop-blur flex items-center justify-center z-[100000000] flex-wrap">
-          <div className="bg-white rounded-lg shadow-lg w-[1000px] p-6 overflow-y-auto">
-            <h3 className="text-xl font-bold mb-6">Details</h3>
+      <div className="fixed inset-0 bg-[#00000024] backdrop-blur flex items-center justify-center z-[100000000]">
+        <div className="bg-white rounded-3xl shadow-lg w-[1000px] max-h-[80%] overflow-hidden">
+          {/* Header with close button */}
+          <div className="flex items-center justify-between px-6 py-4">
+            <h3 className="text-xl font-bold">Details</h3>
+            <button
+              className="common-button header-btn w-[40px] h-[40px] flex items-center justify-center"
+              onClick={closeModal}
+            >
+              X
+            </button>
+          </div>
+
+          {/* Scrollable content */}
+          <div className="p-6 overflow-y-auto max-h-[70vh]">
             <div className="flex flex-col md:flex-row gap-6">
               <div className="w-auto md:w-1/2 h-auto bg-white flex flex-col text-left rounded-[20px] border border-[#E4E4E4] p-4">
                 <p className="font-bold">Original Text:</p>
@@ -308,17 +338,11 @@ const Paraphrase = () => {
                 <p className="text-gray-800">{modalContent.paraphrased}</p>
               </div>
             </div>
-            <div className="flex justify-end mt-6">
-              <button
-                className="mb-6 common-button header-btn w-[100px] h-[40px]"
-                onClick={closeModal}
-              >
-                Close
-              </button>
-            </div>
           </div>
         </div>
-      )}
+      </div>
+    )}
+
     </div>
 
     <ToastContainer />
