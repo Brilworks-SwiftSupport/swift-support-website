@@ -99,10 +99,11 @@ const YouTubeSummarizer = () => {
 
   const extractVideoId = (youtubeUrl) => {
     const regex =
-      /(?:https?:\/\/(?:www\.)?youtube\.com\/(?:[^\/\n\s]+\/\S+\/|\S*?v=|(?:[A-Za-z0-9-]+&)*))([\w-]{11})/;
+      /(?:https?:\/\/(?:www\.)?youtube\.com\/.*?[?&]v=|https?:\/\/(?:www\.)?youtu\.be\/)([\w-]{11})/;
     const match = youtubeUrl.match(regex);
     return match && match[1] ? match[1] : null;
   };
+  
 
   const handleSummaryClick = () => {
     setActiveTab("summary");
