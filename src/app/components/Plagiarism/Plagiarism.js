@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import freeForever from "@/app/images/freeForever.svg"
 import Image from "next/image";
 import { toast, ToastContainer } from "react-toastify";
@@ -24,6 +24,9 @@ const Plagiarism = () => {
     const [text, setOriginalText] = useState(""); 
     const [paraphrasingLoading, setParaphrasingLoading] = useState(false); 
     const [highlightedText, setHighlightedText] = useState("");
+    const [allPlagiarismInfo, setPlagiarismInfo] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalContent, setModalContent] = useState({ text: "", plagiarised_content: "" ,plagiarism_percentage :"",source_links:""});
 
     const wordLimit = 2000; 
     const wordCount = inputText.trim().split(/\s+/).filter(Boolean).length; 
@@ -76,6 +79,19 @@ const Plagiarism = () => {
         if (!inputText.trim()) {
           alert("Please provide valid input text!");
           return;
+        }
+        if (wordCount < 50) {
+          // setError("Please provide at least 10 words to proceed!");
+          toast.error("Input must contain at least 50 words!", {
+            position: "bottom-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+          return; // Stop execution if validation fails
+    
         }
       
         setLoading(true);
@@ -162,7 +178,55 @@ const Plagiarism = () => {
 
     };
 
+    useEffect(() => {
+      const fetchAllPlagiarism = async () => {
+        try {
+          const response = await fetch(`${NEXT_PUBLIC_BE_URL}/content_tools?type=plagiarism`);
+          if (!response.ok) throw new Error("Failed to fetch images");
   
+          const data = await response.json();
+          if (isModalOpen) {
+            // Prevent background scrolling
+            document.body.style.overflow = "hidden";
+          } else {
+            // Restore background scrolling
+            document.body.style.overflow = "auto";
+          }
+          if (data && Array.isArray(data.content_tools)) {
+            setPlagiarismInfo(data.content_tools);
+          } else {
+            console.error(
+              "API response does not contain 'content_tools':",
+              data
+            );
+          }
+        } catch (error) {
+          console.error("Error fetching all content_tools:", error);
+        }
+        return () => {
+          document.body.style.overflow = "auto";
+        };
+      };
+  
+      fetchAllPlagiarism();
+    }, [isModalOpen]);
+
+    const handleKnowMore = (data) => {
+      setModalContent({
+        text: data.text,
+        plagiarised_content: data.plagiarised_content,
+        source_links : data.source_links,
+        plagiarism_percentage : data.plagiarism_percentage
+      });
+      setIsModalOpen(true);
+    };
+  
+    const closeModal = () => {
+      setIsModalOpen(false);
+      setModalContent({ text: "", plagiarised_content: "" ,plagiarism_percentage :"",source_links:""});
+    };
+  
+
     return (
       <main className="flex mt-32 justify-center">
         <div className="container mx-auto max-w-6xl">
@@ -268,7 +332,54 @@ const Plagiarism = () => {
               {loading ? "Checking..." : "Check Plagiarism"}
             </button>
           </div>
-          
+          <ToastContainer/>
+
+          {/* Previously Plagiarised Text - Only show when no plagiarism check has been done */}
+          {percentage === "0" && (
+            <div>
+              <h2 className="text-center text-3xl md:text-5xl font-semibold mb-3 font-Urbanist mt-14 flex-wrap">
+                Previously Plagiarised Text
+              </h2>
+              <div className="container mx-auto py-6 px-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {allPlagiarismInfo
+                    .slice(0, showAll ? allPlagiarismInfo.length : 3)
+                    .map((data, index) => (
+                      <div
+                        key={index}
+                        className="w-[360px] h-[243px] bg-white flex-col rounded-[20px] border border-[#E4E4E4] p-4 flex-wrap md:ml-4"
+                      >
+                        <div className="w-auto h-40 text-black text-base px-3 py-1 rounded-t mb-2 md:justify-center">
+                          <span className="font-semibold font-Urbanist text-[24px]">
+                            Text:{" "}
+                          </span>
+                          <div></div>
+                          <span className="font-Urbanist text-[16px]">
+                            {data.text.split(/\s+/).slice(0, 15).join(" ")}
+                            {data.text.split(/\s+/).length > 15 ? "..." : ""}
+                          </span>
+                        </div>
+                        <button
+                          className="mb-6 common-button header-btn w-[320px] h-[40px] flex-wrap"
+                          onClick={() => handleKnowMore(data)}
+                        >
+                          Know More
+                        </button>
+                      </div>
+                    ))}
+                </div>
+                
+                {allPlagiarismInfo.length > 3 && (
+                  <div className="ml-auto mr-auto text-center mt-4 common-button header-btn w-[200px] h-[40px]">
+                    <button onClick={() => setShowAll(!showAll)}>
+                      {showAll ? "Show Less" : "Show More"}
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
           {/* Plagiarism Results */}
           {percentage !== "0" && !loading && (
             <div className="plagiarism-result">
@@ -368,14 +479,153 @@ const Plagiarism = () => {
                   {paraphrasingLoading ? "Paraphrasing..." : "Rephrase"}
                 </button>
               </div>
-            </div>
-          )}
 
-          {/* Global Error Display */}
-          {error && <p className="text-red-500">{error}</p>}
-        </div>
-      </main>
-    );
+              {/* Previously Plagiarised Text - Now under the Rephrase button */}
+              <div className="mt-12">
+                <h2 className="text-center text-3xl md:text-5xl font-semibold mb-3 font-Urbanist flex-wrap">
+                  Previously Plagiarised Text
+                </h2>
+                <div className="container mx-auto py-6 px-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {allPlagiarismInfo
+                      .slice(0, showAll ? allPlagiarismInfo.length : 3)
+                      .map((data, index) => (
+                        <div key={index}
+                        className="w-[360px] h-[243px] bg-white flex-col rounded-[20px] border border-[#E4E4E4] p-4 flex-wrap md:ml-4"
+                      >
+                        <div className="w-auto h-40 text-black text-base px-3 py-1 rounded-t mb-2 md:justify-center">
+                          <span className="font-semibold font-Urbanist text-[24px]">
+                            Text:{" "}
+                          </span>
+                          <div></div>
+                          <span className="font-Urbanist text-[16px]">
+                            {data.text.split(/\s+/).slice(0, 15).join(" ")}
+                            {data.text.split(/\s+/).length > 15 ? "..." : ""}
+                          </span>
+                        </div>
+                        <button
+                          className="mb-6 common-button header-btn w-[320px] h-[40px] flex-wrap"
+                          onClick={() => handleKnowMore(data)}
+                        >
+                          Know More
+                        </button>
+                      </div>
+                    ))}
+                </div>
+                
+                {allPlagiarismInfo.length > 3 && (
+                  <div className="ml-auto mr-auto text-center mt-4 common-button header-btn w-[200px] h-[40px]">
+                    <button onClick={() => setShowAll(!showAll)}>
+                      {showAll ? "Show Less" : "Show More"}
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Modal */}
+        {isModalOpen && (
+          <div className="fixed inset-0 bg-[#00000024] backdrop-blur flex items-center justify-center z-[100000000]">
+            <div className="bg-white rounded-3xl shadow-lg w-[1000px] max-h-[80%] overflow-hidden">
+              {/* Header with close button */}
+              <div className="flex items-center justify-between px-6 py-4">
+                <h3 className="text-xl font-bold">Details</h3>
+                <button
+                  className="common-button header-btn w-[40px] h-[40px] flex items-center justify-center"
+                  onClick={closeModal}
+                >
+                  X
+                </button>
+              </div>
+
+              {/* Scrollable content */}
+              <div className="p-6 overflow-y-auto max-h-[70vh]">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Box 1: Original Text */}
+                  <div className="bg-white flex flex-col text-left rounded-[20px] border border-[#E4E4E4] p-4">
+                    <p className="font-bold">Original Text:</p>
+                    <p className="text-gray-800">{modalContent.text}</p>
+                  </div>
+
+                  {/* Box 2: Plagiarism Content */}
+                  <div className="bg-white flex flex-col text-left rounded-[20px] border border-[#E4E4E4] p-4">
+                    <p className="font-bold">Plagiarism Content:</p>
+                    <div className="w-full md:w-[380px] h-[300px] md:h-[396px] bg-white flex items-center justify-center rounded-[20px] border border-[#E4E4E4]">
+                      <svg className="w-100 h-4/5" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="40" stroke="#E4E4E4" strokeWidth="10" fill="transparent" />
+                        <circle
+                          cx="50"
+                          cy="50"
+                          r="40"
+                          stroke="#6C63FF"
+                          strokeWidth="10"
+                          fill="transparent"
+                          strokeDasharray="251.2"
+                          strokeDashoffset={251.2 - (Math.min(modalContent.plagiarism_percentage, 100) / 100) * 251.2}
+                          style={{
+                            transition: 'stroke-dashoffset 0.5s ease-in-out',
+                            strokeLinecap: 'round',
+                          }}
+                          className="progress-circle"
+                        />
+                        <text x="50" y="55" className="text-center text-lg font-bold" textAnchor="middle">
+                          {modalContent.plagiarism_percentage}%
+                        </text>
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Box 3: Plagiarised Text */}
+                  <div className="bg-white flex flex-col text-left rounded-[20px] border border-[#E4E4E4] p-4">
+                    <p className="font-bold">Plagiarised Content:</p>
+                    <div
+                              className="mt-4 p-4 border border-gray-300 rounded-lg"
+                              style={{ whiteSpace: "pre-wrap", backgroundColor: "#f9f9f9" }}
+                              dangerouslySetInnerHTML={{ __html: modalContent.plagiarised_content }}
+                            />
+                  </div>
+
+                  {/* Box 4: Other Details */}
+                  <div className="bg-white flex flex-col text-left rounded-[20px] border border-[#E4E4E4] p-4">
+                    <p className="font-bold">Source Links:</p>
+                    <ul className="mt-2">
+                      {Array.isArray(modalContent.source_links) &&
+                        (showAll ? modalContent.source_links : modalContent.source_links.slice(0, 10)).map((source, index) => (
+                          <li key={index} className="flex items-center space-x-2">
+                            <img
+                              src="/images/link-2.svg"
+                              alt="Link Icon"
+                              className="h-5 w-5"
+                            />
+                            <a
+                              href={source.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-blue-600 hover:underline truncate"
+                            >
+                              {source.link}
+                            </a>
+                            <span className="text-gray-900 text-[14px] ml-2">
+                              ({source.similarity_percentage}%)
+                            </span>
+                          </li>
+                        ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+            )}
+
+
+        <ToastContainer/>
+      </div>
+    </main>
+  );
 };
 
 export default Plagiarism;
