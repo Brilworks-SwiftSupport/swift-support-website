@@ -29,10 +29,11 @@ const VoiceToTextConverter = () => {
   const [wordCount, setwordCount] = useState(0);
   const [sentenceCount, setsentenceCount] = useState(1);
   const [STTrecords, setSSTRecords] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(6); // Initial 6 items for a 3x2 grid
+  const [visibleCount, setVisibleCount] = useState(3); // Initial 6 items for a 3x2 grid
+  const [error, setError] = useState("");
 
   const handleLoadMore = () => {
-    setVisibleCount((prevCount) => prevCount + 6); // Load 6 more items
+    setVisibleCount((prevCount) => prevCount + 3); // Load 6 more items
   };
 
   const onDrop = useCallback((e) => {
@@ -114,8 +115,8 @@ const VoiceToTextConverter = () => {
 
         // Map API response to match Tools component props
         const formattedTools = data.data_list.map((item) => ({
-          tts_url: item.audio_url,
-          tts_text: item.text,
+          stt_url: item.audio_url,
+          stt_text: item.text,
         }));
 
         setSSTRecords(formattedTools); // Update tools state
@@ -420,21 +421,39 @@ const VoiceToTextConverter = () => {
                 {/* Input Text */}
                 <div>
                   <span className="font-bold">Input Audio:</span>
-                  <audio controls className="w-full bg-[#FFFEEE] mt-2">
-                    <source src={tool.tts_url} type="audio/mpeg" />
-                    Your browser does not support the audio element.
-                  </audio>
+                  <audio
+                      id={`output-audio-${index}`}
+                      controls
+                      className="w-full bg-[#FFFEEE] mt-2"
+                      onPlay={(e) => {
+                        // Pause all other audio elements
+                        const otherAudios = document.querySelectorAll(
+                          'audio:not(#output-audio-' + index + ')'
+                        );
+                        otherAudios.forEach((audio) => {
+                          audio.pause();
+                        });
+                        // Resume the current audio
+                        e.target.play();
+                      }}
+                      >
+                      <source src={tool.stt_url} type="audio/mpeg" />
+                      Your browser does not support the audio element.
+                    </audio>
                 </div>
 
-                {/* Output Audio */}
-                <div className="flex flex-col mt-auto space-y-4">
                   {/* Output Audio Section */}
-                  <div className="mt-4">
-                    <HandleText text={tool.tts_text} type="Output" />
-                  </div>
+                    {/* Output Audio Section */}
+                    <div className="mt-4">
+                      <HandleText text={tool.stt_text} type="Output" />
+                    </div>
 
-                  <CopyableText text={tool.tts_text} />
-                </div>
+                    <div className="flex flex-col mt-auto space-y-4">
+
+                    <CopyableText text={tool.stt_text} />
+                    </div>
+
+                 
               </div>
             ))}
           </div>

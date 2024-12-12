@@ -199,7 +199,7 @@ const YouTubeSummarizer = () => {
             />
             <button
               type="submit"
-              className="absolute right-0 !px-4 mr-2 py-5 common-button header-btn"
+              className="absolute right-0  !px-4 mr-2 py-5 common-button header-btn"
               disabled={loading}
             >
               {loading ? "Summarizing..." : "Get Summary"}

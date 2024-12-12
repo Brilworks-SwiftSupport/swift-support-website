@@ -42,11 +42,11 @@ const TextToVoiceConverter = () => {
   const wordCount = inputText.trim().split(/\s+/).filter(Boolean).length; // Count words
   const [selectedVoiceFormat, setVoiceFormat] = useState("");
   const [playedVoice, setPlayedVoice] = useState();
-  const [visibleCount, setVisibleCount] = useState(6); // Initial 6 items for a 3x2 grid
+  const [visibleCount, setVisibleCount] = useState(3); // Initial 6 items for a 3x2 grid
   const [canClick, setCanClick] = useState(true);  // State to manage click permission
 
   const handleLoadMore = () => {
-    setVisibleCount((prevCount) => prevCount + 6); // Load 6 more items
+    setVisibleCount((prevCount) => prevCount + 3); // Load 6 more items
   };
 
   const handleButtonClick = async () => {
@@ -408,10 +408,26 @@ const TextToVoiceConverter = () => {
 
                 {/* Output Audio */}
                 <div className="flex flex-col mt-auto space-y-4">
-                  {/* Output Audio Section */}
-                  <div className="mt-4">
+                 
+
+                  <div>
                     <span className="font-bold">Output Audio:</span>
-                    <audio controls className="w-full bg-[#FFFEEE] mt-2">
+                    <audio
+                      id={`output-audio-${index}`}
+                      controls
+                      className="w-full bg-[#FFFEEE] mt-2"
+                      onPlay={(e) => {
+                        // Pause all other audio elements
+                        const otherAudios = document.querySelectorAll(
+                          'audio:not(#output-audio-' + index + ')'
+                        );
+                        otherAudios.forEach((audio) => {
+                          audio.pause();
+                        });
+                        // Resume the current audio
+                        e.target.play();
+                      }}
+                      >
                       <source src={tool.tts_url} type="audio/mpeg" />
                       Your browser does not support the audio element.
                     </audio>
@@ -434,7 +450,7 @@ const TextToVoiceConverter = () => {
             <div className="text-center mt-8">
               <button
                 onClick={handleLoadMore}
-                className="px-6 py-3 bg-black text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
+                className="px-6 py-3 bg-black text-white font-semibold rounded-lg shadow-md hover:bg-gray-800 border-gray transition duration-300"
               >
                 Load More
               </button>
