@@ -14,11 +14,10 @@ const CopyableText = ({ text }) => {
   };
 
   return (
-    <div className="p-4 bg-white-100 rounded flex flex-col">
+    <div className="bg-white-100 rounded flex flex-col">
       <button
         onClick={handleCopy}
-        className="w-full py-3 bg-black text-white rounded-full hover:bg-gray-800 transition duration-300 w-[340px] h-[60px]"
-
+        className="w-full mt-4 px-4 py-2 bg-black text-white rounded-full hover:bg-gray-800 transition duration-300 h-[60px]"
       >
         Copy Output Text
       </button>
