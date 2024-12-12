@@ -219,7 +219,7 @@ const ImageGenerator = () => {
 
         {/* Tools List */}
         <div className="flex flex-wrap gap-4 mt-[30px] md:mt-[56px] md:ml-12 px-4 md:px-0">
-          <div className="flex items-center flex-wrap gap-2 ml-[62px] md:ml-0">
+          <div className="flex items-center justify-center flex-wrap gap-2 md:-ml-8">
             <NavigationButton
               width={"w-auto"}
               img={textToVoice}
@@ -268,11 +268,10 @@ const ImageGenerator = () => {
                 type="submit"
                 disabled={isLoading}
                 className={`flex items-center justify-center
-                          ${
-                            isLoading
-                              ? "bg-gray-400 cursor-not-allowed"
-                              : "bg-black"
-                          }
+                          ${isLoading
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-black"
+                  }
                           text-white font-urbanist font-semibold text-sm md:text-[16px] leading-[24px] rounded-full py-2 md:py-3 md:-mr-3 px-6 w-full md:w-auto`}
               >
                 {isLoading ? "Generating..." : "Generate Image"}

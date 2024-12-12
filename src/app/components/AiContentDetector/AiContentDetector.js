@@ -10,6 +10,14 @@ import doc from "@/app/images/doc.svg"
 import search from "@/app/images/search.svg"
 import tools from "@/app/images/tools.svg"
 
+import DetailSection from "../Tools/Content/DetailSection";
+import FeatureSection from "../Tools/Content/FeatureSection";
+import UsageExplanationSection from "../Tools/Content/UsageExplanationSection";
+import FAQSection from "../Tools/Content/FAQSection";
+import instantResults from "@/app/images/instant_results.svg";
+import content from "@/app/images/Content.svg";
+import text from "@/app/images/text.svg"
+
 const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL
 
 const Plagiarism = () => {
@@ -21,10 +29,65 @@ const Plagiarism = () => {
     const [modalContent, setModalContent] = useState({ text: "", ai_generated: "" ,human_written :""});
     const [error, setError] = useState("");
     const [humanPercentage, setHumanPercentage] = useState(""); // Default to "summary"
+    const [activeFAQ, setActiveFAQ] = useState(null);
+
 
     const [showAll, setShowAll] = useState(false); // State to control showing all cards
     const wordLimit = 2000; // Set the word limit
     const wordCount = inputText.trim().split(/\s+/).filter(Boolean).length; // Count words
+
+    const features = [
+      {
+        icon: text,
+        title: "AI-Generated Text Detection",
+        description:
+          "Analyze your content to determine if it contains AI-generated text, ensuring transparency and originality.",
+      },
+      {
+        icon: content,
+        title: "Extensive Content Analysis",
+        description:
+          "Thoroughly examine your text to identify patterns typically found in AI-generated content, ensuring a reliable authenticity check.",
+      },
+      {
+        icon: instantResults,
+        title: "Fast and Reliable Results",
+        description:
+          "Obtain accurate assessments within seconds, saving time while maintaining content quality and integrity.",
+      },
+    ];
+  
+    const faqItems = [
+      {
+        question: "How do I check if content is AI-generated?",
+        answer:
+          "Paste your text into the tool, and it will analyze it for patterns indicating AI generation, providing results within seconds.",
+      },
+      {
+        question: "Can I use the tool for professional or academic content? ",
+        answer:
+          "Yes, the AI Content Detector is ideal for evaluating professional, academic, or published work to ensure originality and transparency.",
+      },
+      {
+        question: "Does the tool provide detailed results?​",
+        answer:
+          "Yes, you’ll receive an analysis report with confidence scores for easy review.",
+      },
+      {
+        question: "Is there any payment required?​",
+        answer:
+          "No, you don’t need to provide any credit card details or make payments. The AI Content Detector is completely free to use.",
+      },
+      {
+        question: "Do I need to create an account to use the tool?​",
+        answer:
+          "No, there’s no need to create an account or log in. You can start analyzing your content instantly without any registration process",
+      },
+    ];
+  
+    const toggleFAQ = (index) => {
+      setActiveFAQ((prev) => (prev === index ? null : index));
+    };
 
     const fetchPlagiarismCheck = async (text) => {
         try {
@@ -146,7 +209,7 @@ const Plagiarism = () => {
   
 
   return (
-    <main className="flex mt-32 justify-center">
+    <main className="flex mt-32 justify-center mb-32">
         <div className="container mx-auto max-w-6xl">
           <Image 
             className="mx-auto w-auto h-auto mb-3" 
@@ -485,6 +548,24 @@ const Plagiarism = () => {
     )}
 
     </div>
+
+    <DetailSection
+          title="Verify Authenticity with the AI Content Detector"
+          description="Ensure your content is human-like and trustworthy with our AI Content Detector. Whether you're evaluating academic work, blog posts, or professional articles, this tool identifies AI-generated text quickly and accurately, helping you maintain credibility and integrity."
+        />
+        <FeatureSection features={features} />
+        <UsageExplanationSection
+          title="How Does the AI Content Detector Work?"
+          explanation={[
+            "The AI Content Detector leverages advanced Natural Language Processing (NLP) and machine learning models trained to distinguish between human-written and AI-generated text. By analyzing patterns, syntax, and linguistic structures, the tool identifies sections that are likely created by AI.",
+            "Once the analysis is complete, the tool generates a detailed report highlighting potentially AI-generated portions and providing a confidence score. Whether you’re an educator, editor,or content creator, this tool ensures your text meets the highest standards of authenticity.",
+          ]}
+        />
+        <FAQSection
+          faqItems={faqItems}
+          activeFAQ={activeFAQ}
+          toggleFAQ={toggleFAQ}
+        />
 
     <ToastContainer />
       </div>
