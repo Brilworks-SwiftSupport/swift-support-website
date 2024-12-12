@@ -463,7 +463,7 @@ const VoiceToTextConverter = () => {
             <div className="text-center mt-8">
               <button
                 onClick={handleLoadMore}
-                className="px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
+                className="px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-gray-800 transition duration-300"
               >
                 Load More
               </button>
