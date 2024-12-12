@@ -2,7 +2,14 @@
 import React, { useState, useCallback, useEffect, useRef } from "react";
 import { Upload, X } from "lucide-react";
 import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
+import DetailSection from "../Tools/Content/DetailSection";
+import FeatureSection from "../Tools/Content/FeatureSection";
+import UsageExplanationSection from "../Tools/Content/UsageExplanationSection";
+import FAQSection from "../Tools/Content/FAQSection";
 import freeForever from "@/app/images/freeForever.svg";
+import askAndDiscover from "@/app/images/ask_and_discover.svg";
+import intelligentSearch from "@/app/images/intelligent_search.svg";
+import simplifyComplexFiles from "@/app/images/simplify_complex_files.svg";
 import Image from "next/image";
 
 const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
@@ -54,6 +61,61 @@ const ChatPDF = () => {
 
   const messagesEndRef = useRef(null);
   const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB in bytes
+
+  const [activeFAQ, setActiveFAQ] = useState(null);
+
+  const features = [
+    {
+      icon: askAndDiscover,
+      title: "Ask and Discover",
+      description:
+        "Upload your document and get precise answers to your questions without sifting through pages.",
+    },
+    {
+      icon: intelligentSearch,
+      title: "Intelligent Search",
+      description:
+        "Find the exact information you need from your document in an instant with AI-powered responses.",
+    },
+    {
+      icon: simplifyComplexFiles,
+      title: "Simplify Complex Files",
+      description:
+        "Break down lengthy or detailed documents into easy-to-understand answers for quick comprehension.",
+    },
+  ];
+
+  const faqItems = [
+    {
+      question: "How do I upload a document?",
+      answer:
+        "You can drag and drop your document into the tool or use the upload option to add your file.",
+    },
+    {
+      question: "What file types are supported?",
+      answer:
+        "Currently, the tool supports PDF and other common text-based document formats for seamless interaction.",
+    },
+    {
+      question: "How accurate are the answers?",
+      answer:
+        "The tool uses advanced AI to provide highly accurate answers based on the document's content.",
+    },
+    {
+      question: "Is there any payment required?",
+      answer:
+        "No, the tool is completely free to use. You don’t need to provide any credit card details or make payments.",
+    },
+    {
+      question: "Do I need to create an account to use the tool?",
+      answer:
+        "No, there’s no need to create an account or log in. You can upload and ask questions instantly.",
+    },
+  ];
+
+  const toggleFAQ = (index) => {
+    setActiveFAQ((prev) => (prev === index ? null : index));
+  };
 
   function timeout(seconds) {
     return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
@@ -606,7 +668,7 @@ const ChatPDF = () => {
 
   return (
     <main className="mt-12 md:mt-32">
-      <div className="container mx-auto max-w-[100%] md:max-w-[80%] bg-transparent">
+      <div className="container mx-auto max-w-[100%] md:max-w-[80%] bg-transparent mb-32">
         <Image
           className="mx-auto w-auto h-auto"
           src={freeForever}
@@ -675,6 +737,25 @@ const ChatPDF = () => {
             ))}
           </div>
         </div>
+
+        {/* Content Section */}
+        <DetailSection
+          title="Talk with Your Document"
+          description="Interact with your documents like never before with our tool. Simply upload or drag-and-drop your file to instantly extract answers and insights. Whether you're reviewing reports, contracts, or academic papers, this tool simplifies the way you interact with complex information."
+        />
+        <FeatureSection features={features} />
+        <UsageExplanationSection
+          title="How Does Talk with Your Document Work?"
+          explanation={[
+            "This tool uses advanced Natural Language Processing (NLP) to understand your document's content and structure. Once you upload your file, the AI analyzes the text and enables you to ask specific questions.",
+            "The system retrieves the most relevant answers or sections, helping you navigate through large volumes of information effortlessly. From clarifying key points to deep-diving into specific details, the process is efficient, accurate, and user-friendly.",
+          ]}
+        />
+        <FAQSection
+          faqItems={faqItems}
+          activeFAQ={activeFAQ}
+          toggleFAQ={toggleFAQ}
+        />
       </div>
     </main>
   );

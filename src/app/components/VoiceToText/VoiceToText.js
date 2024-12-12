@@ -4,14 +4,23 @@ import React, { useState, useCallback, useEffect } from "react";
 import { X } from "lucide-react";
 import NavigationButton from "@/app/(pages)/tools/NavigationButton/NavigationButton";
 import { toast, ToastContainer } from "react-toastify";
+import DetailSection from "../Tools/Content/DetailSection";
+import FeatureSection from "../Tools/Content/FeatureSection";
+import UsageExplanationSection from "../Tools/Content/UsageExplanationSection";
+import FAQSection from "../Tools/Content/FAQSection";
 import "react-toastify/dist/ReactToastify.css";
+
 import freeForever from "@/app/images/freeForever.svg";
+import highAccuracyTranscription from "@/app/images/high_accuracy_transcription.svg";
+import audioFileUploads from "@/app/images/audio_file_uploads.svg";
+import multiDeviceCompatibility from "@/app/images/multi_device_compatibility.svg";
 import textToVoice from "@/app/images/textToVoice.svg";
 import voiceToText from "@/app/images/voiceToText.svg";
 import imgGenerator from "@/app/images/imgGenerator.svg";
 import tools from "@/app/images/tools.svg";
 import HandleText from "../Tools/HandleText";
 import CopyableText from "../Tools/TextCopy";
+
 const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
 const VoiceToTextConverter = () => {
@@ -31,6 +40,61 @@ const VoiceToTextConverter = () => {
   const [STTrecords, setSSTRecords] = useState([]);
   const [visibleCount, setVisibleCount] = useState(3); // Initial 6 items for a 3x2 grid
   const [error, setError] = useState("");
+
+  const [activeFAQ, setActiveFAQ] = useState(null);
+
+  const features = [
+    {
+      icon: highAccuracyTranscription,
+      title: "High Accuracy Transcription",
+      description:
+        "Enjoy precise voice recognition that captures every word, even in challenging audio conditions or with accents and dialects.",
+    },
+    {
+      icon: audioFileUploads,
+      title: "Audio File Uploads",
+      description:
+        "Upload pre-recorded audio or video files for transcription at your convenience, supporting various file formats.",
+    },
+    {
+      icon: multiDeviceCompatibility,
+      title: "Multi-Device Compatibility",
+      description:
+        "Use the tool seamlessly across devices, including desktops, tablets, and mobile phones.",
+    },
+  ];
+
+  const faqItems = [
+    {
+      question: "What is Voice-to-Text?",
+      answer:
+        "Voice-to-Text technology converts spoken words into written text using AI algorithms. It allows you to transcribe audio content quickly and accurately, whether it's a meeting, lecture, or personal dictation.",
+    },
+    {
+      question: "How fast can I transcribe audio?",
+      answer:
+        "The tool transcribes speech in real-time, so you get your written text almost instantly, helping you save time compared to manual transcription.",
+    },
+    {
+      question: "Can I edit the transcribed text?",
+      answer:
+        "Yes, you can easily edit the transcribed text after it’s generated. The tool provides a text editor where you can make any adjustments needed.",
+    },
+    {
+      question: "Is there any payment required?",
+      answer:
+        "No, you do not need to provide any credit card details or make any payments. Our Voice-to-Text tool is completely free to use with no hidden charges.",
+    },
+    {
+      question: "Do I need to create an account to use the tool?",
+      answer:
+        "No, there is no need to create an account or log in to use any SwiftSupport tool. You can start using the Voice-to-Text tool immediately without any registration process.",
+    },
+  ];
+
+  const toggleFAQ = (index) => {
+    setActiveFAQ((prev) => (prev === index ? null : index));
+  };
 
   const handleLoadMore = () => {
     setVisibleCount((prevCount) => prevCount + 3); // Load 6 more items
@@ -221,7 +285,7 @@ const VoiceToTextConverter = () => {
 
   return (
     <main className="mt-12 md:mt-32">
-      <div className="container mx-auto max-w-[100%] md:max-w-[80%] bg-transparent">
+      <div className="container mx-auto max-w-[100%] md:max-w-[80%] bg-transparent mb-32">
         <Image
           className="mx-auto w-auto h-auto"
           src={freeForever}
@@ -288,11 +352,10 @@ const VoiceToTextConverter = () => {
             onDragOver={onDragOver}
             onDragLeave={onDragLeave}
             onClick={() => document.querySelector('input[type="file"]').click()}
-            className={`
-      w-[100%] bg-[#FAFAFA] border-2 border-dashed rounded-xl cursor-pointer mb-1 h-[165px]
-      transition-all duration-200 ease-in-out 
-      ${isDragActive ? "border-[#E4E4E4]" : "hover:border-[#1D4ED8]"}
-    `}
+            className={`w-[100%] bg-[#FAFAFA] border-2 border-dashed rounded-xl cursor-pointer mb-1 h-[165px] transition-all duration-200 ease-in-out 
+                  ${
+                    isDragActive ? "border-[#E4E4E4]" : "hover:border-[#1D4ED8]"
+                  }`}
           >
             <input
               type="file"
@@ -379,22 +442,20 @@ const VoiceToTextConverter = () => {
                 <p className="text-lg break-words whitespace-pre-wrap">
                   {textData}
                 </p>
-
-                {/* Copy Button */}
-               
-
-                {/* Sentence and Word Count */}
-                
               </div>
-              <div className="relative mt-2 md:mt-0 p-4 w-[100%] mx-auto mb-2 mt-2 overflow-auto">
-              <button onClick={handleCopy}>
+
+              {/* Copy Button */}
+              <div className="relative mt-2 md:mt-0 p-4 w-[100%] mx-auto mb-2 overflow-auto">
+                <button onClick={handleCopy}>
                   <img
                     src="/images/copy.svg"
                     alt="copy"
                     className="absolute bottom-2 right-2 w-6 h-6"
                   />
                 </button>
-              <div className="absolute rounded-md bg-[#FAFAFA] border border-gray-300 bottom-2 left-2 px-2 py-1 whitespace-nowrap text-sm">
+
+                {/* Sentence and Word Count */}
+                <div className="absolute rounded-md bg-[#FAFAFA] border border-gray-300 bottom-2 left-2 px-2 py-1 whitespace-nowrap text-sm">
                   {sentenceCount} Sentences | {wordCount} Words
                 </div>
               </div>
@@ -416,44 +477,42 @@ const VoiceToTextConverter = () => {
             {STTrecords.slice(0, visibleCount).map((tool, index) => (
               <div
                 key={index}
-                className="p-4 bg-white border border-[#E4E4E4] rounded shadow flex flex-col justify-between"
+                className="p-4 bg-white border border-[#E4E4E4] rounded flex flex-col justify-between"
               >
                 {/* Input Text */}
                 <div>
-                  <span className="font-bold">Input Audio:</span>
+                  <span className="text-sm sm:text-base md:text-xl font-Urbanist font-bold">
+                    Input Audio:
+                  </span>
                   <audio
-                      id={`output-audio-${index}`}
-                      controls
-                      className="w-full bg-[#FFFEEE] mt-2"
-                      onPlay={(e) => {
-                        // Pause all other audio elements
-                        const otherAudios = document.querySelectorAll(
-                          'audio:not(#output-audio-' + index + ')'
-                        );
-                        otherAudios.forEach((audio) => {
-                          audio.pause();
-                        });
-                        // Resume the current audio
-                        e.target.play();
-                      }}
-                      >
-                      <source src={tool.stt_url} type="audio/mpeg" />
-                      Your browser does not support the audio element.
-                    </audio>
+                    id={`output-audio-${index}`}
+                    controls
+                    className="w-full bg-[#FFFEEE] mt-2 mb-4"
+                    onPlay={(e) => {
+                      // Pause all other audio elements
+                      const otherAudios = document.querySelectorAll(
+                        "audio:not(#output-audio-" + index + ")"
+                      );
+                      otherAudios.forEach((audio) => {
+                        audio.pause();
+                      });
+                      // Resume the current audio
+                      e.target.play();
+                    }}
+                  >
+                    <source src={tool.stt_url} type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                  </audio>
                 </div>
 
-                  {/* Output Audio Section */}
-                    {/* Output Audio Section */}
-                    <div className="mt-4">
-                      <HandleText text={tool.stt_text} type="Output" />
-                    </div>
+                {/* Output Audio Section */}
+                <div className="w-full text-black text-sm sm:text-base md:text-xl font-Urbanist">
+                  <HandleText text={tool.stt_text} type="Output Text :" />
+                </div>
 
-                    <div className="flex flex-col mt-auto space-y-4">
-
-                    <CopyableText text={tool.stt_text} />
-                    </div>
-
-                 
+                <div className="flex flex-col mt-auto">
+                  <CopyableText text={tool.stt_text} />
+                </div>
               </div>
             ))}
           </div>
@@ -470,6 +529,25 @@ const VoiceToTextConverter = () => {
             </div>
           )}
         </div>
+
+        {/* Content Section */}
+        <DetailSection
+          title="Transform Speech into Words with Our Voice-to-Text AI"
+          description="Unlock the power of seamless transcription with our advanced Voice-to-Text AI tool. Whether you're capturing ideas on the go, converting meetings into text, or creating subtitles for videos, this tool delivers fast, accurate, and reliable results."
+        />
+        <FeatureSection features={features} />
+        <UsageExplanationSection
+          title="What is Voice-to-Text?"
+          explanation={[
+            "Voice-to-Text (VTT) technology is an innovative AI-driven tool that converts spoken words into written text. Using advanced speech recognition algorithms, it can accurately capture and transcribe audio in real time or from pre-recorded files. This technology bridges the gap between spoken communication and written documentation, making it invaluable across various industries and use cases.",
+            "Voice-to-Text tools are widely used for tasks like transcribing meetings, creating subtitles, converting lectures into notes, and enabling hands-free dictation. By automating the transcription process, these tools save time, boost productivity, and enhance accessibility for users worldwide.",
+          ]}
+        />
+        <FAQSection
+          faqItems={faqItems}
+          activeFAQ={activeFAQ}
+          toggleFAQ={toggleFAQ}
+        />
       </div>
       <ToastContainer />
     </main>

@@ -2,7 +2,14 @@
 import React, { useState, useEffect } from "react";
 import YouTube from "react-youtube";
 import axios from "axios";
+import DetailSection from "../Tools/Content/DetailSection";
+import FeatureSection from "../Tools/Content/FeatureSection";
+import UsageExplanationSection from "../Tools/Content/UsageExplanationSection";
+import FAQSection from "../Tools/Content/FAQSection";
 import freeForever from "@/app/images/freeForever.svg";
+import quickVideoSummaries from "@/app/images/quick_video_summaries.svg";
+import easyToUseInterface from "@/app/images/easy_to_use_interface.svg";
+import accurateAndConcise from "@/app/images/accurate_and_concise.svg";
 import Image from "next/image";
 import youTubeIcon from "@/app/images/youtube-icon.svg";
 import { YoutubeTranscript } from "youtube-transcript";
@@ -21,6 +28,61 @@ const YouTubeSummarizer = () => {
   const [tools, setTools] = useState([]);
   const [visibleCount, setVisibleCount] = useState(3); // Initial 6 items for a 3x2 grid
   const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
+
+  const [activeFAQ, setActiveFAQ] = useState(null);
+
+  const features = [
+    {
+      icon: quickVideoSummaries,
+      title: "Quick Video Summaries",
+      description:
+        "Instantly generate summaries of YouTube videos, capturing key points and ideas, so you don't miss important details.",
+    },
+    {
+      icon: easyToUseInterface,
+      title: "Easy-to-Use Interface",
+      description:
+        "Simply paste the video link, and the tool quickly processes the content to generate a brief, readable summary.",
+    },
+    {
+      icon: accurateAndConcise,
+      title: "Accurate and Concise",
+      description:
+        "The tool ensures the summary remains true to the video's main messages, making it easy to grasp important takeaways in just a few sentences.",
+    },
+  ];
+
+  const faqItems = [
+    {
+      question: "How do I summarize a YouTube video?",
+      answer:
+        "Simply paste the YouTube video link into the tool, and it will generate a brief, clear summary based on the video content.",
+    },
+    {
+      question: "Can I summarize any YouTube video?",
+      answer:
+        "Yes, you can summarize any publicly available YouTube video, whether it's educational, professional, or entertainment content.",
+    },
+    {
+      question: "How accurate are the summaries?",
+      answer:
+        "The tool accurately summarizes the video, capturing the main ideas while ensuring no essential information is missed.",
+    },
+    {
+      question: "Is there any payment required?",
+      answer:
+        "No, you don’t need to provide any credit card details or make payments. The YouTube Video Summarizer is completely free to use.",
+    },
+    {
+      question: "Do I need to create an account to use the tool?",
+      answer:
+        "No, there’s no need to create an account or log in. You can start summarizing videos immediately without any registration process.",
+    },
+  ];
+
+  const toggleFAQ = (index) => {
+    setActiveFAQ((prev) => (prev === index ? null : index));
+  };
 
   const videoUrls = {
     "Automating Emails": "https://www.youtube.com/watch?v=fclfUlRC9MU",
@@ -135,7 +197,7 @@ const YouTubeSummarizer = () => {
 
   return (
     <main className="mt-12 md:mt-32">
-      <div className="container mx-auto max-w-[100%] md:max-w-[80%] bg-transparent">
+      <div className="container mx-auto max-w-[100%] md:max-w-[80%] bg-transparent mb-32">
         <Image
           className="mx-auto w-auto h-auto"
           src={freeForever}
@@ -322,6 +384,25 @@ const YouTubeSummarizer = () => {
             <p>Error: {error}</p>
           </div>
         )}
+
+        {/* Content Section */}
+        <DetailSection
+          title="Get Quick Video Insights with YouTube Summarizer"
+          description="Get key insights from YouTube videos in seconds with our YouTube Video Summarizer. Whether you're reviewing educational content, interviews, or entertainment, this tool provides concise and accurate summaries, saving you time while retaining essential information."
+        />
+        <FeatureSection features={features} />
+        <UsageExplanationSection
+          title="How Does the YouTube Video Summarizer Work?"
+          explanation={[
+            "The YouTube Video Summarizer uses advanced Natural Language Processing (NLP) and AI algorithms to analyze the content of YouTube videos. After processing the video’s speech and text, it extracts the most relevant information, filtering out unnecessary details to create a concise, coherent summary.",
+            "Once the summary is generated, the tool presents a clear and structured overview of the video’s main points, making it easy for you to understand the key message without watching the entire video.",
+          ]}
+        />
+        <FAQSection
+          faqItems={faqItems}
+          activeFAQ={activeFAQ}
+          toggleFAQ={toggleFAQ}
+        />
       </div>
     </main>
   );

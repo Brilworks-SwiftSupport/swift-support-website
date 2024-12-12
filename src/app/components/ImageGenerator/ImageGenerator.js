@@ -2,12 +2,20 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import NavigationButton from "@/app/(pages)/tools/NavigationButton/NavigationButton";
+import DetailSection from "../Tools/Content/DetailSection";
+import FeatureSection from "../Tools/Content/FeatureSection";
+import UsageExplanationSection from "../Tools/Content/UsageExplanationSection";
+import FAQSection from "../Tools/Content/FAQSection";
+import HandleText from "../Tools/HandleText";
 
 // Import SVG images
 import freeForever from "@/app/images/freeForever.svg";
 import textToVoice from "@/app/images/textToVoice.svg";
 import voiceToText from "@/app/images/voiceToText.svg";
 import imgGenerator from "@/app/images/imgGenerator.svg";
+import customizableVisuals from "@/app/images/customizable_visuals.svg";
+import highResolutionOutput from "@/app/images/high_resolution_output.svg";
+import instantResults from "@/app/images/instant_results.svg";
 import tools from "@/app/images/tools.svg";
 
 const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
@@ -17,6 +25,60 @@ const ImageGenerator = () => {
   const [generatedImage, setGeneratedImage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [allGeneratedImages, setAllGeneratedImages] = useState([]);
+  const [activeFAQ, setActiveFAQ] = useState(null);
+
+  const features = [
+    {
+      icon: customizableVisuals,
+      title: "Customizable Visuals",
+      description:
+        "Create images that match your specific needs, whether it's a particular style, theme, or color palette.",
+    },
+    {
+      icon: highResolutionOutput,
+      title: "High-Resolution Output",
+      description:
+        "Produce professional-quality images with resolutions suitable for websites, presentations, print media, and more.",
+    },
+    {
+      icon: instantResults,
+      title: "Instant Results",
+      description:
+        "Save time with fast, real-time image generation, making it easy to meet tight deadlines or explore multiple ideas.",
+    },
+  ];
+
+  const faqItems = [
+    {
+      question: "How do I generate an image with the AI tool?",
+      answer:
+        "To generate an image, simply type a description of the image you want. The AI will then process your input and create an image based on your text, whether it’s a scene, object, or abstract concept.",
+    },
+    {
+      question: "How long does it take to generate an image?",
+      answer:
+        "The image is typically generated within seconds. The tool uses powerful AI models to process your description and produce high-quality visuals almost instantly quickly.",
+    },
+    {
+      question: "Can I download the images I generate?",
+      answer:
+        "Yes, once the image is generated, you can download it in high resolution for use in your projects, presentations, or designs.",
+    },
+    {
+      question: "Is there any payment required?",
+      answer:
+        "No, you do not need to provide any credit card details or make any payments. Our AI Image Generator is completely free to use with no hidden charges.",
+    },
+    {
+      question: "Do I need to create an account to use the tool?",
+      answer:
+        "No, there is no need to create an account or log in. You can start using the AI Image Generator immediately without any registration process.",
+    },
+  ];
+
+  const toggleFAQ = (index) => {
+    setActiveFAQ((prev) => (prev === index ? null : index));
+  };
 
   // Quick try options
   const quickTryOptions = [
@@ -296,14 +358,10 @@ const ImageGenerator = () => {
 
                 {/* Text Section */}
                 <div className="w-full text-black text-sm sm:text-base md:text-xl font-Urbanist px-4 py-4">
-                  <span className="font-bold">Prompt: </span>
-                  <span>{image.prompt}</span>
+                  <HandleText text={image.prompt} type="Prompt :" />
                 </div>
 
-                {/* Spacer Section */}
                 <div className="w-full h-[40px] md:h-[60px] relative mt-4"></div>
-
-                {/* Button Section */}
                 <div className="mt-4 flex justify-center absolute bottom-3 md:bottom-4">
                   <button
                     onClick={() => handleDownload(image.summary)}
@@ -317,21 +375,24 @@ const ImageGenerator = () => {
           </div>
         </div>
 
-        {/* New Section
-        <div className="bg-[#F6FDFF] px-4 sm:px-8 lg:px-32 py-12 flex flex-col gap-4 w-full mt-10">
-          <div className="flex flex-col items-center gap-5 w-full mx-auto">
-            <h1 className="text-[#212121] font-urbanist font-semibold text-3xl sm:text-4xl lg:text-[42px] leading-tight text-center">
-              Create Stunning Visuals with AI Image Generator
-            </h1>
-            <p className="text-[#212121] font-urbanist font-normal text-base sm:text-lg lg:text-xl leading-[1.6] text-center">
-              Bring your ideas to life with our powerful AI Image Generator.
-              Whether you're designing marketing materials, crafting unique
-              artwork, or enhancing your digital content, this tool simplifies
-              the creative process by transforming your imagination into
-              high-quality visuals in seconds.
-            </p>
-          </div>
-        </div> */}
+        {/* Content Section */}
+        <DetailSection
+          title="Create Stunning Visuals with AI Image Generator"
+          description="Bring your ideas to life with our powerful AI Image Generator. Whether you're designing marketing materials, crafting unique artwork, or enhancing your digital content, this tool simplifies the creative process by transforming your imagination into high-quality visuals in seconds."
+        />
+        <FeatureSection features={features} />
+        <UsageExplanationSection
+          title="How Does the AI Image Generator Work?"
+          explanation={[
+            "The AI Image Generator uses advanced machine learning algorithms to turn your text descriptions into visual creations. By processing your input through Natural Language Processing (NLP), the AI understands the key elements, context, and style you’re envisioning. It then generates an image using powerful models like Generative Adversarial Networks (GANs), trained on vast datasets to create unique visuals based on your description.",
+            "Once the image is generated, the AI fine-tunes it for optimal quality, adjusting details like colors, textures, and composition to match your vision. In just seconds, you receive a high-resolution image, ready for use in your projects. The whole process is quick, efficient, and produces professional-grade results without the need for traditional design tools.",
+          ]}
+        />
+        <FAQSection
+          faqItems={faqItems}
+          activeFAQ={activeFAQ}
+          toggleFAQ={toggleFAQ}
+        />
       </div>
     </main>
   );
