@@ -16,7 +16,7 @@ const Plagiarism = () => {
     const [inputText, setInputText] = useState(""); // Text input state
     const [percentage, setPercentage] = useState(""); // State to store plagiarism percentage
     const [loading, setLoading] = useState(false); 
-    const [allParaphraseInfo, setParaphraseInfo] = useState([]);
+    const [allContentInfo, setContentInfo] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalContent, setModalContent] = useState({ text: "", ai_generated: "" ,human_written :""});
     const [error, setError] = useState("");
@@ -98,7 +98,7 @@ const Plagiarism = () => {
     };
 
     useEffect(() => {
-      const fetchAllParaphrase = async () => {
+      const fetchAllContent = async () => {
         try {
           const response = await fetch(`${NEXT_PUBLIC_BE_URL}/content_tools?type=ai_content`);
           if (!response.ok) throw new Error("Failed to fetch images");
@@ -112,7 +112,7 @@ const Plagiarism = () => {
             document.body.style.overflow = "auto";
           }
           if (data && Array.isArray(data.content_tools)) {
-            setParaphraseInfo(data.content_tools);
+            setContentInfo(data.content_tools);
           } else {
             console.error(
               "API response does not contain 'content_tools':",
@@ -127,7 +127,7 @@ const Plagiarism = () => {
         };
       };
   
-      fetchAllParaphrase();
+      fetchAllContent();
     }, [isModalOpen]);
 
     const handleKnowMore = (data) => {
@@ -325,8 +325,8 @@ const Plagiarism = () => {
       </h2>
       <div className="container mx-auto py-6 px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {allParaphraseInfo
-            .slice(0, showAll ? allParaphraseInfo.length : 3)
+          {allContentInfo
+            .slice(0, showAll ? allContentInfo.length : 3)
             .map((data, index) => (
               <div
                 key={index}
@@ -353,7 +353,7 @@ const Plagiarism = () => {
         </div>
 
         
-        {allParaphraseInfo.length > 3 && (
+        {allContentInfo.length > 3 && (
           <div className="ml-auto mr-auto text-center mt-4 common-button header-btn w-[200px] h-[40px]">
             <button onClick={() => setShowAll(!showAll)}>
               {showAll ? "Show Less" : "Show More"}
