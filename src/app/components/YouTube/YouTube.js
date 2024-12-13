@@ -126,7 +126,7 @@ const YouTubeSummarizer = () => {
             item.youtube_url
           )}/0.jpg`,
           title: "Summary",
-          description: item.summary,
+          summary: item.summary,
           link: item.youtube_url,
           showFullDescription: item.transcript,
         }));
@@ -353,7 +353,7 @@ const YouTubeSummarizer = () => {
 
 
                 <div className="mt-4 mb-4">
-                      <HandleText text={tool.showFullDescription} type=""/>
+                      <HandleText text={tool.summary} type=""/>
                 </div>
                 
                 <a
