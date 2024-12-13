@@ -63,6 +63,8 @@ const ChatPDF = () => {
   const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB in bytes
 
   const [activeFAQ, setActiveFAQ] = useState(null);
+  const [visibleCount, setVisibleCount] = useState(3); // Initial 6 items for a 3x2 grid
+
 
   const features = [
     {
@@ -121,6 +123,10 @@ const ChatPDF = () => {
     return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
   }
 
+
+  const handleLoadMore = () => {
+    setVisibleCount((prevCount) => prevCount + 3); // Load 6 more items
+  };
   const onDrop = useCallback((e) => {
     e.preventDefault();
     setIsDragActive(false);
@@ -707,7 +713,7 @@ const ChatPDF = () => {
         </h2>
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {uploadedDocs.map((doc, index) => (
+            {uploadedDocs.slice(0, visibleCount).map((doc, index) => (
               <div
                 key={index}
                 className="relative shadow flex flex-col items-center bg-[#FFFBFB] border border-[#E4E4E4] rounded-2xl"
@@ -736,6 +742,18 @@ const ChatPDF = () => {
               </div>
             ))}
           </div>
+
+           {/* Load More Button */}
+           {visibleCount < uploadedDocs.length && (
+            <div className="text-center mt-8">
+              <button
+                onClick={handleLoadMore}
+                className="px-6 py-3 bg-black text-white font-semibold rounded-full hover:bg-gray-600 transition duration-300"
+              >
+                Load More
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Content Section */}
