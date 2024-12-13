@@ -230,24 +230,24 @@ const YouTubeSummarizer = () => {
           below and let the magic happen in seconds.
         </p>
 
-        <div className="flex flex-wrap gap-4 mb-2 mt-5">
-          <div className="flex flex-wrap gap-2 items-center justify mx-auto">
-            <p className="text-xs sm:text-sm mt-1 font-bold ">Quick Try:</p>
-            {Object.keys(videoUrls).map((item, index) => (
-              <button
-                key={index}
-                className="inline-flex items-center px-3 border py-1 text-xs sm:text-sm font-medium bg-white text-red-500 rounded-full shadow-sm cursor-pointer hover:bg-red-200"
-                onClick={() => handleClick(item)}
-              >
-                <Image src={youTubeIcon} className="mr-2" />
-                {item}
-              </button>
-            ))}
-          </div>
+        <div className="flex flex-col gap-4 mb-2 mt-5 sm:flex-row sm:flex-wrap sm:justify-center">
+        <p className="text-xs sm:text-sm mt-1 font-bold text-center sm:text-left">Quick Try:</p>
+        <div className="flex flex-col sm:flex-row sm:gap-4 items-center justify-center w-full sm:w-auto gap-2">
+          {Object.keys(videoUrls).map((item, index) => (
+            <button
+              key={index}
+              className="inline-flex items-center px-3 border py-1 text-xs sm:text-sm font-medium bg-white text-red-500 rounded-full shadow-sm cursor-pointer hover:bg-red-200"
+              onClick={() => handleClick(item)}
+            >
+              <Image src={youTubeIcon} className="mr-2" />
+              {item}
+            </button>
+          ))}
         </div>
+      </div>
 
-        <form onSubmit={handleSubmit}>
-          <div className="relative flex items-center w-full my-3 mt-5">
+      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row sm:items-center gap-4 mt-5 mb-5 w-full">
+          <div className="flex-grow">
             <input
               type="url"
               name="youtubeUrl"
@@ -257,16 +257,17 @@ const YouTubeSummarizer = () => {
               value={youtubeUrl}
               required
             />
-            <button
-              type="submit"
-              className="absolute right-0  !px-4 mr-2 py-5 common-button header-btn"
-              disabled={loading}
-            >
-              {loading ? "Summarizing..." : "Get Summary"}
-            </button>
           </div>
+          <button
+            type="submit"
+            className={`py-3 px-6 h-12 w-[150px] mx-auto sm:mx-0 text-center common-button header-btn rounded-full transition-colors ${
+              loading ? "cursor-not-allowed opacity-50" : "hover:bg-red-500 hover:text-white"
+            }`}
+            disabled={loading}
+          >
+            {loading ? "Summarizing..." : "Get Summary"}
+          </button>
         </form>
-
         <div className="flex flex-wrap gap-4 mb-4 items-center">
           <p className="text-xs sm:text-sm text-red-500 font-bold">
             Note: To use this tool please install this chrome extension{" "}
