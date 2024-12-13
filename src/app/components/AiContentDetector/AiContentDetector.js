@@ -17,6 +17,7 @@ import FAQSection from "../Tools/Content/FAQSection";
 import instantResults from "@/app/images/instant_results.svg";
 import content from "@/app/images/Content.svg";
 import text from "@/app/images/text.svg"
+import close from '@/app/images/cross.svg';
 
 const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL
 
@@ -257,13 +258,13 @@ const Plagiarism = () => {
         <div className="flex flex-col md:flex-row gap-3 mb-8 mt-2 font-Urbanist text-base">
           {/* Textarea */}
           <div 
-            className="relative flex-grow w-full md:w-[789px] h-[300px] md:h-[396px]"
+            className="relative flex-grow w-[350px] md:w-[789px] h-[300px] md:h-[396px]"
           >
             <textarea
               name="content"
               id="content"
               placeholder="Paste your content here to detect..."
-              className="w-full h-full py-3 px-4 text-gray-800 bg-white shadow-sm outline-none rounded-[20px] text-left leading-tight border border-[#E4E4E4] resize-none"
+              className="w-[350px] md:w-full h-full py-3 px-4 md:ml-0 ml-9 text-gray-800 bg-white shadow-sm outline-none rounded-[20px] text-left leading-tight border border-[#E4E4E4] resize-none"
               value={inputText}
               onChange={handleInputChange}
               required
@@ -277,7 +278,7 @@ const Plagiarism = () => {
           </div>
 
           {/* Result Box */}
-          <div className="w-full md:w-[380px] h-[300px] md:h-[396px] bg-white flex flex-col items-center justify-start rounded-[20px] border border-[#E4E4E4] pt-6">
+          <div className="w-[350px] md:w-[380px] h-[300px] md:h-[396px] md:ml-0 ml-9 bg-white flex flex-col items-center justify-start rounded-[20px] border border-[#E4E4E4] pt-6">
             <svg className="w-32 h-32" viewBox="0 0 100 100">
               {/* Background Circle */}
               <circle
@@ -320,7 +321,7 @@ const Plagiarism = () => {
             </p>
 
             {/* AI Written Content */}
-            <div className="w-[340px] h-[46px] bg-white flex items-center rounded-[20px] border border-[#E4E4E4] pt-2 mt-8 md:mt-16">
+            <div className="w-[300px] md:w-[340px] h-[46px] bg-white flex items-center rounded-[20px] border border-[#E4E4E4] pt-2 mt-8 md:mt-16">
               <div
                 className="w-[70px] h-[36px] rounded-full flex items-center justify-center ml-1 mb-2"
                 style={{
@@ -344,7 +345,7 @@ const Plagiarism = () => {
 
             {/* Human Written Content */}
             <div
-              className="w-[340px] h-[46px] bg-white flex items-center rounded-[20px] border border-[#E4E4E4] pt-2 mt-4"
+              className="w-[300px] md:w-[340px] h-[46px] bg-white flex items-center rounded-[20px] border border-[#E4E4E4] pt-2 mt-4 md:mb-0 mb-3"
             >
               <div
                 className="w-[70px] h-[36px] rounded-full flex items-center justify-center ml-1 mb-2"
@@ -393,7 +394,7 @@ const Plagiarism = () => {
             .map((data, index) => (
               <div
                 key={index}
-                className="w-[360px] h-[243px] bg-white flex-col rounded-[20px] border border-[#E4E4E4] p-4 flex-wrap md:ml-4"
+                className="w-[360px] h-[243px] bg-white flex-col rounded-[20px] border border-[#E4E4E4] p-4 flex-wrap md:ml-4 ml-3"
               >
                 <div className="w-auto h-40 text-black text-base px-3 py-1 rounded-t mb-2 md:justify-center">
                   <span className="font-semibold font-Urbanist text-[24px]">
@@ -429,16 +430,15 @@ const Plagiarism = () => {
       {/* Modal */}
       {isModalOpen && (
       <div className="fixed inset-0 bg-[#00000024] backdrop-blur flex items-center justify-center z-[100000000]">
-        <div className="bg-white rounded-3xl shadow-lg w-[1000px] max-h-[80%] overflow-hidden">
+        <div className="bg-white rounded-3xl shadow-lg w-[380px] max-h-[80%] overflow-hidden md:w-[1000px]">
           {/* Header with close button */}
           <div className="flex items-center justify-between px-6 py-4">
             <h3 className="text-xl font-bold">Details</h3>
             <button
-              className="common-button header-btn w-[40px] h-[40px] flex items-center justify-center"
-              onClick={closeModal}
-            >
-              X
-            </button>
+                onClick={closeModal}
+              >
+                <Image src={close} alt="Close" className="w-10 md:w-12 h-10 md:h-12 object-contain" />
+              </button>
           </div>
 
           {/* Scrollable content */}
@@ -450,7 +450,7 @@ const Plagiarism = () => {
               </div>
               <div className="w-auto md:w-1/2 h-auto bg-white flex flex-col text-left rounded-[20px] border border-[#E4E4E4] p-4">
                 <p className="font-bold">Human Content Score:</p>
-                <div className="w-full md:w-[380px] h-[300px] md:h-[396px] bg-white flex flex-col items-center justify-centre rounded-[20px] border border-[#E4E4E4] pt-6 ml-7 mt-4">
+                <div className="w-[300px] md:w-[380px] h-[300px] md:h-[396px] bg-white flex flex-col items-center justify-centre rounded-[20px] border border-[#E4E4E4] pt-6 -ml-1 md:ml-6 mt-4">
             <svg className="w-32 h-32" viewBox="0 0 100 100">
               {/* Background Circle */}
               <circle
@@ -493,7 +493,7 @@ const Plagiarism = () => {
             </p>
 
             {/* AI Written Content */}
-            <div className="w-[340px] h-[46px] bg-white flex items-center rounded-[20px] border border-[#E4E4E4] pt-2 mt-8 md:mt-16">
+            <div className="w-[250px] md:w-[340px] h-[46px] bg-white flex items-center rounded-[20px] border border-[#E4E4E4] pt-2 mt-8 md:mt-16">
               <div
                 className="w-[70px] h-[36px] rounded-full flex items-center justify-center ml-1 mb-2"
                 style={{
@@ -510,14 +510,14 @@ const Plagiarism = () => {
                   <p className="text-sm font-bold text-gray-950">{modalContent.ai_generated}%</p>
                 </div>
               </div>
-              <p className="ml-3 text-gray-700 font-medium font-Urbanist text-[16px] mb-2">
+              <p className="ml-3 text-gray-700 font-medium font-Urbanist text-[14px] md:text-[16px] mb-2">
                 AI Written Content
               </p>
             </div>
 
             {/* Human Written Content */}
             <div
-              className="w-[340px] h-[46px] bg-white flex items-center rounded-[20px] border border-[#E4E4E4] pt-2 mt-4"
+              className="w-[250px] md:w-[340px] h-[46px] bg-white flex items-center rounded-[20px] border border-[#E4E4E4] pt-2 mt-4 mb-3"
             >
               <div
                 className="w-[70px] h-[36px] rounded-full flex items-center justify-center ml-1 mb-2"
@@ -535,7 +535,7 @@ const Plagiarism = () => {
                   <p className="text-sm font-bold text-gray-950">{modalContent.human_written}%</p>
                 </div>
               </div>
-              <p className="ml-3 text-gray-700 font-medium font-Urbanist text-[16px] mb-2">
+              <p className="ml-3 text-gray-700 font-medium font-Urbanist text-[14px] md:text-[16px] mb-2">
                 Human Written Content
               </p>
             </div>

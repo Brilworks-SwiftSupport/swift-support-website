@@ -16,7 +16,8 @@ import UsageExplanationSection from "../Tools/Content/UsageExplanationSection";
 import FAQSection from "../Tools/Content/FAQSection";
 import result from "@/app/images/result.svg";
 import report from "@/app/images/file.svg";
-import scan from "@/app/images/scan.svg"
+import scan from "@/app/images/scan.svg";
+import close from '@/app/images/cross.svg';
 
 
 const NEXT_PUBLIC_BE_URL= process.env.NEXT_PUBLIC_BE_URL
@@ -340,12 +341,12 @@ const Plagiarism = () => {
         
           {/* Main Content Area */}
           <div className="flex flex-col md:flex-row gap-3 mb-8 mt-2 font-Urbanist text-base">
-            <div className="relative flex-grow w-full md:w-[789px] h-[300px] md:h-[396px]">
+            <div className="relative flex-grow w-[350px] md:w-[789px] h-[300px] md:h-[396px]">
               <textarea
                 name="content"
                 id="content"
                 placeholder="Paste your content here to check for plagiarism..."
-                className="w-full h-full py-3 px-4 text-gray-800 bg-white shadow-sm outline-none rounded-[20px] text-left leading-tight border border-[#E4E4E4] resize-none"
+                className="w-[350px] md:w-full h-full py-3 px-4 text-gray-800 md:ml-0 ml-6 bg-white shadow-sm outline-none rounded-[20px] text-left leading-tight border border-[#E4E4E4] resize-none"
                 value={inputText}
                 onChange={handleInputChange}
                 required
@@ -359,7 +360,7 @@ const Plagiarism = () => {
             </div>
 
             {/* Percentage Circular Progress */}
-            <div className="w-full md:w-[380px] h-[300px] md:h-[396px] bg-white flex items-center justify-center rounded-[20px] border border-[#E4E4E4]">
+            <div className="w-[350px] md:w-[380px] h-[300px] md:h-[396px] md:ml-0 ml-6 bg-white flex items-center justify-center rounded-[20px] border border-[#E4E4E4]">
               <svg className="w-100 h-4/5" viewBox="0 0 100 100">
                 <circle cx="50" cy="50" r="40" stroke="#E4E4E4" strokeWidth="10" fill="transparent" />
                 <circle
@@ -592,16 +593,16 @@ const Plagiarism = () => {
         {/* Modal */}
         {isModalOpen && (
           <div className="fixed inset-0 bg-[#00000024] backdrop-blur flex items-center justify-center z-[100000000]">
-            <div className="bg-white rounded-3xl shadow-lg w-[1000px] max-h-[80%] overflow-hidden">
+            <div className="bg-white rounded-3xl shadow-lg w-[380px] max-h-[80%] overflow-hidden md:w-[1000px]">
               {/* Header with close button */}
               <div className="flex items-center justify-between px-6 py-4">
                 <h3 className="text-xl font-bold">Details</h3>
                 <button
-                  className="common-button header-btn w-[40px] h-[40px] flex items-center justify-center"
-                  onClick={closeModal}
-                >
-                  X
-                </button>
+                onClick={closeModal}
+              >
+                <Image src={close} alt="Close" className="w-10 md:w-12 h-10 md:h-12 object-contain" />
+              </button>
+
               </div>
 
               {/* Scrollable content */}
@@ -616,7 +617,7 @@ const Plagiarism = () => {
                   {/* Box 2: Plagiarism Content */}
                   <div className="bg-white flex flex-col text-left rounded-[20px] border border-[#E4E4E4] p-4">
                     <p className="font-bold">Plagiarism Content:</p>
-                    <div className="w-full md:w-[380px] h-[300px] md:h-[396px] bg-white flex items-center justify-center rounded-[20px] border border-[#E4E4E4]">
+                    <div className="w-full md:w-[380px] h-[300px] md:h-[396px] bg-white flex items-center justify-center rounded-[20px]">
                       <svg className="w-100 h-4/5" viewBox="0 0 100 100">
                         <circle cx="50" cy="50" r="40" stroke="#E4E4E4" strokeWidth="10" fill="transparent" />
                         <circle
@@ -645,8 +646,8 @@ const Plagiarism = () => {
                   <div className="bg-white flex flex-col text-left rounded-[20px] border border-[#E4E4E4] p-4">
                     <p className="font-bold">Plagiarised Content:</p>
                     <div
-                              className="mt-4 p-4 border border-gray-300 rounded-lg"
-                              style={{ whiteSpace: "pre-wrap", backgroundColor: "#f9f9f9" }}
+                              className="mt-4 p-4 rounded-lg"
+                              style={{ whiteSpace: "pre-wrap", backgroundColor: "" }}
                               dangerouslySetInnerHTML={{ __html: modalContent.plagiarised_content }}
                             />
                   </div>

@@ -17,6 +17,7 @@ import FAQSection from "../Tools/Content/FAQSection";
 import rewrite from "@/app/images/rewrites.svg";
 import file from "@/app/images/file.svg";
 import pencil from "@/app/images/pencil.svg"
+import close from '@/app/images/cross.svg';
 
 const NEXT_PUBLIC_BE_URL= process.env.NEXT_PUBLIC_BE_URL
 
@@ -341,7 +342,7 @@ const Paraphrase = () => {
             .map((data, index) => (
               <div
                 key={index}
-                className="w-[360px] h-[243px] bg-white flex-col rounded-[20px] border border-[#E4E4E4] p-4 flex-wrap md:ml-4"
+                className="w-[360px] h-[243px] bg-white flex-col rounded-[20px] border border-[#E4E4E4] p-4 flex-wrap md:ml-4 -ml-4" 
               >
                 <div className="w-auto h-40 text-black text-base px-3 py-1 rounded-t mb-2 md:justify-center">
                   <span className="font-semibold font-Urbanist text-[24px]">
@@ -377,16 +378,15 @@ const Paraphrase = () => {
       {/* Modal */}
       {isModalOpen && (
       <div className="fixed inset-0 bg-[#00000024] backdrop-blur flex items-center justify-center z-[100000000]">
-        <div className="bg-white rounded-3xl shadow-lg w-[1000px] max-h-[80%] overflow-hidden">
+        <div className="bg-white rounded-3xl shadow-lg w-[380px] max-h-[80%] overflow-hidden md:w-[1000px]">
           {/* Header with close button */}
           <div className="flex items-center justify-between px-6 py-4">
             <h3 className="text-xl font-bold">Details</h3>
             <button
-              className="common-button header-btn w-[40px] h-[40px] flex items-center justify-center"
-              onClick={closeModal}
-            >
-              X
-            </button>
+                onClick={closeModal}
+              >
+                <Image src={close} alt="Close" className="w-10 md:w-12 h-10 md:h-12 object-contain" />
+              </button>
           </div>
 
           {/* Scrollable content */}
