@@ -246,7 +246,7 @@ const YouTubeSummarizer = () => {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row sm:items-center gap-4 mt-5 mb-5 w-full">
+        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row sm:items-center gap-4 mt-5 mb-5 w-full">
           <div className="flex-grow">
             <input
               type="url"

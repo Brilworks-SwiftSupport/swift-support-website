@@ -188,12 +188,19 @@ const TextToVoiceConverter = () => {
         const url = window.URL.createObjectURL(blob);
         const link = document.createElement("a");
         link.href = url;
-        link.download = "downloaded-file.mp3"; // Set a default file name
-        link.click();
+        link.download = "downloaded-file.mp3"; // Default name
+        link.style.display = "none"; // Hide the link element
+        document.body.appendChild(link);
+        link.click(); // Trigger the download
+        document.body.removeChild(link); // Clean up the link element
         window.URL.revokeObjectURL(url); // Clean up the object URL
       })
-      .catch((error) => console.error("Download failed:", error));
+      .catch((error) => {
+        console.error("Download failed:", error);
+        alert("Download failed. Please try again.");
+      });
   };
+  
 
   const handleInputChange = (e) => {
     const words = e.target.value.split(/\s+/).filter((word) => word.length > 0);
@@ -438,14 +445,15 @@ const TextToVoiceConverter = () => {
               Your browser does not support the audio element.
             </audio>
 
-            <div className="relative items-center p-4  max-w-[100%] mx-auto mt-4">
+            <div className="flex justify-center p-4 max-w-full mx-auto mt-4">
               <button
                 onClick={() => handleDownload(audioUrl)}
-                className={`absolute rounded-md w-[125px] h-[25px] bottom-2 right-2 bg-black cursor-pointer text-white`}
+                className="rounded-md w-[200px] sm:w-[125px] h-[40px] sm:h-[25px] bg-black cursor-pointer text-white text-sm sm:text-base flex justify-center items-center"
               >
                 Download Audio
               </button>
             </div>
+
           </div>
         )}
 
