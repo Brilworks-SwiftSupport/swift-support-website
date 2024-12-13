@@ -305,22 +305,22 @@ const Plagiarism = () => {
           
           {/* Title Section */}
           <div className="text-center">
-            <p className="text-2xl md:text-4xl lg:text-5xl font-bold mb-5 w-full max-w-[90%] mx-auto font-Urbanist">
+            <p className="hidden md:block text-2xl md:text-4xl lg:text-5xl font-bold mb-5 w-full max-w-[90%] mx-auto font-Urbanist">
               Verify Content for Plagiarism with just a Click.
             </p>
-            
+            <p className="md:hidden text-2xl md:text-4xl lg:text-5xl font-bold mb-2 w-full max-w-[90%] mx-auto font-Urbanist">
+              Verify Content for Plagiarism 
+            </p>          
             <div
-              className="mx-auto hidden md:block"
-              style={{
-                width: "257px",
-                height: "10px",
-                background:
-                  "linear-gradient(90deg, #D8EA9A 0%, #AFE5CA 25.5%, #FBB8B8 62.5%, #FFFFFF 87.5%)",
-                marginLeft: "auto",
-                marginRight: "410px", 
-              }}
+              className="
+                w-[150px] h-[10px] ml-auto mr-1 md:ml-auto md:mr-[410px]
+                bg-[linear-gradient(90deg,_#D8EA9A_0%,_#AFE5CA_25.5%,_#FBB8B8_62.5%,_#FFFFFF_87.5%)]
+                md:w-[257px]"
             ></div>
-            
+            <p className="md:hidden text-center text-2xl md:text-5xl font-bold w-full max-w-[90%] mx-auto font-Urbanist">
+            with just a Click.
+            </p>
+              
             <p className="text-center text-gray-600 b-8  w-full max-w-[90%] mx-auto mt-2 font-Urbanist font-normal text-[24px] flex-grow">
               Scan your <span className="bg-clip-text text-transparent bg-text-theme-gradient">Text for Plagiarism</span> and safeguard the originality of your work in seconds.
             </p>
