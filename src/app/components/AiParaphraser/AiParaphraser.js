@@ -10,6 +10,15 @@ import doc from "@/app/images/doc.svg"
 import search from "@/app/images/search.svg"
 import tools from "@/app/images/tools.svg"
 
+import DetailSection from "../Tools/Content/DetailSection";
+import FeatureSection from "../Tools/Content/FeatureSection";
+import UsageExplanationSection from "../Tools/Content/UsageExplanationSection";
+import FAQSection from "../Tools/Content/FAQSection";
+import rewrite from "@/app/images/rewrites.svg";
+import file from "@/app/images/file.svg";
+import pencil from "@/app/images/pencil.svg"
+import close from '@/app/images/cross.svg';
+
 const NEXT_PUBLIC_BE_URL= process.env.NEXT_PUBLIC_BE_URL
 
 const Paraphrase = () => {
@@ -23,8 +32,63 @@ const Paraphrase = () => {
   const [showAll, setShowAll] = useState(false); // State to control showing all cards
   const wordLimit = 2000; // Set the word limit
   const wordCount = inputText.trim().split(/\s+/).filter(Boolean).length; // Count words
+  const [activeFAQ, setActiveFAQ] = useState(null);
+
 
   const [isCopied, setIsCopied] = useState(false);
+
+  const features = [
+    {
+      icon: pencil,
+      title: "Enhance Your Writing",
+      description:
+        "Improve clarity, tone, and readability by rephrasing your content without changing its original meaning.",
+    },
+    {
+      icon: file,
+      title: "Preserve Original Context",
+      description:
+        "Rewrites content while maintaining its original message and intent, ensuring consistency across various types of text.",
+    },
+    {
+      icon: rewrite,
+      title: "Instant Rewrites",
+      description:
+        "Save time with fast, AI-driven rephrasing that delivers results in seconds, perfect for tight deadlines or multiple drafts.",
+    },
+  ];
+
+  const faqItems = [
+    {
+      question: "How do I use the AI Paraphraser?​",
+      answer:
+        "Simply input your text into the tool, and let the AI generate a rephrased version within seconds.",
+    },
+    {
+      question: "Does the AI Paraphraser maintain the original meaning?​ ",
+      answer:
+        "Absolutely! The tool rephrases your content while preserving the original intent and context, ensuring clarity and accuracy.",
+    },
+    {
+      question: "Can I use the tool for professional documents?​​",
+      answer:
+        "Yes, the AI Paraphraser is suitable for professional documents, articles, and even academic content, providing polished and well-structured outputs.",
+    },
+    {
+      question: "Is there any payment required?​",
+      answer:
+        "No, you don’t need to provide any credit card details or make payments. The AI Paraphraser is completely free to use.",
+    },
+    {
+      question: "Do I need to create an account to use the tool?​",
+      answer:
+        "No, there’s no need to create an account or log in. You can start paraphrasing your text instantly without any registration process.",
+    },
+  ];
+
+  const toggleFAQ = (index) => {
+    setActiveFAQ((prev) => (prev === index ? null : index));
+  };
 
   const handleCopy = () => {
     navigator.clipboard.writeText(text);  
@@ -49,6 +113,13 @@ const Paraphrase = () => {
         if (!response.ok) throw new Error("Failed to fetch images");
 
         const data = await response.json();
+        if (isModalOpen) {
+          // Prevent background scrolling
+          document.body.style.overflow = "hidden";
+        } else {
+          // Restore background scrolling
+          document.body.style.overflow = "auto";
+        }
         if (data && Array.isArray(data.content_tools)) {
           setParaphraseInfo(data.content_tools);
         } else {
@@ -60,10 +131,14 @@ const Paraphrase = () => {
       } catch (error) {
         console.error("Error fetching all content_tools:", error);
       }
+      return () => {
+        document.body.style.overflow = "auto";
+      };
     };
 
     fetchAllParaphrase();
-  }, []);
+  }, [isModalOpen]);
+
 
   const fetchPlagiarismCheck = async (input_text, type) => {
     try {
@@ -147,7 +222,7 @@ const Paraphrase = () => {
   };
 
   return (
-    <main className="flex mt-32 justify-center px-4">
+    <main className="flex mt-32 justify-center px-4 mb-32">
       <div className="container mx-auto max-w-6xl">
           <Image 
             className="mx-auto w-auto h-auto mb-3" 
@@ -262,24 +337,31 @@ const Paraphrase = () => {
       </h2>
       <div className="container mx-auto py-6 px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {allParaphraseInfo.slice(0, showAll ? allParaphraseInfo.length : 3).map((data, index) => (
-            <div
-              key={index}
-              className="w-[360px] h-[243px] bg-white flex-col rounded-[20px] border border-[#E4E4E4] p-4 flex-wrap md:ml-4"
-            >
-              <div className="w-auto h-40 text-black text-base px-3 py-1 rounded-t mb-2 md:justify-center">
-                <span className="font-semibold font-Urbanist text-[24px]">Text: </span>
-              <div></div>
-                <span className="font-Urbanist text-[16px]">{data.text.split(/\s+/).slice(0, 20).join(" ")}{data.text.split(/\s+/).length > 20 ? "..." : ""}</span>
-              </div>
-              <button
-                className="mb-6 common-button header-btn w-[320px] h-[40px] flex-wrap"
-                onClick={() => handleKnowMore(data)}
+          {allParaphraseInfo
+            .slice(0, showAll ? allParaphraseInfo.length : 3)
+            .map((data, index) => (
+              <div
+                key={index}
+                className="w-[360px] h-[243px] bg-white flex-col rounded-[20px] border border-[#E4E4E4] p-4 flex-wrap md:ml-4 -ml-4" 
               >
-                Know More
-              </button>
-            </div>
-          ))}
+                <div className="w-auto h-40 text-black text-base px-3 py-1 rounded-t mb-2 md:justify-center">
+                  <span className="font-semibold font-Urbanist text-[24px]">
+                    Text:{" "}
+                  </span>
+                  <div></div>
+                  <span className="font-Urbanist text-[16px]">
+                    {data.text.split(/\s+/).slice(0, 15).join(" ")}
+                    {data.text.split(/\s+/).length > 15 ? "..." : ""}
+                  </span>
+                </div>
+                <button
+                  className="mb-6 common-button header-btn w-[320px] h-[40px] flex-wrap"
+                  onClick={() => handleKnowMore(data)}
+                >
+                  Know More
+                </button>
+              </div>
+            ))}
         </div>
 
         
@@ -295,9 +377,20 @@ const Paraphrase = () => {
 
       {/* Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-[#00000024] backdrop-blur flex items-center justify-center z-[100000000] flex-wrap">
-          <div className="bg-white rounded-lg shadow-lg w-[1000px] p-6 overflow-y-auto">
-            <h3 className="text-xl font-bold mb-6">Details</h3>
+      <div className="fixed inset-0 bg-[#00000024] backdrop-blur flex items-center justify-center z-[100000000]">
+        <div className="bg-white rounded-3xl shadow-lg w-[380px] max-h-[80%] overflow-hidden md:w-[1000px]">
+          {/* Header with close button */}
+          <div className="flex items-center justify-between px-6 py-4">
+            <h3 className="text-xl font-bold">Details</h3>
+            <button
+                onClick={closeModal}
+              >
+                <Image src={close} alt="Close" className="w-10 md:w-12 h-10 md:h-12 object-contain" />
+              </button>
+          </div>
+
+          {/* Scrollable content */}
+          <div className="p-6 overflow-y-auto max-h-[70vh]">
             <div className="flex flex-col md:flex-row gap-6">
               <div className="w-auto md:w-1/2 h-auto bg-white flex flex-col text-left rounded-[20px] border border-[#E4E4E4] p-4">
                 <p className="font-bold">Original Text:</p>
@@ -308,18 +401,29 @@ const Paraphrase = () => {
                 <p className="text-gray-800">{modalContent.paraphrased}</p>
               </div>
             </div>
-            <div className="flex justify-end mt-6">
-              <button
-                className="mb-6 common-button header-btn w-[100px] h-[40px]"
-                onClick={closeModal}
-              >
-                Close
-              </button>
-            </div>
           </div>
         </div>
-      )}
+      </div>
+    )}
+
     </div>
+    <DetailSection
+          title="Perfect Your Content with AI Paraphraser"
+          description="Refine your writing effortlessly with our AI Paraphraser. Whether you're polishing professional documents, simplifying complex sentences, or enhancing your content's readability, this tool transforms your text into clear, concise, and engaging language—quickly and accurately."
+        />
+        <FeatureSection features={features} />
+        <UsageExplanationSection
+          title="How Does the AI Paraphraser Work?"
+          explanation={[
+            "The AI Paraphraser leverages advanced Natural Language Processing (NLP) algorithms to rewrite text effectively while maintaining its original context. When you input text, the tool analyzes the structure, vocabulary, and tone, then generates a rephrased version tailored to your needs.",
+            "Using deep learning techniques, the AI ensures that the rephrased content is fluent, grammatically correct, and natural-sounding. Whether you’re refining an article, rewriting sentences, or enhancing academic content, the tool offers high-quality paraphrasing in real time, saving you hours of manual effort.",
+          ]}
+        />
+        <FAQSection
+          faqItems={faqItems}
+          activeFAQ={activeFAQ}
+          toggleFAQ={toggleFAQ}
+        />
 
     <ToastContainer />
 
