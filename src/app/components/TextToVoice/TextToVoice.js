@@ -445,14 +445,14 @@ const TextToVoiceConverter = () => {
               Your browser does not support the audio element.
             </audio>
 
-            <div className="flex justify-center p-4 max-w-full mx-auto mt-4">
               <button
                 onClick={() => handleDownload(audioUrl)}
-                className="rounded-md w-[200px] sm:w-[125px] h-[40px] sm:h-[25px] bg-black cursor-pointer text-white text-sm sm:text-base flex justify-center items-center"
+                className="w-full py-3 rounded-full sm:w-auto  mx-auto p-4 bg-black cursor-pointer text-white text-sm sm:text-base flex justify-center items-center sm:block hidden mt-2"
               >
                 Download Audio
               </button>
-            </div>
+
+
 
           </div>
         )}
@@ -507,11 +507,12 @@ const TextToVoiceConverter = () => {
 
                   {/* Download Button */}
                   <button
-                    onClick={() => handleDownload(tool.tts_url)}
-                    className="w-full py-3 bg-black text-white rounded-full hover:bg-gray-800 transition duration-300 h-[60px]"
-                  >
-                    Download Audio
-                  </button>
+                  onClick={() => handleDownload(tool.tts_url)}
+                  className="w-full py-3 bg-black text-white rounded-full hover:bg-gray-800 transition duration-300 h-[60px] sm:block hidden"
+                >
+                  Download Audio
+                </button>
+
                 </div>
               </div>
             ))}
