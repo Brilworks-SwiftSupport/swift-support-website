@@ -74,6 +74,14 @@ const page = () => {
       link: "/tools/chat-pdf",
       button_title: "Ask Now",
     },
+    {
+      imageUrl: "/images/chatpdf.svg",
+      title: "AI Document Generator",
+      description:
+        "Generate document using ai",
+      link: "/tools/ai-doc-generator",
+      button_title: "Generate Now",
+    },
   ];
 
   return (
