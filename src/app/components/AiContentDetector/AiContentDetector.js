@@ -222,19 +222,26 @@ const Plagiarism = () => {
 
         {/* Title Section */}
         <div>
-          <p className="text-center text-3xl md:text-5xl font-bold mb-5 w-full max-w-[90%] mx-auto font-Urbanist">
+          <p className="hidden md:block text-center text-3xl md:text-5xl font-bold md:mb-2 mb-2 w-full max-w-[90%] mx-auto font-Urbanist">
             Uncover the Source: AI or Human?
           </p>
+          <p className="md:hidden text-center text-3xl md:text-5xl font-bold w-full max-w-[90%] mx-auto font-Urbanist">
+            Uncover the Source: AI or
+          </p>
           <div
-            className="hidden md:block"
-            style={{
-              width: "257px",
-              height: "10px",
-              background:
-                "linear-gradient(90deg, #D8EA9A 0%, #AFE5CA 25.5%, #FBB8B8 62.5%, #FFFFFF 87.5%)",
-              marginLeft: "auto",
-              marginRight: "230px", 
-            }}
+            className="
+              w-[90px] h-[10px] ml-80 mr-80
+              bg-[linear-gradient(90deg,_#D8EA9A_0%,_#AFE5CA_25.5%,_#FBB8B8_62.5%,_#FFFFFF_87.5%)]
+              md:w-[0px] md:mr-[0px]"
+          ></div>
+          <p className="md:hidden text-center text-3xl md:text-5xl font-bold w-full max-w-[90%] mx-auto font-Urbanist">
+            Human?
+          </p>
+          <div
+            className="
+              w-[100px] h-[10px] ml-auto mr-auto
+              bg-[linear-gradient(90deg,_#D8EA9A_0%,_#AFE5CA_25.5%,_#FBB8B8_62.5%,_#FFFFFF_87.5%)]
+              md:w-[257px] md:mr-[230px]"
           ></div>
           <p className="text-center text-gray-600 b-8  w-full max-w-[90%] mx-auto mt-2 font-Urbanist font-normal text-[24px] flex-grow">
             Instantly detect whether your content is <span className="bg-clip-text text-transparent bg-text-theme-gradient">crafted by AI</span> or thoughtfully written by <span className="bg-clip-text text-transparent bg-text-theme-gradient">a Human</span>

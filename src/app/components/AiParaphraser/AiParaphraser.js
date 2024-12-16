@@ -233,19 +233,26 @@ const Paraphrase = () => {
           />
         {/* Title Section */}
         <div>
-          <p className="text-center text-3xl md:text-5xl font-bold mb-5 font-Urbanist">
+          <p className="hidden md:block text-center text-3xl md:text-5xl font-bold mb-3 font-Urbanist">
             Rephrase with Ease – Free AI Paraphrasing Tool.
           </p>
+          <p className="md:hidden text-center text-3xl md:text-5xl font-bold w-full max-w-[90%] mx-auto font-Urbanist">
+            Rephrase with Ease – Free AI Paraphrasing 
+          </p>
           <div
-            className="hidden md:block"
-            style={{
-              width: "450px",
-              height: "10px",
-              background:
-                "linear-gradient(90deg, #D8EA9A 0%, #AFE5CA 25.5%, #FBB8B8 62.5%, #FFFFFF 87.5%)",
-              marginLeft: "630px",
-              marginRight: "auto",
-            }}
+            className="
+            w-[250px] h-[10px] ml-auto
+            bg-[linear-gradient(90deg,_#D8EA9A_0%,_#AFE5CA_25.5%,_#FBB8B8_62.5%,_#FFFFFF_87.5%)]
+            md:w-[0px] md:mr-[0px]"
+          ></div>
+          <p className="md:hidden text-center text-3xl md:text-5xl font-bold w-full max-w-[90%] mx-auto font-Urbanist">
+           Tool.
+          </p>
+          <div
+            className="
+              w-[100px] h-[10px] ml-auto mr-auto md:ml-[630px]
+              bg-[linear-gradient(90deg,_#D8EA9A_0%,_#AFE5CA_25.5%,_#FBB8B8_62.5%,_#FFFFFF_87.5%)]
+              md:w-[450px] md:mr-[10px]"
           ></div>
           <p className="text-center text-gray-600 b-8  w-full max-w-[90%] mx-auto mt-2 font-Urbanist font-normal text-[24px] flex-grow">
             Use our free{" "}
