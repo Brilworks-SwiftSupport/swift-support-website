@@ -152,39 +152,51 @@ const ImageGenerator = () => {
   };
 
   const handleDownload = (imageUrl) => {
+    // Use provided imageUrl or fallback to generatedImage
     const urlToDownload = imageUrl || generatedImage;
-
-    if (urlToDownload) {
-      try {
-        fetch(urlToDownload)
-          .then((response) => response.blob())
-          .then((blob) => {
-            const link = document.createElement("a");
-            const url = URL.createObjectURL(blob);
-
-            // Set the href and download attributes
-            link.href = url;
-            const extension = blob.type.includes("jpeg") ? "jpg" : "png";
-            link.setAttribute("download", `generated-image.${extension}`);
-
-            // Trigger download
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-
-            // Release the object URL
-            URL.revokeObjectURL(url);
-          });
-      } catch (error) {
-        console.error("Error downloading image:", error);
-        alert(
-          "An error occurred while downloading the image. Please try again."
-        );
-      }
-    } else {
+  
+    if (!urlToDownload) {
       alert("No image available to download.");
+      return;
     }
+  
+    // Add a cache-busting parameter to the URL
+    const cacheBustedUrl = `${urlToDownload}?t=${Date.now()}`;
+  
+    fetch(cacheBustedUrl)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.blob();
+      })
+      .then((blob) => {
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+  
+        // Determine file extension based on MIME type
+        const extension = blob.type.includes("jpeg") ? "jpg" : "png";
+        const filename = `generated-image.${extension}`;
+  
+        // Set up link attributes
+        link.href = url;
+        link.setAttribute("download", filename);
+        link.style.display = "none"; // Hide the link element
+  
+        // Trigger download
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+  
+        // Release the object URL
+        URL.revokeObjectURL(url);
+      })
+      .catch((error) => {
+        console.error("Error downloading image:", error);
+        alert("An error occurred while downloading the image. Please try again.");
+      });
   };
+  
 
   const handleImagePreview = () => {
     if (generatedImage) {
@@ -330,10 +342,10 @@ const ImageGenerator = () => {
           </div>
         )}
         {generatedImage && (
-          <div className="mt-6 flex mx-auto items-center justify-center sm:block hidden">
+          <div className="mt-6 flex mx-auto items-center justify-center">
             <button
               onClick={handleDownload}
-              className="w-[171px] h-[46px] bg-black text-white text-sm md:text-base font-bold py-2 px-4 rounded-full sm:block hidden mx-auto "
+              className="w-[171px] h-[46px] bg-black text-white text-sm md:text-base font-bold py-2 px-4 rounded-full mx-auto "
             >
               Download Image
             </button>
@@ -365,11 +377,11 @@ const ImageGenerator = () => {
                   <HandleText text={image.prompt} type="Prompt :" />
                 </div>
 
-                <div className="w-full h-[40px] md:h-[60px] relative mt-4 sm:block hidden"></div>
-                <div className="mt-4 flex justify-center absolute bottom-3 md:bottom-4 sm:block hidden">
+                <div className="w-full h-[40px] md:h-[60px] relative mt-4"></div>
+                <div className="mt-4 flex justify-center absolute bottom-3 md:bottom-4">
                   <button
                     onClick={() => handleDownload(image.summary)}
-                    className="w-full max-w-[280px] sm:max-w-[300px] md:max-w-[340px] h-[40px] sm:h-[50px] md:h-[60px] bg-black text-white text-[10px] sm:text-[12px] md:text-[16px] font-semibold md:py-5 px-12 rounded-full  sm:block hidden"
+                    className="w-full max-w-[280px] sm:max-w-[300px] md:max-w-[340px] h-[40px] sm:h-[50px] md:h-[60px] bg-black text-white text-[10px] sm:text-[12px] md:text-[16px] font-semibold md:py-5 px-12 rounded-full "
                   >
                     Download Image
                   </button>

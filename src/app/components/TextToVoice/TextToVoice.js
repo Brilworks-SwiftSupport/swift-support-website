@@ -182,24 +182,43 @@ const TextToVoiceConverter = () => {
   };
 
   const handleDownload = (audioUrl) => {
-    fetch(audioUrl)
-      .then((response) => response.blob())
+    if (!audioUrl) {
+      alert("No audio URL provided.");
+      return;
+    }
+  
+    const cacheBustedUrl = `${audioUrl}?t=${Date.now()}`;
+  
+    fetch(cacheBustedUrl)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.blob();
+      })
       .then((blob) => {
         const url = window.URL.createObjectURL(blob);
         const link = document.createElement("a");
         link.href = url;
-        link.download = "downloaded-file.mp3"; // Default name
+  
+        // Set download file name dynamically or use default
+        link.download = audioUrl.split("/").pop() || "downloaded-file.mp3";
+  
+        // Trigger download
         link.style.display = "none"; // Hide the link element
         document.body.appendChild(link);
-        link.click(); // Trigger the download
-        document.body.removeChild(link); // Clean up the link element
-        window.URL.revokeObjectURL(url); // Clean up the object URL
+        link.click();
+        document.body.removeChild(link);
+  
+        // Release the URL object to free up memory
+        window.URL.revokeObjectURL(url);
       })
       .catch((error) => {
         console.error("Download failed:", error);
-        alert("Download failed. Please try again.");
+        alert("Failed to download the audio. Please try again.");
       });
   };
+  
   
 
   const handleInputChange = (e) => {
@@ -447,7 +466,7 @@ const TextToVoiceConverter = () => {
 
               <button
                 onClick={() => handleDownload(audioUrl)}
-                className="w-full py-3 rounded-full sm:w-auto  mx-auto p-4 bg-black cursor-pointer text-white text-sm sm:text-base flex justify-center items-center sm:block hidden mt-2"
+                className="w-full py-3 rounded-full sm:w-auto  mx-auto p-4 bg-black cursor-pointer text-white text-sm sm:text-base flex justify-center items-center mt-2"
               >
                 Download Audio
               </button>
@@ -471,7 +490,7 @@ const TextToVoiceConverter = () => {
             {TTSrecords.slice(0, visibleCount).map((tool, index) => (
               <div
                 key={index}
-                className="p-4 bg-white border border-[#E4E4E4] rounded shadow flex flex-col justify-between ]"
+                className="p-4 bg-white border border-[#E4E4E4] rounded shadow flex flex-col justify-between"
               >
                 {/* Input Text */}
                 <div className="w-full mb-4 text-black text-sm sm:text-base md:text-xl font-Urbanist space-y-4">
@@ -508,7 +527,7 @@ const TextToVoiceConverter = () => {
                   {/* Download Button */}
                   <button
                   onClick={() => handleDownload(tool.tts_url)}
-                  className="w-full py-3 bg-black text-white rounded-full hover:bg-gray-800 transition duration-300 h-[60px] sm:block hidden"
+                  className="w-full py-3 bg-black text-white rounded-full hover:bg-gray-800 transition duration-300 h-[60px]"
                 >
                   Download Audio
                 </button>
