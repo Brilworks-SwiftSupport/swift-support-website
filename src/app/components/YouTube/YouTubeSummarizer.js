@@ -17,7 +17,7 @@ import HandleText from "../Tools/HandleText";
 const NEXT_PUBLIC_BE_URL=process.env.NEXT_PUBLIC_BE_URL
 
 
-export default async function YouTubeSummarizer({initialTools = []}) {
+const  YouTubeSummarizer = ({ initialTools = []}) =>  {
   const [youtubeUrl, setYoutubeUrl] = useState("");
   const [videoId, setVideoId] = useState("");
 
@@ -379,3 +379,4 @@ export default async function YouTubeSummarizer({initialTools = []}) {
   );
 };
 
+export default YouTubeSummarizer;
