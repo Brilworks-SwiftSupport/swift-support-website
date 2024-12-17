@@ -21,7 +21,7 @@ import close from '@/app/images/cross.svg';
 
 const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL
 
-const Plagiarism = ({allContentInfo=[]}) => {
+const AiContentDetector = ({allContentInfo=[]}) => {
     const [inputText, setInputText] = useState(""); // Text input state
     const [percentage, setPercentage] = useState(""); // State to store plagiarism percentage
     const [loading, setLoading] = useState(false); 
@@ -566,4 +566,4 @@ const Plagiarism = ({allContentInfo=[]}) => {
   );
 };
 
-export default Plagiarism;
+export default AiContentDetector;
