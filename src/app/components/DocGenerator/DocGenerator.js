@@ -1,8 +1,5 @@
 "use client"
 import React, { useState } from "react";
-import dynamic from "next/dynamic";
-import { Document, Packer, Paragraph } from "docx";
-import { saveAs } from "file-saver";
 import axios from "axios";
 import freeForever from "@/app/images/freeForever.svg";
 import Image from "next/image";
@@ -17,12 +14,11 @@ import UsageExplanationSection from "../Tools/Content/UsageExplanationSection";
 import FAQSection from "../Tools/Content/FAQSection";
 import instantTextGeneration from "@/app/images/instant_text_generation.svg";
 import vesaltileContentGeneration from "@/app/images/versaltile_content_generation.svg";
+import HandleText from "../Tools/HandleText";
 
 import userFriendly from "@/app/images/user_friendly.svg";
-import { headers } from "../../../../next.config";
 const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
-const DocViewer = dynamic(() => import("react-doc-viewer"), { ssr: false });
 
 const DocPreview = ({ s3Url,Size = { height: '100px', width: '25%' } }) => {
     const googleDocsViewerUrl = `https://docs.google.com/viewer?url=${encodeURIComponent(s3Url)}&embedded=true`;
