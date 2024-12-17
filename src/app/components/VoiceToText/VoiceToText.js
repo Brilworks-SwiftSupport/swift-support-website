@@ -23,7 +23,7 @@ import CopyableText from "../Tools/TextCopy";
 
 const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
-const VoiceToTextConverter = () => {
+const VoiceToTextConverter = ({STTrecords = []}) => {
   const [isDragActive, setIsDragActive] = useState(false);
   const [file, setFile] = useState(null);
   const [fileUrl, setFileUrl] = useState("");
@@ -37,9 +37,7 @@ const VoiceToTextConverter = () => {
   const [textData, setTextData] = useState("");
   const [wordCount, setwordCount] = useState(0);
   const [sentenceCount, setsentenceCount] = useState(1);
-  const [STTrecords, setSSTRecords] = useState([]);
   const [visibleCount, setVisibleCount] = useState(3); // Initial 6 items for a 3x2 grid
-  const [error, setError] = useState("");
 
   const [activeFAQ, setActiveFAQ] = useState(null);
 
@@ -160,35 +158,7 @@ const VoiceToTextConverter = () => {
       return () => clearInterval(intervalId);
     }
 
-    const fetchData = async () => {
-      try {
-        const queryParam = "stt";
-
-        const response = await fetch(
-          `${NEXT_PUBLIC_BE_URL}/stt_tts_data?type=${encodeURIComponent(
-            queryParam
-          )}`,
-          {
-            method: "GET",
-          }
-        );
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.json();
-
-        // Map API response to match Tools component props
-        const formattedTools = data.data_list.map((item) => ({
-          stt_url: item.audio_url,
-          stt_text: item.text,
-        }));
-
-        setSSTRecords(formattedTools); // Update tools state
-      } catch (err) {
-        setError(err.message); // Handle errors
-      }
-    };
-    fetchData();
+   
   }, [isUploading]);
 
   const handleCopy = () => {

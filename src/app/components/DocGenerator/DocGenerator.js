@@ -4,11 +4,35 @@ import dynamic from "next/dynamic";
 import { Document, Packer, Paragraph } from "docx";
 import { saveAs } from "file-saver";
 import axios from "axios";
-import mammoth from "mammoth";
+import freeForever from "@/app/images/freeForever.svg";
+import Image from "next/image";
+import NavigationButton from "@/app/(pages)/tools/NavigationButton/NavigationButton";
+import textToVoice from "@/app/images/textToVoice.svg";
+import voiceToText from "@/app/images/voiceToText.svg";
+import imgGenerator from "@/app/images/imgGenerator.svg";
+import tools from "@/app/images/tools.svg";
+
+
 const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
 // Dynamically import DocViewer for client-side rendering
 const DocViewer = dynamic(() => import("react-doc-viewer"), { ssr: false });
+
+const DocPreview = ({ s3Url }) => {
+    const googleDocsViewerUrl = `https://docs.google.com/viewer?url=${encodeURIComponent(s3Url)}&embedded=true`;
+  
+    return (
+      <div style={{ height: '100vh', overflow: 'auto' }}>
+        <iframe
+          src={googleDocsViewerUrl}
+          width="100%"
+          height="100%"
+          frameBorder="0"
+        ></iframe>
+      </div>
+    );
+  };
+
 
 const DocGenerator = () => {
   const [title, setTitle] = useState("");
@@ -16,7 +40,17 @@ const DocGenerator = () => {
   const [loading, setLoading] = useState(false);
   const [docContent, setDocContent] = useState("");
   const [docUrl, setDocUrl] = useState(null);
-
+  const [visibleCount, setVisibleCount] = useState(3); // Initial 6 items for a 3x2 grid
+  const [canClick, setCanClick] = useState(true); 
+  const wordLimit = 500; // Set the word limit
+  const wordCount = title.trim().split(/\s+/).filter(Boolean).length; // Count words
+  
+  const handleInputChange = (e) => {
+    const words = e.target.value.split(/\s+/).filter((word) => word.length > 0);
+    if (words.length <= wordLimit) {
+      setTitle(e.target.value);
+    }
+  };
   const handleGenerateDocument = async () => {
     if (!title) {
       alert("Please provide both title and description.");
@@ -38,22 +72,9 @@ const DocGenerator = () => {
         }
       );
 
-      
-      setDocContent(response.data.text)
-      const doc = new Document({
-        sections: [
-          {
-            children: [
-              new Paragraph({ text: title, heading: "Heading1" }),
-                new Paragraph({ text: response.data.text }),
-            ],
-          },
-        ],
-      });
-
-      const blob = await Packer.toBlob(doc); // Convert doc to Blob
-      const url = URL.createObjectURL(blob); // Create Object URL
-      setDocUrl(url); // Save URL for preview and download
+      const data = response.data;
+      setDocUrl(data.doc_url)
+    
     } catch (error) {
       console.error("Error generating document:", error);
       alert("Failed to generate the document. Please try again.");
@@ -62,90 +83,114 @@ const DocGenerator = () => {
     }
   };
 
-  const handleDownloadDocument = async () => {
-    if (!docContent) {
-      alert("No document available to download.");
-      return;
-    }
-
-    const doc = new Document({
-      sections: [
-        {
-          children: [new Paragraph(docContent)],
-        },
-      ],
-    });
-
-    const blob = await Packer.toBlob(doc);
-    saveAs(blob, `${title || "document"}.docx`);
-    alert("Your document has been downloaded!");
-  };
-
+  
   return (
     <main className="mt-12 md:mt-32">
       <div className="container mx-auto max-w-[100%] md:max-w-[80%] bg-transparent mb-32">
+      <Image
+          className="mx-auto w-auto h-auto"
+          src={freeForever}
+          alt="free-forever"
+          width={300}
+          height={100}
+        />
+
+        {/* Title Section */}
         <h1 className="text-center text-2xl sm:text-3xl md:text-[54px] font-urbanist font-bold leading-[1.2] mb-4 mt-6 md:mt-12">
-          Generate, Preview, Edit, and Download Document
+          <span>Effortless  Creation with AI. </span>
+          {/* <span className="relative inline-block mb-2 md:mb-6">
+            Text to Life{" "}
+            <div className="absolute left-0 banner-underline md:!mt-2 !w-[200px] md:!w-[400px] !max-w-none"></div>
+          </span>
+          <span> with Realistic Voices.</span> */}
         </h1>
 
-        {/* Form Section */}
-        <div className="mb-6">
-          <input
-            type="text"
-            placeholder="Enter Document Title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            className="w-full mb-4 px-4 py-3 text-gray-800 bg-gray-100 shadow-sm outline-none rounded-[8px]"
-          />
-          <textarea
-            placeholder="Enter Document Description (Optional)"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            className="w-full h-40 px-4 py-3 text-gray-800 bg-gray-100 shadow-sm outline-none rounded-[8px] mb-4"
-          />
-          <button
-            onClick={handleGenerateDocument}
-            className={`px-6 py-3 bg-black text-white font-semibold rounded-full hover:bg-gray-600 transition duration-300 ${
-              loading ? "cursor-not-allowed opacity-50" : ""
-            }`}
-            disabled={loading}
-          >
-            {loading ? "Generating..." : "Generate Document"}
-          </button>
-        </div>
+        <p className="relative text-center text-[#212121] font-urbanist font-medium text-sm sm:text-base md:text-[24px] mt-6 md:mt-10 px-4">
+            Just Describe It, We'll{" "}
+          <span className="bg-clip-text text-transparent bg-text-theme-gradient">
+          Write
+          </span>{" "}
+          It!.{" "}
+        </p>
 
-        {docUrl && (
-        <div className="mt-8">
-          <h2 className="text-xl font-bold mb-2">Preview Document</h2>
-
-          {/* Embed the document for preview */}
-          <iframe
-            src={docUrl}
-            className="w-full h-96 border"
-            title="Document Preview"
-          ></iframe>
-
-         
-        </div>
-      )}
-
-        {/* Document Editor */}
-        {docContent && (
-          <div className="mb-6">
-            <h2 className="text-xl font-bold mb-4">Edit Document:</h2>
-            <textarea
-              value={docContent}
-              onChange={(e) => setDocContent(e.target.value)}
-              className="w-full h-40 px-4 py-3 text-gray-800 bg-gray-100 shadow-sm outline-none rounded-[8px] mb-4"
+        <div className="flex flex-wrap gap-4 mt-[30px] md:mt-[56px] md:ml-12 px-4 md:px-0">
+          <div className="flex items-center justify-center flex-wrap gap-2 md:-ml-8">
+            <NavigationButton
+              width={"w-auto"}
+              img={textToVoice}
+              name={"AI Text to Voice"}
+              bgColor={"#FFFFFF"}
             />
+            <NavigationButton
+              width={"w-auto"}
+              img={voiceToText}
+              href={"/tools/voice-to-text/"}
+              name={"AI Voice to Text"}
+              bgColor={"#FFFFFF"}
+            />
+            <NavigationButton
+              width={"w-auto"}
+              img={imgGenerator}
+              href={"/tools/image-generator/"}
+              name={"AI Image Generator"}
+              bgColor={"#FFFFFF"}
+            />
+            <NavigationButton
+              width={"w-auto"}
+              img={voiceToText}
+              href={"/tools/ai-doc-generator"}
+              name={"AI Document Generator"}
+              bgColor={"#FFFEEE"}
+            />
+       
+            <NavigationButton
+                width={"w-auto"}
+                img={tools}
+                href={"/tools/"}
+                name={"Other AI Tools"}
+                bgColor={"#FFFFFF"}
+              />
+            </div>
+        </div>
+
+        <div className="border border-gray-300 rounded-md mt-5 p-4 max-w-[100%] mx-auto mb-4">
+          
+          
+          <div className="mb-3 mt-3">
+            <p className="mb-2">Title:</p>
+            <textarea
+              name="title"
+              id="title"
+              placeholder="Enter your title here ..."
+              className="w-[100%] h-[50px] py-3 px-4 text-gray-800 bg-white shadow-sm outline-none rounded-[20px] text-left leading-tight border border-[#E4E4E4] resize-none mb-4"
+              value={title}
+              onChange={handleInputChange} // Use the state for the textarea value
+              required
+            />
+          </div>
+         
+         
+
+          <div className="md:relative flex items-center justify-center p-4  md:mt-0 max-w-[100%] mx-auto">
             <button
-              onClick={handleDownloadDocument}
-              className="px-6 py-3 bg-black text-white font-semibold rounded-full hover:bg-gray-600 transition duration-300"
+              onClick={handleGenerateDocument}
+              className={`md:absolute  rounded-full w-[260px] h-[46px] mx-auto md:bottom-2 md:right-2  font-urbanist font-semibold text-sm md:text-[14px] transition-colors ${title.trim()
+                ? "common-button header-btn  cursor-pointer "
+                : "bg-gray-300 cursor-not-allowed"
+                }`}
+              disabled={loading || !title.trim() || !canClick}
             >
-              Download Edited Document
+              {loading ? "Generating Document..." : "Generate Document"}
             </button>
           </div>
-        )}
+        </div>
+
+    
+        {docUrl && (
+        <DocPreview s3Url={docUrl}/>
+      )}
+
+
       </div>
     </main>
   );

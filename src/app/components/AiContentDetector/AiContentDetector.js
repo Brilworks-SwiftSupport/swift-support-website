@@ -21,11 +21,10 @@ import close from '@/app/images/cross.svg';
 
 const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL
 
-const Plagiarism = () => {
+const Plagiarism = ({allContentInfo=[]}) => {
     const [inputText, setInputText] = useState(""); // Text input state
     const [percentage, setPercentage] = useState(""); // State to store plagiarism percentage
     const [loading, setLoading] = useState(false); 
-    const [allContentInfo, setContentInfo] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalContent, setModalContent] = useState({ text: "", ai_generated: "" ,human_written :""});
     const [error, setError] = useState("");
@@ -162,12 +161,8 @@ const Plagiarism = () => {
     };
 
     useEffect(() => {
-      const fetchAllContent = async () => {
-        try {
-          const response = await fetch(`${NEXT_PUBLIC_BE_URL}/content_tools?type=ai_content`);
-          if (!response.ok) throw new Error("Failed to fetch images");
-  
-          const data = await response.json();
+          try{
+         
           if (isModalOpen) {
             // Prevent background scrolling
             document.body.style.overflow = "hidden";
@@ -175,23 +170,14 @@ const Plagiarism = () => {
             // Restore background scrolling
             document.body.style.overflow = "auto";
           }
-          if (data && Array.isArray(data.content_tools)) {
-            setContentInfo(data.content_tools);
-          } else {
-            console.error(
-              "API response does not contain 'content_tools':",
-              data
-            );
-          }
+         
         } catch (error) {
           console.error("Error fetching all content_tools:", error);
         }
         return () => {
           document.body.style.overflow = "auto";
         };
-      };
   
-      fetchAllContent();
     }, [isModalOpen]);
 
     const handleKnowMore = (data) => {
