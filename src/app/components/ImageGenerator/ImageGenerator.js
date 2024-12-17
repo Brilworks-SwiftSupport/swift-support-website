@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import NavigationButton from "@/app/(pages)/tools/NavigationButton/NavigationButton";
 import DetailSection from "../Tools/Content/DetailSection";
@@ -20,11 +20,10 @@ import tools from "@/app/images/tools.svg";
 
 const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
-const ImageGenerator = () => {
+const ImageGenerator = ({allGeneratedImages = []}) =>{
   const [prompt, setPrompt] = useState("");
   const [generatedImage, setGeneratedImage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [allGeneratedImages, setAllGeneratedImages] = useState([]);
   const [activeFAQ, setActiveFAQ] = useState(null);
   const [visibleCount, setVisibleCount] = useState(3); // Initial 6 items for a 3x2 grid
 
@@ -88,27 +87,6 @@ const ImageGenerator = () => {
     "Magical forest with glowing mushrooms",
   ];
 
-  useEffect(() => {
-    const fetchAllGeneratedImages = async () => {
-      try {
-        const response = await fetch(`${NEXT_PUBLIC_BE_URL}/generated_image`);
-        if (!response.ok) throw new Error("Failed to fetch images");
-
-        const data = await response.json();
-        if (data && Array.isArray(data.generated_image_list)) {
-          setAllGeneratedImages(data.generated_image_list);
-        } else {
-          console.error(
-            "API response does not contain 'generated_image_list':",
-            data
-          );
-        }
-      } catch (error) {
-        console.error("Error fetching all generated images:", error);
-      }
-    };
-    fetchAllGeneratedImages();
-  }, []);
 
   // Handler to set prompt when a quick try option is clicked
   const handleQuickTryClick = (option) => {

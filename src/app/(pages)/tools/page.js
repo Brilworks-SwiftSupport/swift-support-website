@@ -74,6 +74,14 @@ const page = () => {
       link: "/tools/chat-pdf",
       button_title: "Ask Now",
     },
+    // {
+    //   imageUrl: "/images/doc_generator.svg",
+    //   title: "AI Document Generator",
+    //   description:
+    //     "Effortless Document Creation with AI: Just Describe It, We’ll Write It!",
+    //   link: "/tools/ai-doc-generator",
+    //   button_title: "Generate Now",
+    // },
   ];
 
   return (

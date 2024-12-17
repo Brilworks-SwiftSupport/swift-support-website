@@ -21,12 +21,11 @@ import close from '@/app/images/cross.svg';
 
 const NEXT_PUBLIC_BE_URL= process.env.NEXT_PUBLIC_BE_URL
 
-const Paraphrase = () => {
+const Paraphrase = ({allParaphraseInfo=[]}) => {
   const [inputText, setInputText] = useState(""); // Text input state
   const [text, setText] = useState(""); // State to store paraphrased text
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [allParaphraseInfo, setParaphraseInfo] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState({ text: "", paraphrased: "" });
   const [showAll, setShowAll] = useState(false); // State to control showing all cards
@@ -109,10 +108,6 @@ const Paraphrase = () => {
   useEffect(() => {
     const fetchAllParaphrase = async () => {
       try {
-        const response = await fetch(`${NEXT_PUBLIC_BE_URL}/content_tools?type=paraphrase`);
-        if (!response.ok) throw new Error("Failed to fetch images");
-
-        const data = await response.json();
         if (isModalOpen) {
           // Prevent background scrolling
           document.body.style.overflow = "hidden";
@@ -120,14 +115,8 @@ const Paraphrase = () => {
           // Restore background scrolling
           document.body.style.overflow = "auto";
         }
-        if (data && Array.isArray(data.content_tools)) {
-          setParaphraseInfo(data.content_tools);
-        } else {
-          console.error(
-            "API response does not contain 'content_tools':",
-            data
-          );
-        }
+       
+         
       } catch (error) {
         console.error("Error fetching all content_tools:", error);
       }
@@ -186,7 +175,6 @@ const Paraphrase = () => {
       return;
     }
     if (wordCount < 10) {
-      // setError("Please provide at least 10 words to proceed!");
       toast.error("Input must contain at least 10 words!", {
         position: "bottom-center",
         autoClose: 2000,
