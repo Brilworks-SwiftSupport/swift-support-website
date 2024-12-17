@@ -15,17 +15,13 @@ const fetchAllDocs = async () => {
     }
   );
   const data = await response.json();
-  console.log(data)
 
-  // Map API response to match Tools component props
   return data.data_list.map((item) => ({
     text: item.text,
     doc_url: item.file_url,
     description: item.description,
 
   }));
-
-   
 
 };
 export default async function Page()  {
