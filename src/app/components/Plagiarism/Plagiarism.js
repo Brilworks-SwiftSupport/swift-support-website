@@ -22,7 +22,7 @@ import close from '@/app/images/cross.svg';
 
 const NEXT_PUBLIC_BE_URL= process.env.NEXT_PUBLIC_BE_URL
 
-const Plagiarism = () => {
+const Plagiarism = ({allPlagiarismInfo=[]}) => {
     const [inputText, setInputText] = useState(""); 
     const [percentage, setPercentage] = useState("0"); 
     const [loading, setLoading] = useState(false); 
@@ -34,7 +34,6 @@ const Plagiarism = () => {
     const [text, setOriginalText] = useState(""); 
     const [paraphrasingLoading, setParaphrasingLoading] = useState(false); 
     const [highlightedText, setHighlightedText] = useState("");
-    const [allPlagiarismInfo, setPlagiarismInfo] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalContent, setModalContent] = useState({ text: "", plagiarised_content: "" ,plagiarism_percentage :"",source_links:""});
     const [activeFAQ, setActiveFAQ] = useState(null);
@@ -244,12 +243,8 @@ const Plagiarism = () => {
     };
 
     useEffect(() => {
-      const fetchAllPlagiarism = async () => {
         try {
-          const response = await fetch(`${NEXT_PUBLIC_BE_URL}/content_tools?type=plagiarism`);
-          if (!response.ok) throw new Error("Failed to fetch images");
-  
-          const data = await response.json();
+         
           if (isModalOpen) {
             // Prevent background scrolling
             document.body.style.overflow = "hidden";
@@ -257,23 +252,14 @@ const Plagiarism = () => {
             // Restore background scrolling
             document.body.style.overflow = "auto";
           }
-          if (data && Array.isArray(data.content_tools)) {
-            setPlagiarismInfo(data.content_tools);
-          } else {
-            console.error(
-              "API response does not contain 'content_tools':",
-              data
-            );
-          }
+        
         } catch (error) {
           console.error("Error fetching all content_tools:", error);
         }
         return () => {
           document.body.style.overflow = "auto";
         };
-      };
   
-      fetchAllPlagiarism();
     }, [isModalOpen]);
 
     const handleKnowMore = (data) => {

@@ -23,7 +23,7 @@ import tools from "@/app/images/tools.svg";
 
 const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
-const TextToVoiceConverter = () => {
+const TextToVoiceConverter = ({TTSrecords =[]}) => {
   const [voiceOptions, setVoiceOptions] = useState([]);
   const [selectedVoice, setSelectedVoice] = useState({
     value: "",
@@ -40,7 +40,6 @@ const TextToVoiceConverter = () => {
   const [voiceFormat, setVoiceFormatOptions] = useState([
     { value: "mp3", label: "MP3" },
   ]);
-  const [TTSrecords, setTTSRecords] = useState([]);
   const audioRef = useRef(null);
   const [loading, setLoading] = useState(false);
 
@@ -50,7 +49,7 @@ const TextToVoiceConverter = () => {
   const [selectedVoiceFormat, setVoiceFormat] = useState("");
   const [playedVoice, setPlayedVoice] = useState();
   const [visibleCount, setVisibleCount] = useState(3); // Initial 6 items for a 3x2 grid
-  const [canClick, setCanClick] = useState(true); // State to manage click permission
+  const [canClick, setCanClick] = useState(true); 
 
   const [activeFAQ, setActiveFAQ] = useState(null);
 
@@ -297,35 +296,6 @@ const TextToVoiceConverter = () => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const queryParam = "tts";
-
-        const response = await fetch(
-          `${NEXT_PUBLIC_BE_URL}/stt_tts_data?type=${encodeURIComponent(
-            queryParam
-          )}`,
-          {
-            method: "GET",
-          }
-        );
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.json();
-
-        // Map API response to match Tools component props
-        const formattedTools = data.data_list.map((item) => ({
-          tts_url: item.audio_url,
-          tts_text: item.text,
-        }));
-
-        setTTSRecords(formattedTools); // Update tools state
-      } catch (err) {
-        setError(err.message); // Handle errors
-      }
-    };
-    fetchData();
     getVoiceList();
   }, []);
 
@@ -405,7 +375,7 @@ const TextToVoiceConverter = () => {
             isSearchable
           />
 
-          <p className="mb-2 mt-2">Voice Format</p>
+          {/* <p className="mb-2 mt-2">Voice Format</p>
           <Select
             placeholder="Select Voice Format"
             defaultValue={voiceFormat}
@@ -413,7 +383,7 @@ const TextToVoiceConverter = () => {
             options={voiceFormat}
             className="mb-2 rounded-[20px]"
             isSearchable
-          />
+          /> */}
 
           <div className="mb-3 mt-3">
             <p className="mb-2">Script:</p>
