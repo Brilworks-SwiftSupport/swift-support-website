@@ -19,7 +19,7 @@ const fetchData = async () => {
 
   // Map API response to match Tools component props
   return data.data_list.map((item) => ({
-    stt_url: item.audio_url,
+    stt_url: item.file_url,
     stt_text: item.text,
   }));
 
