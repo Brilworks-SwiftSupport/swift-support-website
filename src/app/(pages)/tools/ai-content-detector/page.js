@@ -9,7 +9,6 @@ const fetchAllContent = async () => {
   const response = await fetch(`${NEXT_PUBLIC_BE_URL}/content_tools?type=ai_content`,{method:"GET"});
 
   const data = await response.json();
-  console.log(data)
   return data.content_tools.map((item) => ({
     text: item.text,
     ai_generated: item.ai_generated,

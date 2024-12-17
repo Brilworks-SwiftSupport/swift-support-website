@@ -98,11 +98,7 @@ const DocGenerator = () => {
         {/* Title Section */}
         <h1 className="text-center text-2xl sm:text-3xl md:text-[54px] font-urbanist font-bold leading-[1.2] mb-4 mt-6 md:mt-12">
           <span>Effortless  Creation with AI. </span>
-          {/* <span className="relative inline-block mb-2 md:mb-6">
-            Text to Life{" "}
-            <div className="absolute left-0 banner-underline md:!mt-2 !w-[200px] md:!w-[400px] !max-w-none"></div>
-          </span>
-          <span> with Realistic Voices.</span> */}
+         
         </h1>
 
         <p className="relative text-center text-[#212121] font-urbanist font-medium text-sm sm:text-base md:text-[24px] mt-6 md:mt-10 px-4">

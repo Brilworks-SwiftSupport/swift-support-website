@@ -9,11 +9,11 @@ const fetchAllPlagiarsim = async () => {
   const response = await fetch(`${NEXT_PUBLIC_BE_URL}/content_tools?type=plagiarism`, {method:"GET"});
 
   const data = await response.json();
-  console.log(data)
   return data.content_tools.map((item) => ({
     text: item.text,
-    ai_generated: item.ai_generated,
-    human_written : item.human_written
+    plagiarised_content: item.plagiarised_content,
+    source_links : item.source_links,
+    plagiarism_percentage : item.plagiarism_percentage,
   }));
 };
 export default async function Page() {
