@@ -24,7 +24,6 @@ const DocPreview = ({ s3Url,Size = { height: '100px', width: '25%' } }) => {
     const googleDocsViewerUrl = `https://docs.google.com/viewer?url=${encodeURIComponent(s3Url)}&embedded=true`;
   
     return (
-      <div style={{ height: '100vh', overflow: 'auto' }}>
         <iframe
           title="google doc"
           src={googleDocsViewerUrl}
@@ -34,7 +33,6 @@ const DocPreview = ({ s3Url,Size = { height: '100px', width: '25%' } }) => {
           
         >
         </iframe>
-      </div>
     );
   };
 
@@ -56,6 +54,8 @@ const DocGenerator = ({DocRecords=[]}) => {
     height: '100%',  // Set your dynamic height
     width: '100%',     // Set your dynamic width
   };
+
+  
   const features = [
     {
       icon: instantTextGeneration,
@@ -104,6 +104,11 @@ const DocGenerator = ({DocRecords=[]}) => {
         "No, there is no need to create an account or log in. You can start using the AI Document Generator immediately without any registration process.",
     },
   ];
+
+
+  const handleLoadMore = () => {
+    setVisibleCount((prevCount) => prevCount + 3); // Load 6 more items
+  };
 
   const toggleFAQ = (index) => {
     setActiveFAQ((prev) => (prev === index ? null : index));
@@ -278,17 +283,18 @@ const DocGenerator = ({DocRecords=[]}) => {
         
 
         {docUrl && (
-          <div className="text-center border border-gray-300 rounded-md mt-5 p-4 max-w-[100%] mx-auto mb-4">
-            <p className="text-xl mt-2 mb-5 max-w-[90%] mx-auto font-Urbanist text-[32px]">
+          <div className="text-center border border-gray-300 rounded-md mt-5 p-4 max-w-[100%] mx-auto mb-4 ">
+              <p className="text-xl mt-2 mb-5 max-w-[90%] mx-auto font-Urbanist text-[32px]">
               Your{" "}
               <span className="bg-clip-text text-transparent bg-text-theme-gradient">
                 Document
               </span>{" "}
               is Ready.
-            </p>
+              </p>
 
-            <DocPreview s3Url={docUrl} Size={displayFullDoc}/>
-
+              <div className="w-full sm:h-auto md:h-[600px] lg:h-[800px] xl:h-[1000px] rounded-md">
+                <DocPreview s3Url={docUrl} Size={displayFullDoc} />
+              </div>
 
             
 
@@ -321,13 +327,23 @@ const DocGenerator = ({DocRecords=[]}) => {
                 className="p-4 bg-white border border-[#E4E4E4] rounded flex flex-col justify-between"
               >
                 {/* Input Text */}
-                <div className="w-full text-black text-sm sm:text-base md:text-xl font-Urbanist">
-                  <HandleText text={tool.title} type="Input Title :" />
+                <div className="w-full text-black text-sm sm:text-base md:text-xl font-Urbanist mb-4">
+                  <HandleText text={tool.text} type="Input Title :" />
                 </div>
 
-                  
-              
-                <DocPreview s3Url={tool.doc_url}/>
+
+                <div className="w-full h-[200px] sm:h-[280px] md:h-[300px] rounded-md">
+                <DocPreview s3Url={tool.doc_url} Size={displayFullDoc}/>
+                </div>
+
+                <div className="mt-4 flex justify-center bottom-3 md:bottom-4">
+                  <button
+                    onClick={() => handleDownload(tool.doc_url)}
+                    className="w-full py-3 bg-black text-white rounded-full hover:bg-gray-800 transition duration-300 h-[60px]"
+                  >
+                    Download Document
+                  </button>
+                </div>
 
                
               </div>
