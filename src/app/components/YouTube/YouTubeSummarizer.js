@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import YouTube from "react-youtube";
 import axios from "axios";
 import DetailSection from "../Tools/Content/DetailSection";
@@ -14,8 +14,10 @@ import Image from "next/image";
 import youTubeIcon from "@/app/images/youtube-icon.svg";
 import { YoutubeTranscript } from "youtube-transcript";
 import HandleText from "../Tools/HandleText";
+const NEXT_PUBLIC_BE_URL=process.env.NEXT_PUBLIC_BE_URL
 
-const YouTubeSummarizer = () => {
+
+export default async function YouTubeSummarizer({initialTools = []}) {
   const [youtubeUrl, setYoutubeUrl] = useState("");
   const [videoId, setVideoId] = useState("");
 
@@ -25,10 +27,8 @@ const YouTubeSummarizer = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [activeTab, setActiveTab] = useState("summary"); // Default to "summary"
-  const [tools, setTools] = useState([]);
   const [visibleCount, setVisibleCount] = useState(3); // Initial 6 items for a 3x2 grid
   const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
-
   const [activeFAQ, setActiveFAQ] = useState(null);
 
   const features = [
@@ -80,6 +80,8 @@ const YouTubeSummarizer = () => {
     },
   ];
 
+
+
   const toggleFAQ = (index) => {
     setActiveFAQ((prev) => (prev === index ? null : index));
   };
@@ -109,40 +111,7 @@ const YouTubeSummarizer = () => {
     setActiveTab("summary");
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`${NEXT_PUBLIC_BE_URL}/youtube_summary`, {
-          method: "GET",
-        });
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.json();
 
-        // Map API response to match Tools component props
-        const formattedTools = data.youtube_summary_list.map((item) => ({
-          imageUrl: `https://img.youtube.com/vi/${extractVideoId(
-            item.youtube_url
-          )}/0.jpg`,
-          title: "Summary",
-          summary: item.summary,
-          link: item.youtube_url,
-          showFullDescription: item.transcript,
-        }));
-
-        setTools(formattedTools); // Update tools state
-      } catch (err) {
-        setError(err.message); // Handle errors
-      } finally {
-        setLoading(false); // Stop loading state
-      }
-    };
-
-    fetchData();
-  }, []); // Empty dependency array to run once on component mount
-
- 
 
   const fetchSummary = async (textData, youtubeUrl) => {
     setLoading(true);
@@ -339,7 +308,7 @@ const YouTubeSummarizer = () => {
 
         <div className="container mx-auto py-8 px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {tools.slice(0, visibleCount).map((tool, index) => (
+            {initialTools.slice(0, visibleCount).map((tool, index) => (
               <div
                 key={index}
                 className="p-4 bg-white border border-[#E4E4E4] rounded shadow flex flex-col justify-between"
@@ -368,7 +337,7 @@ const YouTubeSummarizer = () => {
             ))}
           </div>
           {/* Load More Button */}
-          {visibleCount < tools.length && (
+          {visibleCount <  initialTools.length && (
             <div className="text-center mt-8">
               <button
                 onClick={handleLoadMore}
@@ -410,4 +379,3 @@ const YouTubeSummarizer = () => {
   );
 };
 
-export default YouTubeSummarizer;
