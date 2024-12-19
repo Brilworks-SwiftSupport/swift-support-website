@@ -1,6 +1,27 @@
 import React from "react";
 import YouTubeSummarizer from "@/app/components/YouTube/YouTubeSummarizer";
 
+export const metadata = {
+  title: "Free YouTube Video Summarizer to Get Quick Highlights",
+  description:
+    "Summarize YouTube videos instantly with our AI-powered YouTube Video Summarizer tool for quick insights.",
+  keywords:
+    "YouTube video summarizer, video summary, AI video summarizer, YouTube highlights, video insights, summarize YouTube videos, AI-powered summarizer, video content summary, YouTube summary tool, quick video summary, YouTube transcription",
+  openGraph: {
+    title: "Free YouTube Video Summarizer to Get Quick Highlights",
+    description:
+      "Summarize YouTube videos instantly with our AI-powered YouTube Video Summarizer tool for quick insights.",
+    images: [
+      {
+        url: "/youtube-summary/images/youtube_summary.svg",
+        width: 1200,
+        height: 630,
+        alt: "YouTube Video Summarizer tool",
+      },
+    ],
+  },
+};
+
 const fetchYouTubeData = async () => {
   const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
@@ -8,8 +29,9 @@ const fetchYouTubeData = async () => {
   const data = await response.json();
 
   return data.youtube_summary_list.map((item) => ({
-    
-    imageUrl: `https://img.youtube.com/vi/${extractVideoId(item.youtube_url)}/0.jpg`,
+    imageUrl: `https://img.youtube.com/vi/${extractVideoId(
+      item.youtube_url
+    )}/0.jpg`,
     title: "Summary",
     summary: item.summary,
     link: item.youtube_url,
@@ -29,10 +51,9 @@ export default async function Page() {
   );
 }
 
-
 function extractVideoId(url) {
   const regex =
     /(?:https?:\/\/(?:www\.)?youtube\.com\/.*?[?&]v=|https?:\/\/(?:www\.)?youtu\.be\/)([\w-]{11})/;
   const match = url.match(regex);
   return match && match[1] ? match[1] : null;
-};
+}

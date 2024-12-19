@@ -16,8 +16,7 @@ import { YoutubeTranscript } from "youtube-transcript";
 import HandleText from "../Tools/HandleText";
 const NEXT_PUBLIC_BE_URL=process.env.NEXT_PUBLIC_BE_URL
 
-
-const  YouTubeSummarizer = ({ initialTools = []}) =>  {
+const YouTubeSummarizer = ({initialTools=[]}) => {
   const [youtubeUrl, setYoutubeUrl] = useState("");
   const [videoId, setVideoId] = useState("");
 
@@ -310,26 +309,29 @@ const  YouTubeSummarizer = ({ initialTools = []}) =>  {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {initialTools.slice(0, visibleCount).map((tool, index) => (
               <div
-                key={index}
-                className="p-4 bg-white border border-[#E4E4E4] rounded shadow flex flex-col justify-between"
-              >
+              key={index}
+              className="p-4 bg-white border border-[#E4E4E4] rounded shadow flex flex-col"
+            >
+              {/* Image Section */}
+              <div className="relative w-full h-[200px] sm:h-auto md:h-auto">
                 <img
                   src={tool.imageUrl}
                   alt={tool.title}
-                  className="w-full h-40 object-cover rounded"
+                  className="w-full h-full object-cover rounded-md"
                 />
+              </div>
+        
+              {/* Text Section */}
+              <div className="mt-4 text-black text-sm sm:text-base md:text-xl font-Urbanist mb-4">
+                <HandleText text={tool.summary} type="" />
+              </div>
             
-
-
-                <div className="mt-4 mb-4">
-                      <HandleText text={tool.summary} type=""/>
-                </div>
                 
                 <a
                   href={tool.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="justify text-center w-full py-4 bg-black text-white rounded-full hover:bg-gray-800 transition duration-300 w-[340px] h-[60px]"
+                  className="mt-auto text-center w-full py-4 bg-black text-white rounded-full hover:bg-gray-800 transition duration-300 w-[340px] h-[60px] mt-4 "
                 >
                   Watch Video
                 </a>
