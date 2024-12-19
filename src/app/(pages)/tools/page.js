@@ -1,6 +1,20 @@
 import { Tools } from "@/app/components/Tools/Tools";
 import React from "react";
 
+
+export const metadata = {
+  title: "Free AI Tools – No Login, No Credit Card Required",
+  description:
+    "Explore a suite of free AI tools, including text-to-speech, voice-to-text, image generation, plagiarism checking, AI Paraphraser, AI Content Detector, YouTube Video Summarizer, AI Document Q&A, and AI Document Generator.",
+  keywords:
+    "free AI tools, AI text-to-speech, AI voice-to-text, image generation tool, plagiarism checker, AI paraphraser, AI content detector, YouTube video summarizer, AI document generator, AI document Q&A",
+  openGraph: {
+    title: "Free AI Tools – No Login, No Credit Card Required",
+    description:
+      "Explore a suite of free AI tools, including text-to-speech, voice-to-text, image generation, plagiarism checking, AI Paraphraser, AI Content Detector, YouTube Video Summarizer, AI Document Q&A, and AI Document Generator.",
+  },
+};
+
 const page = () => {
   const tools = [
     {
@@ -80,6 +94,14 @@ const page = () => {
       description:
         "Effortless Document Creation with AI: Just Describe It, We’ll Write It!",
       link: "/tools/ai-doc-generator",
+      button_title: "Generate Now",
+    },
+    {
+      imageUrl: "/images/chatpdf.svg",
+      title: "Blog generator",
+      description:
+        "Generate blogs using ai",
+      link: "/tools/blog-generator",
       button_title: "Generate Now",
     },
   ];
