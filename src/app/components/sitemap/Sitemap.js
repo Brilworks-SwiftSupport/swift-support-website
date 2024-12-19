@@ -220,6 +220,93 @@ export default async function Sitemap() {
             </div>
           </div>
         </div>
+        <div className="mb-4">
+          <h3 className="text-2xl border-b border-b-[#c5ccd0] font-bold pb-2 mb-3">
+            Tools
+          </h3>
+          <div className="grid gap-2 md:grid-cols-3 grid-cols-2">
+            <div>
+              <li>
+                <Link
+                  href="https://www.swiftsupport.ai/tools/text-to-voice/"
+                  className="font-medium"
+                >
+                  Text To Voice
+                </Link>
+              </li>
+            </div>
+            <div>
+              <li>
+                <Link
+                  href="https://www.swiftsupport.ai/tools/voice-to-text/"
+                  className="font-medium"
+                >
+                  Voice To Text
+                </Link>
+              </li>
+            </div>
+            <div>
+              <li>
+                <Link
+                  href="https://www.swiftsupport.ai/tools/image-generator/"
+                  className="font-medium"
+                >
+                  AI Image Generator
+                </Link>
+              </li>
+            </div>
+            <div>
+              <li>
+                <Link
+                  href="https://www.swiftsupport.ai/tools/ai-paraphraser/"
+                  className="font-medium"
+                >
+                  AI Paraphraser
+                </Link>
+              </li>
+            </div>
+            <div>
+              <li>
+                <Link
+                  href="https://www.swiftsupport.ai/tools/plagiarism-checker/"
+                  className="font-medium"
+                >
+                  Plagiarism Checker
+                </Link>
+              </li>
+            </div>
+            <div>
+              <li>
+                <Link
+                  href="https://www.swiftsupport.ai/tools/ai-content-detector/"
+                  className="font-medium"
+                >
+                  AI Content Detector
+                </Link>
+              </li>
+            </div>
+            <div>
+              <li>
+                <Link
+                  href="https://www.swiftsupport.ai/tools/youtube-summary/"
+                  className="font-medium"
+                >
+                  Youtube Video Summarizer
+                </Link>
+              </li>
+            </div>
+            <div>
+              <li>
+                <Link
+                  href="https://www.swiftsupport.ai/tools/chat-pdf/"
+                  className="font-medium"
+                >
+                  Talk WIth Document
+                </Link>
+              </li>
+            </div>
+          </div>
+        </div>
 
         <div className="mb-4">
           <h3 className="text-2xl border-b border-b-[#c5ccd0] font-bold pb-2 mb-3">
