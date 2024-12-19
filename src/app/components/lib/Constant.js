@@ -1939,9 +1939,125 @@ export const sitemapData = [
     loc: "https://www.swiftsupport.ai/solutions/automate-sales/",
     lastmod: "2024-10-24T08:58:03.856Z",
   },
+  {
+    loc: "https://www.swiftsupport.ai/tools/text-to-voice/",
+    lastmod: "2024-12-19T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/tools/voice-to-text/",
+    lastmod: "2024-12-19T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/tools/image-generator/",
+    lastmod: "2024-12-19T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/tools/ai-paraphraser/",
+    lastmod: "2024-12-19T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/tools/plagiarism-checker/",
+    lastmod: "2024-12-19T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/tools/ai-content-detector/",
+    lastmod: "2024-12-19T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/tools/youtube-summary/",
+    lastmod: "2024-12-19T08:58:03.856Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/tools/chat-pdf/",
+    lastmod: "2024-12-19T08:58:03.856Z",
+  },
 ];
 
 export const blogData = [
+  {
+    loc: "https://www.swiftsupport.ai/blog/knowledge-base-chatbots-for-business/",
+    lastmod: "2024-12-19T07:45:13.415Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/conversational-chatbots/",
+    lastmod: "2024-12-16T07:04:13.826Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/conversational-ai-technology/",
+    lastmod: "2024-12-14T10:00:00.137Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/transform-your-workflow-with-ai-helper-bots/",
+    lastmod: "2024-12-13T05:30:24.775Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/guide-to-launching-auto-chatbots/",
+    lastmod: "2024-12-12T10:43:52.347Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/voice-ai-chatbots-elevating-interaction-with-technology/",
+    lastmod: "2024-12-11T05:14:53.185Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/the-future-of-ai-chatbots/",
+    lastmod: "2024-12-10T05:11:16.452Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/guide-for-chatbot-development-success/",
+    lastmod: "2024-12-09T04:29:41.781Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/best-open-source-ai-chatbot-platforms/",
+    lastmod: "2024-12-06T10:07:24.125Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/coding-languages-for-ai-chatbot-development/",
+    lastmod: "2024-12-06T05:37:43.028Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/chatbot-apps-for-android-devices/",
+    lastmod: "2024-12-05T05:21:33.450Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/chatbot-for-customer-service-challenges/",
+    lastmod: "2024-12-04T05:22:23.891Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/benefits-of-implementing-an-enterprise-chatbot/",
+    lastmod: "2024-12-03T10:02:51.172Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/differences-between-chatbots-and-chatgpt/",
+    lastmod: "2024-12-02T06:56:32.925Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/the-7-best-chatgpt-alternatives/",
+    lastmod: "2024-11-28T05:45:04.293Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/conversational-ai-chatbots-vs-assistants/",
+    lastmod: "2024-11-27T05:05:10.770Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/a-guide-to-ai-terms/",
+    lastmod: "2024-12-06T07:29:28.635Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/how-to-utilize-ai-for-lead-generation/",
+    lastmod: "2024-11-21T06:50:28.385Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/claims-automation-in-insurance/",
+    lastmod: "2024-11-19T10:30:49.625Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/step-by-step-guide-to-integrating-ai-agents/",
+    lastmod: "2024-11-14T08:39:22.821Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/blog/ai-chatbots-vs-human-agents:-can-machines-replace-the-human-touch-/",
+    lastmod: "2024-11-13T09:12:36.703Z",
+  },
   {
     loc: "https://www.swiftsupport.ai/blog/what-is-ai-copilot-understanding-its-function-benefits-and-applications/",
     lastmod: "2024-11-12T05:34:44.249Z",
@@ -2000,7 +2116,7 @@ export const blogData = [
   },
   {
     loc: "https://www.swiftsupport.ai/blog/unlock-success-with-real-estate-ai-bots-that-win-clients/",
-    lastmod: "2024-10-11T15:24:26.342Z",
+    lastmod: "2024-12-06T10:24:18.001Z",
   },
   {
     loc: "https://www.swiftsupport.ai/blog/use-cases-of-ai-chatbot-for-field-service-across-various-industries/",
@@ -2016,7 +2132,7 @@ export const blogData = [
   },
   {
     loc: "https://www.swiftsupport.ai/blog/ai-chatbots-for-ecommerce-use-cases-benefits/",
-    lastmod: "2024-10-11T15:24:06.464Z",
+    lastmod: "2024-12-11T06:43:14.430Z",
   },
   {
     loc: "https://www.swiftsupport.ai/blog/chatbot-statistics-for-2024-trends-predictions/",
@@ -2060,7 +2176,7 @@ export const blogData = [
   },
   {
     loc: "https://www.swiftsupport.ai/blog/top-use-cases-of-chatbots-in-healthcare/",
-    lastmod: "2024-08-13T08:50:42.216Z",
+    lastmod: "2024-11-14T11:24:32.749Z",
   },
   {
     loc: "https://www.swiftsupport.ai/blog/understanding-the-reasons-and-challenges-of-chatbots-in-crm/",
