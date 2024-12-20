@@ -1,5 +1,6 @@
 import DocGenerator from "@/app/components/DocGenerator/DocGenerator";
 import React from "react";
+import axios from "axios";
 
 export const metadata = {
   title: "Free AI Document Generator: Create Documents Within Seconds",
@@ -26,19 +27,24 @@ const fetchAllDocs = async () => {
   const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
   const queryParam = "doc";
 
-  const response = await fetch(
-    `${NEXT_PUBLIC_BE_URL}/stt_tts_data?type=${encodeURIComponent(queryParam)}`,
-    {
-      method: "GET",
-    }
-  );
-  const data = await response.json();
-
-  return data.data_list.map((item) => ({
-    text: item.text,
-    doc_url: item.file_url,
-    description: item.description,
-  }));
+  try {
+    const response = await axios.get(
+      `${NEXT_PUBLIC_BE_URL}/stt_tts_data`, {
+        params: {
+          type: queryParam
+        }
+      }
+    );
+    
+    return response.data.data_list.map((item) => ({
+      text: item.text,
+      doc_url: item.file_url,
+      description: item.description,
+    }));
+  } catch (error) {
+    console.error('Error fetching documents:', error);
+    return [];
+  }
 };
 
 export default async function Page() {
