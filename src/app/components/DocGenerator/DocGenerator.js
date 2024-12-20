@@ -15,6 +15,7 @@ import FAQSection from "../Tools/Content/FAQSection";
 import instantTextGeneration from "@/app/images/instant_text_generation.svg";
 import vesaltileContentGeneration from "@/app/images/versaltile_content_generation.svg";
 import HandleText from "../Tools/HandleText";
+import { PenSquare , X} from 'lucide-react'; // Import the edit icon
 
 import userFriendly from "@/app/images/user_friendly.svg";
 const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
@@ -45,11 +46,16 @@ const DocGenerator = ({DocRecords=[]}) => {
   const [loading, setLoading] = useState(false);
   const [docContent, setDocContent] = useState("");
   const [docUrl, setDocUrl] = useState(null);
-  const [visibleCount, setVisibleCount] = useState(3); // Initial 6 items for a 3x2 grid
-  const [canClick, setCanClick] = useState(true); 
-  const wordLimit = 500; // Set the word limit
-  const wordCount = title.trim().split(/\s+/).filter(Boolean).length; // Count words
+  const [Text,setText] = useState(null)
+  const [visibleCount, setVisibleCount] = useState(3);
+  const [canClick, setCanClick] = useState(true);
+  const [editMode, setEditMode] = useState(false);
+  const [editingDocId, setEditingDocId] = useState(null);
+  const [editedContent, setEditedContent] = useState("");
   const [activeFAQ, setActiveFAQ] = useState(null);
+  const wordLimit = 500;
+  const wordCount = title.trim().split(/\s+/).filter(Boolean).length;
+
   const displayFullDoc = {
     height: '100%',  // Set your dynamic height
     width: '100%',     // Set your dynamic width
@@ -142,13 +148,39 @@ const DocGenerator = ({DocRecords=[]}) => {
       );
 
       const data = response.data;
-      setDocUrl(data.doc_url)
-    
+      setDocUrl(data.doc_url);
+      setText(data.text)
+      console.log(data.text)
     } catch (error) {
       console.error("Error generating document:", error);
       alert("Failed to generate the document. Please try again.");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleEdit = async (docUrl, text) => {
+    setEditMode(true);
+    setEditingDocId(docUrl);
+      setEditedContent(Text);
+  };
+
+  const handleSaveEdit = async () => {
+    try {
+      const response = await axios.post(`${NEXT_PUBLIC_BE_URL}/update_document`, {
+        doc_url: editingDocId,
+        content: editedContent
+      });
+
+      if (response.status === 200) {
+        setEditMode(false);
+        setEditingDocId(null);
+        setEditedContent("");
+        setDocUrl(response.data.updated_url);
+      }
+    } catch (error) {
+      console.error("Error saving document:", error);
+      alert("Failed to save document changes.");
     }
   };
 
@@ -183,7 +215,75 @@ const DocGenerator = ({DocRecords=[]}) => {
     }
   };
 
-  
+  const renderDocumentSection = () => {
+    if (editMode && editingDocId) {
+      return (
+        <div className="border border-gray-300 rounded-md p-4 mt-5">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-xl font-semibold">Edit Document</h3>
+            <button
+              onClick={() => setEditMode(false)}
+              className="p-2 hover:bg-gray-100 rounded-full"
+            >
+              <X size={24} />
+            </button>
+          </div>
+          <textarea
+            value={editedContent}
+            onChange={(e) => setEditedContent(e.target.value)}
+            className="w-full h-[600px] p-4 border rounded-md font-mono"
+          />
+          <div className="flex justify-end gap-2 mt-4">
+            <button
+              onClick={() => setEditMode(false)}
+              className="px-6 py-2 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleSaveEdit}
+              className="px-6 py-2 bg-black text-white rounded-full hover:bg-gray-800 transition-colors"
+            >
+              Save Changes
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    return docUrl && (
+      <div className="text-center border border-gray-300 rounded-md mt-5 p-4 max-w-[100%] mx-auto mb-4">
+        <p className="text-xl mt-2 mb-5 max-w-[90%] mx-auto font-Urbanist text-[32px]">
+          Your{" "}
+          <span className="bg-clip-text text-transparent bg-text-theme-gradient">
+            Document
+          </span>{" "}
+          is Ready.
+        </p>
+
+        <div className="w-full sm:h-auto md:h-[600px] lg:h-[800px] xl:h-[1000px] rounded-md">
+          <DocPreview s3Url={docUrl} Size={displayFullDoc} />
+        </div>
+
+        <div className="flex justify-center gap-4 mt-4">
+          <button
+            onClick={() => handleEdit(docUrl)}
+            className="py-3 px-6 rounded-full bg-gray-800 text-white flex items-center gap-2 hover:bg-gray-700 transition-colors"
+          >
+            <PenSquare size={20} />
+            Edit Document
+          </button>
+          <button
+            onClick={() => handleDownload(docUrl)}
+            className="py-3 px-6 rounded-full bg-black text-white hover:bg-gray-800 transition-colors"
+          >
+            Download Document
+          </button>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <main className="mt-12 md:mt-32">
       <div className="container mx-auto max-w-[100%] md:max-w-[80%] bg-transparent mb-32">
@@ -280,36 +380,7 @@ const DocGenerator = ({DocRecords=[]}) => {
           </div>
         </div>
 
-        
-
-        {docUrl && (
-          <div className="text-center border border-gray-300 rounded-md mt-5 p-4 max-w-[100%] mx-auto mb-4 ">
-              <p className="text-xl mt-2 mb-5 max-w-[90%] mx-auto font-Urbanist text-[32px]">
-              Your{" "}
-              <span className="bg-clip-text text-transparent bg-text-theme-gradient">
-                Document
-              </span>{" "}
-              is Ready.
-              </p>
-
-              <div className="w-full sm:h-auto md:h-[600px] lg:h-[800px] xl:h-[1000px] rounded-md">
-                <DocPreview s3Url={docUrl} Size={displayFullDoc} />
-              </div>
-
-            
-
-              <button
-                onClick={() => handleDownload(docUrl)}
-                className="w-full py-3 rounded-full sm:w-auto  mx-auto p-4 bg-black cursor-pointer text-white text-sm sm:text-base flex justify-center items-center mt-2"
-              >
-                Download Document
-              </button>
-
-
-
-          </div>
-        )}
-
+        {renderDocumentSection()}
 
       <h2 className="text-center text-2xl sm:text-2xl md:text-3xl font-Urbanist mb-4 mt-8">
           Previously{" "}
@@ -336,7 +407,7 @@ const DocGenerator = ({DocRecords=[]}) => {
                 <DocPreview s3Url={tool.doc_url} Size={displayFullDoc}/>
                 </div>
 
-                <div className="mt-4 flex justify-center bottom-3 md:bottom-4">
+                <div className="mt-4 flex justify-center gap-3">
                   <button
                     onClick={() => handleDownload(tool.doc_url)}
                     className="w-full py-3 bg-black text-white rounded-full hover:bg-gray-800 transition duration-300 h-[60px]"
