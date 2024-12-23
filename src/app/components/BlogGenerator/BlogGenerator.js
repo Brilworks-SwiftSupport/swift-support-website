@@ -227,7 +227,7 @@ const BlogGenerator = ({allContentInfo = []}) => {
 
   const [wordlimit, setWordlimit] = useState(500); // Default value
   const minLimit = 500; // Minimum value for slider
-  const maxLimit = 2000; // Maximum value for slider
+  const maxLimit = 3000; // Maximum value for slider
   const step = 10; // Step value for smoother dragging
 
   const handleSliderChange = (e) => {
@@ -412,7 +412,7 @@ const BlogGenerator = ({allContentInfo = []}) => {
             </div>
         </div>
 
-        <div className="mb-6 w-[370px] md:w-[1200px] h-auto md:h-[600px] bg-white flex flex-col justify-start rounded-[30px] items-center border border-[#E4E4E4] pt-6 px-4 md:px-6">
+        <div className="mb-6 w-[370px] md:w-[1200px] h-auto md:h-auto bg-white flex flex-col justify-start rounded-[30px] items-center border border-[#E4E4E4] pt-6 px-4 md:px-6">
           {/* Title Input */}
           <div className="w-full">
             <label htmlFor="doc" className="block text-gray-700 font-medium mb-1">
@@ -459,7 +459,7 @@ const BlogGenerator = ({allContentInfo = []}) => {
           {/* Keywords Input */}
           <div className="w-full">
             <label htmlFor="keywords" className="block text-gray-700 font-medium mb-2">
-              Enter Keywords
+              SEO Keywords
             </label>
             <div
               className="w-full md:w-[1160px] mb-4 px-4 py-3 shadow-sm rounded-[30px] flex flex-wrap items-center gap-2 cursor-text border border-[#E4E4E4]"
@@ -648,7 +648,7 @@ const BlogGenerator = ({allContentInfo = []}) => {
 
 
         {/* Previous Blogs Section */}
-<div className="mt-14">
+        <div className="mt-14">
   <h2 className="text-center text-3xl md:text-5xl font-semibold mb-8 font-Urbanist">
     Previous Blogs
   </h2>
@@ -656,52 +656,61 @@ const BlogGenerator = ({allContentInfo = []}) => {
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {allContentInfo
         .slice(0, showAll ? allContentInfo.length : 3)
-        .map((data, index) => (
-          <div
-            key={index}
-            className="w-full md:w-[360px] h-auto bg-white rounded-[20px] border border-[#E4E4E4] p-4"
-          >
-            <div className="text-black text-base px-3 py-1 rounded-t mb-2">
-              <div className="text-center relative">
-                {/* Image Container */}
-                <div className="relative w-full inline-block">
-                  <img
-                    src={data.image_url}
-                    alt="Blog"
-                    className="w-full h-auto mx-auto"
-                  />
-                  {/* Download Button */}
-                  <button
-                    onClick={() => handleDownload(data.image_url)}
-                    className="absolute inset-0 flex items-center justify-center w-full h-full bg-black bg-opacity-50 text-white text-sm md:text-base font-bold py-2 px-4 opacity-0 hover:opacity-100 transition-opacity rounded-t"
-                  >
-                    Download Image
-                  </button>
-                </div>
-                {/* Title */}
-                <span className="font-semibold font-Urbanist text-xl md:text-2xl mt-4 block">
-                  {data.title}
-                </span>
-              </div>
-              {/* Description */}
-              <div className="mt-4">
-                <div className="font-Urbanist font-bold text-base md:text-xl">
-                  Description
-                </div>
-                <div className="text-sm md:text-base font-Urbanist mb-4">
-                  <HandleText text={data.description} type="" />
-                </div>
-              </div>
-            </div>
+        .map((data, index) => {
+          const displayTitle = data.description
+            ? data.title
+            : data.text.split('\n')[0].replace(/^##\s*/, '');
 
-            <button
-              className="w-full h-10 mt-4 common-button header-btn"
-              onClick={() => handleKnowMore(data)}
+          return (
+            <div
+              key={index}
+              className="w-full md:w-[360px] h-auto bg-white rounded-[20px] border border-[#E4E4E4] p-4 flex flex-col justify-between"
             >
-              Know More
-            </button>
-          </div>
-        ))}
+              <div className="text-black text-base px-3 py-1 rounded-t mb-2">
+                <div className="text-center relative">
+                  {/* Image Container */}
+                  <div className="relative w-full inline-block">
+                    <img
+                      src={data.image_url}
+                      alt="Blog"
+                      className="w-full h-auto mx-auto"
+                    />
+                    {/* Download Button */}
+                    <button
+                      onClick={() => handleDownload(data.image_url)}
+                      className="absolute inset-0 flex items-center justify-center w-full h-full bg-black bg-opacity-50 text-white text-sm md:text-base font-bold py-2 px-4 opacity-0 hover:opacity-100 transition-opacity rounded-t"
+                    >
+                      Download Image
+                    </button>
+                  </div>
+                  {/* Blog Title */}
+                  <span className="font-semibold font-Urbanist text-xl md:text-2xl mt-4 block">
+                    {displayTitle}
+                  </span>
+                </div>
+                {/* Description */}
+                {data.description && (
+                  <div className="mt-4">
+                    <div className="font-Urbanist font-bold text-base md:text-xl">
+                      Description
+                    </div>
+                    <div className="text-sm md:text-base font-Urbanist mb-4">
+                      <HandleText text={data.description} type="" />
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Know More Button */}
+              <button
+                className="w-full h-10 mt-4 common-button header-btn self-end"
+                onClick={() => handleKnowMore(data)}
+              >
+                Know More
+              </button>
+            </div>
+          );
+        })}
     </div>
 
     {allContentInfo && allContentInfo.length > 3 && (
@@ -716,6 +725,7 @@ const BlogGenerator = ({allContentInfo = []}) => {
     )}
   </div>
 </div>
+
 
 {/* Modal */}
 {isModalOpen && (
@@ -742,13 +752,14 @@ const BlogGenerator = ({allContentInfo = []}) => {
             />
           </button>
           <div
-            className="text-gray-800"
+            className="text-gray-800 pr-[50px]" // Ensures no overlap
             dangerouslySetInnerHTML={{
-              __html: formatTextWithImage(modalContent.text, modalContent.image_url)
+              __html: formatTextWithImage(modalContent.text, modalContent.image_url),
             }}
           />
         </div>
       </div>
+
     </div>
   </div>
 )}
