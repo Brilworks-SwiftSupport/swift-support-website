@@ -2,6 +2,28 @@ import BlogGenerator from "@/app/components/BlogGenerator/BlogGenerator";
 import React from "react";
 import axios from "axios";
 
+export const metadata = {
+  title: "Free AI blog Generator: Create blogs Within Seconds",
+  description:
+    "Create well-written blogs effortlessly with our AI Blog Generator tool based on your description.",
+  keywords:
+    "AI blog generator, blog creation, AI content generator, create blogs with AI, blog writing tool, text generator, generate blogs, AI writing assistant, blog maker, create custom blogs, AI-powered blog generator",
+  openGraph: {
+    title: "Free AI Blog Generator: Create Blogs Within Seconds",
+    description:
+      "Create well-written blogs effortlessly with our AI Blog Generator tool based on your description.",
+    images: [
+      {
+        url: "/blog-generator/images/blog_generator.svg",
+        width: 1200,
+        height: 630,
+        alt: "AI Content Detector tool",
+      },
+    ],
+  },
+};
+
+
 const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
 const fetchBlogs = async () => {
