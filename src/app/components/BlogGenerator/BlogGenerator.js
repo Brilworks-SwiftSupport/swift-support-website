@@ -5,7 +5,6 @@ import { Document, Packer, Paragraph } from "docx";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import freeForever from "@/app/images/freeForever.svg"
-import shape from "@/app/images/shape.svg"
 import HandleText from "../Tools/HandleText";
 import close from "@/app/images/cross.svg"
 
@@ -17,6 +16,11 @@ import rewrite from "@/app/images/rewrites.svg";
 import file from "@/app/images/file.svg";
 import pencil from "@/app/images/pencil.svg"
 import "react-toastify/dist/ReactToastify.css";
+import NavigationButton from "@/app/(pages)/tools/NavigationButton/NavigationButton";
+import textToVoice from "@/app/images/textToVoice.svg";
+import voiceToText from "@/app/images/voiceToText.svg";
+import imgGenerator from "@/app/images/imgGenerator.svg";
+import tools from "@/app/images/tools.svg";
 
 
 
@@ -157,6 +161,51 @@ const BlogGenerator = ({allContentInfo = []}) => {
     }
   };
 
+  const handleDownload = (imageUrl) => {
+    // Use provided imageUrl or fallback to generatedImage
+    const urlToDownload = imageUrl || generatedImage;
+  
+    if (!urlToDownload) {
+      alert("No image available to download.");
+      return;
+    }
+  
+    // Add a cache-busting parameter to the URL
+    const cacheBustedUrl = `${urlToDownload}?t=${Date.now()}`;
+  
+    fetch(cacheBustedUrl)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.blob();
+      })
+      .then((blob) => {
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+  
+        // Determine file extension based on MIME type
+        const extension = blob.type.includes("jpeg") ? "jpg" : "png";
+        const filename = `generated-image.${extension}`;
+  
+        // Set up link attributes
+        link.href = url;
+        link.setAttribute("download", filename);
+        link.style.display = "none"; // Hide the link element
+  
+        // Trigger download
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+  
+        // Release the object URL
+        URL.revokeObjectURL(url);
+      })
+      .catch((error) => {
+        console.error("Error downloading image:", error);
+        alert("An error occurred while downloading the image. Please try again.");
+      });
+  };
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter" && keywords.trim()) {
@@ -178,7 +227,7 @@ const BlogGenerator = ({allContentInfo = []}) => {
 
   const [wordlimit, setWordlimit] = useState(500); // Default value
   const minLimit = 500; // Minimum value for slider
-  const maxLimit = 2000; // Maximum value for slider
+  const maxLimit = 3000; // Maximum value for slider
   const step = 10; // Step value for smoother dragging
 
   const handleSliderChange = (e) => {
@@ -323,8 +372,47 @@ const BlogGenerator = ({allContentInfo = []}) => {
           </p>
         </div>
 
-        {/* Form Section - Updated for better mobile responsiveness */}
-        <div className="mb-6 w-[390px] md:w-[1200px] h-auto md:h-[600px] bg-white flex flex-col justify-start rounded-[30px] items-center border border-[#E4E4E4] pt-6 px-4 md:px-6">
+        <div className="flex flex-col md:flex-row items-center gap-2 mt-6 md:mt-11 overflow-x-auto">
+          <div className="flex flex-col md:flex-row flex-wrap gap-0">
+            <NavigationButton
+              width={"w-auto"}
+              img={textToVoice}
+              href={"/tools/text-to-voice/"}
+              name={"AI Text to Voice"}
+              bgColor={"#FFFFFF"}
+            />
+            <NavigationButton
+              width={"w-auto"}
+              img={voiceToText}
+              href={"/tools/voice-to-text/"}
+              name={"AI Voice to Text"}
+              bgColor={"#FFFFFF"}
+            />
+            <NavigationButton
+              width={"w-auto"}
+              img={imgGenerator}
+              href={"/tools/image-generator/"}
+              name={"AI Image Generator"}
+              bgColor={"#FFFFFF"}
+            />
+            <NavigationButton
+              width={"w-auto"}
+              img={voiceToText}
+              name={"AI Blog Generator"}
+              bgColor={"#FFFEEE"}
+            />
+       
+            <NavigationButton
+                width={"w-auto"}
+                img={tools}
+                href={"/tools/"}
+                name={"Other AI Tools"}
+                bgColor={"#FFFFFF"}
+              />
+            </div>
+        </div>
+
+        <div className="mb-6 w-[370px] md:w-[1200px] h-auto md:h-auto bg-white flex flex-col justify-start rounded-[30px] items-center border border-[#E4E4E4] pt-6 px-4 md:px-6">
           {/* Title Input */}
           <div className="w-full">
             <label htmlFor="doc" className="block text-gray-700 font-medium mb-1">
@@ -344,7 +432,7 @@ const BlogGenerator = ({allContentInfo = []}) => {
             <label htmlFor="tone" className="block text-gray-700 font-medium ">
               Select Tone
             </label>
-            <div className="flex gap-3 mb-4 ml-3">
+            <div className="flex gap-3 mb-4">
               {predefinedTones.map((item, index) => (
                 <div
                   key={index}
@@ -371,7 +459,7 @@ const BlogGenerator = ({allContentInfo = []}) => {
           {/* Keywords Input */}
           <div className="w-full">
             <label htmlFor="keywords" className="block text-gray-700 font-medium mb-2">
-              Enter Keywords
+              SEO Keywords
             </label>
             <div
               className="w-full md:w-[1160px] mb-4 px-4 py-3 shadow-sm rounded-[30px] flex flex-wrap items-center gap-2 cursor-text border border-[#E4E4E4]"
@@ -428,7 +516,7 @@ const BlogGenerator = ({allContentInfo = []}) => {
                 step={step}
                 value={wordlimit}
                 onChange={handleSliderChange}
-                className="w-full h-2 rounded-lg appearance-none cursor-pointer border border-#E4E4E4"
+                className="md:w-[1130px] w-[310px] h-2 rounded-lg appearance-none cursor-pointer border border-#E4E4E4"
                 style={{
                   background: `linear-gradient(90deg, #D8EA9A 0%, #AFE5CA ${((wordlimit - minLimit) / (maxLimit - minLimit)) * 25.5}%, #FBB8B8 ${((wordlimit - minLimit) / (maxLimit - minLimit)) * 62.5}%, #FFFFFF ${((wordlimit - minLimit) / (maxLimit - minLimit)) * 87.5}%)`,
                 }}
@@ -560,7 +648,7 @@ const BlogGenerator = ({allContentInfo = []}) => {
 
 
         {/* Previous Blogs Section */}
-<div className="mt-14">
+        <div className="mt-14">
   <h2 className="text-center text-3xl md:text-5xl font-semibold mb-8 font-Urbanist">
     Previous Blogs
   </h2>
@@ -568,39 +656,61 @@ const BlogGenerator = ({allContentInfo = []}) => {
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {allContentInfo
         .slice(0, showAll ? allContentInfo.length : 3)
-        .map((data, index) => (
-          <div
-            key={index}
-            className="w-full md:w-[360px] h-auto bg-white rounded-[20px] border border-[#E4E4E4] p-4"
-          >
-            <div className="text-black text-base px-3 py-1 rounded-t mb-2">
-              <div className="text-center">
-                <img
-                  src={data.image_url}
-                  alt="Blog"
-                  className="w-full h-auto mx-auto mb-4"
-                />
-                <span className="font-semibold font-Urbanist text-xl md:text-2xl">
-                  {data.title}
-                </span>
-              </div>
-              <div className="mt-4">
-                <div className="font-Urbanist font-bold text-base md:text-xl">
-                  Description
-                </div>
-                <div className="text-sm md:text-base font-Urbanist mb-4">
-                  <HandleText text={data.description} type="" />
-                </div>
-              </div>
-            </div>
-            <button
-              className="w-full h-10 mt-4 common-button header-btn"
-              onClick={() => handleKnowMore(data)}
+        .map((data, index) => {
+          const displayTitle = data.description
+            ? data.title
+            : data.text.split('\n')[0].replace(/^##\s*/, '');
+
+          return (
+            <div
+              key={index}
+              className="w-full md:w-[360px] h-auto bg-white rounded-[20px] border border-[#E4E4E4] p-4 flex flex-col justify-between"
             >
-              Know More
-            </button>
-          </div>
-        ))}
+              <div className="text-black text-base px-3 py-1 rounded-t mb-2">
+                <div className="text-center relative">
+                  {/* Image Container */}
+                  <div className="relative w-full inline-block">
+                    <img
+                      src={data.image_url}
+                      alt="Blog"
+                      className="w-full h-auto mx-auto"
+                    />
+                    {/* Download Button */}
+                    <button
+                      onClick={() => handleDownload(data.image_url)}
+                      className="absolute inset-0 flex items-center justify-center w-full h-full bg-black bg-opacity-50 text-white text-sm md:text-base font-bold py-2 px-4 opacity-0 hover:opacity-100 transition-opacity rounded-t"
+                    >
+                      Download Image
+                    </button>
+                  </div>
+                  {/* Blog Title */}
+                  <span className="font-semibold font-Urbanist text-xl md:text-2xl mt-4 block">
+                    {displayTitle}
+                  </span>
+                </div>
+                {/* Description */}
+                {data.description && (
+                  <div className="mt-4">
+                    <div className="font-Urbanist font-bold text-base md:text-xl">
+                      Description
+                    </div>
+                    <div className="text-sm md:text-base font-Urbanist mb-4">
+                      <HandleText text={data.description} type="" />
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Know More Button */}
+              <button
+                className="w-full h-10 mt-4 common-button header-btn self-end"
+                onClick={() => handleKnowMore(data)}
+              >
+                Know More
+              </button>
+            </div>
+          );
+        })}
     </div>
 
     {allContentInfo && allContentInfo.length > 3 && (
@@ -616,6 +726,7 @@ const BlogGenerator = ({allContentInfo = []}) => {
   </div>
 </div>
 
+
 {/* Modal */}
 {isModalOpen && (
   <div className="fixed inset-0 bg-black/25 backdrop-blur flex items-center justify-center z-50 p-4">
@@ -627,16 +738,28 @@ const BlogGenerator = ({allContentInfo = []}) => {
         </button>
       </div>
       <div className="p-4 md:p-6 overflow-y-auto max-h-[calc(80vh-80px)]">
-        <div className="bg-white rounded-[20px] border border-[#E4E4E4] p-4">
-          <p className="font-bold mb-4">Original Text:</p>
+        <div className="bg-white rounded-[20px] border border-[#E4E4E4] p-4 relative">
+          <button
+            className="absolute top-5 right-4 bg-transparent p-2"
+            onClick={handleCopy}
+            aria-label="Copy text"
+            style={{ zIndex: 9999 }}
+          >
+            <img
+              src={isCopied ? "/images/check.png" : "/images/Copy.png"}
+              alt={isCopied ? "Copied" : "Copy"}
+              className="w-6 h-6"
+            />
+          </button>
           <div
-            className="text-gray-800"
+            className="text-gray-800 pr-[50px]" // Ensures no overlap
             dangerouslySetInnerHTML={{
-              __html: formatTextWithImage(modalContent.text, modalContent.image_url)
+              __html: formatTextWithImage(modalContent.text, modalContent.image_url),
             }}
           />
         </div>
       </div>
+
     </div>
   </div>
 )}

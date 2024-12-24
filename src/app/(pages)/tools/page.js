@@ -97,8 +97,8 @@ const page = () => {
       button_title: "Generate Now",
     },
     {
-      imageUrl: "/images/chatpdf.svg",
-      title: "Blog generator",
+      imageUrl: "/images/Blog.svg",
+      title: "Blog Generator",
       description:
         "Generate blogs using ai",
       link: "/tools/blog-generator",
