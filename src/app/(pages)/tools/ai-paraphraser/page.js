@@ -1,5 +1,6 @@
-import AiParaphraser from "@/app/components/AiParaphraser/AiParaphraser";
 import React from "react";
+import axios from "axios";
+import AiParaphraser from "@/app/components/AiParaphraser/AiParaphraser";
 
 export const metadata = {
   title: "Free AI Paraphraser for Clear and Concise Rewriting",
@@ -25,20 +26,25 @@ export const metadata = {
 const fetchAllParaphrase = async () => {
   const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
-  const response = await fetch(
-    `${NEXT_PUBLIC_BE_URL}/content_tools?type=paraphrase`,
-    { method: "GET" }
-  );
+  try {
+    const response = await axios.get(
+      `${NEXT_PUBLIC_BE_URL}/content_tools?type=paraphrase`
+    );
+    const data = response.data;
 
-  const data = await response.json();
-  return data.content_tools.map((item) => ({
-    text: item.text,
-    paraphrased_content: item.paraphrased_content,
-  }));
+    return data.content_tools.map((item) => ({
+      text: item.text,
+      paraphrased_content: item.paraphrased_content,
+    }));
+  } catch (error) {
+    console.error("Error fetching paraphrased content:", error);
+    return [];
+  }
 };
 
 export default async function Page() {
   const paraphrase = await fetchAllParaphrase();
+
   return (
     <main className="mb-10">
       <div className="mt-20 max-w-[1200px] w-full mx-auto px-4">
