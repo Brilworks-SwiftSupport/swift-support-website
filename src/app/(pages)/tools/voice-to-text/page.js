@@ -1,5 +1,6 @@
 import VoiceToTextConverter from "@/app/components/VoiceToText/VoiceToText";
 import React from "react";
+import axios from "axios";
 
 export const metadata = {
   title: "Free Voice to Text Converter for Accurate Transcription",
@@ -26,19 +27,21 @@ const fetchData = async () => {
   const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
   const queryParam = "stt";
 
-  const response = await fetch(
-    `${NEXT_PUBLIC_BE_URL}/stt_tts_data?type=${encodeURIComponent(queryParam)}`,
-    {
-      method: "GET",
-    }
-  );
+  try {
+    const response = await axios.get(
+      `${NEXT_PUBLIC_BE_URL}/stt_tts_data?type=${encodeURIComponent(queryParam)}`
+    );
 
-  const data = await response.json();
+    const data = response.data;
 
-  return data.data_list.map((item) => ({
-    stt_url: item.file_url,
-    stt_text: item.text,
-  }));
+    return data.data_list.map((item) => ({
+      stt_url: item.file_url,
+      stt_text: item.text,
+    }));
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
 };
 
 export default async function Page() {

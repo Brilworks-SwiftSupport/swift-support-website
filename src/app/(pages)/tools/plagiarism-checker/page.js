@@ -1,5 +1,6 @@
 import Plagiarism from "@/app/components/Plagiarism/Plagiarism";
 import React from "react";
+import axios from "axios";
 
 export const metadata = {
   title: "Free Plagiarism Checker online - Fast & Accurate",
@@ -22,30 +23,33 @@ export const metadata = {
   },
 };
 
-const fetchAllPlagiarsim = async () => {
+const fetchAllPlagiarism = async () => {
   const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
-  const response = await fetch(
-    `${NEXT_PUBLIC_BE_URL}/content_tools?type=plagiarism`,
-    { method: "GET" }
-  );
+  try {
+    const response = await axios.get(
+      `${NEXT_PUBLIC_BE_URL}/content_tools?type=plagiarism`
+    );
+    const data = response.data;
 
-  const data = await response.json();
-
-  return data.content_tools.map((item) => ({
-    text: item.text,
-    plagiarised_content: item.plagiarised_content,
-    source_links: item.source_links,
-    plagiarism_percentage: item.plagiarism_percentage,
-  }));
+    return data.content_tools.map((item) => ({
+      text: item.text,
+      plagiarised_content: item.plagiarised_content,
+      source_links: item.source_links,
+      plagiarism_percentage: item.plagiarism_percentage,
+    }));
+  } catch (error) {
+    console.error("Error fetching plagiarism data:", error);
+    return [];
+  }
 };
 
 export default async function Page() {
-  const all_plagiarsim = await fetchAllPlagiarsim();
+  const allPlagiarism = await fetchAllPlagiarism();
   return (
     <main className="mb-10">
       <div className="mt-20 max-w-[1200px] w-full mx-auto px-4">
-        <Plagiarism allPlagiarismInfo={all_plagiarsim} />
+        <Plagiarism allPlagiarismInfo={allPlagiarism} />
       </div>
     </main>
   );

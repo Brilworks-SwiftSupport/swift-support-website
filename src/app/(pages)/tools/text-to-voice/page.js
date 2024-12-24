@@ -1,5 +1,6 @@
 import TextToVoiceConverter from "@/app/components/TextToVoice/TextToVoice";
 import React from "react";
+import axios from "axios";
 
 export const metadata = {
   title: "Free AI Text to Speech with High-Quality Voices",
@@ -26,21 +27,21 @@ const fetchData = async () => {
   const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
   const queryParam = "tts";
 
-  const response = await fetch(
-    `${NEXT_PUBLIC_BE_URL}/stt_tts_data?type=${encodeURIComponent(queryParam)}`,
-    {
-      method: "GET",
-    }
-  );
-  if (!response.ok) {
-    throw new Error(`HTTP error! Status: ${response.status}`);
-  }
-  const data = await response.json();
+  try {
+    const response = await axios.get(
+      `${NEXT_PUBLIC_BE_URL}/stt_tts_data?type=${encodeURIComponent(queryParam)}`
+    );
 
-  return data.data_list.map((item) => ({
-    tts_url: item.file_url,
-    tts_text: item.text,
-  }));
+    const data = response.data;
+
+    return data.data_list.map((item) => ({
+      tts_url: item.file_url,
+      tts_text: item.text,
+    }));
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
 };
 
 export default async function Page() {
