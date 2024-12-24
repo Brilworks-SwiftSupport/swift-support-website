@@ -7,6 +7,7 @@ import FeatureSection from "../Tools/Content/FeatureSection";
 import UsageExplanationSection from "../Tools/Content/UsageExplanationSection";
 import FAQSection from "../Tools/Content/FAQSection";
 import HandleText from "../Tools/HandleText";
+import axios from "axios";
 
 // Import SVG images
 import freeForever from "@/app/images/freeForever.svg";
@@ -20,7 +21,7 @@ import tools from "@/app/images/tools.svg";
 
 const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
-const ImageGenerator = ({allGeneratedImages = []}) =>{
+const ImageGenerator = ({ allGeneratedImages = [] }) => {
   const [prompt, setPrompt] = useState("");
   const [generatedImage, setGeneratedImage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -87,7 +88,6 @@ const ImageGenerator = ({allGeneratedImages = []}) =>{
     "Magical forest with glowing mushrooms",
   ];
 
-
   // Handler to set prompt when a quick try option is clicked
   const handleQuickTryClick = (option) => {
     setPrompt(option);
@@ -100,25 +100,22 @@ const ImageGenerator = ({allGeneratedImages = []}) =>{
     setIsLoading(true);
 
     try {
-      const response = await fetch(`${NEXT_PUBLIC_BE_URL}/image_generator`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
+      const response = await axios.post(
+        `${NEXT_PUBLIC_BE_URL}/image_generator`,
+        {
           prompt: prompt,
           size: "1024x1024",
-        }),
-      });
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-      if (!response.ok) {
-        alert("Error: Image generation failed");
-        throw new Error("Image generation failed");
-      }
-
-      const data = await response.json();
-      setGeneratedImage(data.image_url);
+      setGeneratedImage(response.data.image_url);
     } catch (err) {
+      alert("Error: Image generation failed");
       setGeneratedImage("");
     } finally {
       setIsLoading(false);
@@ -132,15 +129,15 @@ const ImageGenerator = ({allGeneratedImages = []}) =>{
   const handleDownload = (imageUrl) => {
     // Use provided imageUrl or fallback to generatedImage
     const urlToDownload = imageUrl || generatedImage;
-  
+
     if (!urlToDownload) {
       alert("No image available to download.");
       return;
     }
-  
+
     // Add a cache-busting parameter to the URL
     const cacheBustedUrl = `${urlToDownload}?t=${Date.now()}`;
-  
+
     fetch(cacheBustedUrl)
       .then((response) => {
         if (!response.ok) {
@@ -151,30 +148,31 @@ const ImageGenerator = ({allGeneratedImages = []}) =>{
       .then((blob) => {
         const link = document.createElement("a");
         const url = URL.createObjectURL(blob);
-  
+
         // Determine file extension based on MIME type
         const extension = blob.type.includes("jpeg") ? "jpg" : "png";
         const filename = `generated-image.${extension}`;
-  
+
         // Set up link attributes
         link.href = url;
         link.setAttribute("download", filename);
         link.style.display = "none"; // Hide the link element
-  
+
         // Trigger download
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-  
+
         // Release the object URL
         URL.revokeObjectURL(url);
       })
       .catch((error) => {
         console.error("Error downloading image:", error);
-        alert("An error occurred while downloading the image. Please try again.");
+        alert(
+          "An error occurred while downloading the image. Please try again."
+        );
       });
   };
-  
 
   const handleImagePreview = () => {
     if (generatedImage) {
@@ -263,10 +261,11 @@ const ImageGenerator = ({allGeneratedImages = []}) =>{
                 type="submit"
                 disabled={isLoading}
                 className={`flex items-center justify-center
-                          ${isLoading
-                    ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-black"
-                  }
+                          ${
+                            isLoading
+                              ? "bg-gray-400 cursor-not-allowed"
+                              : "bg-black"
+                          }
                           text-white font-urbanist font-semibold text-sm md:text-[16px] leading-[24px] rounded-full py-2 md:py-3 md:-mr-3 px-6 w-full md:w-auto`}
               >
                 {isLoading ? "Generating..." : "Generate Image"}
