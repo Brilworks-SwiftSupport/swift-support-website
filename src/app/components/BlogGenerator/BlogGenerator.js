@@ -489,6 +489,9 @@ const BlogGenerator = ({allContentInfo = []}) => {
                 className="flex-grow bg-transparent outline-none text-gray-800 py-1 text-sm md:text-base"
               />
             </div>
+            <p className="text-sm mb-2 text-red-500">
+            <span className="font-bold">NOTE : </span> *Press <span className="font-semibold">Enter</span> to add a keyword.
+            </p>
           </div>
 
           {/* Word Limit Slider */}
