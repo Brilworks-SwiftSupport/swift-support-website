@@ -151,7 +151,7 @@ const TextToVoiceConverter = ({TTSrecords =[]}) => {
             theme: "colored",
           });
         }
-        const audio_url = response.data.audio_url;
+        const audio_url = response.data.file_url;
         setAudioUrl(audio_url);
 
         setIsSuccess(true);
@@ -419,7 +419,7 @@ const TextToVoiceConverter = ({TTSrecords =[]}) => {
           </div>
         </div>
 
-        {isSuccess && (
+        {isSuccess && audioUrl && (
           <div className="text-center border border-gray-300 rounded-md mt-5 h-[200px] p-4 max-w-[100%] mx-auto mb-4">
             <p className="text-xl mt-2 mb-5 max-w-[90%] mx-auto font-Urbanist text-[32px]">
               Your{" "}

@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import YouTubeSummarizer from "@/app/components/YouTube/YouTubeSummarizer";
 
 export const metadata = {
@@ -23,36 +22,12 @@ export const metadata = {
   },
 };
 
-// const fetchYouTubeData = async () => {
-//   const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
-
-//   try {
-//     const response = await axios.get(`${NEXT_PUBLIC_BE_URL}/youtube_summary`,{
-//       next: { revalidate: 2 },
-//     });
-//     const data = response.data;
-
-//     return data.youtube_summary_list.map((item) => ({
-//       imageUrl: `https://img.youtube.com/vi/${extractVideoId(
-//         item.youtube_url
-//       )}/0.jpg`,
-//       title: "Summary",
-//       summary: item.summary,
-//       link: item.youtube_url,
-//       showFullDescription: item.transcript,
-//     }));
-//   } catch (error) {
-//     console.error("Error fetching YouTube data:", error);
-//     return [];
-//   }
-// };
-
 const fetchYouTubeData = async () => {
   const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
   try {
-    const response = await fetch(`${NEXT_PUBLIC_BE_URL}/youtube_summary`, {
-      next: { revalidate: 2 }, // Revalidate data every 2 seconds
+    const response = await fetch(`${NEXT_PUBLIC_BE_URL}/youtube_summary`, {method: "GET",
+      next: { revalidate: 10 },
     });
     const data = await response.json();
 

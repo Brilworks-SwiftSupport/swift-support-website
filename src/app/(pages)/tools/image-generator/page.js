@@ -1,6 +1,5 @@
 import ImageGenerator from "@/app/components/ImageGenerator/ImageGenerator";
 import React from "react";
-import axios from "axios";
 
 export const metadata = {
   title: "Free AI Image Generator for Custom Visual Creations",
@@ -27,8 +26,10 @@ const fetchAllGeneratedImages = async () => {
   const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
   try {
-    const response = await axios.get(`${NEXT_PUBLIC_BE_URL}/generated_image`);
-    const data = response.data;
+    const response = await fetch(`${NEXT_PUBLIC_BE_URL}/generated_image`,{method: "GET",
+      next: { revalidate: 10 },
+    });
+    const data = await response.json();
 
     return data.generated_image_list.map((item) => ({
       prompt: item.prompt,
