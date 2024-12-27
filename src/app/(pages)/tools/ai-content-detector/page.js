@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import AiContentDetector from "@/app/components/AiContentDetector/AiContentDetector";
 
 export const metadata = {
@@ -27,10 +26,10 @@ const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
 const fetchAllContent = async () => {
   try {
-    const response = await axios.get(
-      `${NEXT_PUBLIC_BE_URL}/content_tools?type=ai_content`
+    const response = await fetch(`${NEXT_PUBLIC_BE_URL}/content_tools?type=ai_content`,{ method: "GET",
+        next: { revalidate: 10 },}
     );
-    const data = response.data;
+    const data = await response.json();
     return data.content_tools.map((item) => ({
       text: item.text,
       ai_generated: item.ai_generated,

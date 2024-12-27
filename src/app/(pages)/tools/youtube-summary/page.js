@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import YouTubeSummarizer from "@/app/components/YouTube/YouTubeSummarizer";
 
 export const metadata = {
@@ -27,8 +26,10 @@ const fetchYouTubeData = async () => {
   const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
   try {
-    const response = await axios.get(`${NEXT_PUBLIC_BE_URL}/youtube_summary`);
-    const data = response.data;
+    const response = await fetch(`${NEXT_PUBLIC_BE_URL}/youtube_summary`, {method: "GET",
+      next: { revalidate: 10 },
+    });
+    const data = await response.json();
 
     return data.youtube_summary_list.map((item) => ({
       imageUrl: `https://img.youtube.com/vi/${extractVideoId(

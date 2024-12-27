@@ -1,6 +1,5 @@
 import BlogGenerator from "@/app/components/BlogGenerator/BlogGenerator";
 import React from "react";
-import axios from "axios";
 
 export const metadata = {
   title: "Free AI blog Generator: Create blogs Within Seconds",
@@ -28,10 +27,12 @@ const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
 const fetchBlogs = async () => {
   try {
-    const response = await axios.get(`${NEXT_PUBLIC_BE_URL}/blog_creation`);
-    console.log("API Response:", response.data);
+    const response = await fetch(`${NEXT_PUBLIC_BE_URL}/blog_creation`,{method: "GET",
+      next: { revalidate: 10 },
+    });
+    const data = await response.json();
 
-    return response.data.blogs.map((item) => ({
+    return data.blogs.map((item) => ({
       text: item.text,
       title: item.title,
       image_url: item.image_url,

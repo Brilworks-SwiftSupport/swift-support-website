@@ -1,6 +1,5 @@
 import Plagiarism from "@/app/components/Plagiarism/Plagiarism";
 import React from "react";
-import axios from "axios";
 
 export const metadata = {
   title: "Free Plagiarism Checker online - Fast & Accurate",
@@ -27,10 +26,12 @@ const fetchAllPlagiarism = async () => {
   const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
   try {
-    const response = await axios.get(
-      `${NEXT_PUBLIC_BE_URL}/content_tools?type=plagiarism`
-    );
-    const data = response.data;
+    const response = await fetch(
+      `${NEXT_PUBLIC_BE_URL}/content_tools?type=plagiarism`,{method: "GET",
+        next: { revalidate: 10 },
+      });
+    const data = await response.json();
+
 
     return data.content_tools.map((item) => ({
       text: item.text,
