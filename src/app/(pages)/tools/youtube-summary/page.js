@@ -35,7 +35,7 @@ const fetchYouTubeData = async () => {
       imageUrl: `https://img.youtube.com/vi/${extractVideoId(
         item.youtube_url
       )}/0.jpg`,
-      title: item.video_title,
+      video_title: item.video_title,
       summary: item.summary,
       link: item.youtube_url,
       transcript: item.transcript,

@@ -81,7 +81,16 @@ const YouTubeSummarizer = ({initialTools=[]}) => {
   ];
 
 
-
+  const slugify = (text) => {
+    return text
+        .toString()
+        .toLowerCase()
+        .replace(/\s+/g, "-") // Replace spaces with -
+        .replace(/[^\w\-]+/g, "") // Remove all non-word chars
+        .replace(/\-\-+/g, "-") // Replace multiple - with single -
+        .replace(/^-+/, "") // Trim - from the start
+        .replace(/-+$/, ""); // Trim - from the end
+};
   const toggleFAQ = (index) => {
     setActiveFAQ((prev) => (prev === index ? null : index));
   };
@@ -163,10 +172,6 @@ const YouTubeSummarizer = ({initialTools=[]}) => {
     const response = await fetch(
       `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=${API_KEY}&part=snippet`
     );
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch video details");
-    }
 
     const data = await response.json();
     const videoTitle = data.items[0]?.snippet?.title || "Unknown Title";
@@ -269,10 +274,15 @@ const YouTubeSummarizer = ({initialTools=[]}) => {
 
         { summary &&
 
-          <div className="flex justify-center gap-4 mt-6">
+        <div className="flex flex-col items-center gap-4 mt-6">
+        {/* Video Title */}
+        <h3 className="text-2xl font-semibold text-center">{videoTitle || "Video Title"}</h3>
+
+        {/* Buttons Section */}
+        <div className="flex justify-center gap-4">
           <button
-            className={`!px-4 mr-2 py-2 sm:py-5 text-sm sm:text-base common-button header-btn ${
-              activeTab === "summary"
+            className={`!px-4 py-2 sm:py-5 text-sm sm:text-base common-button header-btn ${
+              activeTab === "summary" ? "bg-black text-white" : ""
             }`}
             onClick={handleSummaryClick}
           >
@@ -280,14 +290,16 @@ const YouTubeSummarizer = ({initialTools=[]}) => {
           </button>
 
           <button
-            className={`!px-4 mr-2 py-2 sm:py-5 text-sm sm:text-base common-button header-btn ${
-              activeTab === "transcript"
+            className={`!px-4 py-2 sm:py-5 text-sm sm:text-base common-button header-btn ${
+              activeTab === "transcript" ? "bg-black text-white" : ""
             }`}
             onClick={() => setActiveTab("transcript")}
           >
             Full Transcript
           </button>
-          </div>
+        </div>
+        </div>
+          
         
         }
      
@@ -295,7 +307,9 @@ const YouTubeSummarizer = ({initialTools=[]}) => {
         {/* Display Summary or Full Transcript */}
         <div className="mt-5 p-4 rounded">
           {activeTab === "summary" && summary && (
+            
             <div className="flex flex-col sm:flex-row mt-4">
+              
               <div className="w-full sm:w-1/2">
                 <h3 className="text-[#3B82F6] font-bold">Summary:</h3>
                 <p>{summary}</p>
@@ -331,7 +345,7 @@ const YouTubeSummarizer = ({initialTools=[]}) => {
                 <div className="relative w-full h-[200px] sm:h-auto md:h-auto">
                   <img
                     src={tool.imageUrl}
-                    alt={tool.title}
+                    alt={tool.video_title}
                     className="w-full h-full object-cover rounded-md"
                   />
                 </div>
@@ -339,7 +353,7 @@ const YouTubeSummarizer = ({initialTools=[]}) => {
                 {/* Text Section */}
                 <div className="mt-4 text-black text-sm sm:text-base md:text-xl font-Urbanist mb-4">
                   {/* <HandleText text={tool.summary} type="" /> */}
-                  <HandleUrl summary={tool.summary} redirectUrl={`/tools/youtube-summary/${tool.id}/${tool.title}`} />
+                  <HandleUrl summary={tool.summary} redirectUrl={`/tools/youtube-summary/${tool.id}/${slugify(tool.video_title)}`} />
 
                 </div>
             
