@@ -28,9 +28,7 @@ const fetchYouTubeData = async () => {
 
   try {
     const response = await axios.get(`${NEXT_PUBLIC_BE_URL}/youtube_summary`,{
-      headers: {
-        "Cache-Control": "no-store", 
-      },
+      next: { revalidate: 2 },
     });
     const data = response.data;
 
