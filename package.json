@@ -34,6 +34,7 @@
     "react-pdf": "9.1.1",
     "react-progressbar.js": "0.2.0",
     "react-responsive": "9.0.2",
+    "react-router-dom": "^7.1.1",
     "react-select": "5.8.3",
     "react-toastify": "10.0.6",
     "react-youtube": "10.1.0",

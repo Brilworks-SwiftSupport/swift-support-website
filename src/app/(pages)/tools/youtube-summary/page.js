@@ -35,10 +35,12 @@ const fetchYouTubeData = async () => {
       imageUrl: `https://img.youtube.com/vi/${extractVideoId(
         item.youtube_url
       )}/0.jpg`,
-      title: "Summary",
+      video_title: item.video_title,
       summary: item.summary,
       link: item.youtube_url,
-      showFullDescription: item.transcript,
+      transcript: item.transcript,
+      id:item.id
+
     }));
   } catch (error) {
     console.error("Error fetching YouTube data:", error);
