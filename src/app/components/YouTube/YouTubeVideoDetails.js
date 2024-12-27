@@ -34,10 +34,10 @@ const YouTubeVideoDetails= ({pageData}) => {
 
         <main className="mt-5 md:mt-5 mx-auto px-4">
                 <div className="text-center">
-                    <h1 className="text-2xl font-bold mb-2">{pageData.title || "Video Title"}</h1>
+                    <h1 className="text-3xl font-bold mb-4 mt-2">{pageData.video_title || "Video Title"}</h1>
                 </div>
 
-                <div className="flex flex-col items-center  justify-center space-y-4">
+                <div className="flex flex-col items-center justify-center space-y-4">
                 {videoId ? (
                     <YouTube videoId={videoId} opts={opts} className="rounded-md shadow-lg w-[600px]" />
                 ) : (
@@ -56,7 +56,7 @@ const YouTubeVideoDetails= ({pageData}) => {
 
                 <div className="w-full max-w-[1200px]">
                     <h2 className="text-2xl font-semibold mb-4 text-center mt-4">Summary</h2>
-                    <div className="bg-gray-100 p-4 rounded-lg shadow-lg max-h-[400px] overflow-y-auto">
+                    <div className="bg-gray-50 p-4 rounded-lg shadow-lg max-h-[400px] overflow-y-auto">
                         <p className="text-gray-900 whitespace-pre-wrap text-xl">
                             {pageData.summary || "Transcript is not available for this video."}
                         </p>
