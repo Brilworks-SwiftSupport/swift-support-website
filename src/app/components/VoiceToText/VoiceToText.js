@@ -228,7 +228,7 @@ const VoiceToTextConverter = ({STTrecords = []}) => {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ audio_url: doc_url_list[0] }),
+            body: JSON.stringify({ file_url: doc_url_list[0] }),
           }
         );
 

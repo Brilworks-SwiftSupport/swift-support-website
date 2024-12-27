@@ -1,6 +1,5 @@
 import VoiceToTextConverter from "@/app/components/VoiceToText/VoiceToText";
 import React from "react";
-import axios from "axios";
 
 export const metadata = {
   title: "Free Voice to Text Converter for Accurate Transcription",
@@ -28,11 +27,12 @@ const fetchData = async () => {
   const queryParam = "stt";
 
   try {
-    const response = await axios.get(
-      `${NEXT_PUBLIC_BE_URL}/stt_tts_data?type=${encodeURIComponent(queryParam)}`
-    );
+    const response = await fetch(`${NEXT_PUBLIC_BE_URL}/stt_tts_data?type=${encodeURIComponent(queryParam)}`
+    ,{method: "GET",
+      next: { revalidate: 10 },
+    });
 
-    const data = response.data;
+    const data = await response.json();
 
     return data.data_list.map((item) => ({
       stt_url: item.file_url,
