@@ -27,7 +27,11 @@ const fetchYouTubeData = async () => {
   const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
   try {
-    const response = await axios.get(`${NEXT_PUBLIC_BE_URL}/youtube_summary`);
+    const response = await axios.get(`${NEXT_PUBLIC_BE_URL}/youtube_summary`,{
+      headers: {
+        "Cache-Control": "no-store", 
+      },
+    });
     const data = response.data;
 
     return data.youtube_summary_list.map((item) => ({
