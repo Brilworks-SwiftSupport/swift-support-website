@@ -13,12 +13,13 @@ import accurateAndConcise from "@/app/images/accurate_and_concise.svg";
 import Image from "next/image";
 import youTubeIcon from "@/app/images/youtube-icon.svg";
 import { YoutubeTranscript } from "youtube-transcript";
-import HandleText from "../Tools/HandleText";
-const NEXT_PUBLIC_BE_URL=process.env.NEXT_PUBLIC_BE_URL
+import HandleUrl from "./HandleUrl";
 
 const YouTubeSummarizer = ({initialTools=[]}) => {
   const [youtubeUrl, setYoutubeUrl] = useState("");
   const [videoId, setVideoId] = useState("");
+  const [videoTitle, setVideoTitle] = useState("");
+
 
   const [summary, setSummary] = useState("");
   const [transcriptText, setFullTranscript] = useState("");
@@ -112,7 +113,7 @@ const YouTubeSummarizer = ({initialTools=[]}) => {
 
 
 
-  const fetchSummary = async (textData, youtubeUrl) => {
+  const fetchSummary = async (textData, youtubeUrl,youtTubeVideoTitle) => {
     setLoading(true);
     setError("");
 
@@ -123,6 +124,7 @@ const YouTubeSummarizer = ({initialTools=[]}) => {
         {
           youtube_url: youtubeUrl,
           transcript_text: textData,
+          video_title: youtTubeVideoTitle,
         },
         {
           headers: {
@@ -156,12 +158,26 @@ const YouTubeSummarizer = ({initialTools=[]}) => {
     }
     const videoId = extractVideoId(youtubeUrl);
     setVideoId(videoId);
+
+    const API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY; // Store your YouTube API key in environment variables
+    const response = await fetch(
+      `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=${API_KEY}&part=snippet`
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch video details");
+    }
+
+    const data = await response.json();
+    const videoTitle = data.items[0]?.snippet?.title || "Unknown Title";
+    setVideoTitle(videoTitle);
+   
     const transcriptData = await YoutubeTranscript.fetchTranscript(videoId);
     console.log(transcriptData)
     const textData = transcriptData.map((item) => item.text).join(" ");
     const updatedText = textData.replace(/&amp;#39;/g, "'");
     setFullTranscript(updatedText);
-    await fetchSummary(updatedText, youtubeUrl); // Call the API fetch function
+    await fetchSummary(updatedText, youtubeUrl,videoTitle); // Call the API fetch function
   };
 
   return (
@@ -251,7 +267,6 @@ const YouTubeSummarizer = ({initialTools=[]}) => {
           </p>
         </div>
 
-        {/* Tabs for Summary and Full Transcript */}
         { summary &&
 
           <div className="flex justify-center gap-4 mt-6">
@@ -311,22 +326,23 @@ const YouTubeSummarizer = ({initialTools=[]}) => {
               <div
               key={index}
               className="p-4 bg-white border border-[#E4E4E4] rounded shadow flex flex-col"
-            >
+              >
               {/* Image Section */}
-              <div className="relative w-full h-[200px] sm:h-auto md:h-auto">
-                <img
-                  src={tool.imageUrl}
-                  alt={tool.title}
-                  className="w-full h-full object-cover rounded-md"
-                />
-              </div>
+                <div className="relative w-full h-[200px] sm:h-auto md:h-auto">
+                  <img
+                    src={tool.imageUrl}
+                    alt={tool.title}
+                    className="w-full h-full object-cover rounded-md"
+                  />
+                </div>
         
-              {/* Text Section */}
-              <div className="mt-4 text-black text-sm sm:text-base md:text-xl font-Urbanist mb-4">
-                <HandleText text={tool.summary} type="" />
-              </div>
+                {/* Text Section */}
+                <div className="mt-4 text-black text-sm sm:text-base md:text-xl font-Urbanist mb-4">
+                  {/* <HandleText text={tool.summary} type="" /> */}
+                  <HandleUrl summary={tool.summary} redirectUrl={`/tools/youtube-summary/${tool.id}/${tool.title}`} />
+
+                </div>
             
-                
                 <a
                   href={tool.link}
                   target="_blank"
