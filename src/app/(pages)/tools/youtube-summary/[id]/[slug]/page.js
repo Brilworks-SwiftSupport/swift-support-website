@@ -15,11 +15,16 @@ async function fetchAllPageData() {
     }
 }
 
-// Fetch individual video data by ID
-async function fetchPageData(id) {
-    const allData = await fetchAllPageData();
-    return allData.find((record) => record.id === parseInt(id)) || null;
-}
+const slugify = (text) => {
+    return text
+        .toString()
+        .toLowerCase()
+        .replace(/\s+/g, "-") // Replace spaces with -
+        .replace(/[^\w\-]+/g, "") // Remove all non-word chars
+        .replace(/\-\-+/g, "-") // Replace multiple - with single -
+        .replace(/^-+/, "") // Trim - from the start
+        .replace(/-+$/, ""); // Trim - from the end
+};
 
 // Static Params (getStaticPaths equivalent for app directory)
 export async function generateStaticParams() {
@@ -27,12 +32,19 @@ export async function generateStaticParams() {
 
     return allData.map((record) => ({
         id: record.id.toString(), // Ensure ID is a string for URL params
+        slug: slugify(record.video_title) // Use slugify for the slug
     }));
+}
+
+// Fetch individual video data by ID
+async function fetchPageData(id) {
+    const allData = await fetchAllPageData();
+    return allData.find((record) => record.id === parseInt(id)) || null;
 }
 
 // Static Page Generation
 export default async function Page({ params }) {
-    const { id } = params;
+    const { id, slug } = params;
 
     // Fetch data for the specific ID
     const pageData = await fetchPageData(id);
