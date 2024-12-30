@@ -20,11 +20,14 @@ async function getYoutubeSummary() {
     const response = await fetch(`${NEXT_PUBLIC_BE_URL}/youtube_summary`);
     const data = await response.json();
     const youtubeData = data.youtube_summary_list;
-    
-    return youtubeData.map((record) => ({
-      url: `${process.env.NEXT_PUBLIC_BASE_URL}tools/youtube-summary/${record.id}/${slugify(record.video_title)}`, // Slugify the title
-      lastModified: new Date().toISOString(), 
-    }));
+    return youtubeData.map((record) => {
+      // Convert record.timestamp to a valid Date format (if necessary)
+      const lastModified = new Date(record.timestamp); // If timestamp is already a valid date string, this works
+      return {
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}tools/youtube-summary/${record.id}/${slugify(record.video_title)}`, // Slugify the title
+        lastModified: lastModified.toISOString(), // Use timestamp as lastModified
+      };
+    });
   } catch (error) {
     console.error("Error fetching data for sitemap:", error);
     return []; 
