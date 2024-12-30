@@ -12,30 +12,7 @@ const slugify = (text) => {
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
     siteUrl: process.env.NEXT_PUBLIC_BASE_URL || "https://www.swiftsupport.ai",
-    generateRobotsTxt: true,
-    robotsTxtOptions: {
-        policies: [
-            {
-                userAgent: '*',
-                allow: '/',
-            },
-            {
-                userAgent: '*',
-                disallow: '/?s=',
-            },
-            {
-                userAgent: '*',
-                disallow: '/search/',
-            },
-            {
-                userAgent: '*',
-                disallow: '/next/static',
-            },
-        ],
-        additionalSitemaps: [
-            `${process.env.NEXT_PUBLIC_BASE_URL || "https://www.swiftsupport.ai/"}sitemap.xml`, // Add sitemap with dynamic URL
-        ],
-    },
+    generateRobotsTxt: false,
     sitemapSize: 5000, // Split large sitemaps
     generateIndexSitemap: false, // If you don't want an index sitemap
     exclude: [], // Paths to exclude from the sitemap
