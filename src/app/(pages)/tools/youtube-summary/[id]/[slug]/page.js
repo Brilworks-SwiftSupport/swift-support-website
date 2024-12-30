@@ -1,14 +1,60 @@
 import React from "react";
 import YouTubeVideoDetails from "@/app/components/YouTube/YouTubeVideoDetails";
 
-// Page Component
-const DetailsPage = ({ pageData }) => {
+// Fetch all YouTube summary data
+async function fetchAllPageData() {
+    const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
+
+    try {
+        const response = await fetch(`${NEXT_PUBLIC_BE_URL}/youtube_summary`, { cache: "no-store" });
+        const data = await response.json();
+        return data.youtube_summary_list || [];
+    } catch (error) {
+        console.error("Error fetching all data:", error);
+        return [];
+    }
+}
+
+const slugify = (text) => {
+    return text
+        .toString()
+        .toLowerCase()
+        .replace(/\s+/g, "-") // Replace spaces with -
+        .replace(/[^\w\-]+/g, "") // Remove all non-word chars
+        .replace(/\-\-+/g, "-") // Replace multiple - with single -
+        .replace(/^-+/, "") // Trim - from the start
+        .replace(/-+$/, ""); // Trim - from the end
+};
+
+// Static Params (getStaticPaths equivalent for app directory)
+export async function generateStaticParams() {
+    const allData = await fetchAllPageData();
+
+    return allData.map((record) => ({
+        id: record.id.toString(), // Ensure ID is a string for URL params
+        slug: slugify(record.video_title) // Use slugify for the slug
+    }));
+}
+
+// Fetch individual video data by ID
+async function fetchPageData(id) {
+    const allData = await fetchAllPageData();
+    return allData.find((record) => record.id === parseInt(id)) || null;
+}
+
+// Static Page Generation
+export default async function Page({ params }) {
+    const { id, slug } = params;
+
+    // Fetch data for the specific ID
+    const pageData = await fetchPageData(id);
 
     if (!pageData) {
-        // If pageData is not available, show a fallback page
+        // Return a 404-like page if no data found
         return (
             <div className="text-center mt-20">
-                
+                <h1>Video Not Found</h1>
+                <p>We couldn't find the details for this video. Please try again later.</p>
             </div>
         );
     }
@@ -20,29 +66,4 @@ const DetailsPage = ({ pageData }) => {
             </div>
         </main>
     );
-};
-
-export async function getPageData(id) {
-    const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
-
-    try {
-        const response = await fetch(`${NEXT_PUBLIC_BE_URL}/youtube_summary`, {method: "GET",
-            next: { revalidate: 10 },
-          });
-        const data = await response.json();
-        const youtube_data = data.youtube_summary_list;
-        const matchingRecord = youtube_data.find((record) => record.id === parseInt(id)); 
-        return matchingRecord;
-    } catch (error) {
-        console.error("Error fetching data:", error);
-    }
-
-}
-
-// Server-side logic to fetch data for each request
-export default async function Page({ params }) {
-    const { id,slug } = params;  // Get the slug from the URL params
-    const pageData = await getPageData(id); // Fetch the data based on the slug
-    
-    return <DetailsPage pageData={pageData} />;
 }
