@@ -2,6 +2,18 @@
 User-agent: *
 Allow: /
 
+# *
+User-agent: *
+Disallow: /?s=
+
+# *
+User-agent: *
+Disallow: /search/
+
+# *
+User-agent: *
+Disallow: /next/static
+
 # Host
 Host: http://localhost:3000/
 
