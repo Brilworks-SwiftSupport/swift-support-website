@@ -26,7 +26,6 @@ const slugify = (text) => {
         .replace(/-+$/, ""); // Trim - from the end
 };
 
-// Static Params (getStaticPaths equivalent for app directory)
 export async function generateStaticParams() {
     const allData = await fetchAllPageData();
 
