@@ -1,5 +1,5 @@
 "use client";
-import React, { useState} from "react";
+import React, { useState,useRef,useEffect} from "react";
 import YouTube from "react-youtube";
 import axios from "axios";
 import DetailSection from "../Tools/Content/DetailSection";
@@ -14,22 +14,35 @@ import Image from "next/image";
 import youTubeIcon from "@/app/images/youtube-icon.svg";
 import { YoutubeTranscript } from "youtube-transcript";
 import HandleUrl from "./HandleUrl";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Send } from "lucide-react";
 
 const YouTubeSummarizer = ({initialTools=[]}) => {
+  const [isScrollAreaVisible, setIsScrollAreaVisible] = useState(false);
+  
   const [youtubeUrl, setYoutubeUrl] = useState("");
   const [videoId, setVideoId] = useState("");
   const [videoTitle, setVideoTitle] = useState("");
-
+  const [question, setQuestion] = useState("");
+  const [chatHistory, setChatHistory] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [summary, setSummary] = useState("");
   const [transcriptText, setFullTranscript] = useState("");
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [activeTab, setActiveTab] = useState("summary"); // Default to "summary"
-  const [visibleCount, setVisibleCount] = useState(3); // Initial 6 items for a 3x2 grid
+  const [activeTab, setActiveTab] = useState("summary"); 
+  const [visibleCount, setVisibleCount] = useState(3); 
   const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
   const [activeFAQ, setActiveFAQ] = useState(null);
+  const scrollAreaRef = useRef(null);
+  const inputRef = useRef(null); // New ref for the input element
+
+
 
   const features = [
     {
@@ -120,7 +133,51 @@ const YouTubeSummarizer = ({initialTools=[]}) => {
     setActiveTab("summary");
   };
 
+  const handleQuestionSubmit = async (e) => {
+    setIsScrollAreaVisible(true)
+    e.preventDefault();
+    if (!question.trim()) return;
 
+    setIsLoading(true);
+    const newQuestion = { type: 'question', content: question };
+    setChatHistory(prev => [...prev, newQuestion]);
+
+    try {
+      const response = await fetch(`${NEXT_PUBLIC_BE_URL}/youtube_ask`, {  // You'll need to create this API endpoint
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          question,
+          transcript: transcriptText,
+        }),
+      });
+
+      const data = await response.json();
+      console.log(data);
+      const newAnswer = { type: 'answer', content: data.answer };
+      setChatHistory(prev => [...prev, newAnswer]);
+    } catch (error) {
+      const errorMessage = { 
+        type: 'answer', 
+        content: "Sorry, I couldn't process your question. Please try again." 
+      };
+      setChatHistory(prev => [...prev, errorMessage]);
+    } finally {
+      setIsLoading(false);
+      setQuestion("");
+    }
+  };
+
+  useEffect(() => {
+      inputRef.current?.focus();
+      if (scrollAreaRef.current) {
+        requestAnimationFrame(() => {
+          scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight;
+        });
+      }
+    }, [chatHistory])
 
   const fetchSummary = async (textData, youtubeUrl,youtTubeVideoTitle) => {
     setLoading(true);
@@ -145,6 +202,8 @@ const YouTubeSummarizer = ({initialTools=[]}) => {
       setSummary(response.data.summarized_text);
 
       setActiveTab("summary");
+      setIsScrollAreaVisible(false)
+      setChatHistory([]);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -278,32 +337,32 @@ const YouTubeSummarizer = ({initialTools=[]}) => {
         {/* Video Title */}
         <h3 className="text-2xl font-semibold text-center">{videoTitle || "Video Title"}</h3>
 
-        {/* Buttons Section */}
-        <div className="flex justify-center gap-4">
-          <button
-            className={`!px-4 py-2 sm:py-5 text-sm sm:text-base common-button header-btn ${
-              activeTab === "summary" ? "bg-black text-white" : ""
-            }`}
-            onClick={handleSummaryClick}
-          >
-            Summary
-          </button>
+          {/* Buttons Section */}
+          <div className="flex justify-center gap-4">
+            <button
+              className={`!px-4 py-2 sm:py-5 text-sm sm:text-base common-button header-btn ${
+                activeTab === "summary" ? "bg-black text-white" : ""
+              }`}
+              onClick={handleSummaryClick}
+            >
+              Summary
+            </button>
 
-          <button
-            className={`!px-4 py-2 sm:py-5 text-sm sm:text-base common-button header-btn ${
-              activeTab === "transcript" ? "bg-black text-white" : ""
-            }`}
-            onClick={() => setActiveTab("transcript")}
-          >
-            Full Transcript
-          </button>
-        </div>
+            <button
+              className={`!px-4 py-2 sm:py-5 text-sm sm:text-base common-button header-btn ${
+                activeTab === "transcript" ? "bg-black text-white" : ""
+              }`}
+              onClick={() => setActiveTab("transcript")}
+            >
+              Full Transcript
+            </button>
+          </div>
         </div>
           
         
         }
      
-
+        
         {/* Display Summary or Full Transcript */}
         <div className="mt-5 p-4 rounded">
           {activeTab === "summary" && summary && (
@@ -325,9 +384,67 @@ const YouTubeSummarizer = ({initialTools=[]}) => {
             <>
               <h3 className="text-[#3B82F6] font-bold">Full Transcript:</h3>
               <p>{transcriptText}</p>
+
+              
+
+              
             </>
           )}
+
+          
         </div>
+
+        { summary && 
+        (
+              <div>
+          <h3 className="text-2xl font-semibold text-center">Chat With Your YouTube Video</h3>
+          {/* Chat Interface */}
+                  <Card className="mt-8 p-4 mb-4 bg-gray-100">
+                    {isScrollAreaVisible && (
+                      <div ref={scrollAreaRef}
+                        className="h-[300px] mb-4 p-4 rounded-md bg-gray-50 overflow-y-scroll">
+                        {chatHistory.map((message, index) => (
+                          <div
+                            key={index}
+                            className={`mb-4 ${message.type === "question" ? "text-right" : "text-left"
+                              }`}
+                          >
+                            <div
+                              className={`inline-block p-3 font-semibold rounded-lg max-w-[80%] ${message.type === "question"
+                                ? "bg-gray-800 text-white"
+                                : "bg-gray-100 text-gray-800"
+                                }`}
+                            >
+                              {message.content}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    <form onSubmit={handleQuestionSubmit} className="flex gap-2">
+                      <Input
+                        ref={inputRef}
+                        type="text"
+                        value={question}
+                        onChange={(e) => setQuestion(e.target.value)}
+                        placeholder="Ask a question about the video..."
+                        disabled={isLoading}
+                        className="flex-1"
+                      />
+          
+          
+          
+                      <Button type="submit" disabled={isLoading}>
+                        {isLoading ? "Sending..." : <Send className="h-4 w-4" />}
+                      </Button>
+                    </form>
+          
+                  </Card>
+          </div>
+        )
+        }
+
+        
 
         {/* Tools Section */}
         <h2 className="text-center text-2xl sm:text-4xl md:text-5xl font-extrabold mb-4">

@@ -1,12 +1,34 @@
 import React from "react";
 import YouTubeVideoDetails from "@/app/components/YouTube/YouTubeVideoDetails";
 
+
+export const metadata = {
+    title: "Chat with Your YouTube Video - AI-Powered Q&A Tool",
+    description:
+      "Interact with YouTube videos like never before using our AI-powered tool to ask questions and get answers instantly.",
+    keywords:
+      "YouTube video Q&A, chat with YouTube videos, AI video interaction, YouTube question and answer, AI-powered Q&A tool, video content insights, interactive video tool, YouTube video assistant, video-based question answering, YouTube transcript chat",
+    openGraph: {
+      title: "Chat with Your YouTube Video - AI-Powered Q&A Tool",
+      description:
+        "Interact with YouTube videos like never before using our AI-powered tool to ask questions and get answers instantly.",
+      images: [
+        {
+          url: "/youtube-summary/images/youtube_summary.svg",
+          width: 1200,
+          height: 630,
+          alt: "Chat with Your YouTube Video tool",
+        },
+      ],
+    },
+  };
+  
 // Fetch all YouTube summary data
 async function fetchAllPageData() {
     const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
     try {
-        const response = await fetch(`${NEXT_PUBLIC_BE_URL}/youtube_summary`, { cache: "no-store" });
+        const response = await fetch(`${NEXT_PUBLIC_BE_URL}/youtube_summary`,  { cache: "no-store"  });
         const data = await response.json();
         return data.youtube_summary_list || [];
     } catch (error) {
@@ -26,7 +48,6 @@ const slugify = (text) => {
         .replace(/-+$/, ""); // Trim - from the end
 };
 
-// Static Params (getStaticPaths equivalent for app directory)
 export async function generateStaticParams() {
     const allData = await fetchAllPageData();
 
@@ -67,3 +88,4 @@ export default async function Page({ params }) {
         </main>
     );
 }
+
