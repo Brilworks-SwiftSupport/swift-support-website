@@ -121,6 +121,17 @@ const YouTubeVideoDetails = ({ pageData }) => {
           </a>
         </div>
 
+       
+
+
+        {/* Summary Section */}
+        <h2 className="text-2xl font-semibold mb-4 text-center mt-8">Summary</h2>
+        <div className="bg-gray-50 p-4 rounded-lg shadow-lg max-h-[400px] overflow-y-auto">
+          <p className="text-gray-900 whitespace-pre-wrap md:text-xl text-sm">
+            {pageData.summary || "Summary is not available for this video."}
+          </p>
+        </div>
+
         <h2 className="text-2xl font-semibold mb-4 text-center mt-8">
           Chat With YouTube Video
         </h2>
@@ -166,15 +177,6 @@ const YouTubeVideoDetails = ({ pageData }) => {
           </form>
 
         </Card>
-
-
-        {/* Summary Section */}
-        <h2 className="text-2xl font-semibold mb-4 text-center mt-8">Summary</h2>
-        <div className="bg-gray-50 p-4 rounded-lg shadow-lg max-h-[400px] overflow-y-auto">
-          <p className="text-gray-900 whitespace-pre-wrap md:text-xl text-sm">
-            {pageData.summary || "Summary is not available for this video."}
-          </p>
-        </div>
 
         {/* Full Transcript Section */}
         <h2 className="text-2xl font-semibold mb-4 text-center mt-8">
