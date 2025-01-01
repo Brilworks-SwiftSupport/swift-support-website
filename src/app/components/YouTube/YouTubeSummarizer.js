@@ -1,5 +1,5 @@
 "use client";
-import React, { useState} from "react";
+import React, { useState,useRef,useEffect} from "react";
 import YouTube from "react-youtube";
 import axios from "axios";
 import DetailSection from "../Tools/Content/DetailSection";
@@ -39,6 +39,8 @@ const YouTubeSummarizer = ({initialTools=[]}) => {
   const [visibleCount, setVisibleCount] = useState(3); 
   const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
   const [activeFAQ, setActiveFAQ] = useState(null);
+  const scrollAreaRef = useRef(null);
+  const inputRef = useRef(null); // New ref for the input element
 
 
 
@@ -167,6 +169,15 @@ const YouTubeSummarizer = ({initialTools=[]}) => {
       setQuestion("");
     }
   };
+
+  useEffect(() => {
+      inputRef.current?.focus();
+      if (scrollAreaRef.current) {
+        requestAnimationFrame(() => {
+          scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight;
+        });
+      }
+    }, [chatHistory])
 
   const fetchSummary = async (textData, youtubeUrl,youtTubeVideoTitle) => {
     setLoading(true);
@@ -387,50 +398,49 @@ const YouTubeSummarizer = ({initialTools=[]}) => {
         (
               <div>
           <h3 className="text-2xl font-semibold text-center">Chat With Your YouTube Video</h3>
-
-
-             <Card className="mt-8 p-4 mb-4 bg-gray-100">
-                     {isScrollAreaVisible && (
-                         <ScrollArea className="h-[300px] mb-4 p-4 rounded-md bg-gray-50">
-                           {chatHistory.map((message, index) => (
-                             <div
-                               key={index}
-                               className={`mb-4 ${
-                                 message.type === "question" ? "text-right" : "text-left"
-                               }`}
-                             >
-                               <div
-                                 className={`inline-block p-3 font-semibold rounded-lg max-w-[80%] ${
-                                   message.type === "question"
-                                     ? "bg-gray-800 text-white"
-                                     : "bg-gray-100 text-gray-800"
-                                 }`}
-                               >
-                                 {message.content}
-                               </div>
-                             </div>
-                           ))}
-                         </ScrollArea>
-                       )}
-                       <form onSubmit={handleQuestionSubmit} className="flex gap-2">
-                       <Input
-                         type="text"
-                         value={question}
-                         onChange={(e) => setQuestion(e.target.value)}
-                         placeholder="Ask a question about the video..."
-                         disabled={isLoading}
-                         className="flex-1"
-                       />
-           
-                      
-           
-                       <Button type="submit" disabled={isLoading}>
-                         {isLoading ? "Sending..." : <Send className="h-4 w-4" />}
-                       </Button>
-                       </form>
-                     
-              </Card>
-              </div>
+          {/* Chat Interface */}
+                  <Card className="mt-8 p-4 mb-4 bg-gray-100">
+                    {isScrollAreaVisible && (
+                      <div ref={scrollAreaRef}
+                        className="h-[300px] mb-4 p-4 rounded-md bg-gray-50 overflow-y-scroll">
+                        {chatHistory.map((message, index) => (
+                          <div
+                            key={index}
+                            className={`mb-4 ${message.type === "question" ? "text-right" : "text-left"
+                              }`}
+                          >
+                            <div
+                              className={`inline-block p-3 font-semibold rounded-lg max-w-[80%] ${message.type === "question"
+                                ? "bg-gray-800 text-white"
+                                : "bg-gray-100 text-gray-800"
+                                }`}
+                            >
+                              {message.content}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    <form onSubmit={handleQuestionSubmit} className="flex gap-2">
+                      <Input
+                        ref={inputRef}
+                        type="text"
+                        value={question}
+                        onChange={(e) => setQuestion(e.target.value)}
+                        placeholder="Ask a question about the video..."
+                        disabled={isLoading}
+                        className="flex-1"
+                      />
+          
+          
+          
+                      <Button type="submit" disabled={isLoading}>
+                        {isLoading ? "Sending..." : <Send className="h-4 w-4" />}
+                      </Button>
+                    </form>
+          
+                  </Card>
+          </div>
         )
         }
 
