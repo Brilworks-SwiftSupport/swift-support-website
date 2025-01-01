@@ -21,6 +21,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Send } from "lucide-react";
 
 const YouTubeSummarizer = ({initialTools=[]}) => {
+  const [isScrollAreaVisible, setIsScrollAreaVisible] = useState(false);
+  
   const [youtubeUrl, setYoutubeUrl] = useState("");
   const [videoId, setVideoId] = useState("");
   const [videoTitle, setVideoTitle] = useState("");
@@ -188,6 +190,8 @@ const YouTubeSummarizer = ({initialTools=[]}) => {
       setSummary(response.data.summarized_text);
 
       setActiveTab("summary");
+      setIsScrollAreaVisible(false)
+      setChatHistory([]);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -380,49 +384,49 @@ const YouTubeSummarizer = ({initialTools=[]}) => {
 
         { summary && 
         (
-           <Card className="mt-8 p-4 mb-4">
-                    <h2 className="text-2xl font-semibold mb-4">Ask Questions About the Video</h2>
-                    <ScrollArea className="h-[300px] mb-4 p-4 rounded-md bg-gray-50">
-                      {chatHistory.map((message, index) => (
-                        <div
-                          key={index}
-                          className={`mb-4 ${
-                            message.type === 'question' 
-                              ? 'text-right' 
-                              : 'text-left'
-                          }`}
-                        >
-                          <div
-                            className={`inline-block p-3 font-semibold rounded-lg max-w-[80%] ${
-                              message.type === 'question'
-                                ? 'bg-gray-800 text-white'
-                                : 'bg-gray-100 text-gray-800'
-                            }`}
-                          >
-                            {message.content}
-                          </div>
-                        </div>
-                      ))}
-                    </ScrollArea>
-                    
-                    <form onSubmit={handleQuestionSubmit} className="flex gap-2">
-                      <Input
-                        type="text"
-                        value={question}
-                        onChange={(e) => setQuestion(e.target.value)}
-                        placeholder="Ask a question about the video..."
-                        disabled={isLoading}
-                        className="flex-1"
-                      />
-                      <Button type="submit" disabled={isLoading}>
-                        {isLoading ? (
-                          "Sending..."
-                        ) : (
-                          <Send className="h-4 w-4" />
-                        )}
-                      </Button>
-                    </form>
-            </Card>
+             <Card className="mt-8 p-4 mb-4">
+                     {/* <form onSubmit={handleQuestionSubmit} className="flex flex-col gap-4"> */}
+                     {isScrollAreaVisible && (
+                         <ScrollArea className="h-[300px] mb-4 p-4 rounded-md bg-gray-50">
+                           {chatHistory.map((message, index) => (
+                             <div
+                               key={index}
+                               className={`mb-4 ${
+                                 message.type === "question" ? "text-right" : "text-left"
+                               }`}
+                             >
+                               <div
+                                 className={`inline-block p-3 font-semibold rounded-lg max-w-[80%] ${
+                                   message.type === "question"
+                                     ? "bg-gray-800 text-white"
+                                     : "bg-gray-100 text-gray-800"
+                                 }`}
+                               >
+                                 {message.content}
+                               </div>
+                             </div>
+                           ))}
+                         </ScrollArea>
+                       )}
+                       <form onSubmit={handleQuestionSubmit} className="flex gap-2">
+                       <Input
+                         type="text"
+                         value={question}
+                         onChange={(e) => setQuestion(e.target.value)}
+                         onFocus={() => setIsScrollAreaVisible(true)}
+                         placeholder="Ask a question about the video..."
+                         disabled={isLoading}
+                         className="flex-1"
+                       />
+           
+                      
+           
+                       <Button type="submit" disabled={isLoading}>
+                         {isLoading ? "Sending..." : <Send className="h-4 w-4" />}
+                       </Button>
+                       </form>
+                     
+              </Card>
         )
         }
 
