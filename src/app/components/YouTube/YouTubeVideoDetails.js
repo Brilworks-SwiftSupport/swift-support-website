@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import YouTube from "react-youtube";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -9,6 +9,8 @@ import { Send } from "lucide-react";
 
 const YouTubeVideoDetails = ({ pageData }) => {
   const [isScrollAreaVisible, setIsScrollAreaVisible] = useState(false);
+  const scrollAreaRef = useRef(null);
+  const inputRef = useRef(null); // New ref for the input element
 
   const [videoId, setVideoId] = useState("");
   const [question, setQuestion] = useState("");
@@ -39,6 +41,15 @@ const YouTubeVideoDetails = ({ pageData }) => {
     }
   }, [pageData.youtube_url]);
 
+  useEffect(() => {
+    inputRef.current?.focus();
+    if (scrollAreaRef.current) {
+      requestAnimationFrame(() => {
+        scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight;
+      });
+    }
+  }, [chatHistory])
+
   const handleQuestionSubmit = async (e) => {
     setIsScrollAreaVisible(true)
     e.preventDefault();
@@ -63,6 +74,7 @@ const YouTubeVideoDetails = ({ pageData }) => {
       const data = await response.json();
       const newAnswer = { type: "answer", content: data.answer };
       setChatHistory((prev) => [...prev, newAnswer]);
+
     } catch (error) {
       const errorMessage = {
         type: "answer",
@@ -115,29 +127,29 @@ const YouTubeVideoDetails = ({ pageData }) => {
         {/* Chat Interface */}
         <Card className="mt-8 p-4 mb-4 bg-gray-100">
           {isScrollAreaVisible && (
-              <ScrollArea className="h-[300px] mb-4 p-4 rounded-md bg-gray-50">
-                {chatHistory.map((message, index) => (
-                  <div
-                    key={index}
-                    className={`mb-4 ${
-                      message.type === "question" ? "text-right" : "text-left"
+            <div ref={scrollAreaRef}
+              className="h-[300px] mb-4 p-4 rounded-md bg-gray-50 overflow-y-scroll">
+              {chatHistory.map((message, index) => (
+                <div
+                  key={index}
+                  className={`mb-4 ${message.type === "question" ? "text-right" : "text-left"
                     }`}
-                  >
-                    <div
-                      className={`inline-block p-3 font-semibold rounded-lg max-w-[80%] ${
-                        message.type === "question"
-                          ? "bg-gray-800 text-white"
-                          : "bg-gray-100 text-gray-800"
+                >
+                  <div
+                    className={`inline-block p-3 font-semibold rounded-lg max-w-[80%] ${message.type === "question"
+                      ? "bg-gray-800 text-white"
+                      : "bg-gray-100 text-gray-800"
                       }`}
-                    >
-                      {message.content}
-                    </div>
+                  >
+                    {message.content}
                   </div>
-                ))}
-              </ScrollArea>
-            )}
-            <form onSubmit={handleQuestionSubmit} className="flex gap-2">
+                </div>
+              ))}
+            </div>
+          )}
+          <form onSubmit={handleQuestionSubmit} className="flex gap-2">
             <Input
+              ref={inputRef}
               type="text"
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
@@ -146,15 +158,15 @@ const YouTubeVideoDetails = ({ pageData }) => {
               className="flex-1"
             />
 
-           
+
 
             <Button type="submit" disabled={isLoading}>
               {isLoading ? "Sending..." : <Send className="h-4 w-4" />}
             </Button>
-            </form>
-          
+          </form>
+
         </Card>
-       
+
 
         {/* Summary Section */}
         <h2 className="text-2xl font-semibold mb-4 text-center mt-8">Summary</h2>
