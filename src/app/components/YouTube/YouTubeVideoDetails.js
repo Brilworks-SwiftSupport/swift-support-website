@@ -40,6 +40,7 @@ const YouTubeVideoDetails = ({ pageData }) => {
   }, [pageData.youtube_url]);
 
   const handleQuestionSubmit = async (e) => {
+    setIsScrollAreaVisible(true)
     e.preventDefault();
     if (!question.trim()) return;
 
@@ -112,8 +113,7 @@ const YouTubeVideoDetails = ({ pageData }) => {
           Chat With YouTube Video
         </h2>
         {/* Chat Interface */}
-        <Card className="mt-8 p-4 mb-4">
-          {/* <form onSubmit={handleQuestionSubmit} className="flex flex-col gap-4"> */}
+        <Card className="mt-8 p-4 mb-4 bg-gray-100">
           {isScrollAreaVisible && (
               <ScrollArea className="h-[300px] mb-4 p-4 rounded-md bg-gray-50">
                 {chatHistory.map((message, index) => (
@@ -141,7 +141,6 @@ const YouTubeVideoDetails = ({ pageData }) => {
               type="text"
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
-              onFocus={() => setIsScrollAreaVisible(true)}
               placeholder="Ask a question about the video..."
               disabled={isLoading}
               className="flex-1"

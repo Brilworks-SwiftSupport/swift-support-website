@@ -132,6 +132,7 @@ const YouTubeSummarizer = ({initialTools=[]}) => {
   };
 
   const handleQuestionSubmit = async (e) => {
+    setIsScrollAreaVisible(true)
     e.preventDefault();
     if (!question.trim()) return;
 
@@ -384,8 +385,11 @@ const YouTubeSummarizer = ({initialTools=[]}) => {
 
         { summary && 
         (
-             <Card className="mt-8 p-4 mb-4">
-                     {/* <form onSubmit={handleQuestionSubmit} className="flex flex-col gap-4"> */}
+              <div>
+          <h3 className="text-2xl font-semibold text-center">Chat With Your YouTube Video</h3>
+
+
+             <Card className="mt-8 p-4 mb-4 bg-gray-100">
                      {isScrollAreaVisible && (
                          <ScrollArea className="h-[300px] mb-4 p-4 rounded-md bg-gray-50">
                            {chatHistory.map((message, index) => (
@@ -413,7 +417,6 @@ const YouTubeSummarizer = ({initialTools=[]}) => {
                          type="text"
                          value={question}
                          onChange={(e) => setQuestion(e.target.value)}
-                         onFocus={() => setIsScrollAreaVisible(true)}
                          placeholder="Ask a question about the video..."
                          disabled={isLoading}
                          className="flex-1"
@@ -427,6 +430,7 @@ const YouTubeSummarizer = ({initialTools=[]}) => {
                        </form>
                      
               </Card>
+              </div>
         )
         }
 
