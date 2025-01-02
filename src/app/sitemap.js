@@ -17,7 +17,7 @@ async function getYoutubeSummary() {
   const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
   try {
-    const response = await fetch(`${NEXT_PUBLIC_BE_URL}/youtube_summary`,{next: { revalidate: 60 },});
+    const response = await fetch(`${NEXT_PUBLIC_BE_URL}/youtube_summary`,{next: { revalidate: 10 },});
     const data = await response.json();
     const youtubeData = data.youtube_summary_list;
     return youtubeData.map((record) => {
@@ -38,7 +38,7 @@ async function getBlogData() {
   const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
   try {
-    const response = await fetch(`${NEXT_PUBLIC_BE_URL}/blog_creation`);
+    const response = await fetch(`${NEXT_PUBLIC_BE_URL}/blog_creation`,{next: { revalidate: 10 },});
     const data = await response.json();
     const blogsData = data.blogs;
     return blogsData.map((record) => {
