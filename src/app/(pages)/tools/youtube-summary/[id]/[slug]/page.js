@@ -28,7 +28,7 @@ async function fetchAllPageData() {
     const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
     try {
-        const response = await fetch(`${NEXT_PUBLIC_BE_URL}/youtube_summary`,  { cache: "no-store"  });
+        const response = await fetch(`${NEXT_PUBLIC_BE_URL}/youtube_summary`,  { next: {revalidate:10}  });
         const data = await response.json();
         return data.youtube_summary_list || [];
     } catch (error) {
