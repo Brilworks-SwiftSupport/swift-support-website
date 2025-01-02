@@ -33,6 +33,7 @@ const fetchBlogs = async () => {
     const data = await response.json();
 
     return data.blogs.map((item) => ({
+      id: item.id,
       text: item.text,
       title: item.title,
       image_url: item.image_url,
