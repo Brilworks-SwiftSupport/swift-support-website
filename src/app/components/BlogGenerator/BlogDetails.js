@@ -98,9 +98,7 @@ const BlogDetails = ({ pageData }) => {
   return (
     <main className="mt-5 md:mt-5 mx-auto px-4">
       <div className="container  mx-auto max-w-[100%] md:max-w-[80%] bg-transparent mb-32">
-        <div className="text-center">
-       
-        </div>
+        
 
           <div className="relative flex items-center inline-block mx-auto">
             <img
@@ -180,7 +178,7 @@ const BlogDetails = ({ pageData }) => {
 
 
           <div
-            className="text-gray-800 bg-gray-50 p-4 rounded-md pr-[50px]" // Ensures no overlap
+            className="w-full justify-center text-gray-800 bg-gray-50 p-4 rounded-md " // Ensures no overlap
             dangerouslySetInnerHTML={{
               __html: formatTextWithImage(pageData.text, pageData.image_url),
             }}
