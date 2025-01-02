@@ -17,7 +17,7 @@ async function getYoutubeSummary() {
   const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
 
   try {
-    const response = await fetch(`${NEXT_PUBLIC_BE_URL}/youtube_summary`);
+    const response = await fetch(`${NEXT_PUBLIC_BE_URL}/youtube_summary`,{next: { revalidate: 10 },});
     const data = await response.json();
     const youtubeData = data.youtube_summary_list;
     return youtubeData.map((record) => {
@@ -25,6 +25,27 @@ async function getYoutubeSummary() {
       const lastModified = new Date(record.timestamp); // If timestamp is already a valid date string, this works
       return {
         url: `${process.env.NEXT_PUBLIC_BASE_URL}tools/youtube-summary/${record.id}/${slugify(record.video_title)}`, // Slugify the title
+        lastModified: lastModified.toISOString(), // Use timestamp as lastModified
+      };
+    });
+  } catch (error) {
+    console.error("Error fetching data for sitemap:", error);
+    return []; 
+  }
+}
+
+async function getBlogData() {
+  const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
+
+  try {
+    const response = await fetch(`${NEXT_PUBLIC_BE_URL}/blog_creation`,{next: { revalidate: 10 },});
+    const data = await response.json();
+    const blogsData = data.blogs;
+    return blogsData.map((record) => {
+      // Convert record.timestamp to a valid Date format (if necessary)
+      const lastModified = new Date(record.timestamp); // If timestamp is already a valid date string, this works
+      return {
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}tools/blog-generator/${record.id}/${slugify(record.title)}`, // Slugify the title
         lastModified: lastModified.toISOString(), // Use timestamp as lastModified
       };
     });
@@ -47,6 +68,8 @@ export default async function sitemap() {
     lastModified: data?.published_at || new Date(),
   }));
   const youtubeSummaryData = await getYoutubeSummary(); // Fetch YouTube summary data  
+  const blogsData = await getBlogData(); // Fetch YouTube summary data  
+
 
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://swiftsupport.ai";
 
@@ -58,5 +81,6 @@ export default async function sitemap() {
     ...staticPagesData,
     ...blog,
     ...youtubeSummaryData,
+    ...blogsData,
   ];
 }

@@ -44,8 +44,16 @@ const BlogGenerator = ({allContentInfo = []}) => {
   const [activeFAQ, setActiveFAQ] = useState(null);
   const [isCopied, setIsCopied] = useState(false);
 
-
-  console.log(allContentInfo)
+  const slugify = (text) => {
+    return text
+        .toString()
+        .toLowerCase()
+        .replace(/\s+/g, "-") // Replace spaces with -
+        .replace(/[^\w\-]+/g, "") // Remove all non-word chars
+        .replace(/\-\-+/g, "-") // Replace multiple - with single -
+        .replace(/^-+/, "") // Trim - from the start
+        .replace(/-+$/, ""); // Trim - from the end
+};
 
   const features = [
     {
@@ -707,10 +715,19 @@ const BlogGenerator = ({allContentInfo = []}) => {
               {/* Know More Button */}
               <button
                 className="w-full h-10 mt-4 common-button header-btn self-end"
-                onClick={() => handleKnowMore(data)}
+                onClick={() =>
+                  window.location.assign(`/tools/blog-generator/${data.id}/${slugify(data.title)}`)
+                }
               >
                 Know More
               </button>
+
+              {/* <button
+                className="w-full h-10 mt-4 common-button header-btn self-end"
+                onClick={() => handleKnowMore(data)}
+              >
+                Know More
+              </button> */}
             </div>
           );
         })}

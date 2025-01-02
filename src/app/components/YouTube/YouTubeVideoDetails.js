@@ -4,7 +4,7 @@ import YouTube from "react-youtube";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import Link from "next/link";
 import { Send } from "lucide-react";
 
 const YouTubeVideoDetails = ({ pageData }) => {
@@ -90,11 +90,53 @@ const YouTubeVideoDetails = ({ pageData }) => {
   return (
     <main className="mt-5 md:mt-5 mx-auto px-4">
       <div className="container mx-auto max-w-[100%] md:max-w-[80%] bg-transparent mb-32">
-        <div className="text-center">
-          <h1 className="md:text-3xl text-xl font-bold mb-4 mt-2">
-            {pageData.video_title || "Video Title"}
-          </h1>
+
+        <div className="flex flex-col mt-28 mb-5">
+            <Link href="/tools/youtube-summary">
+            <div className="flex items-center space-x-2">
+              <img src="/images/back-arrow.svg" alt="Back" className="w-8 h-8" />
+              <span className="text-sm md:text-base">Back</span>
+            </div>
+            </Link>
         </div>
+
+
+        <div className="relative text-center flex items-center justify-center space-x-4 mb-4 flex-col md:flex-row">
+        <h1 className="text-xl md:text-3xl font-bold mb-4 md:mb-0 mt-2">
+          {pageData.video_title || "Video Title"}
+        </h1>
+
+        {/* Share Button */}
+        <button
+          className="flex bg-gray-200 rounded-md p-4 md:absolute md:top-1 md:right-7 md:space-x-4 justify-center space-x-4 md:justify-end mt-4 md:mt-0"
+          onClick={() => {
+            if (navigator.share) {
+              navigator.share({
+                title: document.title,
+                text: "Check out this page!",
+                url: window.location.href,
+              })
+                .then(() => console.log("Page shared successfully!"))
+                .catch((error) => console.error("Error sharing the page:", error));
+            } else {
+              const currentUrl = window.location.href;
+              navigator.clipboard.writeText(currentUrl);
+              alert(
+                "Sharing is not supported in your browser. The page link has been copied to your clipboard instead."
+              );
+            }
+          }}
+          aria-label="Share this page"
+          style={{ zIndex: 1 }}
+        >
+          <img
+            src="/images/share.svg"
+            alt="Share"
+            className="w-6 h-6"
+          />
+        </button>
+      </div>
+
 
         <div className="flex flex-col items-center justify-center space-y-4 px-4 sm:px-8">
           {videoId ? (
@@ -186,6 +228,15 @@ const YouTubeVideoDetails = ({ pageData }) => {
           <p className="text-gray-900 whitespace-pre-wrap md:text-xl text-sm">
             {pageData.transcript || "Transcript is not available for this video."}
           </p>
+        </div>
+
+        <div className="flex flex-col mt-10 mb-5 items-center ">
+            <Link href="/tools/youtube-summary">
+            <div className="flex items-center space-x-2">
+              <img src="/images/back-arrow.svg" alt="Back" className="w-8 h-8" />
+              <span className="text-sm md:text-base">Back</span>
+            </div>
+            </Link>
         </div>
       </div>
     </main>
