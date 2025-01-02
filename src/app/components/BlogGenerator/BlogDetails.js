@@ -129,7 +129,6 @@ const BlogDetails = ({ pageData }) => {
        
 
 
-        {/* Summary Section */}
         <div className="relative p-4 rounded-lg mt-8 mb-4">
             {/* Title */}
             <h2 className="md:text-3xl text-2xl font-semibold mb-4 text-center">
@@ -178,7 +177,7 @@ const BlogDetails = ({ pageData }) => {
                 <img
                   src="/images/share.svg"
                   alt="Share"
-                  className="w-4 h-4"
+                  className="w-6 h-6"
                 />
               </button>
             </div>
