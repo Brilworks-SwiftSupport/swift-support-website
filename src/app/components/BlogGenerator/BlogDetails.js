@@ -1,9 +1,10 @@
 "use client"
 
 import { useState } from "react";
-
+import Link from "next/link";
 const BlogDetails = ({ pageData }) => {
   const [isCopied, setIsCopied] = useState(false);
+
 
   const formatTextWithImage = (text, image) => {
     // Find the position of the first newline
@@ -99,7 +100,16 @@ const BlogDetails = ({ pageData }) => {
     <main className="mt-5 md:mt-5 mx-auto px-4">
       <div className="container  mx-auto max-w-[100%] md:max-w-[80%] bg-transparent mb-32">
         
-
+           {/* Back Arrow */}
+           <div className="flex flex-col mt-28 mb-5 ">
+            <Link href="/tools/blog-generator">
+            <div className="flex items-center space-x-2">
+              <img src="/images/back-arrow.svg" alt="Back" className="w-8 h-8" />
+              <span className="text-sm md:text-base">Back</span>
+            </div>
+            </Link>
+          </div>
+          
           <div className="relative flex items-center inline-block mx-auto">
             <img
               src={pageData.image_url}
@@ -183,6 +193,15 @@ const BlogDetails = ({ pageData }) => {
               __html: formatTextWithImage(pageData.text, pageData.image_url),
             }}
           />
+
+        <div className="flex flex-col mt-10 mb-5 items-center ">
+            <Link href="/tools/blog-generator">
+            <div className="flex items-center space-x-2">
+              <img src="/images/back-arrow.svg" alt="Back" className="w-8 h-8" />
+              <span className="text-sm md:text-base">Back</span>
+            </div>
+            </Link>
+        </div>
         
       </div>
     </main>
