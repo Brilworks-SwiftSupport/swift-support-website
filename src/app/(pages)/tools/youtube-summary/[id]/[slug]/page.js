@@ -81,8 +81,8 @@ export default async function Page({ params }) {
     }
 
     return (
-        <main className="mb-10 mt-[100px] w-full max-w-[90%] mx-auto px-4">
-            <div className="flex flex-col gap-6 items-center">
+        <main className="mb-10 ">
+            <div className="mt-20">
                 <YouTubeVideoDetails pageData={pageData} />
             </div>
         </main>

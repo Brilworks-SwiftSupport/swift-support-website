@@ -4,7 +4,7 @@ import YouTube from "react-youtube";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import Link from "next/link";
 import { Send } from "lucide-react";
 
 const YouTubeVideoDetails = ({ pageData }) => {
@@ -90,6 +90,17 @@ const YouTubeVideoDetails = ({ pageData }) => {
   return (
     <main className="mt-5 md:mt-5 mx-auto px-4">
       <div className="container mx-auto max-w-[100%] md:max-w-[80%] bg-transparent mb-32">
+
+        <div className="flex flex-col mt-28 mb-5">
+            <Link href="/tools/youtube-summary">
+            <div className="flex items-center space-x-2">
+              <img src="/images/back-arrow.svg" alt="Back" className="w-8 h-8" />
+              <span className="text-sm md:text-base">Back</span>
+            </div>
+            </Link>
+        </div>
+
+
         <div className="text-center">
           <h1 className="md:text-3xl text-xl font-bold mb-4 mt-2">
             {pageData.video_title || "Video Title"}
@@ -186,6 +197,15 @@ const YouTubeVideoDetails = ({ pageData }) => {
           <p className="text-gray-900 whitespace-pre-wrap md:text-xl text-sm">
             {pageData.transcript || "Transcript is not available for this video."}
           </p>
+        </div>
+
+        <div className="flex flex-col mt-10 mb-5 items-center ">
+            <Link href="/tools/youtube-summary">
+            <div className="flex items-center space-x-2">
+              <img src="/images/back-arrow.svg" alt="Back" className="w-8 h-8" />
+              <span className="text-sm md:text-base">Back</span>
+            </div>
+            </Link>
         </div>
       </div>
     </main>
