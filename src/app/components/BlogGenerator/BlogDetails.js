@@ -16,7 +16,7 @@ const BlogDetails = ({ pageData }) => {
         .replace(/(\*\*)(.*?)\1/g, '<strong>$2</strong>') // Bold text using **bold**
         .replace(/^(#{1,6})\s(.*)$/gm, (match, p1, p2) => {
           const level = p1.length;
-          return `<h${level} class="sm:text-xl md:text-2xl text-${level * 2}xl" style="text-align: center; font-size: ${level}em; line-height: 1"><strong>${p2}</strong></h${level}>`;
+          return `<h${level} class="sm:text-sm md:text-xl text-${level * 2}xl" style="text-align: center; font-size: ${level}em; line-height: 1"><strong>${p2}</strong></h${level}>`;
         })
         .replace(/\n/g, '<br />');
     };
@@ -187,7 +187,7 @@ const BlogDetails = ({ pageData }) => {
 
 
         <div
-          className="w-full md:text-2xl text-xl justify-center text-gray-800 bg-gray-50 p-4 rounded-md " // Ensures no overlap
+          className="w-full md:text-xl text-sm justify-center text-gray-800 bg-gray-50 p-4 rounded-md " // Ensures no overlap
           dangerouslySetInnerHTML={{
             __html: formatTextWithImage(pageData.text, pageData.image_url),
           }}
