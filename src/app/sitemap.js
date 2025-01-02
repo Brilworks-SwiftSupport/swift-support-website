@@ -34,6 +34,27 @@ async function getYoutubeSummary() {
   }
 }
 
+async function getBlogData() {
+  const NEXT_PUBLIC_BE_URL = process.env.NEXT_PUBLIC_BE_URL;
+
+  try {
+    const response = await fetch(`${NEXT_PUBLIC_BE_URL}/blog_creation`);
+    const data = await response.json();
+    const blogsData = data.blogs;
+    return blogsData.map((record) => {
+      // Convert record.timestamp to a valid Date format (if necessary)
+      const lastModified = new Date(record.timestamp); // If timestamp is already a valid date string, this works
+      return {
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}tools/blog-generator/${record.id}/${slugify(record.title)}`, // Slugify the title
+        lastModified: lastModified.toISOString(), // Use timestamp as lastModified
+      };
+    });
+  } catch (error) {
+    console.error("Error fetching data for sitemap:", error);
+    return []; 
+  }
+}
+
 export default async function sitemap() {
   const staticPagesData = sitemapData.map((data) => ({
     url: data.loc,
@@ -47,6 +68,8 @@ export default async function sitemap() {
     lastModified: data?.published_at || new Date(),
   }));
   const youtubeSummaryData = await getYoutubeSummary(); // Fetch YouTube summary data  
+  const blogsData = await getBlogData(); // Fetch YouTube summary data  
+
 
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://swiftsupport.ai";
 
@@ -58,5 +81,6 @@ export default async function sitemap() {
     ...staticPagesData,
     ...blog,
     ...youtubeSummaryData,
+    ...blogsData,
   ];
 }
