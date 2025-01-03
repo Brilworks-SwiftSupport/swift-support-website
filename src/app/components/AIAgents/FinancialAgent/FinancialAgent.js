@@ -147,7 +147,7 @@ const FinancialAgent = ({ }) => {
               type="text"
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
-              placeholder="Ask a question about the video..."
+              placeholder="Ask a question about the finance..."
               disabled={isLoading}
               className="flex-1"
             />
