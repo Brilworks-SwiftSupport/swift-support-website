@@ -161,16 +161,7 @@ const FinancialAgent = ({ }) => {
 
         </Card>
 
-        <div className="flex flex-col mt-10 mb-5 items-center ">
-            <Link href="/ai-agents">
-            <div className="flex items-center space-x-2">
-              <img src="/images/back-arrow.svg" alt="Back" className="w-8 h-8" />
-              <span className="text-sm md:text-base">Back</span>
-            </div>
-            </Link>
-        </div>
-
-      
+       
        
       </div>
     </main>
