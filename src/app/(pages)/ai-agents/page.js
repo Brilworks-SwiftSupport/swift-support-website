@@ -18,12 +18,12 @@ export const metadata = {
 const page = () => {
   const agents = [
     {
-      imageUrl: "/images/ai-agents/financial-agent.png",
+      imageUrl: "/images/ai-agents/financial-agent.svg",
       title: "Financial AI Agent",
       description:
-        "Get real-time financial insights, manage expenses, and plan budgets with ease.",
+        "Get financial insights, manage expenses, and plan budgets with ease.",
       link: "/ai-agents/financial-ai-agent",
-      button_title: "Talk With Agent",
+      button_title: "Manage Your Finances with AI",
     },
 
   ];

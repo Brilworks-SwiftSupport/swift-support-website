@@ -13,7 +13,7 @@ const AIAgents = ({
     <div className="max-w-sm bg-[#FFFEEE] border border-gray-200 rounded-3xl shadow hover:shadow-lg transition-shadow duration-300 mb-5">
       <a href={link} >
         <img 
-          className="w-full h-50 object-cover" 
+          className="w-full h-50 object-cover rounded-md" 
           src={imageUrl} 
           alt={imageAlt}
         />
@@ -52,7 +52,7 @@ const AIAgents = ({
 // Grid Container Component
 const AIAgentsGrid = ({ agents }) => {
   return (
-    <div className="container mx-auto py-8 px-4 rounded-lg mb-5">
+    <div className="container mx-auto py-8 px-4 rounded-md mb-5">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-5">
         {agents.map((tool, index) => (
           <AIAgents
