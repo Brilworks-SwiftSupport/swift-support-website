@@ -1,13 +1,14 @@
 "use client"
 import React, { useEffect, useState, useRef } from "react";
-import YouTube from "react-youtube";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { Send } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm"; // For GitHub-flavored markdown (tables, checkboxes, etc.)
 
-const FinancialAgent = ({ }) => {
+const FinancialAgent = () => {
   const [isScrollAreaVisible, setIsScrollAreaVisible] = useState(false);
   const scrollAreaRef = useRef(null);
   const inputRef = useRef(null); // New ref for the input element
@@ -46,6 +47,7 @@ const FinancialAgent = ({ }) => {
         },
         body: JSON.stringify({
           question,
+          chatHistory
         }),
       });
 
@@ -118,6 +120,8 @@ const FinancialAgent = ({ }) => {
         <h2 className="text-2xl font-semibold mb-4 text-center mt-8">
           Chat With Financial AI Agent
         </h2>
+
+        
         {/* Chat Interface */}
         <Card className="mt-8 p-4 mb-4 bg-gray-100">
           {isScrollAreaVisible && (
@@ -135,7 +139,11 @@ const FinancialAgent = ({ }) => {
                       : "bg-gray-100 text-gray-800"
                       }`}
                   >
-                    {message.content}
+                    {message.type === "answer" ? (
+                      <ReactMarkdown remarkPlugins={[remarkGfm]}>{message.content}</ReactMarkdown>
+                    ) : (
+                      message.content
+                    )}
                   </div>
                 </div>
               ))}
@@ -160,6 +168,24 @@ const FinancialAgent = ({ }) => {
           </form>
 
         </Card>
+
+        {/* Predefined Questions Section */}
+        <div className="mb-4 text-center">
+          <h3 className="text-lg font-semibold mb-2">Quick Questions:</h3>
+          <div className="flex flex-wrap justify-center gap-2">
+            {["What is a mutual fund?", "How do I invest in stocks?", "Explain compound interest.", "What is an ETF?"].map(
+              (presetQuestion, index) => (
+                <button
+                  key={index}
+                  onClick={() => setQuestion(presetQuestion)}
+                  className="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-600"
+                >
+                  {presetQuestion}
+                </button>
+              )
+            )}
+          </div>
+        </div>
 
        
        
