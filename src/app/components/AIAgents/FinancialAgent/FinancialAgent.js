@@ -36,7 +36,12 @@ const FinancialAgent = () => {
     if (!question.trim()) return;
 
     setIsLoading(true);
-    const newQuestion = { type: "question", content: question };
+    const newQuestion = { type: "question", content: question,timestamp: new Date().toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second:"2-digit",
+      hour12: true,
+    }), };
     setChatHistory((prev) => [...prev, newQuestion]);
 
     try {
@@ -52,7 +57,12 @@ const FinancialAgent = () => {
       });
 
       const data = await response.json();
-      const newAnswer = { type: "answer", content: data.answer };
+      const newAnswer = { type: "answer", content: data.answer,timestamp: new Date().toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second:"2-digit",
+        hour12: true,
+      }), };
       setChatHistory((prev) => [...prev, newAnswer]);
 
     } catch (error) {
@@ -122,58 +132,70 @@ const FinancialAgent = () => {
         </h2>
 
         
-        {/* Chat Interface */}
-        <Card className="mt-8 p-4 mb-4 bg-gray-100">
-          {isScrollAreaVisible && (
-            <div ref={scrollAreaRef}
-              className="h-[500px] mb-4 p-4 rounded-md bg-gray-50 overflow-y-scroll">
-              {chatHistory.map((message, index) => (
-                <div
-                  key={index}
-                  className={`mb-4 ${message.type === "question" ? "text-right" : "text-left"
-                    }`}
-                >
+       {/* Chat Interface */}
+          <Card className="mt-8 p-4 mb-4 bg-gray-100">
+            {isScrollAreaVisible && (
+              <div
+                ref={scrollAreaRef}
+                className="h-[500px] mb-4 p-4 rounded-md bg-gray-50 overflow-y-scroll"
+              >
+                {chatHistory.map((message, index) => (
                   <div
-                    className={`inline-block p-3 font-semibold rounded-lg max-w-[80%] ${message.type === "question"
-                      ? "bg-gray-800 text-white"
-                      : "bg-gray-100 text-gray-800"
-                      }`}
+                    key={index}
+                    className={`mb-4 ${
+                      message.type === "question" ? "text-right" : "text-left"
+                    }`}
                   >
-                    {message.type === "answer" ? (
-                      <ReactMarkdown remarkPlugins={[remarkGfm]}>{message.content}</ReactMarkdown>
-                    ) : (
-                      message.content
-                    )}
+                    <div
+                      className={`inline-block p-3 font-semibold rounded-lg max-w-[80%] ${
+                        message.type === "question"
+                          ? "bg-gray-800 text-white"
+                          : "bg-gray-100 text-gray-800"
+                      }`}
+                    >
+                      {message.type === "answer" ? (
+                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                          {message.content}
+                        </ReactMarkdown>
+                      ) : (
+                        message.content
+                      )}
+                    </div>
+                    <div
+                      className={`text-xs mt-1 ${
+                        message.type === "question"
+                          ? "text-black-800 text-right"
+                          : "text-black-800 text-left"
+                      }`}
+                    >
+                      {message.timestamp}
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          )}
-          <form onSubmit={handleQuestionSubmit} className="flex gap-2">
-            <Input
-              ref={inputRef}
-              type="text"
-              value={question}
-              onChange={(e) => setQuestion(e.target.value)}
-              placeholder="Ask a question about the finance..."
-              disabled={isLoading}
-              className="flex-1"
-            />
+                ))}
+              </div>
+            )}
+            <form onSubmit={handleQuestionSubmit} className="flex gap-2">
+              <Input
+                ref={inputRef}
+                type="text"
+                value={question}
+                onChange={(e) => setQuestion(e.target.value)}
+                placeholder="Ask a question about the finance..."
+                disabled={isLoading}
+                className="flex-1"
+              />
+              <Button type="submit" disabled={isLoading}>
+                {isLoading ? "Sending..." : <Send className="h-4 w-4" />}
+              </Button>
+            </form>
+          </Card>
 
-
-
-            <Button type="submit" disabled={isLoading}>
-              {isLoading ? "Sending..." : <Send className="h-4 w-4" />}
-            </Button>
-          </form>
-
-        </Card>
 
         {/* Predefined Questions Section */}
         <div className="mb-4 text-center">
           <h3 className="text-lg font-semibold mb-2">Quick Questions:</h3>
           <div className="flex flex-wrap justify-center gap-2">
-            {["What is a mutual fund?", "How do I invest in stocks?", "Explain compound interest.", "What is an ETF?"].map(
+            {["Provide me stock price of tesla","What is a mutual fund?", "How do I invest in stocks?", "Explain compound interest.", "What is an ETF?"].map(
               (presetQuestion, index) => (
                 <button
                   key={index}
