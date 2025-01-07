@@ -414,8 +414,10 @@ const DietRecommendationForm = ({ setApiResponse }) => {
 };
 
 const DietRecommendationDisplay = ({ apiResponse }) => {
-  if (!apiResponse) return null;
   const [activeSet, setActiveSet] = useState("meals");
+
+  if (!apiResponse) return null;
+
   const { response } = apiResponse;
   const { bmi_calculation, diet_plan, nutrition_plan } = response;
 
