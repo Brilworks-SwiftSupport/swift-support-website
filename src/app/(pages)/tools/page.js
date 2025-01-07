@@ -1,7 +1,6 @@
 import { Tools } from "@/app/components/Tools/Tools";
 import React from "react";
 
-
 export const metadata = {
   title: "Free AI Tools – No Login, No Credit Card Required",
   description:
@@ -88,6 +87,7 @@ const page = () => {
       link: "/tools/chat-pdf",
       button_title: "Ask Now",
     },
+
     {
       imageUrl: "/images/doc_generator.svg",
       title: "AI Document Generator",
@@ -96,13 +96,23 @@ const page = () => {
       link: "/tools/ai-doc-generator",
       button_title: "Generate Now",
     },
+
     {
       imageUrl: "/images/Blog.svg",
-      title: "Blog Generator",
+      title: "AI Blog Generator",
       description:
-        "Generate blogs using AI",
+        "Transform your ideas into compelling blogs effortlessly with our AI Blog Generator",
       link: "/tools/blog-generator",
       button_title: "Generate Now",
+    },
+
+    {
+      imageUrl: "/images/diet_recommendation.svg",
+      title: "Diet Recommendation Tool",
+      description:
+        "Personalized nutrition plans with our smart Diet Recommendations Tool.",
+      link: "/tools/diet-recommendation",
+      button_title: "Start your Diet Plan",
     },
   ];
 
