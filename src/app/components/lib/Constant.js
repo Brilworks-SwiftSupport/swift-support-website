@@ -1876,6 +1876,54 @@ export const sitemapData = [
     lastmod: "2024-06-20T12:04:49.528Z",
   },
   {
+    loc: "https://swiftsupport.ai/tools/",
+    lastmod: "2025-01-07T12:04:49.528Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/tools/text-to-voice/",
+    lastmod: "2025-01-07T12:04:49.528Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/tools/voice-to-text/",
+    lastmod: "2025-01-07T12:04:49.528Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/tools/image-generator/",
+    lastmod: "2025-01-07T12:04:49.528Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/tools/ai-paraphraser/",
+    lastmod: "2025-01-07T12:04:49.528Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/tools/plagiarism-checker/",
+    lastmod: "2025-01-07T12:04:49.528Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/tools/ai-content-detector/",
+    lastmod: "2025-01-07T12:04:49.528Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/tools/youtube-summary/",
+    lastmod: "2025-01-07T12:04:49.528Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/tools/chat-pdf/",
+    lastmod: "2025-01-07T12:04:49.528Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/tools/ai-doc-generator/",
+    lastmod: "2025-01-07T12:04:49.528Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/tools/blog-generator/",
+    lastmod: "2025-01-07T12:04:49.528Z",
+  },
+  {
+    loc: "https://www.swiftsupport.ai/tools/diet-recommendation/",
+    lastmod: "2025-01-07T12:04:49.528Z",
+  },
+  {
     loc: "https://swiftsupport.ai/privacy-policy/",
     lastmod: "2024-06-20T12:04:49.528Z",
   },
