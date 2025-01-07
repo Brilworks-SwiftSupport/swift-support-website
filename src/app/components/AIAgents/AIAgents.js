@@ -1,7 +1,6 @@
 import React from 'react';
 
-// Individual Tool Card Component
-const Tools = ({
+const AIAgents = ({
   imageUrl,
   title,
   description,
@@ -51,12 +50,12 @@ const Tools = ({
 };
 
 // Grid Container Component
-const ToolsGrid = ({ tools }) => {
+const AIAgentsGrid = ({ agents }) => {
   return (
-    <div className="container mx-auto py-8 px-4 rounded-lg mb-5">
+    <div className="container mx-auto py-8 px-4 rounded-md mb-5">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-5">
-        {tools.map((tool, index) => (
-          <Tools
+        {agents.map((tool, index) => (
+          <AIAgents
             key={index}
             imageUrl={tool.imageUrl}
             title={tool.title}
@@ -72,4 +71,4 @@ const ToolsGrid = ({ tools }) => {
   );
 };
 
-export { Tools, ToolsGrid };
+export { AIAgents, AIAgentsGrid };

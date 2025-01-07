@@ -277,6 +277,15 @@ const Header = () => {
         >
           Tools
         </Link>
+        {/* <Link
+          href="/ai-agents"
+          onClick={() => setOpenNav(false)}
+          className={` w-full nav-underline md:border-b-0 border-b border-[#e5e7eb] flex items-center md:justify-center justify-start font-medium !px-3 ${
+            openNav ? "md:mt-9" : ""
+          }`}
+        >
+          Agents
+        </Link> */}
 
         <Link
           // href="https://cal.com/hiteshr/15min"
