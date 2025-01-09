@@ -25,6 +25,14 @@ const page = () => {
       link: "/ai-agents/financial-ai-agent",
       button_title: "Manage Your Finances with AI",
     },
+    {
+      imageUrl: "/images/ai-agents/financial-agent.svg",
+      title: "Product Requirements Document Agent",
+      description:
+        "Product Requirements Document Agent",
+      link: "/ai-agents/prd-ai-agent",
+      button_title: "Generate Your Product Requirements Document",
+    },
 
   ];
 
