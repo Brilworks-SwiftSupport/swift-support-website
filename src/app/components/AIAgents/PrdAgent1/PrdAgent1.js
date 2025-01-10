@@ -132,63 +132,131 @@ const PrdAgent1 = () => {
         </h2>
 
         
-       {/* Chat Interface */}
-          <Card className="mt-8 p-4 mb-4 bg-gray-100">
-            {isScrollAreaVisible && (
+        <Card className="mt-8 p-4 mb-4 bg-gray-100">
+        {isScrollAreaVisible && (
+          <div
+            ref={scrollAreaRef}
+            className="h-[500px] mb-4 p-4 rounded-md bg-gray-50 overflow-y-scroll"
+          >
+            {chatHistory.map((message, index) => (
               <div
-                ref={scrollAreaRef}
-                className="h-[500px] mb-4 p-4 rounded-md bg-gray-50 overflow-y-scroll"
+                key={index}
+                className={`mb-4 ${
+                  message.type === "question" ? "text-right" : "text-left"
+                }`}
               >
-                {chatHistory.map((message, index) => (
-                  <div
-                    key={index}
-                    className={`mb-4 ${
-                      message.type === "question" ? "text-right" : "text-left"
-                    }`}
-                  >
-                    <div
-                      className={`inline-block p-3 font-semibold rounded-lg max-w-[80%] ${
-                        message.type === "question"
-                          ? "bg-gray-800 text-white"
-                          : "bg-gray-100 text-gray-800"
-                      }`}
+                <div
+                  className={`inline-block p-3 font-semibold rounded-lg max-w-[80%] ${
+                    message.type === "question"
+                      ? "bg-gray-800 text-white"
+                      : "bg-gray-100 text-gray-800"
+                  }`}
+                >
+                  {message.type === "answer" ? (
+                    <ReactMarkdown
+                      remarkPlugins={[remarkGfm]}
+                      components={{
+                        a: ({ href, children }) => (
+                          <a
+                            href={href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-500 hover:underline font-medium"
+                          >
+                            {children}
+                          </a>
+                        ),
+                      }}
                     >
-                      {message.type === "answer" ? (
-                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                          {message.content}
-                        </ReactMarkdown>
-                      ) : (
-                        message.content
-                      )}
-                    </div>
-                    <div
-                      className={`text-xs mt-1 ${
-                        message.type === "question"
-                          ? "text-black-800 text-right"
-                          : "text-black-800 text-left"
-                      }`}
-                    >
-                      {message.timestamp}
-                    </div>
+                      {message.content}
+                    </ReactMarkdown>
+                  ) : (
+                    message.content
+                  )}
+                </div>
+                <div
+                  className={`text-xs mt-1 ${
+                    message.type === "question"
+                      ? "text-black-800 text-right"
+                      : "text-black-800 text-left"
+                  }`}
+                >
+                  {message.timestamp}
+                </div>
+              </div>
+            ))}
+            {/* Loader when generating an answer */}
+            {isLoading && (
+              <div className="text-left mt-4">
+                <div className="inline-block p-3 font-semibold rounded-lg bg-gray-100 text-gray-800">
+                  <div className="loader-animation mt-2">
+                    <span className="dot dot-1"></span>
+                    <span className="dot dot-2"></span>
+                    <span className="dot dot-3"></span>
                   </div>
-                ))}
+                </div>
+                <style jsx>{`
+                  .loader-animation {
+                    display: flex;
+                    gap: 4px;
+                    justify-content: center;
+                    align-items: center;
+                    margin-top: 8px;
+                  }
+
+                  .dot {
+                    width: 14px;
+                    height: 14px;
+                    background-color: #3498db; /* Blue */
+                    border-radius: 50%;
+                    animation: pulse 1.5s infinite ease-in-out;
+                  }
+
+                  .dot-1 {
+                    animation-delay: 0s;
+                  }
+
+                  .dot-2 {
+                    animation-delay: 0.3s;
+                  }
+
+                  .dot-3 {
+                    animation-delay: 0.6s;
+                  }
+
+                  @keyframes pulse {
+                    0%,
+                    80%,
+                    100% {
+                      transform: scale(0);
+                      background-color: #3498db; /* Blue */
+                    }
+                    40% {
+                      transform: scale(1);
+                      background-color: #2ecc71; /* Green */
+                    }
+                  }
+                `}</style>
               </div>
             )}
-            <form onSubmit={handleQuestionSubmit} className="flex gap-2">
-              <Input
-                ref={inputRef}
-                type="text"
-                value={question}
-                onChange={(e) => setQuestion(e.target.value)}
-                placeholder="Ask a question about the finance..."
-                disabled={isLoading}
-                className="flex-1"
-              />
-              <Button type="submit" disabled={isLoading}>
-                {isLoading ? "Sending..." : <Send className="h-4 w-4" />}
-              </Button>
-            </form>
-          </Card>
+
+          </div>
+        )}
+        <form onSubmit={handleQuestionSubmit} className="flex gap-2">
+          <Input
+            ref={inputRef}
+            type="text"
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
+            placeholder="Ask a question about the finance..."
+            disabled={isLoading}
+            className="flex-1"
+          />
+          <Button type="submit" disabled={isLoading}>
+            {isLoading ? "Sending..." : <Send className="h-4 w-4" />}
+          </Button>
+        </form>
+      </Card>
 
 
         {/* Predefined Questions Section */}
