@@ -19,7 +19,7 @@ async function fetchData(slug) {
 
   try {
     const res = await fetch(url.toString(), {
-      next: { revalidate: 3600 },
+      next: { revalidate: 300 },
       headers: { "Accept-Encoding": "gzip" }, // Enable compression
     });
 
@@ -222,7 +222,7 @@ async function getBlogData() {
 
   try {
     const res = await fetch(url.toString(), {
-      next: { revalidate: 3600 },
+      next: { revalidate: 300 },
       headers: { "Accept-Encoding": "gzip" }, // Enable compression
     });
 
@@ -235,4 +235,4 @@ async function getBlogData() {
   }
 }
 
-export const revalidate = 3600;
+export const revalidate = 300;
