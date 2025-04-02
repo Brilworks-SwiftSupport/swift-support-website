@@ -90,6 +90,7 @@ const HeroSection = () => {
                 <Link
                   href="https://app.swiftsupport.ai/signup"
                   target="_blank"
+                  rel="noopener nofollow"
                   className="common-button try-now-btn rounded-[80px] px-[30px] py-[18px]"
                 >
                   Try For Free

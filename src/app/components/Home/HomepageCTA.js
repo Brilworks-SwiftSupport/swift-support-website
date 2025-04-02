@@ -11,6 +11,7 @@ const HomepageCTA = ({ title, buttonText, buttonLink, id }) => {
             <Link
               href={buttonLink || "#"}
               className="common-button black-button"
+              rel="nofollow"
             >
               {buttonText}
             </Link>

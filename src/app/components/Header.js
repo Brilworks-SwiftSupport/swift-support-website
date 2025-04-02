@@ -303,7 +303,7 @@ const Header = () => {
       </div> */}
       <div className="w-full flex items-center justify-center">
         <Link
-          rel="noopener"
+          rel="noopener nofollow"
           target="_blank"
           href="https://app.swiftsupport.ai/login"
           onClick={() => setOpenNav(false)}
@@ -389,7 +389,7 @@ const Header = () => {
             </div>
             <div className="md:block hidden">
               <Link
-                rel="noopener"
+                rel="noopener nofollow"
                 target="_blank"
                 href="https://app.swiftsupport.ai/login"
                 onClick={() => setOpenNav(false)}
