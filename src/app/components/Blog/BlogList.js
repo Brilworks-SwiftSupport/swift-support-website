@@ -81,7 +81,6 @@ async function BlogList({ searchParams }) {
                       content?.Image?.alt ||
                       `Blog-List-banner-${index + 1}`
                     }
-                    quality={40}
                     width={310}
                     height={150}
                     priority={index === 0}
