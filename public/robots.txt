@@ -4,5 +4,6 @@ Disallow: /?s=
 Disallow: /search/
 Disallow: /next/static
 Disallow: /signup
+Disallow: /blog/?page=
 
 Sitemap: https://www.swiftsupport.ai/sitemap.xml
