@@ -114,6 +114,14 @@ const page = () => {
       link: "/tools/diet-recommendation",
       button_title: "Start your Diet Plan",
     },
+    {
+      imageUrl: "/images/ai_astrology.png",
+      title: "AI Astrology tool",
+      description:
+        "Discover your unique birth chart and rising sign with insights written in the stars.",
+      link: "/tools/astrology",
+      button_title: "Generate now",
+    },
   ];
 
   return (
