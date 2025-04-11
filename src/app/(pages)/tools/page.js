@@ -122,6 +122,14 @@ const page = () => {
       link: "/tools/astrology",
       button_title: "Generate now",
     },
+    {
+      imageUrl: "/images/business_value_proposition_generator.webp",
+      title: "AI Business Value Generator Tool",
+      description:
+        "Discover high-impact AI opportunities tailored to your business and prioritize them for maximum ROI and efficiency.",
+      link: "/tools/business-value",
+      button_title: "Generate now",
+    },
   ];
 
   return (
