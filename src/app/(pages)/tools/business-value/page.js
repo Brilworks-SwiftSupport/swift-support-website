@@ -2,21 +2,21 @@ import React from "react";
 import ValuePropostion from "@/app/components/ValueProposition/ValueProposition";
 
 export const metadata = {
-  title: "Free AI Astrology Tool to Unlock Your Cosmic Self",
+  title: "Free Value Proposition Generator",
   description:
-    "Discover your unique birth chart and rising sign with insights written in the stars. Personalized astrology powered by AI.",
+    "Use our free Value Proposition Generator to craft compelling product messages that connect with your audience instantly.",
   keywords:
-    "AI astrology tool, birth chart generator, rising sign, natal chart, personalized astrology, free astrology tool, zodiac, horoscope, star chart, cosmic insights, astrology app",
+    "value proposition generator, business value proposition, AI value proposition tool, brand positioning, unique selling proposition, AI marketing tools, free marketing copy generator, startup pitch generator, SaaS value proposition",
   openGraph: {
-    title: "Free AI Astrology Tool to Unlock Your Cosmic Self",
+    title: "Free Value Proposition Generator",
     description:
-      "Discover your unique birth chart and rising sign with insights written in the stars. Personalized astrology powered by AI.",
+      "Use our free Value Proposition Generator to craft compelling product messages that connect with your audience instantly.",
     images: [
       {
         url: "/diet-recommendation/images/diet_recommendation.svg",
         width: 1200,
         height: 630,
-        alt: "AI Astrology Tool Preview",
+        alt: "AI Value Proposition Tool Preview",
       },
     ],
   },

@@ -4,13 +4,13 @@ import Astrology from "@/app/components/Astrology/Astrology";
 export const metadata = {
   title: "Free AI Astrology Tool to Unlock Your Cosmic Self",
   description:
-    "Discover your unique birth chart and rising sign with insights written in the stars. Personalized astrology powered by AI.",
+    "Get accurate AI-powered astrology predictions for your career, love, and future. Enter birth details for a custom birth chart reading.",
   keywords:
     "AI astrology tool, birth chart generator, rising sign, natal chart, personalized astrology, free astrology tool, zodiac, horoscope, star chart, cosmic insights, astrology app",
   openGraph: {
     title: "Free AI Astrology Tool to Unlock Your Cosmic Self",
     description:
-      "Discover your unique birth chart and rising sign with insights written in the stars. Personalized astrology powered by AI.",
+      "Get accurate AI-powered astrology predictions for your career, love, and future. Enter birth details for a custom birth chart reading.",
     images: [
       {
         url: "/diet-recommendation/images/diet_recommendation.svg",
