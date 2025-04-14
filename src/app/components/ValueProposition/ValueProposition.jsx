@@ -228,49 +228,49 @@ const ValuePropostion = () => {
   const features = [
     {
       icon: personalizedRecommendation,
-      title: "Personalized Cosmic Blueprint",
+      title: "AI-Generated Value Propositions",
       description:
-        "Generate your full birth chart based on your exact birth details — and see how every planet shapes your path.",
+        "Instantly get concise, high-impact statements tailored to your business and audience.",
     },
     {
       icon: nutrientTracking,
-      title: "Life Insights That Hit Home",
+      title: "Built for Startups & Marketers",
       description:
-        "From job changes to relationship shifts, get tailored predictions for what’s coming next — and how to navigate it.",
+        "Whether you’re pitching investors, building landing pages, or crafting social ads, this tool makes your message crystal clear.",
     },
     {
       icon: customizablePortions,
-      title: "Instant, Private & Judgment-Free",
+      title: "Customizable Outputs",
       description:
-        "No waiting. No awkward questions. Just real answers from AI that gets you — delivered in seconds.",
+        "Get suggestions you can tweak and refine based on your style or platform.",
     },
   ];
 
   const faqItems = [
     {
-      question: "How accurate is the AI Astrology tool?",
+      question: "What is a value proposition?",
       answer:
-        "It uses accurate astrological data combined with AI interpretation to give reliable and personalized results.",
+        "It’s a short, powerful statement that explains why your product is valuable, who it’s for, and what makes it unique.",
     },
     {
-      question: "Do I need to provide my exact birth time and place?",
+      question: "Who should use this tool?",
       answer:
-        "Yes, for the most accurate predictions, your birth time, date, and location are essential.",
+        "Startup founders, marketers, product managers—anyone needing clear messaging to attract and convert users.",
     },
     {
-      question: "What areas of life does it cover?",
+      question: "Can I generate more than one version?",
       answer:
-        "It provides insights into relationships, career, personality traits, life path, and more.",
+        "Yes! You can tweak your inputs and generate as many variations as you like.",
     },
     {
       question: "Is this tool free to use?",
       answer:
-        "Yes, our AI Astrology Tool is completely free—no signup, no payment required.",
+        "Yes, the Business Value Proposition Tool is 100% free. No sign-ups, no credit cards.",
     },
     {
-      question: "Can I use it without astrology knowledge?",
+      question: "How do I use the output?",
       answer:
-        "Absolutely. The tool translates complex astrology into simple, easy-to-understand insights.",
+        "Use it for your website, pitch decks, emails, investor docs, or wherever you need to communicate value fast.",
     },
   ];
 
@@ -291,20 +291,20 @@ const ValuePropostion = () => {
         {/* Title Section */}
         <h1 className="text-center text-2xl sm:text-3xl md:text-[54px] font-urbanist font-bold leading-[1.2] mb-4 mt-6 md:mt-12">
           <span className="inline-block md:mb-6">
-            Unlock your cosmic self with
+            Shape Your Brand Story with
           </span>{" "}
           <span className="inline-block md:mb-1">
             <span className="relative inline-block mb-2 md:mb-6">
-              our AI Astrology
+              Value Proposition Generator
               <div className="absolute left-0 banner-underline md:!mt-3 !w-[200px] md:!w-[450px] !max-w-none"></div>{" "}
-            </span>{" "}
-            Tool.
+            </span>
           </span>
         </h1>
+
         {/* Subtitle */}
         <p className="relative text-center text-[#212121] font-urbanist font-medium text-sm sm:text-base md:text-[24px] px-4">
-          Discover your unique birth chart and rising sign with insights written
-          in the stars.
+          Generate powerful value propositions that highlight your product’s
+          unique impact.
         </p>
         {/* Tools List */}
         <div className="flex flex-wrap gap-4 mt-[30px] md:mt-[56px] md:ml-12 px-4 md:px-0">
@@ -351,15 +351,14 @@ const ValuePropostion = () => {
 
         {/* Content Section */}
         <DetailSection
-          title="Discover What the Stars Say About You"
-          description="Uncover insights about your future, career, relationships, and more with our AI-powered Astrology Tool. Just enter your birth date, time, and location to receive personalized astrological predictions. Whether you're seeking clarity or just curious, let the cosmos guide your journey with tailored insights based on your unique birth chart."
+          title="Craft Meaningful Value Propositions That Truly Resonate"
+          description="You know your product can make a difference—now it’s time to say it right. Our AI-powered tool helps you create clear, compelling value propositions tailored to your audience."
         />
         <FeatureSection features={features} />
         <UsageExplanationSection
-          title="How Does AI Astrology Work?"
+          title="How Does It Work?"
           explanation={[
-            "Our AI Astrology Tool uses advanced algorithms and real-time astrological data to generate accurate readings. After you enter your birth time, date, and place, the AI creates a personalized natal chart and interprets key elements like your sun sign, moon sign, rising sign, and planetary placements.",
-            "These are then translated into meaningful insights about your personality, relationships, career, and life path. Whether you're seeking clarity or simply curious, the tool offers quick, reliable, and customized astrology reports—no appointments needed.",
+            "Start by entering the product name, who it's for, the pain point you’re solving, a list of key features, and your unique selling proposition. The AI will analyze the inputs and generate a professional value proposition that highlights why your product matters. Perfect for startups, entrepreneurs, and marketers who want to stand out—without the guesswork.",
           ]}
         />
         <FAQSection

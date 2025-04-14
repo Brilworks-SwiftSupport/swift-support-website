@@ -116,7 +116,7 @@ const page = () => {
     },
     {
       imageUrl: "/images/ai_astrology.png",
-      title: "AI Astrology tool",
+      title: "AI Astrology",
       description:
         "Discover your unique birth chart and rising sign with insights written in the stars.",
       link: "/tools/astrology",
@@ -124,9 +124,9 @@ const page = () => {
     },
     {
       imageUrl: "/images/business_value_proposition_generator.webp",
-      title: "AI Business Value Generator Tool",
+      title: "AI Value Proposition",
       description:
-        "Discover high-impact AI opportunities tailored to your business and prioritize them for maximum ROI and efficiency.",
+        "Generate powerful value propositions that highlight your product’s unique impact.",
       link: "/tools/business-value",
       button_title: "Generate now",
     },
