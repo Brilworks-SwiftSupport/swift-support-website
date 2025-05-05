@@ -114,6 +114,22 @@ const page = () => {
       link: "/tools/diet-recommendation",
       button_title: "Start your Diet Plan",
     },
+    {
+      imageUrl: "/images/ai_astrology.png",
+      title: "AI Astrology",
+      description:
+        "Discover your unique birth chart and rising sign with insights written in the stars.",
+      link: "/tools/astrology",
+      button_title: "Generate now",
+    },
+    {
+      imageUrl: "/images/business_value_proposition_generator.webp",
+      title: "AI Value Proposition",
+      description:
+        "Generate powerful value propositions that highlight your product’s unique impact.",
+      link: "/tools/business-value",
+      button_title: "Generate now",
+    },
   ];
 
   return (
