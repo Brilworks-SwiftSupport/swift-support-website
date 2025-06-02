@@ -1,3 +1,4 @@
+import { formatSrcUrl } from "@/app/lib/commonFunctions";
 import Image from "next/image";
 import React from "react";
 
@@ -36,7 +37,7 @@ const SolutionHowAIAgent = ({ title, aiAgentTransformation }) => {
               >
                 <Image
                   className="rounded-[20px]"
-                  src={image?.filename}
+                  src={formatSrcUrl(image?.filename)}
                   alt={`${title}-img`}
                   width="520"
                   height="280"

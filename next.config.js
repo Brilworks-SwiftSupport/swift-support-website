@@ -13,6 +13,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "youtube.com",
       },
+      {
+        protocol: "https",
+        hostname: "d11qzsb0ksp6iz.cloudfront.net",
+      },
     ],
   },
   redirects: async () => {

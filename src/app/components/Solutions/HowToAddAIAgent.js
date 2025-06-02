@@ -1,3 +1,4 @@
+import { formatSrcUrl } from "@/app/lib/commonFunctions";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -10,7 +11,7 @@ const HowToAddAIAgent = ({ howToAddAIAgentData }) => {
     <div
       className="solutions xl:py-[90px] lg:py-[60px] md:py-10 py-8 !px-4 lg:px-0 relative"
       style={{
-        backgroundImage: `url(${banner_image?.filename})`,
+        backgroundImage: `url(${formatSrcUrl(banner_image?.filename)})`,
         backgroundPosition: "center",
         backgroundSize: "fill",
         backgroundRepeat: "no-repeat",

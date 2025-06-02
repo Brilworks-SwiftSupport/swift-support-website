@@ -1,3 +1,4 @@
+import { formatSrcUrl } from "@/app/lib/commonFunctions";
 import Image from "next/image";
 import React from "react";
 
@@ -13,7 +14,7 @@ const SolutionSection2 = ({ data }) => {
           </p>
           <Image
             className="h-full lg:w-[80%] w-full mx-auto px-5"
-            src={banner_image?.filename}
+            src={formatSrcUrl(banner_image?.filename)}
             alt={banner_image?.alt || "Lead-captured"}
             width="995"
             height="480"

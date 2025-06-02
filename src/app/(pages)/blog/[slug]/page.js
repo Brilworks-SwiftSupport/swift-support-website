@@ -4,6 +4,7 @@ import {
   formattedDate,
 } from "@/app/components/lib/Common";
 import Svgs from "@/app/components/lib/Svgs";
+import { formatSrcUrl } from "@/app/lib/commonFunctions";
 import StoryblokStory from "@storyblok/react/story";
 import Image from "next/image";
 import Link from "next/link";
@@ -44,8 +45,9 @@ export async function generateMetadata({ params }) {
   ]
     .filter(Boolean)
     .join(" ");
-  const ogImage =
-    content?.metatags?.og_image || content?.mobile_banner?.filename;
+  const ogImage = formatSrcUrl(
+    content?.metatags?.og_image || content?.mobile_banner?.filename
+  );
 
   return {
     title: content?.metatags?.title || content?.title,
@@ -65,7 +67,9 @@ export async function generateMetadata({ params }) {
       site: "@_Swiftsupport",
       creator: "@_Swiftsupport",
       images: [
-        content?.metatags?.twitter_image || content?.mobile_banner?.filename,
+        formatSrcUrl(
+          content?.metatags?.twitter_image || content?.mobile_banner?.filename
+        ),
       ],
     },
     authors: [{ name: content?.author }],
@@ -152,10 +156,10 @@ export default async function Page({ params }) {
               <div className="h-auto relative md:mb-6 mb-4 slg:!w-[calc(100%_-_170px)] overflow-hidden bg-cover bg-center">
                 <Image
                   className="rounded-lg block md:hidden max-h-[288px] h-auto object-cover"
-                  src={
+                  src={formatSrcUrl(
                     story?.content?.mobile_banner?.filename ||
-                    story?.content?.image?.filename
-                  }
+                      story?.content?.image?.filename
+                  )}
                   alt={story?.content?.image?.alt}
                   width="343"
                   height="177"
@@ -164,10 +168,10 @@ export default async function Page({ params }) {
                 />
                 <Image
                   className="rounded-lg hidden md:block max-h-[288px] h-auto object-cover"
-                  src={
+                  src={formatSrcUrl(
                     story?.content?.image?.filename ||
-                    story?.content?.mobile_banner?.filename
-                  }
+                      story?.content?.mobile_banner?.filename
+                  )}
                   alt={story?.content?.image?.alt}
                   width="758"
                   height="169"
