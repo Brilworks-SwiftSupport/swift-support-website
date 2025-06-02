@@ -8,6 +8,7 @@ import { formattedDate } from "../lib/Common";
 import Svgs from "../lib/Svgs";
 import BeatLoader from "../Loader";
 import SearchDiv from "./SearchDiv";
+import { formatSrcUrl } from "@/app/lib/commonFunctions";
 
 const ITEMS_PER_PAGE = 9;
 
@@ -75,7 +76,7 @@ async function BlogList({ searchParams }) {
                 <div className="flex-[0.5]">
                   <Image
                     className="block md:hidden w-full zoom-image"
-                    src={content?.mobile_banner?.filename}
+                    src={formatSrcUrl(content?.mobile_banner?.filename)}
                     alt={
                       content?.mobile_banner?.alt ||
                       content?.Image?.alt ||
@@ -89,7 +90,7 @@ async function BlogList({ searchParams }) {
                   />
                   <Image
                     className="hidden md:block w-full zoom-image"
-                    src={content?.mobile_banner?.filename}
+                    src={formatSrcUrl(content?.mobile_banner?.filename)}
                     alt={
                       content?.mobile_banner?.alt ||
                       content?.Image?.alt ||

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { WhyGridIconWithText } from "../Home/WhySwiftSupport";
+import { formatSrcUrl } from "@/app/lib/commonFunctions";
 
 const SolutionKeyAdvantages = ({ title, rightSideImage, leftSideData }) => {
   return (
@@ -17,7 +18,7 @@ const SolutionKeyAdvantages = ({ title, rightSideImage, leftSideData }) => {
                   <WhyGridIconWithText
                     title={data?.title}
                     description={data?.description}
-                    imageSrc={data?.image?.filename}
+                    imageSrc={formatSrcUrl(data?.image?.filename)}
                   />
                 </div>
                 {index !== 3 && (
@@ -29,7 +30,7 @@ const SolutionKeyAdvantages = ({ title, rightSideImage, leftSideData }) => {
           <div className="">
             <Image
               className="w-full mx-auto"
-              src={rightSideImage?.filename}
+              src={formatSrcUrl(rightSideImage?.filename)}
               alt={rightSideImage?.alt || "key-advantages"}
               width="424"
               height="894"

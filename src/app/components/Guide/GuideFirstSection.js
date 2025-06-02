@@ -3,6 +3,7 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import { formatSrcUrl } from "@/app/lib/commonFunctions";
 
 const GuideFirstSection = ({ data }) => {
   const { title, description, banner_image, button_text, youtube_link } = data;
@@ -44,7 +45,7 @@ const GuideFirstSection = ({ data }) => {
               ) : (
                 <Image
                   className="h-full"
-                  src={banner_image?.filename}
+                  src={formatSrcUrl(banner_image?.filename)}
                   alt={banner_image?.alt || "guide-banner-image"}
                   width="650"
                   height="400"

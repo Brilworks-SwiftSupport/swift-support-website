@@ -12,6 +12,7 @@ import { usePathname } from "next/navigation";
 import { blogAuthor, formattedDate } from "./lib/Common";
 import BlogFAQ from "./Blog/BlogFAQ";
 import Svgs from "./lib/Svgs";
+import { formatSrcUrl } from "../lib/commonFunctions";
 
 const BlogContactForm = dynamic(() => import("./Blog/BlogContactForm"));
 
@@ -401,7 +402,7 @@ const Article = ({ blok }) => {
                         <div className="flex-[0.5]">
                           <Image
                             className="block md:hidden w-full zoom-image"
-                            src={content?.mobile_banner?.filename}
+                            src={formatSrcUrl(content?.mobile_banner?.filename)}
                             alt={
                               content?.mobile_banner?.alt ||
                               content?.Image?.alt ||
@@ -415,7 +416,7 @@ const Article = ({ blok }) => {
                           />
                           <Image
                             className="hidden md:block w-full zoom-image"
-                            src={content?.mobile_banner?.filename}
+                            src={formatSrcUrl(content?.mobile_banner?.filename)}
                             alt={
                               content?.mobile_banner?.alt ||
                               content?.Image?.alt ||
