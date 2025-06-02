@@ -2,6 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { formatSrcUrl } from "@/app/lib/commonFunctions";
 
 const SolutionHeroSection = ({ title, description, image, buttontext }) => {
   return (
@@ -30,7 +31,7 @@ const SolutionHeroSection = ({ title, description, image, buttontext }) => {
             <div className="lg:w-1/2 w-full">
               <Image
                 className="!w-full"
-                src={image?.filename}
+                src={formatSrcUrl(image?.filename)}
                 alt={image?.alt || "guide-banner-image"}
                 width="525"
                 height="550"
