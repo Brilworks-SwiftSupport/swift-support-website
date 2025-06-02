@@ -115,7 +115,7 @@ export default async function Page({ params }) {
                 {author && (
                   <div className="flex items-center justify-between">
                     <Image
-                      src={author?.authorImage}
+                      src={formatSrcUrl(author?.authorImage)}
                       width="54"
                       height="56"
                       alt={author?.name}
