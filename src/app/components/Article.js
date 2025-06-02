@@ -335,7 +335,7 @@ const Article = ({ blok }) => {
                                   <img
                                     decoding="async"
                                     loading="lazy"
-                                    src={author?.authorImage}
+                                    src={formatSrcUrl(author?.authorImage)}
                                     width="96"
                                     height="96"
                                     alt={author?.name}
