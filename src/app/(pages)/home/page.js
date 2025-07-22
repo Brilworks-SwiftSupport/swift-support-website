@@ -41,7 +41,7 @@ const page = () => {
             Platforms!
           </>
         }
-        buttonLink="/contact/"
+        buttonLink="https://cal.com/swiftsupport/demo"
         buttonText="Start Free Trial"
       />
       <AppIntegrationSection />

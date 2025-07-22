@@ -20,7 +20,7 @@ const SolutionCTA = ({ title, desc, buttonText, buttonLink }) => {
           )}
           <div className="flex items-center justify-center">
             <Link
-              href={buttonLink || "/contact/"}
+              href={buttonLink || "https://cal.com/swiftsupport/demo"}
               rel="noopener nofollow"
               className="common-button black-button border-colorBlack"
             >

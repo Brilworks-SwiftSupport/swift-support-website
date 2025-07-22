@@ -88,7 +88,7 @@ const HeroSection = () => {
                   Watch Demo
                 </Link>
                 <Link
-                  href="/contact/"
+                  href="https://cal.com/swiftsupport/demo"
                   target="_blank"
                   rel="noopener nofollow"
                   className="common-button try-now-btn rounded-[80px] px-[30px] py-[18px]"
