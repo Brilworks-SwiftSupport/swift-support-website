@@ -41,7 +41,7 @@ const page = () => {
             Platforms!
           </>
         }
-        buttonLink="https://app.swiftsupport.ai/signup"
+        buttonLink="/contact/"
         buttonText="Start Free Trial"
       />
       <AppIntegrationSection />

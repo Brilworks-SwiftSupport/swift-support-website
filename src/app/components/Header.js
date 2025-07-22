@@ -305,7 +305,7 @@ const Header = () => {
         <Link
           rel="noopener nofollow"
           target="_blank"
-          href="https://app.swiftsupport.ai/login"
+          href="/contact/"
           onClick={() => setOpenNav(false)}
           className={`${openNav ? "" : "!hidden"} ${
             pathname.includes("agent-copilot")
@@ -391,7 +391,7 @@ const Header = () => {
               <Link
                 rel="noopener nofollow"
                 target="_blank"
-                href="https://app.swiftsupport.ai/login"
+                href="/contact/"
                 onClick={() => setOpenNav(false)}
                 className={`${
                   pathname.includes("agent-copilot")

@@ -29,7 +29,7 @@ const PricingPlan = () => {
             "Hubspot integration",
             "Google drive integration",
           ],
-          buttonLink: "https://app.swiftsupport.ai/login",
+          buttonLink: "/contact/",
           buttonText: "Get Started",
         },
         {
@@ -50,7 +50,7 @@ const PricingPlan = () => {
             "HubSpot integration",
             "Google drive integration",
           ],
-          buttonLink: "https://app.swiftsupport.ai/login",
+          buttonLink: "/contact/",
           buttonText: "Subscribe",
         },
         {
@@ -94,7 +94,7 @@ const PricingPlan = () => {
             "Hubspot integration",
             "Google drive integration",
           ],
-          buttonLink: "https://app.swiftsupport.ai/login",
+          buttonLink: "/contact/",
           buttonText: "Get Started",
         },
         {
@@ -115,7 +115,7 @@ const PricingPlan = () => {
             "HubSpot integration",
             "Google drive integration",
           ],
-          buttonLink: "https://app.swiftsupport.ai/login",
+          buttonLink: "/contact/",
           buttonText: "Subscribe",
         },
         {

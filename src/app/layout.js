@@ -68,20 +68,6 @@ export default function RootLayout({ children }) {
                 })(window, document, "clarity", "script", '${process.env.CLARITY_ID}');`}
               </Script>
 
-              <Script
-                defer
-                id="chatbot-widget-script"
-                strategy="afterInteractive"
-              >
-                {`window.chatBotConfig = {agentId: 213};
-                (function() {
-                  var script = document.createElement('script');
-                  script.defer = true;
-                  script.src = "https://app.swiftsupport.ai/ChatbotScripts/chatbotBubble.js";
-                  document.body.appendChild(script);
-                })();
-              `}
-              </Script>
             </>
           ) : (
             <>
@@ -94,15 +80,7 @@ export default function RootLayout({ children }) {
                   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
                   })(window,document,'script','dataLayer','GTM-PZQ9LFDT');`}</Script>
-              <Script
-                strategy="afterInteractive"
-                id="chatbot"
-              >{`window.chatBotConfig = {agentId: 192}`}</Script>
-              <Script
-                strategy="afterInteractive"
-                id="chatbot-widget-script"
-                src="https://app.swiftsupport.ai/ChatbotScripts/chatbotBubble.js"
-              />
+              
               <Script
                 src="https://accounts.google.com/gsi/client"
                 strategy="beforeInteractive"
