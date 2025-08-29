@@ -44,7 +44,7 @@ const Header = () => {
   useEffect(() => {
     const fetchSlugs = async () => {
       try {
-        const solutionURL = `https://api.storyblok.com/v2/cdn/stories?starts_with=solutions/&version=${process.env.NEXT_PUBLIC_STORYBLOK_VERSION}&token=${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`;
+        const solutionURL = `https://api.storyblok.com/v2/cdn/stories?starts_with=swiftsupport/solutions/&version=${process.env.NEXT_PUBLIC_STORYBLOK_VERSION}&token=${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`;
         const solutionURLRes = await fetch(solutionURL);
         if (!solutionURLRes.ok) {
           throw new Error(`HTTP error! status: ${guideURLRes.status}`);
@@ -55,7 +55,7 @@ const Header = () => {
           path: "/solutions/" + story.slug + "/",
         }));
         setSolutionList(solutionSlugList);
-        const guideURL = `https://api.storyblok.com/v2/cdn/stories?starts_with=guide/&version=${process.env.NEXT_PUBLIC_STORYBLOK_VERSION}&token=${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`;
+        const guideURL = `https://api.storyblok.com/v2/cdn/stories?starts_with=swiftsupport/guide/&version=${process.env.NEXT_PUBLIC_STORYBLOK_VERSION}&token=${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`;
         const guideURLRes = await fetch(guideURL);
 
         if (!guideURLRes.ok) {

@@ -12,7 +12,7 @@ export async function getblogData(
 ) {
   // Define the base parameters for the API call
   let apiParams = {
-    starts_with: "swiftsupport-blog/",
+    starts_with: "swiftsupport/swiftsupport-blog/",
     // with_tag: "Swiftsupport",
     page: page_no || 1,
     per_page: limit_per_page || 9,
@@ -53,7 +53,7 @@ export async function getblog() {
 
   while (hasMoreData) {
     const response = await Storyblok.get("cdn/stories", {
-      starts_with: "swiftsupport-blog/",
+      starts_with: "swiftsupport/swiftsupport-blog/",
       per_page: 100,
       page,
       version: process.env.NEXT_PUBLIC_STORYBLOK_VERSION,

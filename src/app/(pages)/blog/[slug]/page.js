@@ -13,7 +13,7 @@ export const dynamic = "force-static";
 // Fetch data with error handling and caching
 async function fetchData(slug) {
   const url = new URL(
-    `https://api.storyblok.com/v2/cdn/stories/swiftsupport-blog/${slug}`
+    `https://api.storyblok.com/v2/cdn/stories/swiftsupport/swiftsupport-blog/${slug}`
   );
   url.searchParams.append("token", process.env.NEXT_PUBLIC_ACCESS_TOKEN || "");
   url.searchParams.append("version", process.env.NEXT_PUBLIC_STORYBLOK_VERSION);
@@ -217,7 +217,7 @@ async function getBlogData() {
   );
   url.searchParams.append("page", "1");
   url.searchParams.append("per_page", "100");
-  url.searchParams.append("starts_with", "swiftsupport-blog/");
+  url.searchParams.append("starts_with", "/swiftsupport/swiftsupport-blog/");
   url.searchParams.append("token", process.env.NEXT_PUBLIC_ACCESS_TOKEN || "");
   url.searchParams.append(
     "version",
